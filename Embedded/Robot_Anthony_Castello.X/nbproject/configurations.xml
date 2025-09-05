@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>ChipConfig.h</itemPath>
       <itemPath>IO.h</itemPath>
+      <itemPath>timer.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -22,6 +23,7 @@
       <itemPath>main.c</itemPath>
       <itemPath>ChipConfig.c</itemPath>
       <itemPath>IO.c</itemPath>
+      <itemPath>timer.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
