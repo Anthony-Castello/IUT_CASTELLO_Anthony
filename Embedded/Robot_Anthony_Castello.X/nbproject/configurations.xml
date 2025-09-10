@@ -8,6 +8,8 @@
       <itemPath>IO.h</itemPath>
       <itemPath>timer.h</itemPath>
       <itemPath>robot.h</itemPath>
+      <itemPath>PWM.h</itemPath>
+      <itemPath>Toolbox.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -27,6 +29,7 @@
       <itemPath>timer.c</itemPath>
       <itemPath>robot.c</itemPath>
       <itemPath>toolbox.c</itemPath>
+      <itemPath>PWM.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
