@@ -7,6 +7,8 @@
 #include "PWM.h"
 #include "ADC.h"
 
+unsigned int * result;
+
 int main(void) {
     /***********************************************************************************************/
     //Initialisation oscillateur
@@ -30,15 +32,22 @@ int main(void) {
     LED_ORANGE_2 = 1;
     LED_ROUGE_2 = 1;
     LED_VERTE_2 = 1;
-    
     PWMSetSpeedConsigne(0, MOTEUR_DROIT);
     PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
-    
+    int ADCValue0, ADCValue1, ADCValue2;
+
+
+
     /***********************************************************************************************/
     // Boucle Principale
     /***********************************************************************************************/
     while (1) {
-        
-
+        if (ADCIsConversionFinished() == 1) {
+            result = ADCGetResult();
+            ADCValue0 = result[0];
+            ADCValue1 = result[1];
+            ADCValue2 = result[2];
+            ADCClearConversionFinishedFlag();
+        }
     } // fin main
 }
