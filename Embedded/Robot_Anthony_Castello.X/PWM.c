@@ -6,6 +6,8 @@
 
 #define PWMPER 24.0
 
+
+
 void InitPWM(void) {
     PTCON2bits.PCLKDIV = 0b000; //Divide by 1
     PTPER = 100 * PWMPER; //éPriode en pourcentage
@@ -22,6 +24,7 @@ void InitPWM(void) {
     PTCONbits.PTEN = 1;
 }
 double talon = 50;
+float acceleration = 0.2;
 
 /*void PWMSetSpeed(int moteur, float vitesseEnPourcents) {
     if (vitesseEnPourcents > 100) {

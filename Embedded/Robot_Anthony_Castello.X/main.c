@@ -5,6 +5,7 @@
 #include "IO.h"
 #include "timer.h"
 #include "PWM.h"
+#include "ADC.h"
 
 int main(void) {
     /***********************************************************************************************/
@@ -15,10 +16,10 @@ int main(void) {
     // Configuration des input et output (IO)
     /***********************************************************************************************/
     InitIO();
+    InitPWM();
+    InitADC1();
     InitTimer1();
     InitTimer23();
-    _T1Interrupt();
-    _T3Interrupt();
     LED_BLANCHE_1 = 1;
     LED_BLEUE_1 = 1;
     LED_ORANGE_1 = 1;
@@ -30,14 +31,14 @@ int main(void) {
     LED_ROUGE_2 = 1;
     LED_VERTE_2 = 1;
     
-    InitPWM();
-    PWMSetSpeedConsigne(20, MOTEUR_DROIT);
-    PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
+    PWMSetSpeedConsigne(0, MOTEUR_DROIT);
+    PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
     
     /***********************************************************************************************/
     // Boucle Principale
     /***********************************************************************************************/
     while (1) {
+        
 
     } // fin main
 }
