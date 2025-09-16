@@ -1,4 +1,4 @@
-
+#include "robot.h"
 #include <xc.h>
 #include "timer.h"
 #include "IO.h"
@@ -16,7 +16,7 @@ void InitTimer1(void) {
     //01 = 1:8 prescale value
     //00 = 1:1 prescale value
     T1CONbits.TCS = 0; //clock source = internal clock
-    PR1 = 0x493E;
+    PR1 = 0x249F;
     IFS0bits.T1IF = 0; // Clear Timer Interrupt Flag
     IEC0bits.T1IE = 1; // Enable Timer interrupt
     T1CONbits.TON = 1; // Enable Timer
@@ -25,7 +25,7 @@ void InitTimer1(void) {
 
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     IFS0bits.T1IF = 0;
-    LED_BLANCHE_1 = !LED_BLANCHE_1;
+    PWMUpdateSpeed();
 }
 //Initialisation d?un timer 32 bits
 
@@ -49,13 +49,5 @@ void InitTimer23(void) {
 
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
-    if (toggle == 0) {
-        PWMSetSpeed(MOTEUR_DROIT, 20);
-        PWMSetSpeed(MOTEUR_GAUCHE, 20);
-        toggle = 1;
-    } else {
-        PWMSetSpeed(MOTEUR_DROIT, -20);
-        PWMSetSpeed(MOTEUR_GAUCHE, -20);
-        toggle = 0;
-    }
+       
 }

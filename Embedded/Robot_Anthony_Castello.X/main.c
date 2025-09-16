@@ -31,8 +31,8 @@ int main(void) {
     LED_VERTE_2 = 1;
     
     InitPWM();
-    PWMSetSpeed(MOTEUR_GAUCHE, 0);
-    PWMSetSpeed(MOTEUR_DROIT, -0);
+    PWMSetSpeedConsigne(20, MOTEUR_DROIT);
+    PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
     
     /***********************************************************************************************/
     // Boucle Principale
