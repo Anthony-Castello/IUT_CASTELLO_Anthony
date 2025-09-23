@@ -5,8 +5,10 @@
 #include "PWM.h"
 #include "ADC.h"
 #include "main.h"
+#include "ChipConfig.h"
 
 unsigned char toggle = 0;
+unsigned long timestamp = 0;
 //Initialisation d?un timer 16 bits
 
 void InitTimer1(void) {
@@ -40,7 +42,7 @@ void SetFreqTimer1(float freq) {
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     IFS0bits.T1IF = 0;
     PWMUpdateSpeed();
-    LED_BLANCHE_1 = !LED_BLANCHE_1;
+    //LED_BLANCHE_1 = !LED_BLANCHE_1;
     ADC1StartConversionSequence();
 }
 //Initialisation d?un timer 32 bits
@@ -97,6 +99,8 @@ void SetFreqTimer4(float freq) {
 
 void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     IFS1bits.T4IF = 0; // Clear Timer3 Interrupt Flag
-    LED_BLEUE_1 = !LED_BLEUE_1;
+    timestamp ++;
+    OperatingSystemLoop();
+
 }
 
