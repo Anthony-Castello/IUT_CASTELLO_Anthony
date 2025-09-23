@@ -11,7 +11,7 @@ unsigned char toggle = 0;
 
 void InitTimer1(void) {
     T1CONbits.TON = 0; // Disable Timer
-    SetFreqTimer1(2);
+    SetFreqTimer1(20);
     T1CONbits.TCS = 0; //clock source = internal clock
     IFS0bits.T1IF = 0; // Clear Timer Interrupt Flag
     IEC0bits.T1IE = 1; // Enable Timer interrupt
@@ -66,5 +66,37 @@ void InitTimer23(void) {
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
 
+}
+void InitTimer4(void) {
+    T4CONbits.TON = 0; // Disable Timer
+    SetFreqTimer4(1000);
+    T4CONbits.TCS = 0; //clock source = internal clock
+    IFS1bits.T4IF = 0; // Clear Timer Interrupt Flag
+    IEC1bits.T4IE = 1; // Enable Timer interrupt
+    T4CONbits.TON = 1; // Enable Timer
+}
+void SetFreqTimer4(float freq) {
+    T4CONbits.TCKPS = 0b00; //00 = 1:1 prescaler value
+    if (FCY / freq > 65535) {
+        T4CONbits.TCKPS = 0b01; //01 = 1:8 prescaler value
+        if (FCY / freq / 8 > 65535) {
+            T4CONbits.TCKPS = 0b10; //10 = 1:64 prescaler value
+            if (FCY / freq / 64 > 65535) {
+                T4CONbits.TCKPS = 0b11; //11 = 1:256 prescaler value
+                PR4 = (int) (FCY / freq / 256);
+            } else
+                PR4 = (int) (FCY / freq / 64);
+        } else
+            PR4 = (int) (FCY / freq / 8);
+    } else
+        PR4 = (int) (FCY / freq);
+}
+
+
+//Interruption du timer 32 bits sur 2-3
+
+void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
+    IFS1bits.T4IF = 0; // Clear Timer3 Interrupt Flag
+    LED_BLEUE_1 = !LED_BLEUE_1;
 }
 

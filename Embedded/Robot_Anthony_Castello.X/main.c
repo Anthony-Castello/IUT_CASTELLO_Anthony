@@ -23,6 +23,7 @@ int main(void) {
     InitADC1();
     InitTimer1();
     InitTimer23();
+    InitTimer4();
     LED_BLANCHE_1 = 1;
     LED_BLEUE_1 = 1;
     LED_ORANGE_1 = 1;
