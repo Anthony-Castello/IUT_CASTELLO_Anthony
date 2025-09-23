@@ -10,8 +10,8 @@
 #include "main.h"
 
 unsigned int * result;
-unsigned char stateRobot;
-unsigned char nextStateRobot = 0;
+
+
 
 int main(void) {
     /***********************************************************************************************/
@@ -37,8 +37,7 @@ int main(void) {
     LED_ORANGE_2 = 1;
     LED_ROUGE_2 = 1;
     LED_VERTE_2 = 1;
-    PWMSetSpeedConsigne(0, MOTEUR_DROIT);
-    PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
+
 
 
 
@@ -96,6 +95,7 @@ int main(void) {
 
     } // fin main
 }
+unsigned char stateRobot;
 
 void OperatingSystemLoop(void) {
     switch (stateRobot) {
@@ -154,13 +154,19 @@ void OperatingSystemLoop(void) {
     }
 }
 
+unsigned char nextStateRobot = 0;
+
 void SetNextRobotStateInAutomaticMode() {
     unsigned char positionObstacle = PAS_D_OBSTACLE;
     //ÈDtermination de la position des obstacles en fonction des ÈÈËtlmtres
-    if (robotState.distanceTelemetreDroit < 30 &&
-            robotState.distanceTelemetreCentre > 20 &&
-            robotState.distanceTelemetreGauche > 30) //Obstacle ‡droite
+    if (robotState.distanceTelemetreDroit < 35 &&
+            robotState.distanceTelemetreCentre > 25 &&
+            robotState.distanceTelemetreGauche > 35) //Obstacle ‡droite
         positionObstacle = OBSTACLE_A_DROITE;
+    else if (robotState.distanceTelemetreExDroit < 40 &&
+            robotState.distanceTelemetreCentre > 50 &&
+            robotState.distanceTelemetreGauche > 50) //Obstacle ‡droite
+        positionObstacle = PAS_D_OBSTACLE;
     else if (robotState.distanceTelemetreDroit > 30 &&
             robotState.distanceTelemetreCentre > 20 &&
             robotState.distanceTelemetreGauche < 30) //Obstacle ‡gauche
