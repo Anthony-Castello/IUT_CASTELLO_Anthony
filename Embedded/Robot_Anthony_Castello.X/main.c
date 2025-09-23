@@ -11,8 +11,6 @@
 
 unsigned int * result;
 
-
-
 int main(void) {
     /***********************************************************************************************/
     //Initialisation oscillateur
@@ -109,15 +107,15 @@ void OperatingSystemLoop(void) {
                 stateRobot = STATE_AVANCE;
             break;
         case STATE_AVANCE:
-            PWMSetSpeedConsigne(30, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(20, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
             stateRobot = STATE_AVANCE_EN_COURS;
             break;
         case STATE_AVANCE_EN_COURS:
             SetNextRobotStateInAutomaticMode();
             break;
         case STATE_TOURNE_GAUCHE:
-            PWMSetSpeedConsigne(30, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(15, MOTEUR_DROIT);
             PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_GAUCHE_EN_COURS;
             break;
@@ -126,7 +124,7 @@ void OperatingSystemLoop(void) {
             break;
         case STATE_TOURNE_DROITE:
             PWMSetSpeedConsigne(0, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_DROITE_EN_COURS;
             break;
         case STATE_TOURNE_DROITE_EN_COURS:
@@ -158,25 +156,26 @@ unsigned char nextStateRobot = 0;
 
 void SetNextRobotStateInAutomaticMode() {
     unsigned char positionObstacle = PAS_D_OBSTACLE;
+    positionObstacle = PAS_D_OBSTACLE;
     //ÈDtermination de la position des obstacles en fonction des ÈÈËtlmtres
-    if (robotState.distanceTelemetreDroit < 35 &&
-            robotState.distanceTelemetreCentre > 25 &&
-            robotState.distanceTelemetreGauche > 35) //Obstacle ‡droite
+    if (robotState.distanceTelemetreCentre > 25 &&
+            robotState.distanceTelemetreDroit > 20 &&
+            robotState.distanceTelemetreExDroit > 20 &&
+            robotState.distanceTelemetreGauche > 20 &&
+            robotState.distanceTelemetreExGauche > 20)
+        positionObstacle = PAS_D_OBSTACLE;
+    else if ((robotState.distanceTelemetreCentre > 25 &&
+            robotState.distanceTelemetreDroit < 20) ||
+            (robotState.distanceTelemetreCentre > 25 &&
+            robotState.distanceTelemetreExDroit < 15))
         positionObstacle = OBSTACLE_A_DROITE;
-    else if (robotState.distanceTelemetreExDroit < 40 &&
-            robotState.distanceTelemetreCentre > 50 &&
-            robotState.distanceTelemetreGauche > 50) //Obstacle ‡droite
-        positionObstacle = PAS_D_OBSTACLE;
-    else if (robotState.distanceTelemetreDroit > 30 &&
-            robotState.distanceTelemetreCentre > 20 &&
-            robotState.distanceTelemetreGauche < 30) //Obstacle ‡gauche
+    else if ((robotState.distanceTelemetreCentre > 25 &&
+            robotState.distanceTelemetreGauche < 20) ||
+            (robotState.distanceTelemetreCentre > 25 &&
+            robotState.distanceTelemetreExGauche < 15))
         positionObstacle = OBSTACLE_A_GAUCHE;
-    else if (robotState.distanceTelemetreCentre < 20) //Obstacle en face
+    else if (robotState.distanceTelemetreCentre < 25)
         positionObstacle = OBSTACLE_EN_FACE;
-    else if (robotState.distanceTelemetreDroit > 30 &&
-            robotState.distanceTelemetreCentre > 20 &&
-            robotState.distanceTelemetreGauche > 30) //pas d?obstacle
-        positionObstacle = PAS_D_OBSTACLE;
     //ÈDtermination de lÈ?tat ‡venir du robot
     if (positionObstacle == PAS_D_OBSTACLE)
         nextStateRobot = STATE_AVANCE;
