@@ -35,7 +35,7 @@ int main(void) {
     LED_VERTE_2 = 1;
     PWMSetSpeedConsigne(0, MOTEUR_DROIT);
     PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
-    int ADCValue0, ADCValue1, ADCValue2;
+
 
 
 
@@ -57,7 +57,7 @@ int main(void) {
             volts = ((float) result [4])* 3.3 / 4096;
             robotState.distanceTelemetreExDroit = 34 / volts - 5;
         }
-
+/*
         if(robotState.distanceTelemetreExGauche < 30.0){
             LED_BLANCHE_1 = 1;
         }
@@ -88,5 +88,7 @@ int main(void) {
         else {
             LED_VERTE_1 = 0;
         }
+        */
+        
     } // fin main
 }

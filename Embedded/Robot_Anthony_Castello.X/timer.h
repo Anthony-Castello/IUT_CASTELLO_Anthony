@@ -2,5 +2,6 @@
 #define TIMER_H
 void InitTimer23(void);
 void InitTimer1(void);
+void SetFreqTimer1(float);
 
 #endif /* TIMER_H */
