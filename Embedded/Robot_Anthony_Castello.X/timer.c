@@ -13,7 +13,7 @@ unsigned long timestamp = 0;
 
 void InitTimer1(void) {
     T1CONbits.TON = 0; // Disable Timer
-    SetFreqTimer1(250);
+    SetFreqTimer1(300); //Fréquence timer1
     T1CONbits.TCS = 0; //clock source = internal clock
     IFS0bits.T1IF = 0; // Clear Timer Interrupt Flag
     IEC0bits.T1IE = 1; // Enable Timer interrupt
@@ -44,6 +44,7 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     PWMUpdateSpeed();
     //LED_BLANCHE_1 = !LED_BLANCHE_1;
     ADC1StartConversionSequence();
+    
 }
 //Initialisation d?un timer 32 bits
 

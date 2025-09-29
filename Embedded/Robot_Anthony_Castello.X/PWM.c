@@ -24,7 +24,7 @@ void InitPWM(void) {
     PTCONbits.PTEN = 1;
 }
 double talon = 50;
-float acceleration = 0.2;
+float acceleration = 30;
 
 /*void PWMSetSpeed(int moteur, float vitesseEnPourcents) {
     if (vitesseEnPourcents > 100) {
