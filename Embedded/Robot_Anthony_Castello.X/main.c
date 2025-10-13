@@ -175,15 +175,15 @@ void SetNextRobotStateInAutomaticMode() {
     flag_Centre = 0b00000000;
 
     //ÈDtermination de la position des obstacles en fonction des ÈÈËtlmtres
-    if (robotState.distanceTelemetreCentre < 35)
+    if (robotState.distanceTelemetreCentre < 37)
         flag_Centre |= 0b00000100;
-    if (robotState.distanceTelemetreDroit < 30)
+    if (robotState.distanceTelemetreDroit < 32)
         flag_Droit |= 0b00000010;
-    if (robotState.distanceTelemetreExDroit < 25)
+    if (robotState.distanceTelemetreExDroit < 27)
         flag_Ex_Droit |= 0b00000001;
-    if (robotState.distanceTelemetreGauche < 30)
+    if (robotState.distanceTelemetreGauche < 32)
         flag_Gauche |= 0b00001000;
-    if (robotState.distanceTelemetreExGauche < 25)
+    if (robotState.distanceTelemetreExGauche < 27)
         flag_Ex_Gauche |= 0b00010000;
     flag_Final |= flag_Ex_Gauche | flag_Gauche | flag_Centre | flag_Droit | flag_Ex_Droit;
 
