@@ -75,27 +75,27 @@ int main(void) {
             if (robotState.distanceTelemetreCentre < 9)
                 robotState.distanceTelemetreCentre = 0;
         }
-        if (robotState.distanceTelemetreExGauche < 25) {
+        if (robotState.distanceTelemetreExGauche < 29) {
             LED_BLANCHE_1 = 1;
         } else {
             LED_BLANCHE_1 = 0;
         }
-        if (robotState.distanceTelemetreGauche < 30) {
+        if (robotState.distanceTelemetreGauche < 34) {
             LED_BLEUE_1 = 1;
         } else {
             LED_BLEUE_1 = 0;
         }
-        if (robotState.distanceTelemetreCentre < 35) {
+        if (robotState.distanceTelemetreCentre < 39) {
             LED_ORANGE_1 = 1;
         } else {
             LED_ORANGE_1 = 0;
         }
-        if (robotState.distanceTelemetreDroit < 30) {
+        if (robotState.distanceTelemetreDroit < 34) {
             LED_ROUGE_1 = 1;
         } else {
             LED_ROUGE_1 = 0;
         }
-        if (robotState.distanceTelemetreExDroit < 25) {
+        if (robotState.distanceTelemetreExDroit < 29) {
             LED_VERTE_1 = 1;
         } else {
             LED_VERTE_1 = 0;
