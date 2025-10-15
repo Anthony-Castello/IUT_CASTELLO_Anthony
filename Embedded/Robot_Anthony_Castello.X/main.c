@@ -75,27 +75,27 @@ int main(void) {
             if (robotState.distanceTelemetreCentre < 9)
                 robotState.distanceTelemetreCentre = 0;
         }
-        if (robotState.distanceTelemetreExGauche < 29) {
+        if (robotState.distanceTelemetreExGauche < 32) {
             LED_BLANCHE_1 = 1;
         } else {
             LED_BLANCHE_1 = 0;
         }
-        if (robotState.distanceTelemetreGauche < 34) {
+        if (robotState.distanceTelemetreGauche < 37) {
             LED_BLEUE_1 = 1;
         } else {
             LED_BLEUE_1 = 0;
         }
-        if (robotState.distanceTelemetreCentre < 39) {
+        if (robotState.distanceTelemetreCentre < 45) {
             LED_ORANGE_1 = 1;
         } else {
             LED_ORANGE_1 = 0;
         }
-        if (robotState.distanceTelemetreDroit < 34) {
+        if (robotState.distanceTelemetreDroit < 37) {
             LED_ROUGE_1 = 1;
         } else {
             LED_ROUGE_1 = 0;
         }
-        if (robotState.distanceTelemetreExDroit < 29) {
+        if (robotState.distanceTelemetreExDroit < 32) {
             LED_VERTE_1 = 1;
         } else {
             LED_VERTE_1 = 0;
@@ -125,7 +125,7 @@ void OperatingSystemLoop(void) {
             SetNextRobotStateInAutomaticMode();
             break;
         case STATE_TOURNE_GAUCHE:
-            PWMSetSpeedConsigne(10, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(12, MOTEUR_DROIT);
             PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_GAUCHE_EN_COURS;
             break;
@@ -134,7 +134,7 @@ void OperatingSystemLoop(void) {
             break;
         case STATE_TOURNE_DROITE:
             PWMSetSpeedConsigne(0, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(10, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(12, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_DROITE_EN_COURS;
             break;
         case STATE_TOURNE_DROITE_EN_COURS:
@@ -175,15 +175,15 @@ void SetNextRobotStateInAutomaticMode() {
     flag_Centre = 0b00000000;
 
     //éDtermination de la position des obstacles en fonction des ééètlmtres
-    if (robotState.distanceTelemetreCentre < 37)
+    if (robotState.distanceTelemetreCentre < 45)
         flag_Centre |= 0b00000100;
-    if (robotState.distanceTelemetreDroit < 32)
+    if (robotState.distanceTelemetreDroit < 37)
         flag_Droit |= 0b00000010;
-    if (robotState.distanceTelemetreExDroit < 27)
+    if (robotState.distanceTelemetreExDroit < 32)
         flag_Ex_Droit |= 0b00000001;
-    if (robotState.distanceTelemetreGauche < 32)
+    if (robotState.distanceTelemetreGauche < 37)
         flag_Gauche |= 0b00001000;
-    if (robotState.distanceTelemetreExGauche < 27)
+    if (robotState.distanceTelemetreExGauche < 32)
         flag_Ex_Gauche |= 0b00010000;
     flag_Final |= flag_Ex_Gauche | flag_Gauche | flag_Centre | flag_Droit | flag_Ex_Droit;
 
