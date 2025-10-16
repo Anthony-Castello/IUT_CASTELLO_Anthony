@@ -134,7 +134,7 @@ void OperatingSystemLoop(void) {
             break;
         case STATE_TOURNE_DROITE:
             PWMSetSpeedConsigne(0, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(15  , MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_DROITE_EN_COURS;
             break;
         case STATE_TOURNE_DROITE_EN_COURS:
@@ -175,15 +175,15 @@ void SetNextRobotStateInAutomaticMode() {
     flag_Centre = 0b00000000;
 
     //ÈDtermination de la position des obstacles en fonction des ÈÈËtlmtres
-    if (robotState.distanceTelemetreCentre < 45)
+    if (robotState.distanceTelemetreCentre < 40)
         flag_Centre |= 0b00000100;
-    if (robotState.distanceTelemetreDroit < 37)
+    if (robotState.distanceTelemetreDroit < 32)
         flag_Droit |= 0b00000010;
-    if (robotState.distanceTelemetreExDroit < 32)
+    if (robotState.distanceTelemetreExDroit < 25)
         flag_Ex_Droit |= 0b00000001;
-    if (robotState.distanceTelemetreGauche < 37)
+    if (robotState.distanceTelemetreGauche < 32)
         flag_Gauche |= 0b00001000;
-    if (robotState.distanceTelemetreExGauche < 32)
+    if (robotState.distanceTelemetreExGauche < 25)
         flag_Ex_Gauche |= 0b00010000;
     flag_Final |= flag_Ex_Gauche | flag_Gauche | flag_Centre | flag_Droit | flag_Ex_Droit;
 
