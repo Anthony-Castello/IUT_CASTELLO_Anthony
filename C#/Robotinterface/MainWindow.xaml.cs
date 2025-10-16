@@ -26,6 +26,8 @@ namespace Robotinterface
 
         private void boutonEnvoyer_Click(object sender, RoutedEventArgs e)
         {
+            TextBoxReception.Text += ("Reçu : " + (TextBoxEmission.Text) + "\n");
+            TextBoxEmission.Text = ("");
             if (toggle)
             {
                 boutonEnvoyer.Background = Brushes.Beige;
@@ -36,6 +38,7 @@ namespace Robotinterface
                 boutonEnvoyer.Background = Brushes.RoyalBlue;
                 toggle = !toggle;
             }
+            
         }   
     }
 }
