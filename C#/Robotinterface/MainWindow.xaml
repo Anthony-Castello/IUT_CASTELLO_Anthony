@@ -30,7 +30,7 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </GroupBox.RenderTransform>
-            <TextBox x:Name="TextBoxEmission" TextWrapping="Wrap" Margin="4,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" AcceptsReturn="True"/>
+            <TextBox x:Name="TextBoxEmission" TextWrapping="Wrap" Margin="4,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" AcceptsReturn="True" TextChanged="TextBoxEmission_TextChanged" KeyUp="TextBoxEmission_KeyUp"/>
         </GroupBox>
         <GroupBox Header="Réception" Background="#FFDDDDDD" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Grid.Column="3" Grid.Row="1">
             <GroupBox.RenderTransform>
