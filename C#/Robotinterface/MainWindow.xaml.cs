@@ -27,10 +27,11 @@ namespace Robotinterface
         ExtendedSerialPort serialPort1;
         DispatcherTimer timerAffichage;
         int flag = 0;
+        Robot robot = new Robot();
         public MainWindow()
         {
             
-            serialPort1 = new ExtendedSerialPort("COM4", 115200, Parity.None, 8, StopBits.One);
+            serialPort1 = new ExtendedSerialPort("COM3", 115200, Parity.None, 8, StopBits.One);
             serialPort1.DataReceived += SerialPort1_DataReceived;
             serialPort1.Open();
             InitializeComponent();
@@ -44,21 +45,22 @@ namespace Robotinterface
         {
             if (flag == 1)
             {
-                TextBoxReception.Text += ("Reçu : " + receivedText);
+                TextBoxReception.Text += ("Reçu : " + robot.receivedText);
                 flag = 0;
 
             }
             else
             {
-                receivedText = "";
+                robot.receivedText = "";
             }
         }
 
         bool toggle = true;
-        String receivedText;
+        bool toggle2 = true;
+        bool toggle3 = true;
         public void SerialPort1_DataReceived(object sender, DataReceivedArgs e){
 
-            receivedText += Encoding.UTF8.GetString(e.Data, 0, e.Data.Length);
+            robot.receivedText += Encoding.UTF8.GetString(e.Data, 0, e.Data.Length);
             flag = 1;
         }
 
@@ -98,6 +100,40 @@ namespace Robotinterface
 
         }
 
-        
+        private void boutonClear_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxReception.Text = "";
+            if (toggle2)
+            {
+                boutonClear.Background = Brushes.Beige;
+                toggle2 = !toggle2;
+            }
+            else
+            {
+                boutonClear.Background = Brushes.RoyalBlue;
+                toggle2 = !toggle2;
+            }
+        }
+
+        private void boutonTest_Click(object sender, RoutedEventArgs e)
+        {
+            int i;
+            byte[] byteList = new byte[48];
+            for (i = 0; i< 48; i++)
+            {
+                byteList[i] = (byte)(i);
+            }
+            serialPort1.Write(byteList, 0, 48);
+            if (toggle3)
+            {
+                boutonTest.Background = Brushes.Beige;
+                toggle3 = !toggle3;
+            }
+            else
+            {
+                boutonTest.Background = Brushes.RoyalBlue;
+                toggle3 = !toggle3;
+            }
+        }
     }
 }

@@ -44,6 +44,8 @@
             <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" Width="339" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True"/>
         </GroupBox>
         <Button x:Name="boutonEnvoyer" Grid.Column="1" Content="Envoyer" Grid.Row="3" Width="100" HorizontalAlignment="Center" Click="boutonEnvoyer_Click"  />
+        <Button x:Name="boutonClear" Grid.Column="3" Content="Clear" Grid.Row="2" Width="100" HorizontalAlignment="Left" Click="boutonClear_Click" Margin="10,30,0,0" Grid.RowSpan="2"  />
+        <Button x:Name="boutonTest" Grid.Column="3" Content="Test" Grid.Row="2" Width="100" HorizontalAlignment="Left" Click="boutonTest_Click" Margin="245,30,0,0" Grid.RowSpan="2"  />
 
     </Grid>
 </Window>
