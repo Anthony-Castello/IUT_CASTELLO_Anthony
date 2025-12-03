@@ -11,7 +11,9 @@ namespace Robotinterface
     public class Robot
     {
         public string receivedText = "";
+        public Queue<byte> byteListReceived = new Queue<byte>();
         
+
         public float distanceTelemetreExDroit;
         public float distanceTelemetreDroit;
         public float distanceTelemetreCentre;
@@ -19,7 +21,6 @@ namespace Robotinterface
         public float distanceTelemetreExGauche;
         public Robot()
         {
-
         }
 }
 }

@@ -27,11 +27,12 @@ namespace Robotinterface
         ExtendedSerialPort serialPort1;
         DispatcherTimer timerAffichage;
         int flag = 0;
+        int bit = 0;
         Robot robot = new Robot();
         public MainWindow()
         {
             
-            serialPort1 = new ExtendedSerialPort("COM3", 115200, Parity.None, 8, StopBits.One);
+            serialPort1 = new ExtendedSerialPort("COM8", 115200, Parity.None, 8, StopBits.One);
             serialPort1.DataReceived += SerialPort1_DataReceived;
             serialPort1.Open();
             InitializeComponent();
@@ -45,7 +46,12 @@ namespace Robotinterface
         {
             if (flag == 1)
             {
-                TextBoxReception.Text += ("Reçu : " + robot.receivedText);
+                TextBoxReception.Text += ("\n Reçu : ");
+                for (int i = 0; i < robot.byteListReceived.Count(); i++)
+                {
+                    robot.receivedText = robot.byteListReceived.Dequeue().ToString("X2");
+                    TextBoxReception.Text += ("0x" + robot.receivedText + " ");
+                }
                 flag = 0;
 
             }
@@ -59,9 +65,11 @@ namespace Robotinterface
         bool toggle2 = true;
         bool toggle3 = true;
         public void SerialPort1_DataReceived(object sender, DataReceivedArgs e){
-
-            robot.receivedText += Encoding.UTF8.GetString(e.Data, 0, e.Data.Length);
-            flag = 1;
+            foreach (byte item in e.Data)
+            {
+                robot.byteListReceived.Enqueue(item);
+            }
+                flag = 1;
         }
 
         private void SendMessage()
