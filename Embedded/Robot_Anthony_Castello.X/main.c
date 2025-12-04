@@ -8,6 +8,7 @@
 #include "ADC.h"
 #include "robot.h"
 #include "main.h"
+#include "UART.h"
 
 
 unsigned int * result;
@@ -42,6 +43,7 @@ int main(void) {
     LED_ORANGE_2 = 1;
     LED_ROUGE_2 = 1;
     LED_VERTE_2 = 1;
+    //SendMessageDirect((unsigned char*) "Bonjour", 7);
 
 
 
@@ -100,7 +102,7 @@ int main(void) {
         } else {
             LED_VERTE_1 = 0;
         }
-
+        
     } // fin main
 }
 unsigned char stateRobot;
