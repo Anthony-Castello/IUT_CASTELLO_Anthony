@@ -6,6 +6,8 @@
 #include "ADC.h"
 #include "main.h"
 #include "ChipConfig.h"
+#include "UART.h"
+#include "Cb_TX1.h"
 
 unsigned char toggle = 0;
 unsigned long timestamp = 0;
@@ -43,6 +45,8 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     IFS0bits.T1IF = 0;
     PWMUpdateSpeed();
     //LED_BLANCHE_1 = !LED_BLANCHE_1;
+    //SendMessageDirect((unsigned char*) "Bonjour", 7);
+    SendMessage((unsigned char*) "BOUGN", 5);
     ADC1StartConversionSequence();
     
 }
