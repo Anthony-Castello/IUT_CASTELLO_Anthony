@@ -10,7 +10,8 @@
 #include "main.h"
 #include "UART.h"
 #include <libpic30.h>
-#include "Cb_TX1.h"
+#include "CB_TX1.h"
+#include "CB_RX1.h" 
 
 
 unsigned int * result;
@@ -55,6 +56,12 @@ int main(void) {
     // Boucle Principale
     /***********************************************************************************************/
     while (1) {
+        int i;
+        for (i = 0; i < CB_RX1_GetDataSize(); i++) {
+            unsigned char c = CB_RX1_Get();
+            SendMessage(&c, 1);
+        }
+        __delay32(10000);
         if (ADCIsConversionFinished() == 1) {
             ADCClearConversionFinishedFlag();
             unsigned int * result = ADCGetResult();
@@ -104,7 +111,7 @@ int main(void) {
         } else {
             LED_VERTE_1 = 0;
         }
-        
+
     } // fin main
 }
 unsigned char stateRobot;
@@ -138,7 +145,7 @@ void OperatingSystemLoop(void) {
             break;
         case STATE_TOURNE_DROITE:
             PWMSetSpeedConsigne(0, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(15  , MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_DROITE_EN_COURS;
             break;
         case STATE_TOURNE_DROITE_EN_COURS:

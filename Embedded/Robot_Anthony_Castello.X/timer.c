@@ -46,9 +46,8 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     PWMUpdateSpeed();
     //LED_BLANCHE_1 = !LED_BLANCHE_1;
     //SendMessageDirect((unsigned char*) "Bonjour", 7);
-    SendMessage((unsigned char*) "BOUGN", 5);
     ADC1StartConversionSequence();
-    
+
 }
 //Initialisation d?un timer 32 bits
 
@@ -74,6 +73,7 @@ void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
 
 }
+
 void InitTimer4(void) {
     T4CONbits.TON = 0; // Disable Timer
     SetFreqTimer4(1000);
@@ -82,6 +82,7 @@ void InitTimer4(void) {
     IEC1bits.T4IE = 1; // Enable Timer interrupt
     T4CONbits.TON = 1; // Enable Timer
 }
+
 void SetFreqTimer4(float freq) {
     T4CONbits.TCKPS = 0b00; //00 = 1:1 prescaler value
     if (FCY / freq > 65535) {
@@ -104,7 +105,7 @@ void SetFreqTimer4(float freq) {
 
 void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     IFS1bits.T4IF = 0; // Clear Timer3 Interrupt Flag
-    timestamp ++;
+    timestamp++;
     OperatingSystemLoop();
 
 }
