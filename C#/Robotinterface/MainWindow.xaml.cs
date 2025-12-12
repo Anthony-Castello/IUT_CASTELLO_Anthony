@@ -32,7 +32,7 @@ namespace Robotinterface
         public MainWindow()
         {
             
-            serialPort1 = new ExtendedSerialPort("COM8", 115200, Parity.None, 8, StopBits.One);
+            serialPort1 = new ExtendedSerialPort("COM9", 115200, Parity.None, 8, StopBits.One);
             serialPort1.DataReceived += SerialPort1_DataReceived;
             serialPort1.Open();
             InitializeComponent();
@@ -108,6 +108,8 @@ namespace Robotinterface
                     break;
                 case StateReception.PayloadLengthLSB:
                     msgDecodedPayloadLength += (int)c;
+                    msgDecodedPayload = new byte[msgDecodedPayloadLength];
+                    msgDecodedPayloadIndex = 0;
                     rcvState = StateReception.Payload;
                     break;
                 case StateReception.Payload:
@@ -115,7 +117,6 @@ namespace Robotinterface
                     msgDecodedPayloadIndex++;
                     if (msgDecodedPayloadIndex == msgDecodedPayloadLength)
                     {
-                        msgDecodedPayloadIndex = 0;
                         rcvState = StateReception.CheckSum;
                     }
                     break;
@@ -124,8 +125,10 @@ namespace Robotinterface
                     byte calculatedChecksum = CalculateChecksum(msgDecodedFunction, msgDecodedPayloadLength, msgDecodedPayload);
                     if (calculatedChecksum == c)
                     {
+                        //TextBoxReception.Text += "message recu\r\n";
                         //Success, on a un message valide
                     }
+                        rcvState = StateReception.Waiting;
                     break;
                 default:
                     rcvState = StateReception.Waiting;
@@ -157,7 +160,7 @@ namespace Robotinterface
 
         private void SendMessage()
         {
-            //TextBoxReception.Text += ("Reçu : " + text + "\n");
+            //TextBoxReception.Text += (Encoding.ASCII.GetBytes(TextBoxEmission.Text) + "\n");
 
             UartEncodeAndSendMessage(128, TextBoxEmission.Text.Length, Encoding.ASCII.GetBytes(TextBoxEmission.Text));
             TextBoxEmission.Text = "";
@@ -205,6 +208,54 @@ namespace Robotinterface
                 toggle2 = !toggle2;
             }
         }
+        public enum functionID
+        {
+            Text_transmission = 0x0080,
+            LED = 0x0020,
+            Dist_IR = 0x0030,
+            c_vitesse = 0x0040
+        }
+
+        int TelemExGauche = 0;
+        int TelemGauche = 0;
+        int TelemCentre = 0;
+        int TelemDroit = 0;
+        int TelemExDroit = 0;
+        private void ProcessMessage(int msgFunction, int msgPayloadLength, byte[] msgPayload)
+        {
+            switch (msgFunction)
+            {
+                case (int)functionID.LED:
+                    if (msgPayload[0] == 1)
+                    {
+                        if(msgPayload[1] == 1)
+                            Led1.IsChecked = true;
+                        else 
+                            Led1.IsChecked = false;
+                    }
+                    if (msgPayload[0] == 2)
+                    {
+                        if (msgPayload[1] == 1)
+                            Led2.IsChecked = true;
+                        else
+                            Led2.IsChecked = false;
+                    }
+                    if (msgPayload[0] == 3)
+                    {
+                        if (msgPayload[1] == 1)
+                            Led3.IsChecked = true;
+                        else
+                            Led3.IsChecked = false;
+                    }
+                    break;
+                case (int)functionID.Dist_IR:
+                    if(msgPayload[0] == 1)
+                    {
+
+                    }
+                    break;
+            }
+        }
 
         private void boutonTest_Click(object sender, RoutedEventArgs e)
         {
@@ -226,7 +277,14 @@ namespace Robotinterface
             //    toggle3 = !toggle3;
             //}
             byte[] array = Encoding.ASCII.GetBytes("Bonjour");
-            UartEncodeAndSendMessage(128, 7, array);
+            UartEncodeAndSendMessage(0x0080, 7, array);
+            byte[] LED = new byte[2];
+            UartEncodeAndSendMessage(0x0020, 2, LED);
+            byte[] IR = new byte[5];
+            UartEncodeAndSendMessage(0x0030, 5, IR);
+            byte[] vitesse = new byte[2];
+            UartEncodeAndSendMessage(0x0040, 2, vitesse);
         }
+        
     }
 }

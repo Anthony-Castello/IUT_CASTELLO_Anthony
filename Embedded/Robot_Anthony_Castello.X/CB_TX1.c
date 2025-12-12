@@ -55,21 +55,14 @@ unsigned char CB_TX1_IsTranmitting(void) {
 }
 
 int CB_TX1_GetDataSize(void) {
-    int dataSize;
-    //return size of data stored in circular buffer
-    if (cbTx1Tail < cbTx1Head) {
-        dataSize = cbTx1Head - cbTx1Tail;
-    } else if (cbTx1Tail > cbTx1Head) {
-        dataSize = CBTX1_BUFFER_SIZE - (cbTx1Tail - cbTx1Head);
-    } else {
-        dataSize = 0;
-    }
-    return dataSize;
+    if (cbTx1Head >= cbTx1Tail) 
+        return cbTx1Head - cbTx1Tail;
+    else
+        return CBTX1_BUFFER_SIZE - (cbTx1Tail - cbTx1Head);
 }
 
 int CB_TX1_GetRemainingSize(void) {
     //return size of remaining size in circular buffer
-    int remainingSize = CBTX1_BUFFER_SIZE - CB_TX1_GetDataSize();
-    return remainingSize;
+    return CBTX1_BUFFER_SIZE - CB_TX1_GetDataSize();    
 }
 

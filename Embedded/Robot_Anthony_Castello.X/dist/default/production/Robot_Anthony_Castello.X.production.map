@@ -129,10 +129,10 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0xa5a           0xf87  (3975)
-.text                        0xc5a               0xfc2          0x17a3  (6051)
-.dinit                      0x1c1c                0x4a            0x6f  (111)
+.text                        0xc5a               0xf94          0x175e  (5982)
+.dinit                      0x1bee                0x4a            0x6f  (111)
 
-                   Total "program" memory used (bytes):         0x2799  (10137) 1%
+                   Total "program" memory used (bytes):         0x2754  (10068) 1%
 
 
 Auxflash Memory  [Origin = 0x7fc000, Length = 0x3ffa]
@@ -284,53 +284,53 @@ External Symbols in Program Memory (by address):
                   0x00190e                  _SendOne
                   0x001922                  _CB_TX1_IsTranmitting
                   0x00192a                  _CB_TX1_GetDataSize
-                  0x00195e                  _CB_TX1_GetRemainingSize
-                  0x001970                  _InitADC1
-                  0x0019ea                  _ADC1StartConversionSequence
-                  0x0019f4                  _ADCGetResult
-                  0x0019fc                  _ADCIsConversionFinished
-                  0x001a04                  _ADCClearConversionFinishedFlag
-                  0x001a0e                  _InitOscillator
-                  0x001aa8                  _CB_RX1_Add
-                  0x001ac6                  _CB_RX1_Get
-                  0x001ae6                  _CB_RX1_IsDataAvailable
-                  0x001afa                  _CB_RX1_GetDataSize
-                  0x001b2e                  _CB_RX1_GetRemainingSize
-                  0x001b40                  _InitUART
-                  0x001b72                  _SendMessageDirect
-                  0x001bb2                  _InitIO
-                  0x001bf4                  _LockIO
-                  0x001c08                  _UnlockIO
+                  0x00194a                  _CB_TX1_GetRemainingSize
+                  0x001958                  _InitADC1
+                  0x0019d2                  _ADC1StartConversionSequence
+                  0x0019dc                  _ADCGetResult
+                  0x0019e4                  _ADCIsConversionFinished
+                  0x0019ec                  _ADCClearConversionFinishedFlag
+                  0x0019f6                  _InitOscillator
+                  0x001a90                  _CB_RX1_Add
+                  0x001ab2                  _CB_RX1_Get
+                  0x001ad2                  _CB_RX1_IsDataAvailable
+                  0x001ae6                  _CB_RX1_GetDataSize
+                  0x001b06                  _CB_RX1_GetRemainingSize
+                  0x001b14                  _InitUART
+                  0x001b46                  _SendMessageDirect
+                  0x001b86                  _InitIO
+                  0x001bc6                  _LockIO
+                  0x001bda                  _UnlockIO
                   0xf80004                  __FGS.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x0019ea                  _ADC1StartConversionSequence
-                  0x001a04                  _ADCClearConversionFinishedFlag
-                  0x0019f4                  _ADCGetResult
-                  0x0019fc                  _ADCIsConversionFinished
+                  0x0019d2                  _ADC1StartConversionSequence
+                  0x0019ec                  _ADCClearConversionFinishedFlag
+                  0x0019dc                  _ADCGetResult
+                  0x0019e4                  _ADCIsConversionFinished
                   0x001754                  _Abs
-                  0x001aa8                  _CB_RX1_Add
-                  0x001ac6                  _CB_RX1_Get
-                  0x001afa                  _CB_RX1_GetDataSize
-                  0x001b2e                  _CB_RX1_GetRemainingSize
-                  0x001ae6                  _CB_RX1_IsDataAvailable
+                  0x001a90                  _CB_RX1_Add
+                  0x001ab2                  _CB_RX1_Get
+                  0x001ae6                  _CB_RX1_GetDataSize
+                  0x001b06                  _CB_RX1_GetRemainingSize
+                  0x001ad2                  _CB_RX1_IsDataAvailable
                   0x0018cc                  _CB_TX1_Add
                   0x0018ee                  _CB_TX1_Get
                   0x00192a                  _CB_TX1_GetDataSize
-                  0x00195e                  _CB_TX1_GetRemainingSize
+                  0x00194a                  _CB_TX1_GetRemainingSize
                   0x001922                  _CB_TX1_IsTranmitting
                   0x001858                  _DegreeToRadian
-                  0x001970                  _InitADC1
-                  0x001bb2                  _InitIO
-                  0x001a0e                  _InitOscillator
+                  0x001958                  _InitADC1
+                  0x001b86                  _InitIO
+                  0x0019f6                  _InitOscillator
                   0x0014ce                  _InitPWM
                   0x001196                  _InitTimer1
                   0x001318                  _InitTimer23
                   0x00134c                  _InitTimer4
-                  0x001b40                  _InitUART
+                  0x001b14                  _InitUART
                   0x0017da                  _LimitToInterval
-                  0x001bf4                  _LockIO
+                  0x001bc6                  _LockIO
                   0x00177e                  _Max
                   0x0017ac                  _Min
                   0x000f1e                  _OperatingSystemLoop
@@ -338,12 +338,12 @@ External Symbols in Program Memory (by name):
                   0x001558                  _PWMUpdateSpeed
                   0x001822                  _RadianToDegree
                   0x00188e                  _SendMessage
-                  0x001b72                  _SendMessageDirect
+                  0x001b46                  _SendMessageDirect
                   0x00190e                  _SendOne
                   0x0011ae                  _SetFreqTimer1
                   0x001364                  _SetFreqTimer4
                   0x000ffc                  _SetNextRobotStateInAutomaticMode
-                  0x001c08                  _UnlockIO
+                  0x001bda                  _UnlockIO
                   0x000372                  __AD1Interrupt
                   0x00040c                  __DefaultInterrupt
                   0xf80004                  __FGS.sec
@@ -575,7 +575,7 @@ __FUID0
  .comment           0x0318         0x58 build/default/production/CB_TX1.o
  .comment           0x0370         0x58 build/default/production/CB_RX1.o
 
-.debug_info         0x0000       0x6f75
+.debug_info         0x0000       0x6f07
  *(.debug_info)
  .debug_info        0x0000        0xb1e build/default/production/main.o
  .debug_info        0x0b1e        0xb19 build/default/production/ChipConfig.o
@@ -586,30 +586,30 @@ __FUID0
  .debug_info        0x37e2        0xc1e build/default/production/PWM.o
  .debug_info        0x4400       0x1213 build/default/production/ADC.o
  .debug_info        0x5613        0x979 build/default/production/UART.o
- .debug_info        0x5f8c        0x5ed build/default/production/CB_TX1.o
- .debug_info        0x6579        0x72a build/default/production/CB_RX1.o
- .debug_info        0x6ca3         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
- .debug_info        0x6cc9         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
- .debug_info        0x6cef         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.EP_o)
- .debug_info        0x6d15         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
- .debug_info        0x6d3b         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
- .debug_info        0x6d61         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
- .debug_info        0x6d87         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
- .debug_info        0x6dad         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
- .debug_info        0x6dd3         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
- .debug_info        0x6df9         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
- .debug_info        0x6e1f         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
- .debug_info        0x6e45         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.EP_o)
- .debug_info        0x6e6b         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.EP_o)
- .debug_info        0x6e91         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.EP_o)
- .debug_info        0x6eb7         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.EP_o)
- .debug_info        0x6edd         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o)
- .debug_info        0x6f03         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.EP_o)
- .debug_info        0x6f29         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.EP_o)
- .debug_info        0x6f4f         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
+ .debug_info        0x5f8c        0x5b6 build/default/production/CB_TX1.o
+ .debug_info        0x6542        0x6f3 build/default/production/CB_RX1.o
+ .debug_info        0x6c35         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
+ .debug_info        0x6c5b         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
+ .debug_info        0x6c81         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.EP_o)
+ .debug_info        0x6ca7         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
+ .debug_info        0x6ccd         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
+ .debug_info        0x6cf3         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
+ .debug_info        0x6d19         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
+ .debug_info        0x6d3f         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
+ .debug_info        0x6d65         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
+ .debug_info        0x6d8b         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
+ .debug_info        0x6db1         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
+ .debug_info        0x6dd7         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.EP_o)
+ .debug_info        0x6dfd         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.EP_o)
+ .debug_info        0x6e23         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.EP_o)
+ .debug_info        0x6e49         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.EP_o)
+ .debug_info        0x6e6f         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o)
+ .debug_info        0x6e95         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.EP_o)
+ .debug_info        0x6ebb         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.EP_o)
+ .debug_info        0x6ee1         0x26 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev       0x0000        0xe18
+.debug_abbrev       0x0000        0xe14
  *(.debug_abbrev)
  .debug_abbrev      0x0000        0x180 build/default/production/main.o
  .debug_abbrev      0x0180         0xc7 build/default/production/ChipConfig.o
@@ -620,29 +620,29 @@ __FUID0
  .debug_abbrev      0x05a2        0x176 build/default/production/PWM.o
  .debug_abbrev      0x0718        0x147 build/default/production/ADC.o
  .debug_abbrev      0x085f        0x110 build/default/production/UART.o
- .debug_abbrev      0x096f        0x1a0 build/default/production/CB_TX1.o
- .debug_abbrev      0x0b0f        0x18d build/default/production/CB_RX1.o
- .debug_abbrev      0x0c9c         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
- .debug_abbrev      0x0cb0         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
- .debug_abbrev      0x0cc4         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.EP_o)
- .debug_abbrev      0x0cd8         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
- .debug_abbrev      0x0cec         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
- .debug_abbrev      0x0d00         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
- .debug_abbrev      0x0d14         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
- .debug_abbrev      0x0d28         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
- .debug_abbrev      0x0d3c         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
- .debug_abbrev      0x0d50         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
- .debug_abbrev      0x0d64         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
- .debug_abbrev      0x0d78         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.EP_o)
- .debug_abbrev      0x0d8c         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.EP_o)
- .debug_abbrev      0x0da0         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.EP_o)
- .debug_abbrev      0x0db4         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.EP_o)
- .debug_abbrev      0x0dc8         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o)
- .debug_abbrev      0x0ddc         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.EP_o)
- .debug_abbrev      0x0df0         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.EP_o)
- .debug_abbrev      0x0e04         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
+ .debug_abbrev      0x096f        0x19e build/default/production/CB_TX1.o
+ .debug_abbrev      0x0b0d        0x18b build/default/production/CB_RX1.o
+ .debug_abbrev      0x0c98         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
+ .debug_abbrev      0x0cac         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
+ .debug_abbrev      0x0cc0         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.EP_o)
+ .debug_abbrev      0x0cd4         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
+ .debug_abbrev      0x0ce8         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
+ .debug_abbrev      0x0cfc         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
+ .debug_abbrev      0x0d10         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
+ .debug_abbrev      0x0d24         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
+ .debug_abbrev      0x0d38         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
+ .debug_abbrev      0x0d4c         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
+ .debug_abbrev      0x0d60         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
+ .debug_abbrev      0x0d74         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.EP_o)
+ .debug_abbrev      0x0d88         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.EP_o)
+ .debug_abbrev      0x0d9c         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.EP_o)
+ .debug_abbrev      0x0db0         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.EP_o)
+ .debug_abbrev      0x0dc4         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o)
+ .debug_abbrev      0x0dd8         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.EP_o)
+ .debug_abbrev      0x0dec         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.EP_o)
+ .debug_abbrev      0x0e00         0x14 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
 
-.debug_line         0x0000       0x190c
+.debug_line         0x0000       0x18ef
  *(.debug_line)
  .debug_line        0x0000        0x385 build/default/production/main.o
  .debug_line        0x0385        0x11a build/default/production/ChipConfig.o
@@ -653,27 +653,27 @@ __FUID0
  .debug_line        0x088c        0x1c6 build/default/production/PWM.o
  .debug_line        0x0a52        0x157 build/default/production/ADC.o
  .debug_line        0x0ba9        0x123 build/default/production/UART.o
- .debug_line        0x0ccc        0x1a8 build/default/production/CB_TX1.o
- .debug_line        0x0e74        0x17f build/default/production/CB_RX1.o
- .debug_line        0x0ff3         0x3a c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
- .debug_line        0x102d         0x38 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
- .debug_line        0x1065         0x59 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.EP_o)
- .debug_line        0x10be         0x56 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
- .debug_line        0x1114         0x3e c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
- .debug_line        0x1152         0x4d c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
- .debug_line        0x119f        0x145 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
- .debug_line        0x12e4        0x130 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
- .debug_line        0x1414         0xcf c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
- .debug_line        0x14e3         0x75 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
- .debug_line        0x1558         0x7d c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
- .debug_line        0x15d5         0x61 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.EP_o)
- .debug_line        0x1636         0x54 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.EP_o)
- .debug_line        0x168a         0x9b c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.EP_o)
- .debug_line        0x1725         0x7c c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.EP_o)
- .debug_line        0x17a1         0x56 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o)
- .debug_line        0x17f7         0x73 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.EP_o)
- .debug_line        0x186a         0x5d c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.EP_o)
- .debug_line        0x18c7         0x45 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
+ .debug_line        0x0ccc        0x198 build/default/production/CB_TX1.o
+ .debug_line        0x0e64        0x172 build/default/production/CB_RX1.o
+ .debug_line        0x0fd6         0x3a c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.EP_o)
+ .debug_line        0x1010         0x38 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.EP_o)
+ .debug_line        0x1048         0x59 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.EP_o)
+ .debug_line        0x10a1         0x56 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.EP_o)
+ .debug_line        0x10f7         0x3e c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.EP_o)
+ .debug_line        0x1135         0x4d c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.EP_o)
+ .debug_line        0x1182        0x145 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.EP_o)
+ .debug_line        0x12c7        0x130 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.EP_o)
+ .debug_line        0x13f7         0xcf c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.EP_o)
+ .debug_line        0x14c6         0x75 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.EP_o)
+ .debug_line        0x153b         0x7d c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.EP_o)
+ .debug_line        0x15b8         0x61 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.EP_o)
+ .debug_line        0x1619         0x54 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.EP_o)
+ .debug_line        0x166d         0x9b c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.EP_o)
+ .debug_line        0x1708         0x7c c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.EP_o)
+ .debug_line        0x1784         0x56 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.EP_o)
+ .debug_line        0x17da         0x73 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.EP_o)
+ .debug_line        0x184d         0x5d c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.EP_o)
+ .debug_line        0x18aa         0x45 c:/program files/microchip/xc-dsc/v3.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.EP_o)
 
 .debug_frame        0x0000        0x59e
  *(.debug_frame)
@@ -3780,7 +3780,7 @@ __c30_signature
  .ivt._U1RXInterrupt
                   0x00002a          0x2 build/default/production/CB_RX1.o
 
-.text             0x000c5a        0xfc2
+.text             0x000c5a        0xf94
  .text            0x000c5a        0x53c build/default/production/main.o
                   0x000c5a                  _main
                   0x000f1e                  _OperatingSystemLoop
@@ -3802,35 +3802,35 @@ __c30_signature
                   0x0017da                  _LimitToInterval
                   0x001822                  _RadianToDegree
                   0x001858                  _DegreeToRadian
- .text            0x00188e         0xe2 build/default/production/CB_TX1.o
+ .text            0x00188e         0xca build/default/production/CB_TX1.o
                   0x00188e                  _SendMessage
                   0x0018cc                  _CB_TX1_Add
                   0x0018ee                  _CB_TX1_Get
                   0x00190e                  _SendOne
                   0x001922                  _CB_TX1_IsTranmitting
                   0x00192a                  _CB_TX1_GetDataSize
-                  0x00195e                  _CB_TX1_GetRemainingSize
- .text            0x001970         0x9e build/default/production/ADC.o
-                  0x001970                  _InitADC1
-                  0x0019ea                  _ADC1StartConversionSequence
-                  0x0019f4                  _ADCGetResult
-                  0x0019fc                  _ADCIsConversionFinished
-                  0x001a04                  _ADCClearConversionFinishedFlag
- .text            0x001a0e         0x9a build/default/production/ChipConfig.o
-                  0x001a0e                  _InitOscillator
- .text            0x001aa8         0x98 build/default/production/CB_RX1.o
-                  0x001aa8                  _CB_RX1_Add
-                  0x001ac6                  _CB_RX1_Get
-                  0x001ae6                  _CB_RX1_IsDataAvailable
-                  0x001afa                  _CB_RX1_GetDataSize
-                  0x001b2e                  _CB_RX1_GetRemainingSize
- .text            0x001b40         0x72 build/default/production/UART.o
-                  0x001b40                  _InitUART
-                  0x001b72                  _SendMessageDirect
- .text            0x001bb2         0x6a build/default/production/IO.o
-                  0x001bb2                  _InitIO
-                  0x001bf4                  _LockIO
-                  0x001c08                  _UnlockIO
+                  0x00194a                  _CB_TX1_GetRemainingSize
+ .text            0x001958         0x9e build/default/production/ADC.o
+                  0x001958                  _InitADC1
+                  0x0019d2                  _ADC1StartConversionSequence
+                  0x0019dc                  _ADCGetResult
+                  0x0019e4                  _ADCIsConversionFinished
+                  0x0019ec                  _ADCClearConversionFinishedFlag
+ .text            0x0019f6         0x9a build/default/production/ChipConfig.o
+                  0x0019f6                  _InitOscillator
+ .text            0x001a90         0x84 build/default/production/CB_RX1.o
+                  0x001a90                  _CB_RX1_Add
+                  0x001ab2                  _CB_RX1_Get
+                  0x001ad2                  _CB_RX1_IsDataAvailable
+                  0x001ae6                  _CB_RX1_GetDataSize
+                  0x001b06                  _CB_RX1_GetRemainingSize
+ .text            0x001b14         0x72 build/default/production/UART.o
+                  0x001b14                  _InitUART
+                  0x001b46                  _SendMessageDirect
+ .text            0x001b86         0x68 build/default/production/IO.o
+                  0x001b86                  _InitIO
+                  0x001bc6                  _LockIO
+                  0x001bda                  _UnlockIO
 
-.dinit            0x001c1c         0x4a
- .dinit           0x001c1c         0x4a data_init
+.dinit            0x001bee         0x4a
+ .dinit           0x001bee         0x4a data_init

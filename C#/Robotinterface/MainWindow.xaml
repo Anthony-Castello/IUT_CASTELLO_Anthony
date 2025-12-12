@@ -6,46 +6,58 @@
         xmlns:local="clr-namespace:Robotinterface"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid >
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="30"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Emission" Background="#FFDDDDDD" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.Row="1">
-            <GroupBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.116"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </GroupBox.RenderTransform>
-            <TextBox x:Name="TextBoxEmission" TextWrapping="Wrap" Margin="4,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" AcceptsReturn="True" TextChanged="TextBoxEmission_TextChanged" KeyUp="TextBoxEmission_KeyUp"/>
+        
+        <GroupBox Header="Emission" Grid.Column="0" Grid.Row="0">            
+            <TextBox x:Name="TextBoxEmission" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="TextBoxEmission_TextChanged" KeyUp="TextBoxEmission_KeyUp"/>
         </GroupBox>
-        <GroupBox Header="Réception" Background="#FFDDDDDD" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Grid.Column="3" Grid.Row="1">
-            <GroupBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.116"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </GroupBox.RenderTransform>
-            <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" Width="339" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True"/>
+        <GroupBox Header="Réception" Grid.Column="1" Grid.Row="0">            
+            <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" IsReadOnly="True"/>        
         </GroupBox>
-        <Button x:Name="boutonEnvoyer" Grid.Column="1" Content="Envoyer" Grid.Row="3" Width="100" HorizontalAlignment="Center" Click="boutonEnvoyer_Click"  />
-        <Button x:Name="boutonClear" Grid.Column="3" Content="Clear" Grid.Row="2" Width="100" HorizontalAlignment="Left" Click="boutonClear_Click" Margin="10,30,0,0" Grid.RowSpan="2"  />
-        <Button x:Name="boutonTest" Grid.Column="3" Content="Test" Grid.Row="2" Width="100" HorizontalAlignment="Left" Click="boutonTest_Click" Margin="245,30,0,0" Grid.RowSpan="2"  />
 
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Button x:Name="boutonEnvoyer" Content="Envoyer" Width="100" Click="boutonEnvoyer_Click"  />
+            <Button x:Name="boutonClear" Content="Clear" Width="100" Click="boutonClear_Click" />
+            <Button x:Name="boutonTest" Content="Test" Width="100" HorizontalAlignment="Left" Click="boutonTest_Click"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <GroupBox Header="Leds">
+                <StackPanel>
+                    <CheckBox x:Name ="Led1" Content="Led1" IsChecked="False"/>
+                    <CheckBox x:Name ="Led2" Content="Led2" IsChecked="False"/>
+                    <CheckBox x:Name ="Led3" Content="Led3" IsChecked="False"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Télémètres IR" >
+                <StackPanel>
+                    <TextBlock x:Name="ExG" Text="IR ExGauche : "></TextBlock>
+                    <TextBlock x:Name="G" Text="IR Gauche : "></TextBlock>
+                    <TextBlock x:Name="C" Text="IR Centre : "></TextBlock>
+                    <TextBlock x:Name="D" Text="IR Droit : "></TextBlock>
+                    <TextBlock x:Name="ExD" Text="IR ExDroit : "></TextBlock>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Télémètres IR" >
+                <StackPanel >
+                    <TextBlock Text="Vitesse Gauche : "></TextBlock>
+                    <TextBlock Text="Vitesse Centre : "></TextBlock>
+                    <TextBlock Text="Vitesse Droit : "></TextBlock>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        
+        
+        
+        
     </Grid>
 </Window>
