@@ -26,8 +26,7 @@ namespace Robotinterface
     {
         ExtendedSerialPort serialPort1;
         DispatcherTimer timerAffichage;
-        int flag = 0;
-        int bit = 0;
+        byte bytelistdecoded;
         Robot robot = new Robot();
         public MainWindow()
         {
@@ -83,7 +82,6 @@ namespace Robotinterface
         int msgDecodedPayloadLength = 0;
         byte[] msgDecodedPayload;
         int msgDecodedPayloadIndex = 0;
-        int realtimebyte = 0;
         private void DecodeMessage(byte c)
         {
             switch (rcvState)
@@ -127,6 +125,8 @@ namespace Robotinterface
                     {
                         //TextBoxReception.Text += "message recu\r\n";
                         //Success, on a un message valide
+                        //on appelle la fonction ProcessDecodedMessage
+                        ProcessDecodedMessage(msgDecodedFunction, msgDecodedPayloadLength, msgDecodedPayload);
                     }
                         rcvState = StateReception.Waiting;
                     break;
@@ -140,8 +140,9 @@ namespace Robotinterface
         {
             while (robot.byteListReceived.Count() > 0)
             {
-                DecodeMessage(robot.byteListReceived.Dequeue());
-                //robot.receivedText = robot.byteListReceived.Dequeue().ToString("X2");
+                bytelistdecoded = robot.byteListReceived.Dequeue();
+                DecodeMessage(bytelistdecoded);
+                //robot.receivedText = bytelistdecoded.ToString("X2");
                 //TextBoxReception.Text += ("0x" + robot.receivedText + " ");
 
             }
@@ -149,20 +150,18 @@ namespace Robotinterface
 
         bool toggle = true;
         bool toggle2 = true;
-        bool toggle3 = true;
         public void SerialPort1_DataReceived(object sender, DataReceivedArgs e){
             foreach (byte item in e.Data)
             {
                 robot.byteListReceived.Enqueue(item);
             }
-                flag = 1;
         }
 
         private void SendMessage()
         {
             //TextBoxReception.Text += (Encoding.ASCII.GetBytes(TextBoxEmission.Text) + "\n");
 
-            UartEncodeAndSendMessage(128, TextBoxEmission.Text.Length, Encoding.ASCII.GetBytes(TextBoxEmission.Text));
+            UartEncodeAndSendMessage(0x0080, TextBoxEmission.Text.Length, Encoding.ASCII.GetBytes(TextBoxEmission.Text));
             TextBoxEmission.Text = "";
         }
         private void boutonEnvoyer_Click(object sender, RoutedEventArgs e)
@@ -221,38 +220,57 @@ namespace Robotinterface
         int TelemCentre = 0;
         int TelemDroit = 0;
         int TelemExDroit = 0;
-        private void ProcessMessage(int msgFunction, int msgPayloadLength, byte[] msgPayload)
+
+        int v_moteur_G = 0;
+        int v_moteur_D = 0;
+        string message;
+        private void ProcessDecodedMessage(int msgFunction, int msgPayloadLength, byte[] msgPayload)
         {
             switch (msgFunction)
             {
                 case (int)functionID.LED:
-                    if (msgPayload[0] == 1)
+                    if ((int)msgPayload[0] == 0)
                     {
-                        if(msgPayload[1] == 1)
+                        if((int)msgPayload[1] == 1)
                             Led1.IsChecked = true;
                         else 
                             Led1.IsChecked = false;
                     }
-                    if (msgPayload[0] == 2)
+                    if ((int)msgPayload[0] == 1)
                     {
-                        if (msgPayload[1] == 1)
+                        if ((int)msgPayload[1] == 1)
                             Led2.IsChecked = true;
                         else
                             Led2.IsChecked = false;
                     }
-                    if (msgPayload[0] == 3)
+                    if ((int)msgPayload[0] == 2)
                     {
-                        if (msgPayload[1] == 1)
+                        if ((int)msgPayload[1] == 1)
                             Led3.IsChecked = true;
                         else
                             Led3.IsChecked = false;
                     }
                     break;
                 case (int)functionID.Dist_IR:
-                    if(msgPayload[0] == 1)
-                    {
-
-                    }
+                    TelemExGauche = (int)msgPayload[0];
+                    TelemGauche = (int)msgPayload[1];
+                    TelemCentre = (int)msgPayload[2];
+                    TelemDroit = (int)msgPayload[3];
+                    TelemExDroit = (int)msgPayload[4];
+                    ExG.Text = ("IR ExGauche : " + TelemExGauche);
+                    G.Text = ("IR Gauche : " + TelemGauche);
+                    C.Text = ("IR Centre : " + TelemCentre);
+                    D.Text = ("IR Droit : " + TelemDroit);
+                    ExD.Text = ("IR ExDroit : " + TelemExDroit);
+                    break;
+                case (int)functionID.c_vitesse:
+                    v_moteur_G = (int)msgPayload[0];
+                    v_moteur_D = (int)msgPayload[1];
+                    M_G.Text = ("Vitesse Gauche : "+ v_moteur_G + "%");
+                    M_D.Text = ("Vitesse Droit : " + v_moteur_D + "%");
+                    break;
+                case (int)functionID.Text_transmission:
+                    TextBoxReception.Text += ("\nTexte reçu : " + Encoding.ASCII.GetString(msgPayload) + "\n");
                     break;
             }
         }
@@ -279,10 +297,18 @@ namespace Robotinterface
             byte[] array = Encoding.ASCII.GetBytes("Bonjour");
             UartEncodeAndSendMessage(0x0080, 7, array);
             byte[] LED = new byte[2];
+            LED[1] = (byte)1;
             UartEncodeAndSendMessage(0x0020, 2, LED);
             byte[] IR = new byte[5];
+            IR[0] = (byte)20;
+            IR[1] = (byte)10;
+            IR[2] = (byte)99;
+            IR[3] = (byte)32;
+            IR[4] = (byte)47;
             UartEncodeAndSendMessage(0x0030, 5, IR);
             byte[] vitesse = new byte[2];
+            vitesse[0] = (byte)50;
+            vitesse[1] = (byte)42;
             UartEncodeAndSendMessage(0x0040, 2, vitesse);
         }
         

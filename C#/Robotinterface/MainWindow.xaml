@@ -47,11 +47,10 @@
                     <TextBlock x:Name="ExD" Text="IR ExDroit : "></TextBlock>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Télémètres IR" >
+            <GroupBox Header="Moteurs" >
                 <StackPanel >
-                    <TextBlock Text="Vitesse Gauche : "></TextBlock>
-                    <TextBlock Text="Vitesse Centre : "></TextBlock>
-                    <TextBlock Text="Vitesse Droit : "></TextBlock>
+                    <TextBlock x:Name="M_G" Text="Vitesse Gauche : " ></TextBlock>
+                    <TextBlock x:Name="M_D" Text="Vitesse Droit : " ></TextBlock>
                 </StackPanel>
             </GroupBox>
         </StackPanel>
