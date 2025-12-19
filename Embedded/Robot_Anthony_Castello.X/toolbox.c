@@ -36,3 +36,11 @@ float RadianToDegree(float value) {
 float DegreeToRadian(float value) {
     return value * PI / 180.0;
 }
+
+void getBytesFromFloat(unsigned char *p, int index, float f)
+{
+    int i;
+    unsigned char *f_ptr = (unsigned char*)&f;
+    for (i = 0; i < 4; i++)
+        p[index + i] = f_ptr[i];
+}

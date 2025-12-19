@@ -3,9 +3,15 @@
 #include "PWM.h"
 #include "robot.h"
 #include "Toolbox.h"
+#include "CB_RX1.h"
+#include "CB_TX1.h"
+#include "UART.h"
+#include "UART_Protocol.h"
+#include "timer.h"
 
 #define PWMPER 24.0
-
+unsigned char* VD;
+unsigned char* VG;
 
 
 void InitPWM(void) {

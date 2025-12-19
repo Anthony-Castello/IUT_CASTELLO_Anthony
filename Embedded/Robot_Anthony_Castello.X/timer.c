@@ -8,9 +8,15 @@
 #include "ChipConfig.h"
 #include "UART.h"
 #include "Cb_TX1.h"
+#include "CB_RX1.h"
+#include "Toolbox.h"
+#include "UART_Protocol.h"
 
 unsigned char toggle = 0;
 unsigned long timestamp = 0;
+int counter = 0;
+
+
 //Initialisation d?un timer 16 bits
 
 void InitTimer1(void) {
@@ -47,6 +53,14 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     //LED_BLANCHE_1 = !LED_BLANCHE_1;
     //SendMessageDirect((unsigned char*) "Bonjour", 7);
     ADC1StartConversionSequence();
+    
+    if(counter++%30==0)
+    {
+        unsigned char payload[8];
+        getBytesFromFloat(payload, 0, -robotState.vitesseDroiteCommandeCourante);
+        getBytesFromFloat(payload, 4, robotState.vitesseGaucheCommandeCourante);
+        UartEncodeAndSendMessage(0x00040, 8, payload);
+    }
 
 }
 //Initialisation d?un timer 32 bits
@@ -68,10 +82,8 @@ void InitTimer23(void) {
 }
 
 //Interruption du timer 32 bits sur 2-3
-
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
-
 }
 
 void InitTimer4(void) {

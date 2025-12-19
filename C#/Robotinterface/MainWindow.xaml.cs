@@ -63,7 +63,7 @@ namespace Robotinterface
             trame[pos++] = (byte)(msgPayloadLength >> 8);
             trame[pos++] = (byte)(msgPayloadLength >> 0);
             foreach (byte b in msgPayload)
-                trame[pos++] += b;
+                trame[pos++] = b;
             trame[pos++] = CalculateChecksum(msgFunction, msgPayloadLength, msgPayload);
             serialPort1.Write(trame, 0, trame.Length);
         }
@@ -212,7 +212,8 @@ namespace Robotinterface
             Text_transmission = 0x0080,
             LED = 0x0020,
             Dist_IR = 0x0030,
-            c_vitesse = 0x0040
+            c_vitesse = 0x0040,
+            IsState = 0x0050
         }
 
         int TelemExGauche = 0;
@@ -221,8 +222,11 @@ namespace Robotinterface
         int TelemDroit = 0;
         int TelemExDroit = 0;
 
-        int v_moteur_G = 0;
-        int v_moteur_D = 0;
+        float v_moteur_G = 0;
+        float v_moteur_D = 0;
+        int etape = 0;
+    
+
         string message;
         private void ProcessDecodedMessage(int msgFunction, int msgPayloadLength, byte[] msgPayload)
         {
@@ -250,6 +254,20 @@ namespace Robotinterface
                         else
                             Led3.IsChecked = false;
                     }
+                    if ((int)msgPayload[0] == 3)
+                    {
+                        if ((int)msgPayload[1] == 1)
+                            Led4.IsChecked = true;
+                        else
+                            Led4.IsChecked = false;
+                    }
+                    if ((int)msgPayload[0] == 4)
+                    {
+                        if ((int)msgPayload[1] == 1)
+                            Led5.IsChecked = true;
+                        else
+                            Led5.IsChecked = false;
+                    }
                     break;
                 case (int)functionID.Dist_IR:
                     TelemExGauche = (int)msgPayload[0];
@@ -264,13 +282,25 @@ namespace Robotinterface
                     ExD.Text = ("IR ExDroit : " + TelemExDroit);
                     break;
                 case (int)functionID.c_vitesse:
-                    v_moteur_G = (int)msgPayload[0];
-                    v_moteur_D = (int)msgPayload[1];
-                    M_G.Text = ("Vitesse Gauche : "+ v_moteur_G + "%");
-                    M_D.Text = ("Vitesse Droit : " + v_moteur_D + "%");
+                    v_moteur_G = BitConverter.ToSingle(msgPayload, 0);
+                    v_moteur_D = BitConverter.ToSingle(msgPayload, 4);
+                    M_G.Text = ("Vitesse Gauche : "+ v_moteur_G.ToString("N1") + "%");
+                    M_D.Text = ("Vitesse Droit : " + v_moteur_D.ToString("N1") + "%");
                     break;
                 case (int)functionID.Text_transmission:
-                    TextBoxReception.Text += ("\nTexte reçu : " + Encoding.ASCII.GetString(msgPayload) + "\n");
+                    TextBoxReception.Text += ("Texte reçu : " + Encoding.ASCII.GetString(msgPayload) + "\n");
+                    break;
+                case (int)functionID.IsState:
+                    if (msgPayload[0] == 1)
+                        TextBoxReception.Text += ("Robot avance " + msgPayload[4].ToString("N1") + "ms \n");
+                    else if (msgPayload[1] == 1)
+                        TextBoxReception.Text += ("Robot se retourne. Temps : " + msgPayload[4].ToString("N1") + "ms \n");
+                    else if (msgPayload[2] == 1)
+                        TextBoxReception.Text += ("Robot tourne à gauche. Temps : " + msgPayload[4].ToString("N1") + "ms \n");
+                    else if (msgPayload[3] == 1)
+                        TextBoxReception.Text += ("Robot tourne à droite. Temps : " + msgPayload[4].ToString("N1") + "ms \n");
+                    else
+                        TextBoxReception.Text += ("Robot arrété. Temps : " + msgPayload[4].ToString("N1") + "ms \n");
                     break;
             }
         }

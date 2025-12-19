@@ -36,6 +36,8 @@
                     <CheckBox x:Name ="Led1" Content="Led1" IsChecked="False"/>
                     <CheckBox x:Name ="Led2" Content="Led2" IsChecked="False"/>
                     <CheckBox x:Name ="Led3" Content="Led3" IsChecked="False"/>
+                    <CheckBox x:Name ="Led4" Content="Led4" IsChecked="False"/>
+                    <CheckBox x:Name ="Led5" Content="Led5" IsChecked="False"/>
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="Télémètres IR" >
