@@ -61,7 +61,8 @@ int main(void) {
         int i;
         for (i = 0; i < CB_RX1_GetDataSize(); i++) {
             unsigned char c = CB_RX1_Get();
-            SendMessage(&c, 1);
+            UartDecodeMessage(c);
+            //SendMessage(&c, 1);
         }
         if (ADCIsConversionFinished() == 1) {
             ADCClearConversionFinishedFlag();
@@ -119,8 +120,6 @@ int main(void) {
         } else {
             LED_VERTE_1 = 0;
         }
-        //Transmission de messages de données du robot
-
     } // fin main
 }
 unsigned char stateRobot;
@@ -149,7 +148,8 @@ void OperatingSystemLoop(void) {
             UartEncodeAndSendMessage(0x0050, 5, etat);
             break;
         case STATE_AVANCE_EN_COURS:
-            SetNextRobotStateInAutomaticMode();
+            if (autoControlActivated)
+                SetNextRobotStateInAutomaticMode();
             break;
         case STATE_TOURNE_GAUCHE:
             PWMSetSpeedConsigne(15, MOTEUR_DROIT);
@@ -161,7 +161,8 @@ void OperatingSystemLoop(void) {
             UartEncodeAndSendMessage(0x0050, 5, etat);
             break;
         case STATE_TOURNE_GAUCHE_EN_COURS:
-            SetNextRobotStateInAutomaticMode();
+            if (autoControlActivated)
+                SetNextRobotStateInAutomaticMode();
             break;
         case STATE_TOURNE_DROITE:
             PWMSetSpeedConsigne(0, MOTEUR_DROIT);
@@ -173,7 +174,8 @@ void OperatingSystemLoop(void) {
             UartEncodeAndSendMessage(0x0050, 5, etat);
             break;
         case STATE_TOURNE_DROITE_EN_COURS:
-            SetNextRobotStateInAutomaticMode();
+            if (autoControlActivated)
+                SetNextRobotStateInAutomaticMode();
             break;
         case STATE_TOURNE_SUR_PLACE_GAUCHE:
             PWMSetSpeedConsigne(15, MOTEUR_DROIT);
@@ -185,7 +187,8 @@ void OperatingSystemLoop(void) {
             UartEncodeAndSendMessage(0x0050, 5, etat);
             break;
         case STATE_TOURNE_SUR_PLACE_GAUCHE_EN_COURS:
-            SetNextRobotStateInAutomaticMode();
+            if (autoControlActivated)
+                SetNextRobotStateInAutomaticMode();
             break;
         case STATE_TOURNE_SUR_PLACE_DROITE:
             PWMSetSpeedConsigne(-20, MOTEUR_DROIT);
@@ -193,7 +196,8 @@ void OperatingSystemLoop(void) {
             stateRobot = STATE_TOURNE_SUR_PLACE_DROITE_EN_COURS;
             break;
         case STATE_TOURNE_SUR_PLACE_DROITE_EN_COURS:
-            SetNextRobotStateInAutomaticMode();
+            if (autoControlActivated)
+                SetNextRobotStateInAutomaticMode();
             break;
         default:
             stateRobot = STATE_ATTENTE;

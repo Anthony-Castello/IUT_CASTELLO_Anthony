@@ -2,12 +2,23 @@
 #include "UART_Protocol.h"
 #include "CB_RX1.h"
 #include "CB_TX1.h"
+#include "main.h"
+
+#define Waiting 0
+#define FunctionMSB 1
+#define FunctionLSB 2
+#define PayloadLengthMSB 3
+#define PayloadLengthLSB 4
+#define Payload 5
+#define CheckSum 6
 
 
-int rcvState = 0; //waiting = 0
+
+
+int rcvState = Waiting;
 int msgDecodedFunction = 0;
 int msgDecodedPayloadLength = 0;
-unsigned char* msgDecodedPayload;
+static unsigned char msgDecodedPayload[1024];
 int msgDecodedPayloadIndex = 0;
 
 unsigned char UartCalculateChecksum(int msgFunction, int msgPayloadLength, unsigned char* msgPayload) {
@@ -41,52 +52,101 @@ void UartEncodeAndSendMessage(int msgFunction, int msgPayloadLength, unsigned ch
 void UartDecodeMessage(unsigned char c) {
     //Fonction prenant en entree un octet et servant a reconstituer les trames
     switch (rcvState) {
-        case 0: //waiting
+        case Waiting:
             if (c == 0xFE) {
-                rcvState = 1; //FunctionMSB
+                rcvState = FunctionMSB;
             }
             break;
-        case 1:
+        case FunctionMSB:
             msgDecodedFunction = (int) (c << 8);
-            rcvState = 2; //FunctionLSB
+            rcvState = FunctionLSB;
             break;
-        case 2:
-            msgDecodedPayloadLength += (int)c;
-            rcvState = 3; //PayloadLengthMSB
+        case FunctionLSB:
+            msgDecodedFunction += (int) c;
+            rcvState = PayloadLengthMSB;
             break;
-        case 3:
-            msgDecodedPayloadLength = (int) (c<<8);
-            rcvState = 4; //PayloadLengthLSB
+        case PayloadLengthMSB:
+            msgDecodedPayloadLength = (int) (c << 8);
+            rcvState = PayloadLengthLSB;
             break;
-        case 4:
+        case PayloadLengthLSB:
             msgDecodedPayloadLength += (int) c;
-            msgDecodedPayload[msgDecodedPayloadIndex] = (unsigned char)msgDecodedPayloadLength;
             msgDecodedPayloadIndex = 0;
-            rcvState = 5; //Payload
+            if (msgDecodedPayloadLength == 0)
+                rcvState = CheckSum;
+            else
+                rcvState = Payload;
             break;
-        case 5:
-            msgDecodedPayload[msgDecodedPayloadIndex] = c;
-            msgDecodedPayloadIndex++;
-            if (msgDecodedPayloadIndex == msgDecodedPayloadLength) {
-                rcvState = 6; //CheckSum
+        case Payload:
+            msgDecodedPayload[msgDecodedPayloadIndex++] = c;
+            if (msgDecodedPayloadIndex >= msgDecodedPayloadLength) {
+                rcvState = CheckSum;
             }
             break;
-        case 6:
-            if (UartCalculateChecksum(msgDecodedFunction, msgDecodedPayloadLength, msgDecodedPayload) == c)
+        case CheckSum:
+        {
+            unsigned char checksum = UartCalculateChecksum(msgDecodedFunction, msgDecodedPayloadLength, msgDecodedPayload);
+            if (checksum == c)
                 UartProcessDecodedMessage(msgDecodedFunction, msgDecodedPayloadLength, msgDecodedPayload);
-            rcvState = 0;
+            rcvState = Waiting;
+        }
             break;
         default:
-            rcvState = 0;
+            rcvState = Waiting;
             break;
     }
 }
 
-void UartProcessDecodedMessage(int function, int payloadLength, unsigned char* payload) {
-//Fonction appelee apres le decodage pour executer l?action
-//correspondant au message recu
-//...
+void UartProcessDecodedMessage(int msgFunction, int msgPayloadLength, unsigned char msgPayload[]) {
+    //Fonction appelee apres le decodage pour executer l?action
+    //correspondant au message recu
+    switch (msgFunction) {
+        case SET_ROBOT_STATE:
+            SetRobotState(msgPayload[0]);
+            break;
+        case SET_ROBOT_MANUAL_CONTROL:
+            SetRobotAutoControlState(msgPayload[0]);
+            break;
+        default:
+            msgFunction = SET_ROBOT_STATE;
+            break;
+    }
 }
-//*************************************************************************/
-//Fonctions correspondant aux messages
-//*************************************************************************/
+void SetRobotState(unsigned char c){
+    switch(c){
+        case STATE_ATTENTE : //0
+            stateRobot = STATE_ATTENTE;
+        case STATE_AVANCE : //2
+            stateRobot = STATE_AVANCE;
+            break;
+        case STATE_TOURNE_GAUCHE : //4
+            stateRobot = STATE_TOURNE_GAUCHE;
+            break;
+        case STATE_TOURNE_DROITE : //6
+            stateRobot = STATE_TOURNE_DROITE;
+            break;
+        case STATE_TOURNE_SUR_PLACE_GAUCHE : //8
+            stateRobot = STATE_TOURNE_SUR_PLACE_GAUCHE;
+            break;
+        case STATE_TOURNE_SUR_PLACE_DROITE : //10
+            stateRobot = STATE_TOURNE_SUR_PLACE_DROITE;
+            break;
+        case STATE_ARRET : //12
+            stateRobot = STATE_ARRET;
+        case STATE_RECULE : //14
+            stateRobot = STATE_RECULE;
+            break;
+        default :
+            stateRobot = STATE_ATTENTE;
+            break;
+    }         
+         
+    
+}
+
+void SetRobotAutoControlState(unsigned char c){
+    if(!c || c){
+        autoControlActivated = c;//mode manuel = 0; mode auto = 1
+    }
+}
+
