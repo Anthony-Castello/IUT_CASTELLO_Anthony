@@ -23,6 +23,8 @@ uint8_t flag_Ex_Droit;
 uint8_t flag_Centre;
 unsigned char IR[5];
 unsigned char etat[5];
+unsigned char stateRobot;
+unsigned int autoControlActivated = 0;
 
 int main(void) {
     /***********************************************************************************************/
@@ -122,7 +124,7 @@ int main(void) {
         }
     } // fin main
 }
-unsigned char stateRobot;
+
 
 void OperatingSystemLoop(void) {
     switch (stateRobot) {
@@ -135,8 +137,10 @@ void OperatingSystemLoop(void) {
             etat[4] = timestamp;
             UartEncodeAndSendMessage(0x0050, 5, etat);
         case STATE_ATTENTE_EN_COURS:
-            if (timestamp > 1000)
-                stateRobot = STATE_AVANCE;
+            if (autoControlActivated){
+                if (timestamp > 1000)
+                    stateRobot = STATE_AVANCE;
+            }
             break;
         case STATE_AVANCE:
             PWMSetSpeedConsigne(30, MOTEUR_DROIT);

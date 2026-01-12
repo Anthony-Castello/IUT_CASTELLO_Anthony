@@ -145,8 +145,8 @@ void SetRobotState(unsigned char c){
 }
 
 void SetRobotAutoControlState(unsigned char c){
-    if(!c || c){
-        autoControlActivated = c;//mode manuel = 0; mode auto = 1
+    if(!(unsigned int)c || (unsigned int)c){
+        autoControlActivated = (unsigned int)c;//mode manuel = 0; mode auto = 1
     }
 }
 

@@ -31,9 +31,8 @@
 #define OBSTACLE_EN_FACE_DROITE 4
 #define DEMI 0
 
-
-
-
+extern unsigned char stateRobot;
+extern unsigned int autoControlActivated;
 void OperatingSystemLoop(void);
 void SetNextRobotStateInAutomaticMode();
 #endif	/* MAIN_H */

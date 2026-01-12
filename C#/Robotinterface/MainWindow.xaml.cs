@@ -12,6 +12,8 @@ using System.Windows.Shapes;
 using ExtendedSerialPort_NS;
 using System.IO.Ports;
 using System.Windows.Threading;
+using KeyboardHook_NS;
+using System.Security.Cryptography.X509Certificates;
 
 
 
@@ -28,6 +30,7 @@ namespace Robotinterface
         DispatcherTimer timerAffichage;
         byte bytelistdecoded;
         Robot robot = new Robot();
+
         public MainWindow()
         {
             
@@ -39,6 +42,9 @@ namespace Robotinterface
             timerAffichage.Interval = new TimeSpan(0, 0, 0, 0, 100);
             timerAffichage.Tick += TimerAffichage_Tick;
             timerAffichage.Start();
+            var _globalKeyboardHook = new GlobalKeyboardHook();
+            _globalKeyboardHook.KeyPressed += _globalKeyboardHook_KeyPressed;
+            UartEncodeAndSendMessage(0x0052, 2, new byte[] { (byte)robot.autoControlActivated });
         }
         byte CalculateChecksum(int msgFunction, int msgPayloadLength, byte[] msgPayload)
         {
@@ -133,6 +139,31 @@ namespace Robotinterface
                 default:
                     rcvState = StateReception.Waiting;
                     break;
+            }
+        }
+
+        private void _globalKeyboardHook_KeyPressed(object? sender, KeyArgs e)
+        {
+            if (robot.autoControlActivated == 0)
+            {
+                switch (e.keyCode)
+                {
+                    case KeyCode.LEFT:
+                        UartEncodeAndSendMessage(0x0051, 1, new byte[] { (byte)8 });
+                break;
+                    case KeyCode.RIGHT:
+                    UartEncodeAndSendMessage(0x0051, 1, new byte[] { (byte)10 });
+                    break;
+                case KeyCode.UP:
+                    UartEncodeAndSendMessage(0x0051, 1, new byte[] { (byte)2 });
+                    break;
+                case KeyCode.DOWN:
+                    UartEncodeAndSendMessage(0x0051, 1, new byte[] { (byte)12 });
+                    break;
+                case KeyCode.PAGEDOWN:
+                    UartEncodeAndSendMessage(0x0051, 1, new byte[] { (byte)14 });
+                    break;
+                }
             }
         }
 
@@ -324,22 +355,30 @@ namespace Robotinterface
             //    boutonTest.Background = Brushes.RoyalBlue;
             //    toggle3 = !toggle3;
             //}
-            byte[] array = Encoding.ASCII.GetBytes("Bonjour");
-            UartEncodeAndSendMessage(0x0080, 7, array);
-            byte[] LED = new byte[2];
-            LED[1] = (byte)1;
-            UartEncodeAndSendMessage(0x0020, 2, LED);
-            byte[] IR = new byte[5];
-            IR[0] = (byte)20;
-            IR[1] = (byte)10;
-            IR[2] = (byte)99;
-            IR[3] = (byte)32;
-            IR[4] = (byte)47;
-            UartEncodeAndSendMessage(0x0030, 5, IR);
-            byte[] vitesse = new byte[2];
-            vitesse[0] = (byte)50;
-            vitesse[1] = (byte)42;
-            UartEncodeAndSendMessage(0x0040, 2, vitesse);
+            //byte[] array = Encoding.ASCII.GetBytes("Bonjour");
+            //UartEncodeAndSendMessage(0x0080, 7, array);
+            //byte[] LED = new byte[2];
+            //LED[1] = (byte)1;
+            //UartEncodeAndSendMessage(0x0020, 2, LED);
+            //byte[] IR = new byte[5];
+            //IR[0] = (byte)20;
+            //IR[1] = (byte)10;
+            //IR[2] = (byte)99;
+            //IR[3] = (byte)32;
+            //IR[4] = (byte)47;
+            //UartEncodeAndSendMessage(0x0030, 5, IR);
+            //byte[] vitesse = new byte[2];
+            //vitesse[0] = (byte)50;
+            //vitesse[1] = (byte)42;
+            //UartEncodeAndSendMessage(0x0040, 2, vitesse);
+            if (robot.autoControlActivated == 0)
+                robot.autoControlActivated = 1;
+            else
+            {
+                robot.autoControlActivated = 0;
+                UartEncodeAndSendMessage(0x0051, 1, new byte[] { (byte)12 });
+            }
+            UartEncodeAndSendMessage(0x0052, 2, new byte[] { (byte)robot.autoControlActivated });
         }
         
     }
