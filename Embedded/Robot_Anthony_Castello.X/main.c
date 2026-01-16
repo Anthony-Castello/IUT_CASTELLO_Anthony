@@ -135,7 +135,7 @@ void OperatingSystemLoop(void) {
             stateRobot = STATE_ATTENTE_EN_COURS;
             etat[0] = etat [1] = etat[2] = etat[3] = 0;
             etat[4] = timestamp;
-            UartEncodeAndSendMessage(0x0050, 5, etat);
+            //UartEncodeAndSendMessage(0x0050, 5, etat);
         case STATE_ATTENTE_EN_COURS:
             if (autoControlActivated){
                 if (timestamp > 1000)

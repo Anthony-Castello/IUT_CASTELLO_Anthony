@@ -11,6 +11,7 @@
 #include "CB_RX1.h"
 #include "Toolbox.h"
 #include "UART_Protocol.h"
+#include "QEI.h"
 
 unsigned char toggle = 0;
 unsigned long timestamp = 0;
@@ -21,7 +22,7 @@ int counter = 0;
 
 void InitTimer1(void) {
     T1CONbits.TON = 0; // Disable Timer
-    SetFreqTimer1(300); //Fréquence timer1
+    SetFreqTimer1(250); //Fréquence timer1
     T1CONbits.TCS = 0; //clock source = internal clock
     IFS0bits.T1IF = 0; // Clear Timer Interrupt Flag
     IEC0bits.T1IE = 1; // Enable Timer interrupt
@@ -53,15 +54,17 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     //LED_BLANCHE_1 = !LED_BLANCHE_1;
     //SendMessageDirect((unsigned char*) "Bonjour", 7);
     ADC1StartConversionSequence();
+    QEIUpdateData();
     
-    if(counter++%30==0)
+    if(counter++%150==0)
     {
         unsigned char payload[8];
         getBytesFromFloat(payload, 0, -robotState.vitesseDroiteCommandeCourante);
         getBytesFromFloat(payload, 4, robotState.vitesseGaucheCommandeCourante);
         UartEncodeAndSendMessage(0x00040, 8, payload);
+        SendPositionData();
+        
     }
-
 }
 //Initialisation d?un timer 32 bits
 

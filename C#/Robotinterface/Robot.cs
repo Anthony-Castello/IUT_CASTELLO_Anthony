@@ -19,7 +19,7 @@ namespace Robotinterface
         public float distanceTelemetreCentre;
         public float distanceTelemetreGauche;
         public float distanceTelemetreExGauche;
-        public int autoControlActivated = 1;
+        public int autoControlActivated = 0;
         public Robot()
         {
         }

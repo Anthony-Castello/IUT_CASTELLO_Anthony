@@ -244,7 +244,8 @@ namespace Robotinterface
             LED = 0x0020,
             Dist_IR = 0x0030,
             c_vitesse = 0x0040,
-            IsState = 0x0050
+            IsState = 0x0050,
+            Odometrie= 0x0060
         }
 
         int TelemExGauche = 0;
@@ -331,7 +332,10 @@ namespace Robotinterface
                     else if (msgPayload[3] == 1)
                         TextBoxReception.Text += ("Robot tourne à droite. Temps : " + msgPayload[4].ToString("N1") + "ms \n");
                     else
-                        TextBoxReception.Text += ("Robot arrété. Temps : " + msgPayload[4].ToString("N1") + "ms \n");
+                        TextBoxReception.Text += ("Robot arrété. Temps : " + msgPayload[4].ToString("N1") + "s \n");
+                    break;
+                case (int)functionID.Odometrie:
+                    TextBoxReception.Text +=("Position x :" + msgPayload[4].ToString("N1") + "  Position y :" + msgPayload[8].ToString("N1") + "Temps : " + msgPayload[0].ToString("N1") + " ms\n");
                     break;
             }
         }
