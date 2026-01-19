@@ -13,6 +13,7 @@
 #include "CB_TX1.h"
 #include "CB_RX1.h" 
 #include "UART_Protocol.h"
+#include "QEI.h"
 
 unsigned int * result;
 uint8_t flag_Final;
@@ -41,6 +42,8 @@ int main(void) {
     InitTimer23();
     InitTimer4();
     InitUART();
+    InitQEI1();
+    InitQEI2();
     LED_BLANCHE_1 = 1;
     LED_BLEUE_1 = 1;
     LED_ORANGE_1 = 1;

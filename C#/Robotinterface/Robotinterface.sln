@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedSerialPort", "..\Ex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardHook", "..\KeyboardHook\KeyboardHook.csproj", "{77CE9691-AD44-475F-95A9-C5727533A74F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfOscilloscopeControl", "..\WpfOscilloscope\WpfOscilloscopeControl.csproj", "{88BAA407-3FEA-4F4B-BB41-5309CE48884E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAsservissementDisplay", "..\WpfAsservissementDisplay\WpfAsservissementDisplay.csproj", "{99FB1DF4-84A9-4C2A-99F4-ED15476A10AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{77CE9691-AD44-475F-95A9-C5727533A74F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77CE9691-AD44-475F-95A9-C5727533A74F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77CE9691-AD44-475F-95A9-C5727533A74F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88BAA407-3FEA-4F4B-BB41-5309CE48884E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88BAA407-3FEA-4F4B-BB41-5309CE48884E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88BAA407-3FEA-4F4B-BB41-5309CE48884E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88BAA407-3FEA-4F4B-BB41-5309CE48884E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99FB1DF4-84A9-4C2A-99F4-ED15476A10AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99FB1DF4-84A9-4C2A-99F4-ED15476A10AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99FB1DF4-84A9-4C2A-99F4-ED15476A10AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99FB1DF4-84A9-4C2A-99F4-ED15476A10AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

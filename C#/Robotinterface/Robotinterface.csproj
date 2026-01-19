@@ -11,6 +11,8 @@
   <ItemGroup>
     <ProjectReference Include="..\ExtendedSerialPort .NET6\ExtendedSerialPort\ExtendedSerialPort\ExtendedSerialPort.csproj" />
     <ProjectReference Include="..\KeyboardHook\KeyboardHook.csproj" />
+    <ProjectReference Include="..\WpfAsservissementDisplay\WpfAsservissementDisplay.csproj" />
+    <ProjectReference Include="..\WpfOscilloscope\WpfOscilloscopeControl.csproj" />
   </ItemGroup>
 
   <ItemGroup>

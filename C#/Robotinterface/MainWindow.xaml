@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Robotinterface"
+        xmlns:oscillo="clr-namespace:WpfOscilloscopeControl;assembly=WpfOscilloscopeControl"
+        xmlns:AsservDisplay="clr-namespace:WpfAsservissementDisplay_NS;assembly=WpfAsservissementDisplay"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -13,15 +15,29 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
+        <!--<StackPanel Orientation="Horizontal" Grid.Column ="0" Grid.Row="0">-->
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Header="Oscilloscope">
+                <!--<TextBox x:Name="TextBoxEmission" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="TextBoxEmission_TextChanged" KeyUp="TextBoxEmission_KeyUp"/>-->
+                <oscillo:WpfOscilloscope x:Name="oscilloSpeed"/>
+            </GroupBox>
+            <GroupBox Header="Asservissement Display" Grid.Column="1">
+                <AsservDisplay:AsservissementRobot2RouesDisplayControl x:Name="asservSpeedDisplay"/>
+            </GroupBox>
+            
+        </Grid>
+        <!--</StackPanel>-->
         
-        <GroupBox Header="Emission" Grid.Column="0" Grid.Row="0">            
-            <TextBox x:Name="TextBoxEmission" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="TextBoxEmission_TextChanged" KeyUp="TextBoxEmission_KeyUp"/>
-        </GroupBox>
-        <GroupBox Header="Réception" Grid.Column="1" Grid.Row="0">            
-            <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" IsReadOnly="True"/>        
+        <GroupBox Header="Réception" Grid.Column="1" Grid.Row="0">
+            <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" IsReadOnly="True"/>
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
@@ -42,23 +58,39 @@
             </GroupBox>
             <GroupBox Header="Télémètres IR" >
                 <StackPanel>
-                    <TextBlock x:Name="ExG" Text="IR ExGauche : "></TextBlock>
-                    <TextBlock x:Name="G" Text="IR Gauche : "></TextBlock>
-                    <TextBlock x:Name="C" Text="IR Centre : "></TextBlock>
-                    <TextBlock x:Name="D" Text="IR Droit : "></TextBlock>
-                    <TextBlock x:Name="ExD" Text="IR ExDroit : "></TextBlock>
+                    <TextBlock x:Name="ExG" Text="IR ExGauche : "/>
+                    <TextBlock x:Name="G" Text="IR Gauche : "/>
+                    <TextBlock x:Name="C" Text="IR Centre : "/>
+                    <TextBlock x:Name="D" Text="IR Droit : "/>
+                    <TextBlock x:Name="ExD" Text="IR ExDroit : "/>
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="Moteurs" >
                 <StackPanel >
-                    <TextBlock x:Name="M_G" Text="Vitesse Gauche : " ></TextBlock>
-                    <TextBlock x:Name="M_D" Text="Vitesse Droit : " ></TextBlock>
+                    <TextBlock x:Name="M_G" Text="Vitesse Gauche : " />
+                    <TextBlock x:Name="M_D" Text="Vitesse Droit : " />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Position Robot" >
+                <StackPanel >
+                    <TextBlock x:Name="posX" Text="Position X : " />
+                    <TextBlock x:Name="posY" Text="Position Y : " />
+                    <TextBlock x:Name="angle" Text="Angle : " />
+                    <TextBlock x:Name="v_lin" Text="Vitesse linéaire : " />
+                    <TextBlock x:Name="v_ang" Text="Vitesse angulaire : " />
                 </StackPanel>
             </GroupBox>
         </StackPanel>
-        
-        
-        
-        
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+            <GroupBox Header="Temps courant" >
+                <StackPanel >
+                    <TextBlock x:Name="temps" Text=" s" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+
+
+
     </Grid>
 </Window>

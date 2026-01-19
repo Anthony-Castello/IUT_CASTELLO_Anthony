@@ -14,6 +14,9 @@ using System.IO.Ports;
 using System.Windows.Threading;
 using KeyboardHook_NS;
 using System.Security.Cryptography.X509Certificates;
+using WpfOscilloscopeControl;
+using static SciChart.Drawing.Utility.PointUtil;
+using SciChart.Data.Model;
 
 
 
@@ -31,6 +34,7 @@ namespace Robotinterface
         byte bytelistdecoded;
         Robot robot = new Robot();
 
+
         public MainWindow()
         {
             
@@ -42,9 +46,11 @@ namespace Robotinterface
             timerAffichage.Interval = new TimeSpan(0, 0, 0, 0, 100);
             timerAffichage.Tick += TimerAffichage_Tick;
             timerAffichage.Start();
-            var _globalKeyboardHook = new GlobalKeyboardHook();
-            _globalKeyboardHook.KeyPressed += _globalKeyboardHook_KeyPressed;
+            //var _globalKeyboardHook = new GlobalKeyboardHook();
+            //_globalKeyboardHook.KeyPressed += _globalKeyboardHook_KeyPressed;
             UartEncodeAndSendMessage(0x0052, 2, new byte[] { (byte)robot.autoControlActivated });
+            oscilloSpeed.AddOrUpdateLine(1, 200, "Ligne1");
+            oscilloSpeed.ChangeLineColor(1, Color.FromRgb(0,0,255));
         }
         byte CalculateChecksum(int msgFunction, int msgPayloadLength, byte[] msgPayload)
         {
@@ -192,8 +198,8 @@ namespace Robotinterface
         {
             //TextBoxReception.Text += (Encoding.ASCII.GetBytes(TextBoxEmission.Text) + "\n");
 
-            UartEncodeAndSendMessage(0x0080, TextBoxEmission.Text.Length, Encoding.ASCII.GetBytes(TextBoxEmission.Text));
-            TextBoxEmission.Text = "";
+            //UartEncodeAndSendMessage(0x0080, TextBoxEmission.Text.Length, Encoding.ASCII.GetBytes(TextBoxEmission.Text));
+            //TextBoxEmission.Text = "";
         }
         private void boutonEnvoyer_Click(object sender, RoutedEventArgs e)
         {
@@ -211,18 +217,18 @@ namespace Robotinterface
             }
             
         }
-        private void TextBoxEmission_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                SendMessage();
-            }
-        }
+        //private void TextBoxEmission_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Enter)
+        //    {
+        //        SendMessage();
+        //    }
+        //}
 
-        private void TextBoxEmission_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        //private void TextBoxEmission_TextChanged(object sender, TextChangedEventArgs e)
+        //{
 
-        }
+        //}
 
         private void boutonClear_Click(object sender, RoutedEventArgs e)
         {
@@ -335,7 +341,25 @@ namespace Robotinterface
                         TextBoxReception.Text += ("Robot arrété. Temps : " + msgPayload[4].ToString("N1") + "s \n");
                     break;
                 case (int)functionID.Odometrie:
-                    TextBoxReception.Text +=("Position x :" + msgPayload[4].ToString("N1") + "  Position y :" + msgPayload[8].ToString("N1") + "Temps : " + msgPayload[0].ToString("N1") + " ms\n");
+
+                    byte[] array = new byte[4];
+                    Array.Copy(msgPayload, 0, array, 0, 4);
+                    array = array.Reverse().ToArray();
+                    var instant = BitConverter.ToInt32(array, 0);
+                    instant = instant / 100;
+
+                    float positionX = BitConverter.ToSingle(msgPayload, 4);
+                    float positionY = BitConverter.ToSingle(msgPayload, 8);
+                    oscilloSpeed.AddPointToLine(1, positionX, positionY);
+                    float ang = BitConverter.ToSingle(msgPayload, 12);
+                    float vit_lin = BitConverter.ToSingle(msgPayload, 16);
+                    float vit_ang = BitConverter.ToSingle(msgPayload, 20);
+                    posX.Text = ("Position X : " + positionX.ToString("N3"));
+                    posY.Text = ("Position Y : " + positionY.ToString("N3"));
+                    temps.Text = (instant.ToString() + " s");
+                    angle.Text = ("Angle : " + ang.ToString("N3") + " rad");
+                    v_lin.Text = ("Vitesse linéaire : " + vit_lin.ToString("N3") + " m/s");
+                    v_ang.Text = ("Vitesse angulaire : " + vit_ang.ToString("N3") + " rad/s");
                     break;
             }
         }
@@ -384,6 +408,10 @@ namespace Robotinterface
             }
             UartEncodeAndSendMessage(0x0052, 2, new byte[] { (byte)robot.autoControlActivated });
         }
-        
+
+        private void oscilloSpeed_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

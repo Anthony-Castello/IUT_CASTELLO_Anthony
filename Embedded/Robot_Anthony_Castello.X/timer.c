@@ -16,6 +16,7 @@
 unsigned char toggle = 0;
 unsigned long timestamp = 0;
 int counter = 0;
+int millis = 0;
 
 
 //Initialisation d?un timer 16 bits
@@ -55,8 +56,10 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     //SendMessageDirect((unsigned char*) "Bonjour", 7);
     ADC1StartConversionSequence();
     QEIUpdateData();
+    if (millis++%3 == 0)
+        timestamp++;
     
-    if(counter++%150==0)
+    if(counter++%25==0)
     {
         unsigned char payload[8];
         getBytesFromFloat(payload, 0, -robotState.vitesseDroiteCommandeCourante);
@@ -120,7 +123,6 @@ void SetFreqTimer4(float freq) {
 
 void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     IFS1bits.T4IF = 0; // Clear Timer3 Interrupt Flag
-    timestamp++;
     OperatingSystemLoop();
 
 }
