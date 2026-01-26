@@ -1,0 +1,410 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.8": {
+      "SciChart/6.6.0.26505": {
+        "type": "package",
+        "compile": {
+          "lib/net452/SciChart.Charting.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Data.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Drawing.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net452/SciChart.Charting.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Data.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Drawing.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.Collections/4.3.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "ref/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.8/win": {
+      "SciChart/6.6.0.26505": {
+        "type": "package",
+        "compile": {
+          "lib/net452/SciChart.Charting.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Data.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Drawing.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net452/SciChart.Charting.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Data.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Drawing.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.Collections/4.3.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "ref/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.8/win-arm64": {
+      "SciChart/6.6.0.26505": {
+        "type": "package",
+        "compile": {
+          "lib/net452/SciChart.Charting.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Data.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Drawing.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net452/SciChart.Charting.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Data.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Drawing.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.Collections/4.3.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "ref/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.8/win-x64": {
+      "SciChart/6.6.0.26505": {
+        "type": "package",
+        "compile": {
+          "lib/net452/SciChart.Charting.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Data.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Drawing.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net452/SciChart.Charting.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Data.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Drawing.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.Collections/4.3.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "ref/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.8/win-x86": {
+      "SciChart/6.6.0.26505": {
+        "type": "package",
+        "compile": {
+          "lib/net452/SciChart.Charting.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Data.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Drawing.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net452/SciChart.Charting.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Core.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Data.dll": {
+            "related": ".xml"
+          },
+          "lib/net452/SciChart.Drawing.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.Collections/4.3.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "ref/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/_._": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SciChart/6.6.0.26505": {
+      "sha512": "zzVsE0mX9fAVOlH3JarzBXa5NRFs9BTfLYShKvaFSOx/XOpEbuQlQn5bgn7z2axSyyU1Qgjnmp1Q0FkP1Vc/WA==",
+      "type": "package",
+      "path": "scichart/6.6.0.26505",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.txt",
+        "images/platform-app-icons_scichart-windows.png",
+        "lib/net452/SciChart.Charting.dll",
+        "lib/net452/SciChart.Charting.xml",
+        "lib/net452/SciChart.Core.dll",
+        "lib/net452/SciChart.Core.xml",
+        "lib/net452/SciChart.Data.dll",
+        "lib/net452/SciChart.Data.xml",
+        "lib/net452/SciChart.Drawing.dll",
+        "lib/net452/SciChart.Drawing.xml",
+        "lib/netcoreapp3.1/SciChart.Charting.dll",
+        "lib/netcoreapp3.1/SciChart.Charting.xml",
+        "lib/netcoreapp3.1/SciChart.Core.dll",
+        "lib/netcoreapp3.1/SciChart.Core.xml",
+        "lib/netcoreapp3.1/SciChart.Data.dll",
+        "lib/netcoreapp3.1/SciChart.Data.xml",
+        "lib/netcoreapp3.1/SciChart.Drawing.dll",
+        "lib/netcoreapp3.1/SciChart.Drawing.xml",
+        "scichart.6.6.0.26505.nupkg.sha512",
+        "scichart.nuspec"
+      ]
+    },
+    "System.Collections/4.3.0": {
+      "sha512": "3Dcj85/TBdVpL5Zr+gEEBUuFe2icOnLalmEh9hfck1PTYbbyWuZgh4fmm2ysCLTrqLQw6t3TgTyJ+VLp+Qb+Lw==",
+      "type": "package",
+      "path": "system.collections/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/portable-net45+win8+wp8+wpa81/_._",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/netcore50/System.Collections.dll",
+        "ref/netcore50/System.Collections.xml",
+        "ref/netcore50/de/System.Collections.xml",
+        "ref/netcore50/es/System.Collections.xml",
+        "ref/netcore50/fr/System.Collections.xml",
+        "ref/netcore50/it/System.Collections.xml",
+        "ref/netcore50/ja/System.Collections.xml",
+        "ref/netcore50/ko/System.Collections.xml",
+        "ref/netcore50/ru/System.Collections.xml",
+        "ref/netcore50/zh-hans/System.Collections.xml",
+        "ref/netcore50/zh-hant/System.Collections.xml",
+        "ref/netstandard1.0/System.Collections.dll",
+        "ref/netstandard1.0/System.Collections.xml",
+        "ref/netstandard1.0/de/System.Collections.xml",
+        "ref/netstandard1.0/es/System.Collections.xml",
+        "ref/netstandard1.0/fr/System.Collections.xml",
+        "ref/netstandard1.0/it/System.Collections.xml",
+        "ref/netstandard1.0/ja/System.Collections.xml",
+        "ref/netstandard1.0/ko/System.Collections.xml",
+        "ref/netstandard1.0/ru/System.Collections.xml",
+        "ref/netstandard1.0/zh-hans/System.Collections.xml",
+        "ref/netstandard1.0/zh-hant/System.Collections.xml",
+        "ref/netstandard1.3/System.Collections.dll",
+        "ref/netstandard1.3/System.Collections.xml",
+        "ref/netstandard1.3/de/System.Collections.xml",
+        "ref/netstandard1.3/es/System.Collections.xml",
+        "ref/netstandard1.3/fr/System.Collections.xml",
+        "ref/netstandard1.3/it/System.Collections.xml",
+        "ref/netstandard1.3/ja/System.Collections.xml",
+        "ref/netstandard1.3/ko/System.Collections.xml",
+        "ref/netstandard1.3/ru/System.Collections.xml",
+        "ref/netstandard1.3/zh-hans/System.Collections.xml",
+        "ref/netstandard1.3/zh-hant/System.Collections.xml",
+        "ref/portable-net45+win8+wp8+wpa81/_._",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.collections.4.3.0.nupkg.sha512",
+        "system.collections.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.8": [
+      "SciChart >= 6.6.0.26505",
+      "System.Collections >= 4.3.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\E306-PC6\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\C#\\WpfOscilloscope\\WpfOscilloscopeControl.csproj",
+      "projectName": "WpfOscilloscopeControl",
+      "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\C#\\WpfOscilloscope\\WpfOscilloscopeControl.csproj",
+      "packagesPath": "C:\\Users\\E306-PC6\\.nuget\\packages\\",
+      "outputPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\C#\\WpfOscilloscope\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "UsingMicrosoftNETSdk": false,
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\E306-PC6\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net48"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net48": {
+          "projectReferences": {}
+        }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net48": {
+        "dependencies": {
+          "SciChart": {
+            "target": "Package",
+            "version": "[6.6.0.26505, )"
+          },
+          "System.Collections": {
+            "target": "Package",
+            "version": "[4.3.0, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-arm64": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}
