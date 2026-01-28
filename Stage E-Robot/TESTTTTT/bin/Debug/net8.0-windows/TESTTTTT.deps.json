@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v8.0": {
       "TESTTTTT/1.0.0": {
         "dependencies": {
-          "ExtendedSerialPort": "1.0.0"
+          "ExtendedSerialPort": "1.0.0",
+          "ServoFeetech": "1.0.0"
         },
         "runtime": {
           "TESTTTTT.dll": {}
@@ -124,6 +125,14 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "ServoFeetech/1.0.0": {
+        "runtime": {
+          "ServoFeetech.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -197,6 +206,11 @@
       "hashPath": "system.management.8.0.0.nupkg.sha512"
     },
     "ExtendedSerialPort/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ServoFeetech/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

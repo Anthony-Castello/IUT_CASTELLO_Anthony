@@ -73,14 +73,14 @@
                     <TextBlock x:Name="C_ID6" Text="6: "/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="POsition Moteur" >
+            <GroupBox Header="Position Moteur" >
                 <StackPanel >
-                    <TextBlock x:Name="V_ID1" Text="1: "/>
-                    <TextBlock x:Name="V_ID2" Text="2: "/>
-                    <TextBlock x:Name="V_ID3" Text="3: "/>
-                    <TextBlock x:Name="V_ID4" Text="4: "/>
-                    <TextBlock x:Name="V_ID5" Text="5: "/>
-                    <TextBlock x:Name="V_ID6" Text="6: "/>
+                    <TextBlock x:Name="P_ID1" Text="1: "/>
+                    <TextBlock x:Name="P_ID2" Text="2: "/>
+                    <TextBlock x:Name="P_ID3" Text="3: "/>
+                    <TextBlock x:Name="P_ID4" Text="4: "/>
+                    <TextBlock x:Name="P_ID5" Text="5: "/>
+                    <TextBlock x:Name="P_ID6" Text="6: "/>
                 </StackPanel>
             </GroupBox>
         </StackPanel>

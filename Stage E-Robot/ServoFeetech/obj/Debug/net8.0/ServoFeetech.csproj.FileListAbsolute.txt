@@ -1,0 +1,12 @@
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\bin\Debug\net8.0\ServoFeetech.deps.json
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\bin\Debug\net8.0\ServoFeetech.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\bin\Debug\net8.0\ServoFeetech.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\ServoFeetech.GeneratedMSBuildEditorConfig.editorconfig
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\ServoFeetech.AssemblyInfoInputs.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\ServoFeetech.AssemblyInfo.cs
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\ServoFeetech.csproj.CoreCompileInputs.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\ServoFeetech.sourcelink.json
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\ServoFeetech.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\refint\ServoFeetech.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\ServoFeetech.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\ref\ServoFeetech.dll

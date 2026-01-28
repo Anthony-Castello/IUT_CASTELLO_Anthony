@@ -67,3 +67,5 @@ C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\TESTTTTT\obj\Debug\net8.0-windows\T
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\TESTTTTT\obj\Debug\net8.0-windows\TESTTTTT.csproj.Up2Date
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\TESTTTTT\obj\Debug\net8.0-windows\TESTTTTT.genruntimeconfig.cache
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\TESTTTTT\obj\Debug\net8.0-windows\ref\TESTTTTT.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\TESTTTTT\bin\Debug\net8.0-windows\ServoFeetech.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\TESTTTTT\bin\Debug\net8.0-windows\ServoFeetech.pdb

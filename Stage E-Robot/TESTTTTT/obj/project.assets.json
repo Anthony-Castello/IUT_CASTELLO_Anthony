@@ -140,6 +140,16 @@
         "runtime": {
           "bin/placeholder/ExtendedSerialPort.dll": {}
         }
+      },
+      "ServoFeetech/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/ServoFeetech.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ServoFeetech.dll": {}
+        }
       }
     }
   },
@@ -347,11 +357,17 @@
       "type": "project",
       "path": "../../../IUT_Fath_Yasmine_Bertin_Lysa/C#/ExtendedSerialPort/ExtendedSerialPort/ExtendedSerialPort.csproj",
       "msbuildProject": "../../../IUT_Fath_Yasmine_Bertin_Lysa/C#/ExtendedSerialPort/ExtendedSerialPort/ExtendedSerialPort.csproj"
+    },
+    "ServoFeetech/1.0.0": {
+      "type": "project",
+      "path": "../ServoFeetech/ServoFeetech.csproj",
+      "msbuildProject": "../ServoFeetech/ServoFeetech.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "ExtendedSerialPort >= 1.0.0"
+      "ExtendedSerialPort >= 1.0.0",
+      "ServoFeetech >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -386,6 +402,9 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
+            "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj": {
+              "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj"
+            },
             "C:\\Github\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.csproj": {
               "projectPath": "C:\\Github\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.csproj"
             }

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using ExtendedSerialPort_NS;
+using ServoFeetech_NS;
 using static TESTTTTT.Trames;
 
 namespace TESTTTTT
@@ -29,16 +30,19 @@ namespace TESTTTTT
         public SerialPort SerialPort1;
         DispatcherTimer timerAffichage;
 
+        Feetech servoManager = new Feetech();
+
         public MainWindow()
         {
             InitializeComponent();
+
 
             SerialPort1 = new SerialPort("COM14", 115200, Parity.None, 8, StopBits.One);
             SerialPort1.DataReceived += SerialPort1_DataReceived;
             SerialPort1.Open();
 
             timerAffichage = new DispatcherTimer();
-            timerAffichage.Interval = new TimeSpan(0, 0, 0, 0, 100); // NE PAS TROP BAISSER LE TIMER (Buffer requests se dequeue trop lentement, désynchronisament des requêtes)
+            timerAffichage.Interval = new TimeSpan(0, 0, 0, 0, 50); // NE PAS TROP BAISSER LE TIMER (Buffer requests se dequeue trop lentement, désynchronisament des requêtes)
             timerAffichage.Tick += TimerAffichage_Tick;
             timerAffichage.Start();
 
@@ -46,37 +50,50 @@ namespace TESTTTTT
             Trames.sendCommande(0xFE, 0, 0, 1500, SerialPort1);
             Trames.sendCommande(5, 0, 0, 1500, SerialPort1);
             Trames.sendCommande(6, 0, 0, 1500, SerialPort1);
+
+            OnRequestServoDataEvent += servoManager.RequestServoData;
+            servoManager.OnSendMessageEvent += ServoManager_OnSendMessageEvent;
+            OnSendDataToServoEvent += servoManager.DecodeData;
+            servoManager.OnServoDataEvent += ServoManager_OnServoDataEvent;
+        }
+
+        private void ServoManager_OnServoDataEvent(object? sender, FeetechServoDataArgs e)
+        {
+        }
+
+        private void ServoManager_OnSendMessageEvent(object? sender, ByteArrayArgs e)
+        {
+            SerialPort1.Write(e.array, 0, e.array.Length);
         }
 
         private void SerialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             while (SerialPort1.BytesToRead > 0)
             {
-                byte receivedByte = (byte)SerialPort1.ReadByte();
-                Trames.byteListReceived.Enqueue(receivedByte);
-
+                byte[] buffer = new byte[SerialPort1.BytesToRead];
+                SerialPort1.Read(buffer, 0, buffer.Length);
+                OnSendDataToServo(buffer);
+                //byte receivedByte = (byte)SerialPort1.ReadByte();
+                //Trames.byteListReceived.Enqueue(receivedByte);
             }
         }
 
-
-        byte motIdTimer = 1;
         private void TimerAffichage_Tick(object? sender, EventArgs e)
         {
             while (Trames.byteListReceived.Count() > 0)
             {
                 byte b = Trames.byteListReceived.Dequeue();
-                Trames.DecodeMessage(b);
+                //Trames.DecodeMessage(b);
             }
 
-            Trames.readCouple(motIdTimer++, SerialPort1);
-            if (motIdTimer > moteursNum)
-                motIdTimer = 1;
+            //Trames.readDatas(SerialPort1);
+
+            OnRequestServoData(0x01, FeetechMemory.Baudrate, 10);
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             byte id;
             try { id = byte.Parse(Id.Text); }
             catch { id = 0; }
@@ -118,11 +135,32 @@ namespace TESTTTTT
             byte instruction = 0x03; // WRITE DATA
             byte[] payload = new byte[] { 0x28, torque }; // Adresse de départ et longueur de lecture
 
-            Packet p = new Packet(id, instruction, payload, (byte)Commands.couple);
+            //Packet p = new Packet(id, instruction, payload, (byte)Commands.Send);
 
-            // Envoi du packet
-            p.sendPacket(SerialPort1);
+            //// Envoi du packet
+            //p.sendPacket(SerialPort1);
 
+        }
+
+        ///  Output events 
+        public event EventHandler<FeetechServoRequestArgs> OnRequestServoDataEvent;
+        public new virtual void OnRequestServoData(byte id, FeetechMemory loc, byte nbBytes)
+        {
+            var handler = OnRequestServoDataEvent;
+            if (handler != null)
+            {
+                handler(this, new FeetechServoRequestArgs { Id = id, Location = loc, NumberOfBytes = nbBytes});
+            }
+        }
+
+        public event EventHandler<ByteArrayArgs> OnSendDataToServoEvent;
+        public new virtual void OnSendDataToServo(byte[] msg)
+        {
+            var handler = OnSendDataToServoEvent;
+            if (handler != null)
+            {
+                handler(this, new ByteArrayArgs { array = msg});
+            }
         }
     }
 }
