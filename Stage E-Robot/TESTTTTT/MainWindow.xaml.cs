@@ -17,6 +17,7 @@ using ExtendedSerialPort_NS;
 using ServoFeetech_NS;
 using static TESTTTTT.Trames;
 
+
 namespace TESTTTTT
 {
     /// <summary>
@@ -47,18 +48,21 @@ namespace TESTTTTT
             timerAffichage.Start();
 
             // Reset les moteurs au démarrage
-            Trames.sendCommande(0xFE, 0, 0, 1500, SerialPort1);
-            Trames.sendCommande(5, 0, 0, 1500, SerialPort1);
-            Trames.sendCommande(6, 0, 0, 1500, SerialPort1);
 
-            OnRequestServoDataEvent += servoManager.RequestServoData;
+            OnSyncWriteServoDataEvent += servoManager.SyncWriteServoData;
+            OnReadServoDataEvent += servoManager.ReadServoData;
+            OnWriteServoDataEvent += servoManager.WriteServoData;
             servoManager.OnSendMessageEvent += ServoManager_OnSendMessageEvent;
             OnSendDataToServoEvent += servoManager.DecodeData;
             servoManager.OnServoDataEvent += ServoManager_OnServoDataEvent;
+
+            OnSyncWriteServoData(new byte[] { 0x02, 0x04 }, FeetechMemory.GoalPosition,
+                new byte[] { (byte)(0 >> 8), (byte)(0 & 0xFF), 0x00, 0x00, (byte)(1000 >> 8), (byte)(1000 & 0xFF) });
         }
 
         private void ServoManager_OnServoDataEvent(object? sender, FeetechServoDataArgs e)
         {
+
         }
 
         private void ServoManager_OnSendMessageEvent(object? sender, ByteArrayArgs e)
@@ -73,83 +77,58 @@ namespace TESTTTTT
                 byte[] buffer = new byte[SerialPort1.BytesToRead];
                 SerialPort1.Read(buffer, 0, buffer.Length);
                 OnSendDataToServo(buffer);
-                //byte receivedByte = (byte)SerialPort1.ReadByte();
-                //Trames.byteListReceived.Enqueue(receivedByte);
             }
         }
 
         private void TimerAffichage_Tick(object? sender, EventArgs e)
         {
-            while (Trames.byteListReceived.Count() > 0)
-            {
-                byte b = Trames.byteListReceived.Dequeue();
-                //Trames.DecodeMessage(b);
-            }
+            UInt16 pos = 785;
+            UInt16 vit = 762;
+            //OnWriteServoData(0xFE, FeetechMemory.GoalVelocity, new byte[] { (byte)(vit >> 8), (byte)(vit & 0xFF) });
+            //OnWriteServoData(0xFE, FeetechMemory.GoalPosition, new byte[] { (byte)(pos >> 8), (byte)(pos & 0xFF) });
 
-            //Trames.readDatas(SerialPort1);
-
-            OnRequestServoData(0x01, FeetechMemory.Baudrate, 10);
-
+            OnSyncWriteServoData(new byte[] { 0x02,0x04 }, FeetechMemory.GoalPosition, 
+                new byte[] { (byte)(pos >> 8), (byte)(pos & 0xFF), 0x00, 0x00, (byte)(vit >> 8), (byte)(vit & 0xFF) });
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            byte id;
-            try { id = byte.Parse(Id.Text); }
-            catch { id = 0; }
-            UInt16 pos;
-            UInt16 vit;
-            UInt16 time;
-            if (id == 0)
-                id = 0xFE;
-            try { pos = UInt16.Parse(Pos.Text); }
-            catch { pos = 0; }
-            try { vit = UInt16.Parse(Vit.Text); }
-            catch { vit = 0; }
-            try { time = UInt16.Parse(Time.Text); }
-            catch { time = 0;}
-
-
-
-
-            Trames.sendCommande(id, pos, time, vit, SerialPort1);
-            if (id == 0xFE) // Commande Moteur sur 4096
-            {
-                Trames.sendCommande(5, pos, time, vit, SerialPort1);
-                Trames.sendCommande(6, pos, time, vit, SerialPort1);
-
-            }
+           
         }
 
         private void TClick(object sender, RoutedEventArgs e)
         {
 
-            CheckBox? cb = sender as CheckBox;
-            if (cb == null) return;
-
-            string idString = cb.Name.Replace("T", "");
-            if (!byte.TryParse(idString, out byte id)) return;
-
-            byte torque = (cb.IsChecked ?? false) ? (byte)1 : (byte)0;
-
-            byte instruction = 0x03; // WRITE DATA
-            byte[] payload = new byte[] { 0x28, torque }; // Adresse de départ et longueur de lecture
-
-            //Packet p = new Packet(id, instruction, payload, (byte)Commands.Send);
-
-            //// Envoi du packet
-            //p.sendPacket(SerialPort1);
-
         }
 
         ///  Output events 
-        public event EventHandler<FeetechServoRequestArgs> OnRequestServoDataEvent;
-        public new virtual void OnRequestServoData(byte id, FeetechMemory loc, byte nbBytes)
+        public event EventHandler<FeetechServoReadArgs> OnReadServoDataEvent;
+        public new virtual void OnReadServoData(byte id, FeetechMemory loc, byte nbBytes)
         {
-            var handler = OnRequestServoDataEvent;
+            var handler = OnReadServoDataEvent;
             if (handler != null)
             {
-                handler(this, new FeetechServoRequestArgs { Id = id, Location = loc, NumberOfBytes = nbBytes});
+                handler(this, new FeetechServoReadArgs { Id = id, Location = loc, NumberOfBytes = nbBytes});
+            }
+        }
+
+        public event EventHandler<FeetechServoWriteArgs> OnWriteServoDataEvent;
+        public new virtual void OnWriteServoData(byte id, FeetechMemory loc, byte[] payload)
+        {
+            var handler = OnWriteServoDataEvent;
+            if (handler != null)
+            {
+                handler(this, new FeetechServoWriteArgs { Id = id, Location = loc, Payload = payload });
+            }
+        }
+
+        public event EventHandler<FeetechServoSyncWriteArgs> OnSyncWriteServoDataEvent;
+        public new virtual void OnSyncWriteServoData(byte[] id, FeetechMemory loc, byte[] payload)
+        {
+            var handler = OnSyncWriteServoDataEvent;
+            if (handler != null)
+            {
+                handler(this, new FeetechServoSyncWriteArgs { Id = id, Location = loc, Payload = payload });
             }
         }
 

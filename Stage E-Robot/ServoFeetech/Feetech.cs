@@ -1,14 +1,12 @@
-﻿using System.Diagnostics;
-
-namespace ServoFeetech_NS
+﻿namespace ServoFeetech_NS
 {
-    public class Feetech
+    public class Feetech 
     {
         Dictionary<byte, byte> InstructionRequestedDictionary = new Dictionary<byte, byte>();
         //Dictionary<byte, FeetechServoInfo> servoInfo = new Dictionary<byte, FeetechServoInfo>();
 
         ///  Input events 
-        public void RequestServoData(object sender, FeetechServoRequestArgs e)
+        public void ReadServoData(object sender, FeetechServoReadArgs e)
         {
             Packet p = new Packet(e.Id, (byte)FeetechCommands.READ, new byte[] { (byte)(e.Location), e.NumberOfBytes });
             if (!InstructionRequestedDictionary.ContainsKey(e.Id))
@@ -19,6 +17,64 @@ namespace ServoFeetech_NS
             var message = p.ToByteArray();
             OnSendMessage(message);
         }
+
+        //public void SyncReadServoData(object sender, FeetechServoSyncReadArgs e)
+        //{
+        //    Packet p = new Packet(e.Id, (byte)FeetechCommands.READ, new byte[] { (byte)(e.Location), e.NumberOfBytes });
+        //    if (!InstructionRequestedDictionary.ContainsKey(e.Id))
+        //        InstructionRequestedDictionary.Add(e.Id, (byte)e.Location);
+        //    else
+        //        InstructionRequestedDictionary[e.Id] = (byte)e.Location;
+
+        //    var message = p.ToByteArray();
+        //    OnSendMessage(message);
+        //}
+
+        public void WriteServoData(object sender, FeetechServoWriteArgs e)
+        {
+            List<byte> payloadList = e.Payload.ToList();
+            payloadList.Insert(0, (byte)e.Location); 
+            byte[] result = payloadList.ToArray();
+            Packet p = new Packet(e.Id, (byte)FeetechCommands.WRITE, result);
+            if (!InstructionRequestedDictionary.ContainsKey(e.Id))
+                InstructionRequestedDictionary.Add(e.Id, (byte)e.Location);
+            else
+                InstructionRequestedDictionary[e.Id] = (byte)e.Location;
+
+            var message = p.ToByteArray();
+            OnSendMessage(message);
+        }
+        public void SyncWriteServoData(object sender, FeetechServoSyncWriteArgs e)
+        {
+
+            byte[] payload = new byte[2 + e.Id.Length * (e.Payload.Length + 1)];
+            int pos = 0;
+            payload[pos++] = (byte)e.Location;
+            payload[pos++] = (byte)e.Payload.Length;
+            foreach ( byte id in e.Id)
+            {
+                payload[pos++] = id;
+                foreach (byte datas in e.Payload)
+                {
+                    payload[pos++] = datas;
+                }
+            }
+
+            Packet p = new Packet(0xFE, (byte)FeetechCommands.SYNCWRITE, payload);
+
+            if (!InstructionRequestedDictionary.ContainsKey(0xFE))
+                InstructionRequestedDictionary.Add(0xFE, (byte)e.Location);
+            else
+                InstructionRequestedDictionary[0xFE] = (byte)e.Location;
+
+            var message = p.ToByteArray();
+            OnSendMessage(message);
+        }
+
+
+
+
+
         public void DecodeData(object sender, ByteArrayArgs e)
         {
             foreach (var b in e.array)
@@ -100,7 +156,6 @@ namespace ServoFeetech_NS
                     break;
                 case StateReception.Payload:
 
-
                     msgDecodedPayload[msgDecodedPayloadIndex] = c;
                     msgDecodedPayloadIndex++;
                     if (msgDecodedPayloadIndex >= msgDecodedPayloadLength - 2)
@@ -127,19 +182,50 @@ namespace ServoFeetech_NS
             var requestedRegister = InstructionRequestedDictionary[id];
             FeetechServoInfo info = new FeetechServoInfo();
             int pos = 0;
+            int lastPos = 0;
 
             while (pos < msgPayload.Length)
             {
+                
+                // Actualise les données a récupérer
+                requestedRegister += (byte)(pos - lastPos);
+                lastPos = pos;
+
                 switch ((FeetechMemory)requestedRegister)
                 {
                     case FeetechMemory.Baudrate:
                         info.BaudRate = msgPayload[pos++];
                         break;
                     case FeetechMemory.AngleLimitMin:
-                        var v = (Int16)(msgPayload[pos] << 8 + msgPayload[pos + 1] << 0);
+                        var AngleLimitMin = (Int16)(msgPayload[pos] << 8 | msgPayload[pos + 1] << 0);
                         pos += 2;
-                        info.AngleLimitMin = v;
+                        info.AngleLimitMin = AngleLimitMin;
                         break;
+                    case FeetechMemory.AngleLimitMax:
+                        var AngleLimitMax = (Int16)(msgPayload[pos] << 8 | msgPayload[pos + 1] << 0);
+                        pos += 2;
+                        info.AngleLimitMax = AngleLimitMax;
+                        break;
+                    case FeetechMemory.PresentPosition:
+                        var PresentPosition = (Int16)(msgPayload[pos] << 8 | msgPayload[pos + 1] << 0);
+                        pos += 2;
+                        info.PresentPosition = PresentPosition;
+                        break;
+                    case FeetechMemory.PresentVelocity:
+                        var PresentVelocity = (Int16)(msgPayload[pos] << 8 | msgPayload[pos + 1] << 0);
+                        pos += 2;
+                        info.PresentVelocity = PresentVelocity;
+                        break;
+                    case FeetechMemory.PresentPWM:
+                        var PresentPWM = (Int16)(msgPayload[pos] << 8 | msgPayload[pos + 1] << 0);
+                        pos += 2;
+                        info.PresentPWM = PresentPWM;
+                        break;
+
+                    case FeetechMemory.TorqueEnable:
+                        info.TorqueEnable = (msgPayload[pos++] != 0); // True or false
+                        break;
+
                 }
             }
 
@@ -162,8 +248,7 @@ namespace ServoFeetech_NS
             Id = id;
             Instruction = command;
             Payload = payload ?? Array.Empty<byte>(); // Si payload est null, on crée un tableau vide au lieu de laisser null
-                                                      // La longueur est égale au nombre de paramètres + 2 (Command/Error + Checksum)
-            Length = (byte)(payload.Length + 2);
+            Length = (byte)(payload.Length + 2);// La longueur est égale au nombre de paramètres + 2 (Command/Error + Checksum)
             Checksum = 0; // À calculer ensuite avec CalculateChecksum
         }
 
@@ -182,14 +267,6 @@ namespace ServoFeetech_NS
             return byteArray.ToArray();
         }
 
-        //public void sendPacket(SerialPort port)
-        //{
-        //    byte[] packetBytes = ToByteArray();
-        //    requests.Enqueue(request);
-        //    port.Write(packetBytes, 0, packetBytes.Length);
-        //}
-
-        
     }
 
     public class FeetechServoDataArgs : EventArgs
@@ -201,11 +278,31 @@ namespace ServoFeetech_NS
         public byte[] array;
     }
 
-    public class FeetechServoRequestArgs : EventArgs
+    public class FeetechServoReadArgs : EventArgs
     {
         public byte Id;
         public FeetechMemory Location;
         public byte NumberOfBytes;
+    }
+
+    public class FeetechServoSyncReadArgs : EventArgs
+    {
+        public byte[] Id;
+        public FeetechMemory Location;
+        public byte NumberOfBytes;
+    }
+
+    public class FeetechServoWriteArgs : EventArgs
+    {
+        public byte Id;
+        public FeetechMemory Location;
+        public byte[] Payload;
+    }
+    public class FeetechServoSyncWriteArgs : EventArgs
+    {
+        public byte[] Id;
+        public FeetechMemory Location;
+        public byte[] Payload;
     }
 
     public class FeetechServoInfo
@@ -217,6 +314,46 @@ namespace ServoFeetech_NS
         public byte? MinimalAngle = null;
         public Int16? AngleLimitMin = null;
         public Int16? AngleLimitMax = null;
+        public byte? MaxTemperatureLimit = null;
+        public byte? MaxInputVoltage = null;
+        public byte? MixInputVoltage = null;
+        public Int16? MaxCouple = null;
+        public byte? phase = null;
+        public byte? ProtectionSwitch = null;
+        public byte? LEDAlarmCondition = null;
+        public byte? PositionPGain = null;
+        public byte? PositionDGain = null;
+        public byte? PositionIGain = null;
+        public byte? Punch = null;
+        public byte? MAX_I = null;
+        public byte? CWDeadBand = null;
+        public byte? CCWDeadBand = null;
+        public Int16? OverloadCurrent = null;
+        public byte? AngularResolution = null;
+        public Int16? PositionOffsetValue= null;
+        public byte? WorkMode = null;
+        public byte? ProtectTorque = null;
+        public byte? OverloadProtectionTime = null;
+        public byte? OverloadTorque = null;
+        public byte? VelocityPGain = null;
+        public byte? OvercurrentProtectionTime = null;
+        public byte? VelocityIGain = null;
+        public bool? TorqueEnable = null;
+        public byte? GoalAcceleration = null;
+        public Int16? GoalPosition = null;
+        public Int16? GoalPWM = null;
+        public Int16? GoalVelocity = null;
+        public Int16? TorqueLimit = null;
+        public byte? Lock = null;
+        public Int16? PresentPosition = null;
+        public Int16? PresentVelocity = null;
+        public Int16? PresentPWM = null;
+        public byte? PresentInputVoltage= null;
+        public byte? PresentTemperature = null;
+        public byte? SyncWriteFlag = null;
+        public byte? HardwareErrorStatus = null;
+        public byte? MovingStatus = null;
+        public byte? PresentCurrent = null;
     }
     public enum StateReception
     {
@@ -233,10 +370,50 @@ namespace ServoFeetech_NS
     {
         Id = 0x05,
         Baudrate = 0x06,
-        ResponseDelay = 0x07,
-        ResponseState = 0x08,
+        Delay = 0x07,
+        ReplyState = 0x08,
         AngleLimitMin = 0x09, //2 octets
-        AngleLimitMax = 0x10, //2 octets
+        AngleLimitMax = 0x0B, //2 octets
+        MaxTemperatureLimit = 0x0D,
+        MaxInputVoltage = 0x0E,
+        MixInputVoltage = 0x0F,
+        MaxTorqueLimit = 0x10, // 2 octets
+        phase = 0x12, 
+        ProtectionSwitch = 0x13,
+        LEDAlarmCondition = 0x14,
+        PositionPGain = 0x15,
+        PositionDGain = 0x16,
+        PositionIGain = 0x17,
+        Punch = 0x18,
+        MAX_I= 0x19,
+        CWDeadBand = 0x1A,
+        CCWDeadBand = 0x1B,
+        OverloadCurrent = 0x1C, // 2 octets
+        AngularResolution = 0x1E,
+        PositionShift = 0x1F, // 2 octets
+        WorkMode = 0x21,
+        ProtectTorque = 0x22,
+        OverloadProtectionTime = 0x23,
+        OverloadTorque = 0x24,
+        VelocityPGain = 0x25,
+        OverLoadProtectionTime = 0x26,
+        VelocityIGain = 0x27,
+        TorqueEnable = 0x28,
+        Acceleration = 0x29,
+        GoalPosition = 0x2A,  // 2 octets
+        GoalPWM = 0x2C,  // 2 octets (val du torque)
+        GoalVelocity = 0x2E,  // 2 octets
+        TorqueLimit = 0x30,  // 2 octets
+        Lock = 0x37,
+        PresentPosition = 0x38,  // 2 octets
+        PresentVelocity = 0x3A,  // 2 octets
+        PresentPWM = 0x3C,  // 2 octets (Torque)
+        PresentInputVoltage = 0x3E,
+        PresentTemperature = 0x3F,
+        SyncWriteFlag = 0x40,
+        HardwareErrorStatus = 0x41,
+        MovingStatus = 0x42,
+        PresentCurrent = 0x45, // 2 octets
     }
     public enum FeetechCommands : byte
     {
