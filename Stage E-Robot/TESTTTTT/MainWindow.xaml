@@ -36,8 +36,8 @@
                 </GroupBox>
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" >
-                <GroupBox Header="ID" Grid.Column="1">
-                    <TextBox x:Name="Id" Text=""/>
+                <GroupBox Header="Nom du moteur" Grid.Column="1">
+                    <TextBox x:Name="Name" Text=""/>
                 </GroupBox>
                 <GroupBox Header="Position" Grid.Column="1">
                     <TextBox x:Name="Pos" Text=""/>
@@ -59,7 +59,10 @@
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <Button Content="Envoyer" Width="100" Click="Button_Click" />
+            <Button Content="Test" Width="100" Click="Button_Click_1" />
+            <Button Content="Envoie Normal" Width="100" Click="Button_Click" />
+            <Button Content="Envoie en attente" Width="100" Click="Button_Click_2"/>
+            <Button Content="Envoie des actions en attente" Width="200" Click="Button_Click_3"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
