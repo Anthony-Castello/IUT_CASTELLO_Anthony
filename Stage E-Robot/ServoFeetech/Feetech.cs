@@ -180,7 +180,17 @@ namespace ServoFeetech_NS
                 handler(this, new FeetechServoDataArgs { info = fi});
             }
         }
-        
+
+        public event EventHandler<FeetechServoErrorArgs> OnServoErrorEvent;
+        public new virtual void OnServoError(FeetechServoError fe)
+        {
+            var handler = OnServoErrorEvent;
+            if (handler != null)
+            {
+                handler(this, new FeetechServoErrorArgs { error = fe });
+            }
+        }
+
         public event EventHandler<ByteArrayArgs> OnSendMessageEvent;
         public new virtual void OnSendMessage(byte[] data)
         {
@@ -190,6 +200,7 @@ namespace ServoFeetech_NS
                 handler(this, new ByteArrayArgs {  array = data });
             }
         }
+
 
         public static byte CalculateChecksum(byte id, byte inst_err, int length, byte[] payload)
         {
@@ -236,6 +247,7 @@ namespace ServoFeetech_NS
                     break;
                 case StateReception.Error:
                     msgDecodedError = c;
+
                     if (msgDecodedPayloadLength > 2)
                         rcvState = StateReception.Payload;
                     else
@@ -254,7 +266,7 @@ namespace ServoFeetech_NS
 
                     if (calculatedChecksum == c)
                     {
-                        ProcessDecodedMessage(msgDecodedId, msgDecodedPayloadLength, msgDecodedPayload);
+                        ProcessDecodedMessage(msgDecodedId, msgDecodedError, msgDecodedPayloadLength, msgDecodedPayload);
                     }
                     rcvState = StateReception.Waiting1;
                     break;
@@ -264,7 +276,7 @@ namespace ServoFeetech_NS
             }
         }
 
-        private void ProcessDecodedMessage(byte id, byte length, byte[] msgPayload)
+        private void ProcessDecodedMessage(byte id, byte error, byte length, byte[] msgPayload)
         {
             var requestedRegister = InstructionRequestedDictionary[id];
             FeetechServoInfo info = new FeetechServoInfo();
@@ -305,9 +317,17 @@ namespace ServoFeetech_NS
 
                 // Récupération du type de la donnée
                 string? nameInfo = Enum.GetName(mem, requestedRegister);
-                if (string.IsNullOrEmpty(nameInfo)) continue;
+                if (string.IsNullOrEmpty(nameInfo))
+                {
+                    pos++;
+                    continue;
+                }
                 Type? dataType = info.GetTypeByName(nameInfo);
-                if (dataType == null) continue;
+                if (dataType == null)
+                {
+                    pos++;
+                    continue;
+                }
 
 
                 var field = info.GetType().GetField(nameInfo);
@@ -335,6 +355,33 @@ namespace ServoFeetech_NS
                         pos++;
                         break;
                 }
+            }
+
+            // ANTHONY cmoa
+            //volt BIT0
+            //Chauffe BIT2
+            //Pos BIT5
+            if(error != 0)
+            {
+                FeetechServoError servoError = new FeetechServoError();
+
+                bool[] bits = new bool[8];
+                for (int i = 0; i < 8; i++)
+                {
+                    // On décale le bit vers la droite et on masque tout sauf le dernier bit
+                    bits[i] = ((error >> i) & 1) == 1;
+                }
+
+                servoError.UnderOverVoltage = bits[0];
+                servoError.OverHeated = bits[3];
+                servoError.OverLoad = bits[6];
+                // On pourrait ajouter l'erreur dans info si besoin
+                if (servoError.UnderOverVoltage || servoError.OverHeated || servoError.OverLoad)
+                {
+                    servoError.Id = id;
+                    OnServoError(servoError);
+                }
+
             }
 
             OnServoData(info);
@@ -381,6 +428,12 @@ namespace ServoFeetech_NS
     {
         public FeetechServoInfo info;
     }
+
+    public class FeetechServoErrorArgs : EventArgs
+    {
+        public FeetechServoError error;
+    }
+
     public class ByteArrayArgs : EventArgs
     {
         public byte[] array;
@@ -424,8 +477,16 @@ namespace ServoFeetech_NS
     {
 
     }
-    
-    public class FeetechServoInfo
+
+    public class FeetechServoError
+    {
+        public byte? Id = null;
+        public bool UnderOverVoltage = false; // BIT0 Sur ou Soustension
+        public bool OverHeated = false; //BIT2 Surchauffe
+        public bool OverLoad = false; //BIT5 Position demandé trop élevé par rapport à ce que le moteur est capable de faire
+    }
+
+        public class FeetechServoInfo
     {
 
         public Type? GetTypeByName(string name)
@@ -446,7 +507,7 @@ namespace ServoFeetech_NS
         public byte[]? payload = null;
 
 
-
+        public byte? Reserved = null;
         public byte? BaudRate = null;
         public byte? ReturnDelayTime = null;
         public byte? StatusReturnLevel = null;
@@ -457,6 +518,7 @@ namespace ServoFeetech_NS
         public Int16? MaxPositionLimit = null;
         public byte? MaxTemperatureLimit = null;
         public byte? MaxInputVoltage = null;
+        public Int16? MaxTorqueLimit = null;
         public byte? MinInputVoltage = null;
         public Int16? MaxCouple = null;
         public byte? phase = null;
@@ -511,6 +573,7 @@ namespace ServoFeetech_NS
     {
         Id = 0x05,
         Baudrate = 0x06,
+        Reserved = 0x07, //bloque la lecture à la suite des données
         StatusReturnLevel = 0x08,
         MinPositionLimit = 0x09, //2 octets
         MaxPositionLimit = 0x0B, //2 octets
@@ -546,10 +609,13 @@ namespace ServoFeetech_NS
         MovingStatus = 0x42,
     }
 
+
+
     public enum FeetechMemorySTS : byte
     {
         Id = 0x05,
         Baudrate = 0x06,
+        Reserved = 0x07,
         StatusReturnLevel = 0x08,
         MinPositionLimit = 0x09, //2 octets
         MaxPositionLimit = 0x0B, //2 octets

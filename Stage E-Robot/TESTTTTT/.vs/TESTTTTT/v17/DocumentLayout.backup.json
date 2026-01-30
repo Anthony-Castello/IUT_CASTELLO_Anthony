@@ -14,6 +14,10 @@
       "RelativeMoniker": "D:0:0:{3499246D-1B7F-4719-8ABE-D18718E58981}|TESTTTTT.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{3499246D-1B7F-4719-8ABE-D18718E58981}|TESTTTTT.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\testtttt\\trames.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3499246D-1B7F-4719-8ABE-D18718E58981}|TESTTTTT.csproj|solutionrelative:trames.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BF1759A2-3237-43BF-AE19-E9C9529BD41D}|..\\..\\..\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.csproj|c:\\github\\iut_fath_yasmine_bertin_lysa\\c#\\extendedserialport\\extendedserialport\\extendedserialport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -32,9 +36,9 @@
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\MainWindow.xaml.cs*",
-              "RelativeToolTip": "MainWindow.xaml.cs*",
-              "ViewState": "AgIAAMAAAAAAAAAAAIAwwNMAAAAgAAAAAAAAAA==",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAYwKgAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-26T11:08:40.326Z",
               "IsPinned": true,
@@ -48,13 +52,60 @@
               "RelativeDocumentMoniker": "..\\ServoFeetech\\Feetech.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\Feetech.cs",
               "RelativeToolTip": "..\\ServoFeetech\\Feetech.cs",
-              "ViewState": "AgIAAAkBAAAAAAAAAAAUwBsBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPMAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "OverriddenGroupName": "Fichiers distants externes",
               "WhenOpened": "2026-01-28T09:00:41.027Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Trames.cs",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\Trames.cs",
+              "RelativeDocumentMoniker": "Trames.cs",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\Trames.cs",
+              "RelativeToolTip": "Trames.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAYwGUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T08:18:56.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ExtendedSerialPort.cs",
+              "DocumentMoniker": "C:\\Github\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.cs",
+              "ToolTip": "C:\\Github\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.cs",
+              "RelativeToolTip": "..\\..\\..\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAIAwwLQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T09:24:06.441Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "3e07e9c8-ec36-49cb-bb0b-4f28792948e6",
+        "Display": 0,
+        "X": 32,
+        "Y": 70,
+        "Width": 1799,
+        "Height": 814,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -65,19 +116,6 @@
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-29T15:45:58.432Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ExtendedSerialPort.cs",
-              "DocumentMoniker": "C:\\Github\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.cs",
-              "ToolTip": "C:\\Github\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.cs",
-              "RelativeToolTip": "..\\..\\..\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAD4v7QAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T09:24:06.441Z",
               "EditorCaption": ""
             }
           ]

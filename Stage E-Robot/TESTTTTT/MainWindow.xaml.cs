@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO.Ports;
+using System.Linq.Expressions;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows;
@@ -33,6 +34,8 @@ namespace TESTTTTT
 
         Feetech servoManager = new Feetech();
 
+        Queue<List<object>> bufferRead = new Queue<List<Object>>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -43,7 +46,7 @@ namespace TESTTTTT
             SerialPort1.Open();
 
             timerAffichage = new DispatcherTimer();
-            timerAffichage.Interval = new TimeSpan(0, 0, 0, 0, 50); // NE PAS TROP BAISSER LE TIMER (Buffer requests se dequeue trop lentement, désynchronisament des requêtes)
+            timerAffichage.Interval = new TimeSpan(0, 0, 0, 0, 70); // NE PAS TROP BAISSER LE TIMER (Buffer requests se dequeue trop lentement, désynchronisament des requêtes)
             timerAffichage.Tick += TimerAffichage_Tick;
             timerAffichage.Start();
 
@@ -55,9 +58,10 @@ namespace TESTTTTT
             OnSyncReadServoDataEvent += servoManager.SyncReadServoData;
             OnReadServoDataEvent += servoManager.ReadServoData;
             OnWriteServoDataEvent += servoManager.WriteServoData;
-            servoManager.OnSendMessageEvent += ServoManager_OnSendMessageEvent;
             OnSendDataToServoEvent += servoManager.DecodeData;
+            servoManager.OnSendMessageEvent += ServoManager_OnSendMessageEvent;
             servoManager.OnServoDataEvent += ServoManager_OnServoDataEvent;
+            servoManager.OnServoErrorEvent += ServoManager_OnServoErrorEvent;
 
             servoManager.getServos().Add(new FeetechServo("Epaule1", 1, FeetechServoModels.SCS));
             servoManager.getServos().Add(new FeetechServo("Epaule2", 2, FeetechServoModels.SCS));
@@ -66,22 +70,57 @@ namespace TESTTTTT
             servoManager.getServos().Add(new FeetechServo("Poignee2", 5, FeetechServoModels.STS));
             servoManager.getServos().Add(new FeetechServo("Main", 6, FeetechServoModels.SM));
 
-            Int16 vit = 1500;
-            OnWriteServoData("Epaule1", FeetechMemorySCS.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit >> 8), (byte)(vit & 0xFF) });
-            System.Threading.Thread.Sleep(20);
-            OnWriteServoData("Epaule2", FeetechMemorySCS.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit >> 8), (byte)(vit & 0xFF) });
-            System.Threading.Thread.Sleep(20);
-            OnWriteServoData("Coude", FeetechMemorySCS.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit >> 8), (byte)(vit & 0xFF) });
-            System.Threading.Thread.Sleep(20);
-            OnWriteServoData("Poignee1", FeetechMemorySCS.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit >> 8), (byte)(vit & 0xFF) });
-            System.Threading.Thread.Sleep(20);
-            OnWriteServoData("Poignee2", FeetechMemorySTS.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit*4 & 0xFF), (byte)(vit*4 >> 8) });
-            System.Threading.Thread.Sleep(20);
-            OnWriteServoData("Main", FeetechMemorySM.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit*4 & 0xFF), (byte)(vit*4 >> 8) });
+
+            // Tous les moteurs
+            servoManager.getServos().Add(new FeetechServo("All", 0xFE, FeetechServoModels.SCS));
+
+            //Int16 vit = 1500;
+            //OnWriteServoData("Epaule1", FeetechMemorySCS.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit >> 8), (byte)(vit & 0xFF) });
+            //System.Threading.Thread.Sleep(20);
+            //OnWriteServoData("Epaule2", FeetechMemorySCS.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit >> 8), (byte)(vit & 0xFF) });
+            //System.Threading.Thread.Sleep(20);
+            //OnWriteServoData("Coude", FeetechMemorySCS.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit >> 8), (byte)(vit & 0xFF) });
+            //System.Threading.Thread.Sleep(20);
+            //OnWriteServoData("Poignee1", FeetechMemorySCS.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit >> 8), (byte)(vit & 0xFF) });
+            //System.Threading.Thread.Sleep(20);
+            //OnWriteServoData("Poignee2", FeetechMemorySTS.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit*4 & 0xFF), (byte)(vit*4 >> 8) });
+            //System.Threading.Thread.Sleep(20);
+            //OnWriteServoData("Main", FeetechMemorySM.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit*4 & 0xFF), (byte)(vit*4 >> 8) });
+
 
         }
 
         private void ServoManager_OnServoDataEvent(object? sender, FeetechServoDataArgs e)
+        {
+            byte id = e.info.Id ?? 0;
+            if (servoManager.getServoById(id) == null) return;
+            if (e.info.TorqueEnable != null) 
+            {
+                List<object> objs = new List<object>();
+                objs.Add("Torque");
+                objs.Add(servoManager.getServoById(id).Name);
+                objs.Add(e.info.TorqueEnable);
+                bufferRead.Enqueue(objs);
+            }
+            if (e.info.PresentPosition != null)
+            {
+                List<object> objs = new List<object>();
+                objs.Add("Position");
+                objs.Add(servoManager.getServoById(id).Name);
+                objs.Add(e.info.PresentPosition);
+                bufferRead.Enqueue(objs);
+            }
+            if (e.info.PresentPWM != null)
+            {
+                List<object> objs = new List<object>();
+                objs.Add("Couple");
+                objs.Add(servoManager.getServoById(id).Name);
+                objs.Add(e.info.PresentPWM);
+                bufferRead.Enqueue(objs);
+            }
+        }
+
+        private void ServoManager_OnServoErrorEvent(object? sender, FeetechServoErrorArgs e)
         {
 
         }
@@ -103,25 +142,61 @@ namespace TESTTTTT
 
         private void TimerAffichage_Tick(object? sender, EventArgs e)
         {
-            UInt16 pos = 785;
-            UInt16 vit = 1000;
-            //OnWriteServoData(0xFE, FeetechMemory.GoalVelocity, new byte[] { (byte)(vit >> 8), (byte)(vit & 0xFF) });
-            //OnWriteServoData(0xFE, FeetechMemory.GoalPosition, new byte[] { (byte)(pos >> 8), (byte)(pos & 0xFF) });
 
             //OnSyncWriteServoData(new byte[] { 1,4 }, FeetechMemory.GoalPosition, 
             //    new byte[] { (byte)(pos >> 8), (byte)(pos & 0xFF), 0x00, 0x00, (byte)(vit >> 8), (byte)(vit & 0xFF) }); // les deux 0x00 correspondent au temps, ici pas utilisé
+            OnReadServoData("Epaule1", FeetechMemorySCS.TorqueEnable, 30);
+            Thread.Sleep(Feetech.ServoDelay);
+            OnReadServoData("Epaule2", FeetechMemorySCS.TorqueEnable, 30);
+            Thread.Sleep(Feetech.ServoDelay);
+            OnReadServoData("Coude", FeetechMemorySCS.TorqueEnable, 30);
+            Thread.Sleep(Feetech.ServoDelay);
+            OnReadServoData("Poignee1", FeetechMemorySCS.TorqueEnable, 30);
+            Thread.Sleep(Feetech.ServoDelay);
+            OnReadServoData("Poignee2", FeetechMemorySCS.TorqueEnable, 30);
+            Thread.Sleep(Feetech.ServoDelay);
+            OnReadServoData("Main", FeetechMemorySCS.TorqueEnable, 30);
+
+            while (bufferRead.Count > 0)
+            {
+                List<object> objs = bufferRead.Dequeue();
+                string type = (string)objs[0];
+                string Name = (string)objs[1];
+                if(type == "Torque")
+                {
+                    Thread.Sleep(Feetech.ServoDelay);
+                    bool torque = (bool)objs[2];
+                    CheckBox? cb = this.FindName(Name) as CheckBox;
+                    if (cb == null) return;
+                    cb.IsChecked = torque;
+                }
+                if (type == "Position")
+                {
+                    Int16 pos = (Int16)objs[2];
+                    TextBlock? tb = this.FindName(("P"+Name)) as TextBlock;
+                    if (tb == null) return;
+                    tb.Text = (Name+" : " + pos.ToString());
+                }
+                if (type == "Couple")
+                {
+                    Int16 couple = (Int16)objs[2];
+                    if(couple > 1023) couple -= 1023; 
+                    TextBlock? tb = this.FindName(("C" + Name)) as TextBlock;
+                    if (tb == null) return;
+                    tb.Text = (Name + " : " + couple.ToString());
+                }
 
 
-            OnReadServoData("Main", FeetechMemorySM.PresentPosition, 8);
+            }
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            if (!Byte.TryParse(Pos.Text, out byte pos)) pos = 0;
-            if (!Byte.TryParse(Time.Text, out byte time)) time = 0;
-            if (!Byte.TryParse(Vit.Text, out byte vit)) vit = 0;
+            if (!UInt16.TryParse(Pos.Text, out UInt16 pos)) pos = 0;
+            if (!UInt16.TryParse(Time.Text, out UInt16 time)) time = 0;
+            if (!UInt16.TryParse(Vit.Text, out UInt16 vit)) vit = 0;
 
             FeetechServo s = servoManager.getServoByName(Name.Text);
 
@@ -131,10 +206,13 @@ namespace TESTTTTT
                     OnWriteServoData(Name.Text, FeetechMemorySCS.GoalPosition, new byte[] { (byte)(pos >> 8), (byte)(pos & 0xFF), (byte)(time >> 8), (byte)(time & 0xFF) });
                     break;
                 case FeetechServoModels.STS:
-                    OnWriteServoData(Name.Text, FeetechMemorySTS.GoalPosition, new byte[] { (byte)(pos * 4 & 0xFF), (byte)(pos * 4 >> 8), 0, 0, (byte)((pos * 4 / (time / 1000)) & 0xFF), (byte)((pos * 4 / (time / 1000)) >> 8) });
+                    try { OnWriteServoData(Name.Text, FeetechMemorySTS.GoalPosition, new byte[] { (byte)(pos * 4 & 0xFF), (byte)(pos * 4 >> 8), 0, 0, (byte)((pos * 4 / (time / 1000)) & 0xFF), (byte)((pos * 4 / (time / 1000)) >> 8) });}
+                    catch { OnWriteServoData(Name.Text, FeetechMemorySTS.GoalPosition, new byte[] { (byte)(pos * 4 & 0xFF), (byte)(pos * 4 >> 8), 0, 0, (byte)(vit*4 & 0xFF), (byte)(vit*4 >> 8) });}
+
                     break;
                 case FeetechServoModels.SM:
-                    OnWriteServoData(Name.Text, FeetechMemorySM.GoalPosition, new byte[] { (byte)(pos * 4 & 0xFF), (byte)(pos * 4 >> 8), 0, 0, (byte)((pos * 4 / (time / 1000)) & 0xFF), (byte)((pos * 4 / (time / 1000)) >> 8) });
+                    try { OnWriteServoData(Name.Text, FeetechMemorySTS.GoalPosition, new byte[] { (byte)(pos * 4 & 0xFF), (byte)(pos * 4 >> 8), 0, 0, (byte)((pos * 4 / (time / 1000)) & 0xFF), (byte)((pos * 4 / (time / 1000)) >> 8) }); }
+                    catch { OnWriteServoData(Name.Text, FeetechMemorySTS.GoalPosition, new byte[] { (byte)(pos * 4 & 0xFF), (byte)(pos * 4 >> 8), 0, 0, (byte)(vit*4 & 0xFF), (byte)(vit*4 >> 8) }); }
                     break;
             }
         }
@@ -183,13 +261,18 @@ namespace TESTTTTT
         }
         private void TClick(object sender, RoutedEventArgs e)
         {
-            
+            CheckBox? cb = sender as CheckBox;
+            if (cb == null) return;
+
+            byte torque = (cb.IsChecked ?? false) ? (byte)1 : (byte)0;
+
+            OnWriteServoData(cb.Name, FeetechMemorySCS.TorqueEnable, new byte[] { torque });
         }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if(!Byte.TryParse(Pos.Text, out byte pos)) pos = 0;
-            if(!Byte.TryParse(Time.Text, out byte time)) time = 0;
-            if (!Byte.TryParse(Vit.Text, out byte vit)) vit = 0;
+            if(!UInt16.TryParse(Pos.Text, out UInt16 pos)) pos = 0;
+            if(!UInt16.TryParse(Time.Text, out UInt16 time)) time = 0;
+            if (!UInt16.TryParse(Vit.Text, out UInt16 vit)) vit = 0;
 
             FeetechServo s = servoManager.getServoByName(Name.Text);
 
@@ -199,10 +282,12 @@ namespace TESTTTTT
                     OnRegWriteServoData(Name.Text, FeetechMemorySCS.GoalPosition, new byte[] { (byte)(pos >> 8), (byte)(pos & 0xFF), (byte)(time >> 8), (byte)(time & 0xFF) });
                     break;
                 case FeetechServoModels.STS:
-                    OnRegWriteServoData(Name.Text, FeetechMemorySTS.GoalPosition, new byte[] { (byte)(pos * 4 & 0xFF), (byte)(pos * 4 >> 8), 0, 0, (byte)((pos * 4 / (time / 1000)) & 0xFF), (byte)((pos * 4 / (time / 1000)) >> 8) });
+                    try { OnRegWriteServoData(Name.Text, FeetechMemorySTS.GoalPosition, new byte[] { (byte)(pos * 4 & 0xFF), (byte)(pos * 4 >> 8), 0, 0, (byte)((pos * 4 / (time / 1000)) & 0xFF), (byte)((pos * 4 / (time / 1000)) >> 8) }); }
+                    catch { OnRegWriteServoData(Name.Text, FeetechMemorySTS.GoalPosition, new byte[] { (byte)(pos * 4 & 0xFF), (byte)(pos * 4 >> 8), 0, 0, (byte)(vit*4 & 0xFF), (byte)(vit*4 >> 8) }); }
                     break;
                 case FeetechServoModels.SM:
-                    OnRegWriteServoData(Name.Text, FeetechMemorySM.GoalPosition, new byte[] { (byte)(pos * 4 & 0xFF), (byte)(pos * 4 >> 8), 0, 0, (byte)((pos * 4 / (time / 1000)) & 0xFF), (byte)((pos * 4 / (time / 1000)) >> 8) });
+                    try { OnRegWriteServoData(Name.Text, FeetechMemorySTS.GoalPosition, new byte[] { (byte)(pos * 4 & 0xFF), (byte)(pos * 4 >> 8), 0, 0, (byte)((pos * 4 / (time / 1000)) & 0xFF), (byte)((pos * 4 / (time / 1000)) >> 8) }); }
+                    catch { OnRegWriteServoData(Name.Text, FeetechMemorySTS.GoalPosition, new byte[] { (byte)(pos * 4 & 0xFF), (byte)(pos * 4 >> 8), 0, 0, (byte)(vit*4 & 0xFF), (byte)(vit*4 >> 8) }); }
                     break;
             }
         }
@@ -283,7 +368,5 @@ namespace TESTTTTT
                 handler(this, new ByteArrayArgs { array = msg});
             }
         }
-
-        
     }
 }
