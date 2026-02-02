@@ -38,7 +38,7 @@
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAYwKgAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJMAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-26T11:08:40.326Z",
               "IsPinned": true,
@@ -52,7 +52,7 @@
               "RelativeDocumentMoniker": "..\\ServoFeetech\\Feetech.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\Feetech.cs",
               "RelativeToolTip": "..\\ServoFeetech\\Feetech.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPMAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAABEBAAAAAAAAAAAuwC4BAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "OverriddenGroupName": "Fichiers distants externes",
               "WhenOpened": "2026-01-28T09:00:41.027Z",
@@ -69,7 +69,18 @@
               "RelativeToolTip": "Trames.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAYwGUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-30T08:18:56.409Z",
+              "WhenOpened": "2026-01-30T08:18:56.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-29T15:45:58.432Z",
               "EditorCaption": ""
             },
             {
@@ -82,41 +93,7 @@
               "RelativeToolTip": "..\\..\\..\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAIAwwLQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T09:24:06.441Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "3e07e9c8-ec36-49cb-bb0b-4f28792948e6",
-        "Display": 0,
-        "X": 32,
-        "Y": 70,
-        "Width": 1799,
-        "Height": 814,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-29T15:45:58.432Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-28T09:24:06.441Z"
             }
           ]
         }
