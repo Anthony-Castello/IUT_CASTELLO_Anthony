@@ -7,12 +7,7 @@ namespace ServoFeetech_NS
     {
         public static int ServoDelay = 10; // Delai entre deux requête (peut être modifié)
 
-        public static List<FeetechServo> servos = new List<FeetechServo>();
-        public List<FeetechServo> getServos()
-        {
-            return servos;
-        }
-
+        public List<FeetechServo> servos = new List<FeetechServo>();
         public FeetechServo? getServoByName(string name)
         {
             foreach (var servo in servos)

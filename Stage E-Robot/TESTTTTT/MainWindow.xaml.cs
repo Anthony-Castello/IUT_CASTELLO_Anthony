@@ -63,16 +63,15 @@ namespace TESTTTTT
             servoManager.OnServoDataEvent += ServoManager_OnServoDataEvent;
             servoManager.OnServoErrorEvent += ServoManager_OnServoErrorEvent;
 
-            servoManager.getServos().Add(new FeetechServo("Epaule1", 1, FeetechServoModels.SCS));
-            servoManager.getServos().Add(new FeetechServo("Epaule2", 2, FeetechServoModels.SCS));
-            servoManager.getServos().Add(new FeetechServo("Coude", 3, FeetechServoModels.SCS));
-            servoManager.getServos().Add(new FeetechServo("Poignee1", 4, FeetechServoModels.SCS));
-            servoManager.getServos().Add(new FeetechServo("Poignee2", 5, FeetechServoModels.STS));
-            servoManager.getServos().Add(new FeetechServo("Main", 6, FeetechServoModels.SM));
-
+            servoManager.servos.Add(new FeetechServo("Epaule1", 1, FeetechServoModels.SCS));
+            servoManager.servos.Add(new FeetechServo("Epaule2", 2, FeetechServoModels.SCS));
+            servoManager.servos.Add(new FeetechServo("Coude", 3, FeetechServoModels.SCS));
+            servoManager.servos.Add(new FeetechServo("Poignee1", 4, FeetechServoModels.SCS));
+            servoManager.servos.Add(new FeetechServo("Poignee2", 5, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("Main", 6, FeetechServoModels.SM));
 
             // Tous les moteurs
-            servoManager.getServos().Add(new FeetechServo("All", 0xFE, FeetechServoModels.SCS));
+            servoManager.servos.Add(new FeetechServo("All", 0xFE, FeetechServoModels.SCS));
 
             //Int16 vit = 1500;
             //OnWriteServoData("Epaule1", FeetechMemorySCS.GoalPosition, new byte[] { 0, 0, 0, 0, (byte)(vit >> 8), (byte)(vit & 0xFF) });
