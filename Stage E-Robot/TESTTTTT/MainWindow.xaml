@@ -26,12 +26,11 @@
             <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" >
                 <GroupBox Header="Torque" Grid.Column="1">
                     <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" >
-                        <CheckBox x:Name ="Epaule1" Content="Épaule 1" IsChecked="True" Margin="5" Click="TClick"/>
-                        <CheckBox x:Name ="Epaule2" Content="Épaule 2" IsChecked="True" Margin="5" Click="TClick"/>
+                        <CheckBox x:Name ="Epaule" Content="Épaule" IsChecked="True" Margin="5" Click="TClick"/>
                         <CheckBox x:Name ="Coude" Content="Coude" IsChecked="True" Margin="5" Click="TClick"/>
-                        <CheckBox x:Name ="Poignee1" Content="Poignée 1" IsChecked="True" Margin="5" Click="TClick"/>
+                        <CheckBox x:Name ="Poignee1" Content="Poignee 1" IsChecked="True" Margin="5" Click="TClick"/>
                         <CheckBox x:Name ="Poignee2" Content="Poignée 2" IsChecked="True" Margin="5" Click="TClick"/>
-                        <CheckBox x:Name ="Main" Content="Main" IsChecked="True" Margin="5" Click="TClick"/>
+                        <CheckBox x:Name ="Poignee3" Content="Poignée 3" IsChecked="True" Margin="5" Click="TClick"/>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>
@@ -68,22 +67,20 @@
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <GroupBox Header="Couple Moteur" >
                 <StackPanel>
-                    <TextBlock x:Name="CEpaule1" Text="1: "/>
-                    <TextBlock x:Name="CEpaule2" Text="2: "/>
-                    <TextBlock x:Name="CCoude" Text="3: "/>
-                    <TextBlock x:Name="CPoignee1" Text="4: "/>
-                    <TextBlock x:Name="CPoignee2" Text="5: "/>
-                    <TextBlock x:Name="CMain" Text="6: "/>
+                    <TextBlock x:Name="CEpaule" Text="1: "/>
+                    <TextBlock x:Name="CCoude" Text="2: "/>
+                    <TextBlock x:Name="CPoignee1" Text="3: "/>
+                    <TextBlock x:Name="CPoignee2" Text="4: "/>
+                    <TextBlock x:Name="CPoignee3" Text="5: "/>
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="Position Moteur" >
                 <StackPanel >
-                    <TextBlock x:Name="PEpaule1" Text="1: "/>
-                    <TextBlock x:Name="PEpaule2" Text="2: "/>
-                    <TextBlock x:Name="PCoude" Text="3: "/>
-                    <TextBlock x:Name="PPoignee1" Text="4: "/>
-                    <TextBlock x:Name="PPoignee2" Text="5: "/>
-                    <TextBlock x:Name="PMain" Text="6: "/>
+                    <TextBlock x:Name="PEpaule" Text="1: "/>
+                    <TextBlock x:Name="PCoude" Text="2: "/>
+                    <TextBlock x:Name="PPoignee1" Text="3: "/>
+                    <TextBlock x:Name="PPoignee2" Text="4: "/>
+                    <TextBlock x:Name="PPoignee3" Text="5: "/>
                 </StackPanel>
             </GroupBox>
         </StackPanel>
