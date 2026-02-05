@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedSerialPort", "..\..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoFeetech", "..\ServoFeetech\ServoFeetech.csproj", "{858EA33E-694D-4150-B76B-298F6FD6275E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotDynamics", "..\RobotDynamics\RobotDynamics\RobotDynamics.csproj", "{0BD0D9DC-78D4-48F2-9F4F-A621DB6AD0DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{858EA33E-694D-4150-B76B-298F6FD6275E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{858EA33E-694D-4150-B76B-298F6FD6275E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{858EA33E-694D-4150-B76B-298F6FD6275E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD0D9DC-78D4-48F2-9F4F-A621DB6AD0DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD0D9DC-78D4-48F2-9F4F-A621DB6AD0DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD0D9DC-78D4-48F2-9F4F-A621DB6AD0DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD0D9DC-78D4-48F2-9F4F-A621DB6AD0DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

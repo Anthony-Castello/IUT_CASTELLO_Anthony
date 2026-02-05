@@ -4,6 +4,22 @@
     "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj": {}
   },
   "projects": {
+    "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\RobotDynamics.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\RobotDynamics.csproj",
+        "projectName": "RobotDynamics",
+        "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\RobotDynamics.csproj",
+        "UsingMicrosoftNETSdk": false,
+        "frameworks": {
+          "net35": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net35": {}
+      }
+    },
     "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -31,7 +47,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\RobotDynamics.csproj": {
+                "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\RobotDynamics.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

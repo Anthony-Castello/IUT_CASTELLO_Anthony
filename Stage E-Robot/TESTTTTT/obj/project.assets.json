@@ -141,9 +141,21 @@
           "bin/placeholder/ExtendedSerialPort.dll": {}
         }
       },
+      "RobotDynamics/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/RobotDynamics.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RobotDynamics.dll": {}
+        }
+      },
       "ServoFeetech/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "RobotDynamics": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/ServoFeetech.dll": {}
         },
@@ -358,6 +370,11 @@
       "path": "../../../IUT_Fath_Yasmine_Bertin_Lysa/C#/ExtendedSerialPort/ExtendedSerialPort/ExtendedSerialPort.csproj",
       "msbuildProject": "../../../IUT_Fath_Yasmine_Bertin_Lysa/C#/ExtendedSerialPort/ExtendedSerialPort/ExtendedSerialPort.csproj"
     },
+    "RobotDynamics/1.0.0": {
+      "type": "project",
+      "path": "../RobotDynamics/RobotDynamics/RobotDynamics.csproj",
+      "msbuildProject": "../RobotDynamics/RobotDynamics/RobotDynamics.csproj"
+    },
     "ServoFeetech/1.0.0": {
       "type": "project",
       "path": "../ServoFeetech/ServoFeetech.csproj",
@@ -367,6 +384,7 @@
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
       "ExtendedSerialPort >= 1.0.0",
+      "RobotDynamics >= 1.0.0",
       "ServoFeetech >= 1.0.0"
     ]
   },
@@ -402,6 +420,9 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
+            "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\RobotDynamics.csproj": {
+              "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\RobotDynamics.csproj"
+            },
             "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj": {
               "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj"
             },

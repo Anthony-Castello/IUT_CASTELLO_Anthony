@@ -7,14 +7,30 @@
   "targets": {
     ".NETCoreApp,Version=v8.0": {
       "ServoFeetech/1.0.0": {
+        "dependencies": {
+          "RobotDynamics": "1.0.0"
+        },
         "runtime": {
           "ServoFeetech.dll": {}
+        }
+      },
+      "RobotDynamics/1.0.0": {
+        "runtime": {
+          "RobotDynamics.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
   },
   "libraries": {
     "ServoFeetech/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RobotDynamics/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

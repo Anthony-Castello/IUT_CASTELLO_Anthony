@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using ExtendedSerialPort_NS;
+using RobotDynamics.Robots;
 using ServoFeetech_NS;
 
 // http://doc.feetech.cn/#/prodinfodownload?srcType=FT-SCSCL-emanual-cbcc8ab2e3384282a01d4bf3 (doc technique de tout les appels possibles)
@@ -39,7 +40,6 @@ namespace TESTTTTT
         public MainWindow()
         {
             InitializeComponent();
-
 
             SerialPort1 = new SerialPort("COM14", 115200, Parity.None, 8, StopBits.One);
             SerialPort1.DataReceived += SerialPort1_DataReceived;
@@ -72,8 +72,6 @@ namespace TESTTTTT
 
             // Tous les moteurs
             servoManager.servos.Add(new FeetechServo("All", 0xFE, FeetechServoModels.SM));
-
-            
 
         }
 

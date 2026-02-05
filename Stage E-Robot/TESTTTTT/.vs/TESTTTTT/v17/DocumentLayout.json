@@ -7,7 +7,14 @@
       "RelativeMoniker": "D:0:0:{3499246D-1B7F-4719-8ABE-D18718E58981}|TESTTTTT.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{858EA33E-694D-4150-B76B-298F6FD6275E}|..\\ServoFeetech\\ServoFeetech.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\servofeetech\\feetech.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3499246D-1B7F-4719-8ABE-D18718E58981}|TESTTTTT.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\testtttt\\testtttt.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3499246D-1B7F-4719-8ABE-D18718E58981}|TESTTTTT.csproj|solutionrelative:testtttt.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BD0D9DC-78D4-48F2-9F4F-A621DB6AD0DC}|..\\RobotDynamics\\RobotDynamics\\RobotDynamics.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\robotdynamics\\robotdynamics\\mathutilities\\vector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BD0D9DC-78D4-48F2-9F4F-A621DB6AD0DC}|..\\RobotDynamics\\RobotDynamics\\RobotDynamics.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\robotdynamics\\robotdynamics\\mathutilities\\matrix.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3499246D-1B7F-4719-8ABE-D18718E58981}|TESTTTTT.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\testtttt\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -38,7 +45,7 @@
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAIYAAAAAAAAAAAAswIYAAACKAAAAAAAAAA==",
+              "ViewState": "AgIAAKMAAAAAAAAAAAAvwLIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-26T11:08:40.326Z",
               "IsPinned": true,
@@ -47,21 +54,43 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Feetech.cs",
-              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\Feetech.cs",
-              "RelativeDocumentMoniker": "..\\ServoFeetech\\Feetech.cs",
-              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\Feetech.cs",
-              "RelativeToolTip": "..\\ServoFeetech\\Feetech.cs",
-              "ViewState": "AgIAAAYBAAAAAAAAAAAqwCQAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "OverriddenGroupName": "Fichiers distants externes",
-              "WhenOpened": "2026-01-28T09:00:41.027Z",
-              "IsPinned": true,
+              "Title": "TESTTTTT",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\TESTTTTT.csproj",
+              "RelativeDocumentMoniker": "TESTTTTT.csproj",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\TESTTTTT.csproj",
+              "RelativeToolTip": "TESTTTTT.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-05T13:46:33.25Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Vector.cs",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\MathUtilities\\Vector.cs",
+              "RelativeDocumentMoniker": "..\\RobotDynamics\\RobotDynamics\\MathUtilities\\Vector.cs",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\MathUtilities\\Vector.cs",
+              "RelativeToolTip": "..\\RobotDynamics\\RobotDynamics\\MathUtilities\\Vector.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-04T15:24:33.585Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Matrix.cs",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\MathUtilities\\Matrix.cs",
+              "RelativeDocumentMoniker": "..\\RobotDynamics\\RobotDynamics\\MathUtilities\\Matrix.cs",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\MathUtilities\\Matrix.cs",
+              "RelativeToolTip": "..\\RobotDynamics\\RobotDynamics\\MathUtilities\\Matrix.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-04T15:24:31.724Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Trames.cs",
               "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\Trames.cs",
               "RelativeDocumentMoniker": "Trames.cs",
@@ -73,19 +102,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-29T15:45:58.432Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-29T15:45:58.432Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "ExtendedSerialPort.cs",
               "DocumentMoniker": "C:\\Github\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\IUT_Fath_Yasmine_Bertin_Lysa\\C#\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.cs",

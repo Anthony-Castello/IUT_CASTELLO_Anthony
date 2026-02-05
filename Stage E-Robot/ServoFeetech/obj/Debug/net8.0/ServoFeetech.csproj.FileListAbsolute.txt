@@ -10,3 +10,7 @@ C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\Servo
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\refint\ServoFeetech.dll
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\ServoFeetech.pdb
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\ref\ServoFeetech.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\ServoFeetech.csproj.AssemblyReference.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\bin\Debug\net8.0\RobotDynamics.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\bin\Debug\net8.0\RobotDynamics.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\obj\Debug\net8.0\ServoFee.0C491C7C.Up2Date

@@ -1,11 +1,29 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "RobotDynamics/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/RobotDynamics.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RobotDynamics.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "RobotDynamics/1.0.0": {
+      "type": "project",
+      "path": "../RobotDynamics/RobotDynamics/RobotDynamics.csproj",
+      "msbuildProject": "../RobotDynamics/RobotDynamics/RobotDynamics.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "RobotDynamics >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\E306-PC6\\.nuget\\packages\\": {},
@@ -38,7 +56,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\RobotDynamics.csproj": {
+              "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\RobotDynamics\\RobotDynamics\\RobotDynamics.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

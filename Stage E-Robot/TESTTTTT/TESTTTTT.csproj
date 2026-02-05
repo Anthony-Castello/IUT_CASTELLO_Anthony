@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\Github\IUT_Fath_Yasmine_Bertin_Lysa\C#\ExtendedSerialPort\ExtendedSerialPort\ExtendedSerialPort.csproj" />
+    <ProjectReference Include="..\RobotDynamics\RobotDynamics\RobotDynamics.csproj" />
     <ProjectReference Include="..\ServoFeetech\ServoFeetech.csproj" />
   </ItemGroup>
 
