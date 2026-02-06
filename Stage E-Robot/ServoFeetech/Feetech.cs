@@ -196,7 +196,6 @@
                 }
             }
 
-
             public static byte CalculateChecksum(byte id, byte inst_err, int length, byte[] payload)
             {
                 int sum = id + inst_err + length;
