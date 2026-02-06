@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("ServoFeetech")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("InverseKinematicsServo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e2d6e4d9199759183b2dfe2422264100573af1e")]
-[assembly: System.Reflection.AssemblyProductAttribute("ServoFeetech")]
-[assembly: System.Reflection.AssemblyTitleAttribute("ServoFeetech")]
+[assembly: System.Reflection.AssemblyProductAttribute("InverseKinematicsServo")]
+[assembly: System.Reflection.AssemblyTitleAttribute("InverseKinematicsServo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Généré par la classe MSBuild WriteCodeFragment.

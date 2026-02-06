@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "ServoFeetech/1.0.0": {
+      "InverseKinematicsServo/1.0.0": {
         "runtime": {
-          "ServoFeetech.dll": {}
+          "InverseKinematicsServo.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "ServoFeetech/1.0.0": {
+    "InverseKinematicsServo/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

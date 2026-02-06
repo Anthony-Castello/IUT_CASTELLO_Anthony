@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj": {}
+    "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.csproj": {}
   },
   "projects": {
-    "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj": {
+    "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj",
-        "projectName": "ServoFeetech",
-        "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj",
+        "projectUniqueName": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.csproj",
+        "projectName": "InverseKinematicsServo",
+        "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.csproj",
         "packagesPath": "C:\\Users\\E306-PC6\\.nuget\\packages\\",
-        "outputPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\obj\\",
+        "outputPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,0 +1,12 @@
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\bin\Debug\net8.0\InverseKinematicsServo.deps.json
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\bin\Debug\net8.0\InverseKinematicsServo.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\bin\Debug\net8.0\InverseKinematicsServo.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\obj\Debug\net8.0\InverseKinematicsServo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\obj\Debug\net8.0\InverseKinematicsServo.AssemblyInfoInputs.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\obj\Debug\net8.0\InverseKinematicsServo.AssemblyInfo.cs
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\obj\Debug\net8.0\InverseKinematicsServo.csproj.CoreCompileInputs.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\obj\Debug\net8.0\InverseKinematicsServo.sourcelink.json
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\obj\Debug\net8.0\InverseKinematicsServo.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\obj\Debug\net8.0\refint\InverseKinematicsServo.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\obj\Debug\net8.0\InverseKinematicsServo.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\obj\Debug\net8.0\ref\InverseKinematicsServo.dll
