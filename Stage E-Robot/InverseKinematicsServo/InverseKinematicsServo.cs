@@ -23,14 +23,20 @@
             public int maxPos;
             public int midPos;
             public double maxAngle;
+            public double maxAngleNeg;
+            public double maxAnglePos;
 
-            public MotorsInfo(string name, int minPos, int maxPos, int midPos)
+            public MotorsInfo(string name, int minPos, int midPos, int maxPos)
             {
                 this.name = name;
                 this.minPos = minPos;
-                this.maxPos = maxPos;
                 this.midPos = midPos;
+                this.maxPos = maxPos;
                 this.maxAngle = (maxPos - minPos) / 11.375;
+
+                // Limites asymétriques réelles
+                this.maxAngleNeg = (midPos - minPos) / 11.375;
+                this.maxAnglePos = (maxPos - midPos) / 11.375;
             }
 
         }
@@ -47,14 +53,8 @@
         public IKResult SolveInverseKinematics(
             double d1, double d2, double d3,
             double targetX, double targetY,
-            double alpha1MaxDeg, double alpha2MaxDeg, double alpha3MaxDeg)
+            MotorsInfo m1, MotorsInfo m2, MotorsInfo m3)
         {
-            // Les limites sont symétriques : ±(max/2)
-            // Par exemple, si alpha1Max = 128°, la plage est -64° à +64°
-            double alpha1Limit = (alpha1MaxDeg / 2.0) * Math.PI / 180.0;
-            double alpha2Limit = (alpha2MaxDeg / 2.0) * Math.PI / 180.0;
-            double alpha3Limit = (alpha3MaxDeg / 2.0) * Math.PI / 180.0;
-
             IKResult bestResult = new IKResult { Success = false, Error = double.MaxValue };
 
             // Balayer toutes les orientations absolues possibles du segment 3
@@ -83,6 +83,7 @@
                         continue;
 
                     // Calculer alpha2 avec la loi des cosinus
+                    // dist² = d1² + d2² - 2·d1·d2·cos(alpha2)
                     double cosAlpha2 = (distSq - d1 * d1 - d2 * d2) / (2 * d1 * d2);
 
                     if (Math.Abs(cosAlpha2) > 1.0)
@@ -92,8 +93,10 @@
                     double alpha2 = elbowConfig == 0 ?
                         Math.Acos(cosAlpha2) : -Math.Acos(cosAlpha2);
 
+                    //alpha2 += Math.PI; // Inverser le signe pour correspondre à la convention de rotation
+
                     // Calculer alpha1
-                    double k1 = d1 + d2 * Math.Cos(alpha2);
+                    double k1 = d1 + d2 * Math.Cos(alpha2); 
                     double k2 = d2 * Math.Sin(alpha2);
                     double alpha1 = Math.Atan2(wristY, wristX) - Math.Atan2(k2, k1);
 
@@ -106,10 +109,14 @@
                     while (alpha3 > Math.PI) alpha3 -= 2 * Math.PI;
                     while (alpha3 < -Math.PI) alpha3 += 2 * Math.PI;
 
-                    // Vérifier les contraintes angulaires (plages symétriques)
-                    if (Math.Abs(alpha1) > alpha1Limit ||
-                        Math.Abs(alpha2) > alpha2Limit ||
-                        Math.Abs(alpha3) > alpha3Limit)
+                    // Vérifier les limites asymétriques réelles
+                    double a1Deg = alpha1 * 180.0 / Math.PI;
+                    double a2Deg = alpha2 * 180.0 / Math.PI;
+                    double a3Deg = alpha3 * 180.0 / Math.PI;
+
+                    if (a1Deg < -m1.maxAngleNeg || a1Deg > m1.maxAnglePos ||
+                        a2Deg < -m2.maxAngleNeg || a2Deg > m2.maxAnglePos ||
+                        a3Deg < -m3.maxAngleNeg || a3Deg > m3.maxAnglePos)
                         continue;
 
                     // Calculer la position réelle atteinte (vérification)
@@ -144,8 +151,8 @@
         {
             // 11,375 = 1deg
             // IL FAUDRA FAIRE UN CALCUL DE DEPASSEMENT
-            int pos1 = (int)Math.Round(m1.midPos + (a1 * 11.375));
-            int pos2 = (int)Math.Round(m2.midPos + (a2 * 11.375));
+            int pos1 = (int)Math.Round(m1.midPos + (-a1 * 11.375)); // Inverser l'angle
+            int pos2 = (int)Math.Round(m2.midPos - (a2 * 11.375)); // Moteur inversé
             int pos3 = (int)Math.Round(m3.midPos + (a3 * 11.375));
             Dictionary<string, int> result = new Dictionary<string, int>();
             result.Add(m1.name, pos1);

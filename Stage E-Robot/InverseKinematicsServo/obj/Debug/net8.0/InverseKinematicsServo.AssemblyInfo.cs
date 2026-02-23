@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InverseKinematicsServo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1266a7da90f92e026cdc9086bc75af3a10518baa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+299944504c06752b57f67e528e1f59a1774a9420")]
 [assembly: System.Reflection.AssemblyProductAttribute("InverseKinematicsServo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InverseKinematicsServo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
