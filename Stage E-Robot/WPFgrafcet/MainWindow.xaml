@@ -1,0 +1,16 @@
+﻿<Window x:Class="WPFgrafcet.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFgrafcet"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="Cons" HorizontalAlignment="Left" Margin="507,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="251" Height="308"/>
+        <Button x:Name="Clear" Content="Clear" HorizontalAlignment="Left" Margin="533,379,0,0" VerticalAlignment="Top" Height="31" Width="199" Click="Clear_Click"/>
+        <Button x:Name="Stock" Content="Stocker" HorizontalAlignment="Left" Margin="45,93,0,0" VerticalAlignment="Top" Height="238" Width="203" Click="Stocker_Click"/>
+        <Button x:Name="Push" Content="Pousser" HorizontalAlignment="Left" Margin="282,93,0,0" VerticalAlignment="Top" Height="238" Width="189" Click="Pousser_Click"/>
+
+    </Grid>
+</Window>
