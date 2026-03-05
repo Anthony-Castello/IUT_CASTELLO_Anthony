@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Github\IUT_CASTELLO_Anthony\Cours\C#\ExtendedSerialPort .NET6\ExtendedSerialPort\ExtendedSerialPort\ExtendedSerialPort.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\InverseKinematicsServo.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\ServoFeetech.csproj" />
+  </ItemGroup>
+
+</Project>

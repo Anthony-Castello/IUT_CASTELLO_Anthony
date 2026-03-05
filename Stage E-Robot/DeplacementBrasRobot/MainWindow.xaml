@@ -1,0 +1,149 @@
+﻿<Window x:Class="RobotArmIK.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cinématique Inverse - Bras Robot 3R" Height="700" Width="1000"
+        Background="#F5F5F5">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Panneau de contrôle -->
+        <Border Grid.Column="0" Background="White" CornerRadius="10" Padding="20" 
+                BorderBrush="#CCCCCC" BorderThickness="1">
+            <StackPanel>
+                <TextBlock Text="Paramètres du Bras" FontSize="18" FontWeight="Bold" 
+                          Foreground="#333333" Margin="0,0,0,20"/>
+
+                <!-- Longueurs -->
+                <GroupBox Header="Longueurs (mm)" Margin="0,0,0,15">
+                    <StackPanel>
+                        <StackPanel Margin="0,5">
+                            <TextBlock Text="d1 (mm):" FontWeight="SemiBold"/>
+                            <TextBox x:Name="txtD1" Text="93" Margin="0,5"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,5">
+                            <TextBlock Text="d2 (mm):" FontWeight="SemiBold"/>
+                            <TextBox x:Name="txtD2" Text="76.31" Margin="0,5"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,5">
+                            <TextBlock Text="d3 (mm):" FontWeight="SemiBold"/>
+                            <TextBox x:Name="txtD3" Text="102.04" Margin="0,5"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Position cible -->
+                <GroupBox Header="Position Cible (mm)" Margin="0,0,0,15">
+                    <StackPanel>
+                        <StackPanel Margin="0,5">
+                            <TextBlock Text="X cible:" FontWeight="SemiBold"/>
+                            <TextBox x:Name="txtTargetX" Text="150" Margin="0,5"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,5">
+                            <TextBlock Text="Y cible:" FontWeight="SemiBold"/>
+                            <TextBox x:Name="txtTargetY" Text="100" Margin="0,5"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Limites angulaires -->
+                <GroupBox Header="Accéleration cible" Margin="0,0,0,15">
+                    <StackPanel>
+                        <TextBlock Text="Valeur compris entre 1 et 254 (0 = max):" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                        <TextBox x:Name="txtAcc" Text="50" Margin="0,5"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Vitesse cible" Margin="0,0,0,15">
+                    <StackPanel>
+                        <TextBlock Text="Valeur compris entre 1 et 4096 (0 = max):" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                        <TextBox x:Name="txtVit" Text="0" Margin="0,5"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Bouton Calculer -->
+                <Button x:Name="btnCalculate" Content="CALCULER IK" 
+                        Background="#4CAF50" Foreground="White"
+                        FontSize="16" FontWeight="Bold" Height="45"
+                        Margin="0,10,0,20" Click="BtnCalculate_Click"
+                        Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                CornerRadius="5" BorderThickness="0">
+                                            <ContentPresenter HorizontalAlignment="Center" 
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#45A049"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                
+                <!-- Après le bouton CALCULER IK, ajoutez ce nouveau bouton -->
+                <Button x:Name="btnTest" Content="TEST ZONE ATTEIGNABLE" 
+                    Background="#2196F3" Foreground="White"
+                    FontSize="16" FontWeight="Bold" Height="45"
+                    Margin="0,0,0,20" Click="BtnTest_Click"
+                    Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5" BorderThickness="0">
+                                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#1976D2"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <!-- Résultats -->
+                <GroupBox Header="Résultats" Background="#E8F5E9">
+                    <StackPanel>
+                        <TextBlock x:Name="txtResultAlpha1" Text="α1 = -" 
+                                  FontWeight="SemiBold" Margin="0,5"/>
+                        <TextBlock x:Name="txtResultAlpha2" Text="α2 = -" 
+                                  FontWeight="SemiBold" Margin="0,5"/>
+                        <TextBlock x:Name="txtResultAlpha3" Text="α3 = -" 
+                                  FontWeight="SemiBold" Margin="0,5"/>
+                        <Separator Margin="0,10"/>
+                        <TextBlock x:Name="txtResultError" Text="Erreur = -" 
+                                  Foreground="#666666" Margin="0,5"/>
+                        <TextBlock x:Name="txtResultStatus" Text="" 
+                                  TextWrapping="Wrap" Foreground="#666666" 
+                                  Margin="0,10,0,5" FontStyle="Italic"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </Border>
+
+        <!-- Zone de visualisation -->
+        <Border Grid.Column="1" Background="White" CornerRadius="10" 
+                Margin="20,0,0,0" BorderBrush="#CCCCCC" BorderThickness="1">
+            <Canvas x:Name="canvas" ClipToBounds="True">
+                <!-- Le dessin sera fait en code-behind -->
+            </Canvas>
+        </Border>
+    </Grid>
+</Window>

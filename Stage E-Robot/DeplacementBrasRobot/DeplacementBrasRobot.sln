@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeplacementBrasRobot", "DeplacementBrasRobot.csproj", "{06681BFB-6EF1-47A9-AAA7-9D184D296CB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoFeetech", "..\..\..\..\..\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\ServoFeetech.csproj", "{558A9483-C51E-494B-B767-C6E21C936C6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedSerialPort", "..\..\..\..\..\Github\IUT_CASTELLO_Anthony\Cours\C#\ExtendedSerialPort .NET6\ExtendedSerialPort\ExtendedSerialPort\ExtendedSerialPort.csproj", "{73BA2AF2-EFCA-4B32-A21B-32C18F5032AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InverseKinematicsServo", "..\..\..\..\..\Github\IUT_CASTELLO_Anthony\Stage E-Robot\InverseKinematicsServo\InverseKinematicsServo.csproj", "{47F10E70-FCC6-4DDD-BA86-F8287EE64F2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06681BFB-6EF1-47A9-AAA7-9D184D296CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06681BFB-6EF1-47A9-AAA7-9D184D296CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06681BFB-6EF1-47A9-AAA7-9D184D296CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06681BFB-6EF1-47A9-AAA7-9D184D296CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{558A9483-C51E-494B-B767-C6E21C936C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{558A9483-C51E-494B-B767-C6E21C936C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{558A9483-C51E-494B-B767-C6E21C936C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{558A9483-C51E-494B-B767-C6E21C936C6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73BA2AF2-EFCA-4B32-A21B-32C18F5032AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73BA2AF2-EFCA-4B32-A21B-32C18F5032AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73BA2AF2-EFCA-4B32-A21B-32C18F5032AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73BA2AF2-EFCA-4B32-A21B-32C18F5032AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47F10E70-FCC6-4DDD-BA86-F8287EE64F2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47F10E70-FCC6-4DDD-BA86-F8287EE64F2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47F10E70-FCC6-4DDD-BA86-F8287EE64F2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47F10E70-FCC6-4DDD-BA86-F8287EE64F2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
