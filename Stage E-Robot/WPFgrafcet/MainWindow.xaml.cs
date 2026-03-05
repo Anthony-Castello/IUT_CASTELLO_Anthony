@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using GrafcetRobot_NS;
 using ServoFeetech_NS;
 
@@ -31,10 +32,11 @@ namespace WPFgrafcet
         {
             InitializeComponent();
 
-            grafcetRobot = new GrafcetRobot(servoManager);
             SerialPort1 = new SerialPort("COM14", 115200, Parity.None, 8, StopBits.One);
             //SerialPort1.DataReceived += SerialPort1_DataReceived;
             SerialPort1.Open();
+
+            grafcetRobot = new GrafcetRobot(servoManager);
 
             servoManager.servos.Add(new FeetechServo("Plateforme1", 7, FeetechServoModels.STS));
             servoManager.servos.Add(new FeetechServo("Pousser1", 8, FeetechServoModels.STS));
@@ -43,7 +45,24 @@ namespace WPFgrafcet
             servoManager.servos.Add(new FeetechServo("Plateforme4", 11, FeetechServoModels.STS));
             servoManager.servos.Add(new FeetechServo("Pousser2", 12, FeetechServoModels.STS));
 
+            servoManager.servos.Add(new FeetechServo("All", 0xFE, FeetechServoModels.STS));
+
             servoManager.OnSendMessageEvent += sendTrame;
+
+            servoManager.WriteServoData(this, new FeetechServoWriteArgs
+            {
+                Name = "All",
+                Location = FeetechMemorySTS.GoalPosition,
+                Payload = new byte[] { (byte)(4095 & 0xFF), (byte)(4095 >> 8), }
+            });
+            Thread.Sleep(Feetech.ServoDelay);
+            servoManager.WriteServoData(this, new FeetechServoWriteArgs
+            {
+                Name = "Pousser2",
+                Location = FeetechMemorySTS.GoalPosition,
+                Payload = new byte[] { (byte)(0 & 0xFF), (byte)(0 >> 8), }
+            });
+
 
         }
         private void sendTrame(object? sender, ByteArrayArgs e)

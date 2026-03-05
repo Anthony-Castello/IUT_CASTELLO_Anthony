@@ -1,84 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\E306-PC6\\source\\repos\\WPFgrafcet\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{389C45A7-E15D-419D-AA9B-657285734EBB}|..\\GrafcetRobot\\GrafcetRobot.csproj|c:\\users\\e306-pc6\\source\\repos\\grafcetrobot\\graftcetrobot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|c:\\users\\e306-pc6\\source\\repos\\wpfgrafcet\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|c:\\users\\e306-pc6\\source\\repos\\wpfgrafcet\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{389C45A7-E15D-419D-AA9B-657285734EBB}|..\\GrafcetRobot\\GrafcetRobot.csproj|c:\\users\\e306-pc6\\source\\repos\\grafcetrobot\\grafcetrobot.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\WPFgrafcet\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GrafcetRobot.csproj",
-              "DocumentMoniker": "C:\\Users\\E306-PC6\\source\\repos\\GrafcetRobot\\GrafcetRobot.csproj",
-              "RelativeDocumentMoniker": "..\\GrafcetRobot\\GrafcetRobot.csproj",
-              "ToolTip": "C:\\Users\\E306-PC6\\source\\repos\\GrafcetRobot\\GrafcetRobot.csproj",
-              "RelativeToolTip": "..\\GrafcetRobot\\GrafcetRobot.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-02-24T14:27:20.772Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GraftcetRobot.cs",
-              "DocumentMoniker": "C:\\Users\\E306-PC6\\source\\repos\\GrafcetRobot\\GraftcetRobot.cs",
-              "RelativeDocumentMoniker": "..\\GrafcetRobot\\GraftcetRobot.cs",
-              "ToolTip": "C:\\Users\\E306-PC6\\source\\repos\\GrafcetRobot\\GraftcetRobot.cs",
-              "RelativeToolTip": "..\\GrafcetRobot\\GraftcetRobot.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T13:21:25.654Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\E306-PC6\\source\\repos\\WPFgrafcet\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\E306-PC6\\source\\repos\\WPFgrafcet\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-24T13:19:29.385Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\E306-PC6\\source\\repos\\WPFgrafcet\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\E306-PC6\\source\\repos\\WPFgrafcet\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T13:19:29.174Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

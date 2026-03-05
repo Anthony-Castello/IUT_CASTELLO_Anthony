@@ -1,0 +1,31 @@
+C:\Users\E306-PC6\source\repos\GrafcetRobot\bin\Debug\net8.0\GrafcetRobot.deps.json
+C:\Users\E306-PC6\source\repos\GrafcetRobot\bin\Debug\net8.0\GrafcetRobot.dll
+C:\Users\E306-PC6\source\repos\GrafcetRobot\bin\Debug\net8.0\GrafcetRobot.pdb
+C:\Users\E306-PC6\source\repos\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\E306-PC6\source\repos\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.AssemblyInfoInputs.cache
+C:\Users\E306-PC6\source\repos\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.AssemblyInfo.cs
+C:\Users\E306-PC6\source\repos\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.csproj.CoreCompileInputs.cache
+C:\Users\E306-PC6\source\repos\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.dll
+C:\Users\E306-PC6\source\repos\GrafcetRobot\obj\Debug\net8.0\refint\GrafcetRobot.dll
+C:\Users\E306-PC6\source\repos\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.pdb
+C:\Users\E306-PC6\source\repos\GrafcetRobot\obj\Debug\net8.0\ref\GrafcetRobot.dll
+C:\Users\E306-PC6\source\repos\GrafcetRobot\bin\Debug\net8.0\ServoFeetech.dll
+C:\Users\E306-PC6\source\repos\GrafcetRobot\bin\Debug\net8.0\ServoFeetech.pdb
+C:\Users\E306-PC6\source\repos\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.csproj.AssemblyReference.cache
+C:\Users\E306-PC6\source\repos\GrafcetRobot\obj\Debug\net8.0\GrafcetR.D815ED81.Up2Date
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\bin\Debug\net8.0\GrafcetRobot.deps.json
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\bin\Debug\net8.0\GrafcetRobot.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\bin\Debug\net8.0\GrafcetRobot.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\bin\Debug\net8.0\ServoFeetech.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\bin\Debug\net8.0\ServoFeetech.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.csproj.AssemblyReference.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.AssemblyInfoInputs.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.AssemblyInfo.cs
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.csproj.CoreCompileInputs.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.sourcelink.json
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\GrafcetR.D815ED81.Up2Date
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\refint\GrafcetRobot.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\GrafcetRobot.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\ref\GrafcetRobot.dll

@@ -141,6 +141,19 @@
           "bin/placeholder/ExtendedSerialPort.dll": {}
         }
       },
+      "GrafcetRobot/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "ServoFeetech": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GrafcetRobot.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GrafcetRobot.dll": {}
+        }
+      },
       "ServoFeetech/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -358,6 +371,11 @@
       "path": "../../Cours/C#/ExtendedSerialPort .NET6/ExtendedSerialPort/ExtendedSerialPort/ExtendedSerialPort.csproj",
       "msbuildProject": "../../Cours/C#/ExtendedSerialPort .NET6/ExtendedSerialPort/ExtendedSerialPort/ExtendedSerialPort.csproj"
     },
+    "GrafcetRobot/1.0.0": {
+      "type": "project",
+      "path": "../GrafcetRobot/GrafcetRobot.csproj",
+      "msbuildProject": "../GrafcetRobot/GrafcetRobot.csproj"
+    },
     "ServoFeetech/1.0.0": {
       "type": "project",
       "path": "../ServoFeetech/ServoFeetech.csproj",
@@ -366,8 +384,8 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GrafcetRobot.csproj",
       "ExtendedSerialPort >= 1.0.0",
+      "GrafcetRobot >= 1.0.0",
       "ServoFeetech >= 1.0.0"
     ]
   },
@@ -452,16 +470,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1104",
-      "level": "Error",
-      "message": "Projet 'C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GrafcetRobot.csproj' introuvable. Vérifiez que la référence de projet est valide et que le fichier projet existe.",
-      "libraryId": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GrafcetRobot.csproj",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    }
-  ]
+  }
 }
