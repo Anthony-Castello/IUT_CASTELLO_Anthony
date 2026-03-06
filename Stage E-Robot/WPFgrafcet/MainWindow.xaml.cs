@@ -38,12 +38,12 @@ namespace WPFgrafcet
 
             grafcetRobot = new GrafcetRobot(servoManager);
 
-            servoManager.servos.Add(new FeetechServo("Plateforme1", 7, FeetechServoModels.STS));
-            servoManager.servos.Add(new FeetechServo("Pousser1", 8, FeetechServoModels.STS));
-            servoManager.servos.Add(new FeetechServo("Plateforme2", 9, FeetechServoModels.STS));
-            servoManager.servos.Add(new FeetechServo("Plateforme3", 10, FeetechServoModels.STS));
-            servoManager.servos.Add(new FeetechServo("Plateforme4", 11, FeetechServoModels.STS));
-            servoManager.servos.Add(new FeetechServo("Pousser2", 12, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("Plateforme1", 10, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("Pousser1", 11, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("Plateforme2", 12, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("Plateforme3", 13, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("Plateforme4", 14, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("Pousser2", 15, FeetechServoModels.STS));
 
             servoManager.servos.Add(new FeetechServo("All", 0xFE, FeetechServoModels.STS));
 
