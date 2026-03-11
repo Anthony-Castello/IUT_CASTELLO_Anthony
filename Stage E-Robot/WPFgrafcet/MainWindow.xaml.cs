@@ -23,13 +23,14 @@ namespace WPFgrafcet
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        bool torque = true;
         Feetech servoManager = new Feetech();
         GrafcetRobot grafcetRobot;
         SerialPort SerialPort1;
 
         public MainWindow()
         {
+            
             InitializeComponent();
 
             SerialPort1 = new SerialPort("COM14", 115200, Parity.None, 8, StopBits.One);
@@ -42,8 +43,7 @@ namespace WPFgrafcet
             servoManager.servos.Add(new FeetechServo("Pousser1", 11, FeetechServoModels.STS));
             servoManager.servos.Add(new FeetechServo("Plateforme2", 12, FeetechServoModels.STS));
             servoManager.servos.Add(new FeetechServo("Plateforme3", 13, FeetechServoModels.STS));
-            servoManager.servos.Add(new FeetechServo("Plateforme4", 14, FeetechServoModels.STS));
-            servoManager.servos.Add(new FeetechServo("Pousser2", 15, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("Pousser2", 14, FeetechServoModels.STS));
 
             servoManager.servos.Add(new FeetechServo("All", 0xFE, FeetechServoModels.STS));
 
@@ -58,7 +58,7 @@ namespace WPFgrafcet
             Thread.Sleep(Feetech.ServoDelay);
             servoManager.WriteServoData(this, new FeetechServoWriteArgs
             {
-                Name = "Pousser2",
+                Name = "Plateforme1",
                 Location = FeetechMemorySTS.GoalPosition,
                 Payload = new byte[] { (byte)(0 & 0xFF), (byte)(0 >> 8), }
             });
@@ -70,11 +70,6 @@ namespace WPFgrafcet
             SerialPort1.Write(e.array, 0, e.array.Length);
         }
 
-        private void Clear_Click(object sender, RoutedEventArgs e)
-        {
-            Cons.Text = "";
-
-        }
 
         private void Stocker_Click(object sender, RoutedEventArgs e)
         {
@@ -84,6 +79,32 @@ namespace WPFgrafcet
         private void Pousser_Click(object sender, RoutedEventArgs e)
         {
             grafcetRobot.Push();
+        }
+
+        private void Toggle_torque_click(object sender, RoutedEventArgs e)
+        {
+            if (torque)
+            {
+                
+                servoManager.WriteServoData(this, new FeetechServoWriteArgs
+                {
+                    Name = "All",
+                    Location = FeetechMemorySTS.TorqueEnable,
+                    Payload = new byte[] {0}
+                });
+                Cons.Text += "Couple résistant désactivé \n";
+            }
+            else
+            {
+                servoManager.WriteServoData(this, new FeetechServoWriteArgs
+                {
+                    Name = "All",
+                    Location = FeetechMemorySTS.TorqueEnable,
+                    Payload = new byte[] {1}
+                });
+                Cons.Text += "Couple résistant activé \n";
+            }
+            torque = !torque;
         }
     }
 }

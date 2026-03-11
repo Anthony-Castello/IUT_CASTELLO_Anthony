@@ -16,13 +16,40 @@ namespace GrafcetRobot_NS
         Push,
         Wait,
     }
+
     public class GrafcetRobot
     {
-        int max = 4096;
-        int min = 0;
-        int max_acc = 0;
-        int acc_pousser = 1000;
+        private enum RobotPosition
+        {
+            In,
+            Out,
+        }
+
+        static int max = 4096;
+        static int min = 0;
+        static int max_acc = 0;
+        static int acc_pousser = 700;
         int stocked = 0;
+
+        public Dictionary<string, int> InPositions = new Dictionary<string, int>
+        {
+            {"Plateforme1", min},
+            {"Pousser1", max},
+            {"Plateforme2", max},
+            {"Plateforme3", max},
+            {"Plateforme4", max},
+            {"Pousser2", min},
+        };
+
+        public Dictionary<string, int> OutPositions = new Dictionary<string, int>
+        {
+            {"Plateforme1", max},
+            {"Pousser1", min},
+            {"Plateforme2", min},
+            {"Plateforme3", min},
+            {"Plateforme4", min},
+            {"Pousser2", max},
+        };
 
         private Feetech servoManager;
         public RobotState CurrentState = RobotState.Waiting;
@@ -86,17 +113,17 @@ namespace GrafcetRobot_NS
                 return;
             }
 
-            MoveServo("Plateforme1", max,max_acc);
+            MoveServo("Plateforme1", RobotPosition.In, max_acc);
             Thread.Sleep(500);
-            MoveServo("Pousser1", min, max_acc);
+            MoveServo("Pousser1", RobotPosition.Out, max_acc);
             Thread.Sleep(500);
-            MoveServo("Pousser1", max, max_acc);
-            for (int i = 1; i <= 4 - stocked ; i++)
+            MoveServo("Pousser1", RobotPosition.In, max_acc);
+            for (int i = 1; i <= 3 - stocked ; i++)
             {
                 Thread.Sleep(500);
-                MoveServo(("Plateforme" + i), min, max_acc);
+                MoveServo(("Plateforme" + i), RobotPosition.Out, max_acc);
                 Thread.Sleep(500);
-                MoveServo(("Plateforme" + i), max, max_acc);
+                MoveServo(("Plateforme" + i), RobotPosition.In, max_acc);
             }
 
             stocked++;
@@ -110,16 +137,16 @@ namespace GrafcetRobot_NS
                 return;
             }
 
-            MoveServo("Pousser2", max, acc_pousser);
+            MoveServo("Pousser2", RobotPosition.In, acc_pousser);
             Thread.Sleep(500);
-            MoveServo("Pousser2", min, acc_pousser);
+            MoveServo("Pousser2", RobotPosition.Out, acc_pousser);
 
-            for (int i = 4; i > 5 - stocked; i--)
+            for (int i = 3; i > 4 - stocked; i--)
             {
                 Thread.Sleep(500);
-                MoveServo(("Plateforme" + i), min, max_acc);
+                MoveServo(("Plateforme" + i), RobotPosition.Out, max_acc);
                 Thread.Sleep(500);
-                MoveServo(("Plateforme" + i), max, max_acc);
+                MoveServo(("Plateforme" + i), RobotPosition.In, max_acc);
             }
 
             if (stocked > 0)
@@ -135,14 +162,35 @@ namespace GrafcetRobot_NS
 
 
         // Moteurs
-        private void MoveServo(string name, int position, int acc)
+        private void MoveServo(string name, RobotPosition position, int acc)
         {
-            servoManager.WriteServoData(this, new FeetechServoWriteArgs
+
+            if (position == RobotPosition.In)
             {
-                Name = name,
-                Location = FeetechMemorySTS.GoalAcceleration,
-                Payload = new byte[] {(byte)acc, (byte)(position & 0xFF), (byte)(position >> 8), }
-            });
+                if (!InPositions.TryGetValue(name, out int value))
+                    return;
+                value = InPositions[name];
+                servoManager.WriteServoData(this, new FeetechServoWriteArgs
+                {
+                    Name = name,
+                    Location = FeetechMemorySTS.GoalAcceleration,
+                    Payload = new byte[] { (byte)acc, (byte)(value & 0xFF), (byte)(value >> 8), }
+                });
+            }
+            if (position == RobotPosition.Out)
+            {
+                if (!OutPositions.TryGetValue(name, out int value))
+                    return;
+                value = OutPositions[name];
+                servoManager.WriteServoData(this, new FeetechServoWriteArgs
+                {
+                    Name = name,
+                    Location = FeetechMemorySTS.GoalAcceleration,
+                    Payload = new byte[] { (byte)acc, (byte)(value & 0xFF), (byte)(value >> 8), }
+                });
+            }
+
+
         }
 
     }

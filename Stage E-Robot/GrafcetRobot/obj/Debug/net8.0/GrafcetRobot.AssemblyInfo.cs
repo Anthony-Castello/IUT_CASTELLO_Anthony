@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GrafcetRobot")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1ac5fffe60e21329daf7bd5b0815ebf20d8ef5b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3acbef420819af12c4726d1dee1ed928c5213ebb")]
 [assembly: System.Reflection.AssemblyProductAttribute("GrafcetRobot")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GrafcetRobot")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
