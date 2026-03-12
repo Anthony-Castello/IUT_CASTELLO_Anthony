@@ -34,7 +34,7 @@
               "RelativeDocumentMoniker": "..\\GrafcetRobot\\GraftcetRobot.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GraftcetRobot.cs",
               "RelativeToolTip": "..\\GrafcetRobot\\GraftcetRobot.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAewCQAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAewBYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-05T09:44:12.853Z",
               "EditorCaption": ""
@@ -49,8 +49,7 @@
               "RelativeToolTip": "..\\ServoFeetech\\Feetech.cs",
               "ViewState": "AgIAAEoAAAAAAAAAAAAowFoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T08:43:29.73Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-05T08:43:29.73Z"
             },
             {
               "$type": "Document",
@@ -61,8 +60,7 @@
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\WPFgrafcet\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-24T13:19:29.385Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T13:19:29.385Z"
             },
             {
               "$type": "Document",
@@ -74,8 +72,7 @@
               "RelativeToolTip": "MainWindow.xaml.cs",
               "ViewState": "AgIAADIAAAAAAAAAAAAqwGYAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T13:19:29.174Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T13:19:29.174Z"
             }
           ]
         }
