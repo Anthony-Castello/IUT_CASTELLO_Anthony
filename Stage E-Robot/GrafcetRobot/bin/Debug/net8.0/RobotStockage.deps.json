@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "RobotStockage/1.0.0": {
+        "dependencies": {
+          "ServoFeetech": "1.0.0"
+        },
+        "runtime": {
+          "RobotStockage.dll": {}
+        }
+      },
+      "ServoFeetech/1.0.0": {
+        "runtime": {
+          "ServoFeetech.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RobotStockage/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ServoFeetech/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

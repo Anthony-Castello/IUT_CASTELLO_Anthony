@@ -1,0 +1,16 @@
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\bin\Debug\net8.0\RobotStockage.deps.json
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\bin\Debug\net8.0\RobotStockage.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\bin\Debug\net8.0\RobotStockage.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\bin\Debug\net8.0\ServoFeetech.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\bin\Debug\net8.0\ServoFeetech.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\RobotStockage.csproj.AssemblyReference.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\RobotStockage.GeneratedMSBuildEditorConfig.editorconfig
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\RobotStockage.AssemblyInfoInputs.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\RobotStockage.AssemblyInfo.cs
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\RobotStockage.csproj.CoreCompileInputs.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\RobotStockage.sourcelink.json
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\RobotSto.50A7AE91.Up2Date
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\RobotStockage.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\refint\RobotStockage.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\RobotStockage.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\GrafcetRobot\obj\Debug\net8.0\ref\RobotStockage.dll

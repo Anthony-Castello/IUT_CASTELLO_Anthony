@@ -52,11 +52,9 @@ C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.IO.Ports.dll
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Management.dll
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\ExtendedSerialPort.dll
-C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\GrafcetRobot.dll
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\ServoFeetech.dll
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\ExtendedSerialPort.pdb
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\ServoFeetech.pdb
-C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\GrafcetRobot.pdb
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\obj\Debug\net8.0-windows\WPFgrafcet.csproj.AssemblyReference.cache
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\obj\Debug\net8.0-windows\MainWindow.g.cs
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\obj\Debug\net8.0-windows\App.g.cs
@@ -75,3 +73,5 @@ C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\obj\Debug\net8.0-windows
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\obj\Debug\net8.0-windows\WPFgrafcet.pdb
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\obj\Debug\net8.0-windows\WPFgrafcet.genruntimeconfig.cache
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\obj\Debug\net8.0-windows\ref\WPFgrafcet.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\RobotStockage.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\RobotStockage.pdb

@@ -25,7 +25,7 @@ namespace WPFgrafcet
     {
         bool torque = true;
         Feetech servoManager = new Feetech();
-        GrafcetRobot grafcetRobot;
+        RobotStockage StockageLeft, StockageRight;
         SerialPort SerialPort1;
 
         public MainWindow()
@@ -37,32 +37,51 @@ namespace WPFgrafcet
             //SerialPort1.DataReceived += SerialPort1_DataReceived;
             SerialPort1.Open();
 
-            grafcetRobot = new GrafcetRobot(servoManager);
+            servoManager.servos.Add(new FeetechServo("Epaule", 1, FeetechServoModels.SM));
+            servoManager.servos.Add(new FeetechServo("Coude", 2, FeetechServoModels.SM));
+            servoManager.servos.Add(new FeetechServo("Poignet1", 3, FeetechServoModels.SM));
+            servoManager.servos.Add(new FeetechServo("Poignet2", 4, FeetechServoModels.SM));
+            servoManager.servos.Add(new FeetechServo("Poignet3", 4, FeetechServoModels.SM));
 
-            servoManager.servos.Add(new FeetechServo("Plateforme1", 10, FeetechServoModels.STS));
-            servoManager.servos.Add(new FeetechServo("Pousser1", 11, FeetechServoModels.STS));
-            servoManager.servos.Add(new FeetechServo("Plateforme2", 12, FeetechServoModels.STS));
-            servoManager.servos.Add(new FeetechServo("Plateforme3", 13, FeetechServoModels.STS));
-            servoManager.servos.Add(new FeetechServo("Pousser2", 14, FeetechServoModels.STS));
+
+            servoManager.servos.Add(new FeetechServo("GauchePlateforme1", 20, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("GauchePousser1", 21, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("GauchePlateforme2", 22, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("GauchePlateforme3", 23, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("GauchePousser2", 24, FeetechServoModels.STS));
+
+            servoManager.servos.Add(new FeetechServo("DroitePlateforme1", 10, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("DroitePousser1", 11, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("DroitePlateforme2", 12, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("DroitePlateforme3", 13, FeetechServoModels.STS));
+            servoManager.servos.Add(new FeetechServo("DroitePousser2", 14, FeetechServoModels.STS));
 
             servoManager.servos.Add(new FeetechServo("All", 0xFE, FeetechServoModels.STS));
 
             servoManager.OnSendMessageEvent += sendTrame;
 
-            servoManager.WriteServoData(this, new FeetechServoWriteArgs
+            StockageLeft = new RobotStockage(servoManager, StockageType.Left, new Dictionary<string, string>()
             {
-                Name = "All",
-                Location = FeetechMemorySTS.GoalPosition,
-                Payload = new byte[] { (byte)(4095 & 0xFF), (byte)(4095 >> 8), }
-            });
-            Thread.Sleep(Feetech.ServoDelay);
-            servoManager.WriteServoData(this, new FeetechServoWriteArgs
-            {
-                Name = "Plateforme1",
-                Location = FeetechMemorySTS.GoalPosition,
-                Payload = new byte[] { (byte)(0 & 0xFF), (byte)(0 >> 8), }
+                {"Plateforme1", "GauchePlateforme1"},
+                {"Plateforme2", "GauchePlateforme2"},
+                {"Plateforme3", "GauchePlateforme3"},
+                {"Plateforme4", "GauchePlateforme4"},
+                {"Pousser1", "GauchePousser1"},
+                {"Pousser2", "GauchePousser2"},
             });
 
+            StockageRight = new RobotStockage(servoManager, StockageType.Right, new Dictionary<string, string>()
+            {
+                {"Plateforme1", "DroitePlateforme1"},
+                {"Plateforme2", "DroitePlateforme2"},
+                {"Plateforme3", "DroitePlateforme3"},
+                {"Plateforme4", "DroitePlateforme4"},
+                {"Pousser1", "DroitePousser1"},
+                {"Pousser2", "DroitePousser2"},
+            });
+
+            StockageLeft.initServos();
+            StockageRight.initServos();
 
         }
         private void sendTrame(object? sender, ByteArrayArgs e)
@@ -71,14 +90,34 @@ namespace WPFgrafcet
         }
 
 
-        private void Stocker_Click(object sender, RoutedEventArgs e)
+        private void StockerLeft_Click(object sender, RoutedEventArgs e)
         {
-            grafcetRobot.Stock();
+            StockageLeft.Stock();
         }
 
-        private void Pousser_Click(object sender, RoutedEventArgs e)
+        private void PousserLeft_Click(object sender, RoutedEventArgs e)
         {
-            grafcetRobot.Push();
+            StockageLeft.Push();
+        }
+
+        private void StockerRight_Click(object sender, RoutedEventArgs e)
+        {
+            StockageRight.Stock();
+        }
+
+        private void PousserRight_Click(object sender, RoutedEventArgs e)
+        {
+            StockageRight.Push();
+        }
+
+        private void GoToStockageLeft_Click(object sender, RoutedEventArgs e)
+        {
+            StockageLeft.goToStockage();
+        }
+
+        private void GoToStockageRight_Click(object sender, RoutedEventArgs e)
+        {
+            StockageRight.goToStockage();
         }
 
         private void Toggle_torque_click(object sender, RoutedEventArgs e)

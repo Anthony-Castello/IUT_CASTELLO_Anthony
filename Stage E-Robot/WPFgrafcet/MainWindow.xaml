@@ -9,8 +9,12 @@
     <Grid>
         <TextBox x:Name="Cons" HorizontalAlignment="Left" Margin="507,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="251" Height="308"/>
         <Button x:Name="Toggle_torque" Content="Toggle_torque" HorizontalAlignment="Left" Margin="533,379,0,0" VerticalAlignment="Top" Height="31" Width="199" Click="Toggle_torque_click"/>
-        <Button x:Name="Stock" Content="Stocker" HorizontalAlignment="Left" Margin="45,93,0,0" VerticalAlignment="Top" Height="238" Width="203" Click="Stocker_Click"/>
-        <Button x:Name="Push" Content="Pousser" HorizontalAlignment="Left" Margin="282,93,0,0" VerticalAlignment="Top" Height="238" Width="189" Click="Pousser_Click"/>
+        <Button x:Name="StockLeft" Content="Stocker Gauche" HorizontalAlignment="Left" Margin="45,53,0,0" VerticalAlignment="Top" Height="114" Width="203" Click="StockerLeft_Click"/>
+        <Button x:Name="PushLeft" Content="Pousser Gauche" HorizontalAlignment="Left" Margin="282,53,0,0" VerticalAlignment="Top" Height="114" Width="189" Click="PousserLeft_Click"/>
+        <Button x:Name="StockRight" Content="Stocker Droite" HorizontalAlignment="Left" Margin="45,185,0,0" VerticalAlignment="Top" Height="114" Width="203" Click="StockerRight_Click"/>
+        <Button x:Name="PushRight" Content="Pousser Droite" HorizontalAlignment="Left" Margin="282,185,0,0" VerticalAlignment="Top" Height="114" Width="189" Click="PousserRight_Click"/>
+        <Button x:Name="goToStockageLeft" Content="Aller au Stockage Gauche" HorizontalAlignment="Left" Margin="45,327,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="GoToStockageLeft_Click"/>
+        <Button x:Name="goToStockageRight" Content="Aller au Stockage Droite" HorizontalAlignment="Left" Margin="282,327,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="GoToStockageRight_Click"/>
 
     </Grid>
 </Window>

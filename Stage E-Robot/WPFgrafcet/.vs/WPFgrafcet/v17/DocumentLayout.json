@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\WPFgrafcet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{389C45A7-E15D-419D-AA9B-657285734EBB}|..\\GrafcetRobot\\GrafcetRobot.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\grafcetrobot\\graftcetrobot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{389C45A7-E15D-419D-AA9B-657285734EBB}|..\\GrafcetRobot\\RobotStockage.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\grafcetrobot\\robotstockage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\wpfgrafcet\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -12,9 +12,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\wpfgrafcet\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A75D347-B6FB-4127-A819-4E739DD3D703}|..\\ServoFeetech\\ServoFeetech.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\servofeetech\\feetech.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,27 +26,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GraftcetRobot.cs",
-              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GraftcetRobot.cs",
-              "RelativeDocumentMoniker": "..\\GrafcetRobot\\GraftcetRobot.cs",
-              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GraftcetRobot.cs",
-              "RelativeToolTip": "..\\GrafcetRobot\\GraftcetRobot.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAewBYAAAAJAAAAAAAAAA==",
+              "Title": "RobotStockage.cs",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.cs",
+              "RelativeDocumentMoniker": "..\\GrafcetRobot\\RobotStockage.cs",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.cs",
+              "RelativeToolTip": "..\\GrafcetRobot\\RobotStockage.cs",
+              "ViewState": "AgIAANMAAAAAAAAAAAAQwOoAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-05T09:44:12.853Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Feetech.cs",
-              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\Feetech.cs",
-              "RelativeDocumentMoniker": "..\\ServoFeetech\\Feetech.cs",
-              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\Feetech.cs",
-              "RelativeToolTip": "..\\ServoFeetech\\Feetech.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAowFoAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T08:43:29.73Z"
             },
             {
               "$type": "Document",
@@ -60,7 +45,8 @@
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\WPFgrafcet\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-24T13:19:29.385Z"
+              "WhenOpened": "2026-02-24T13:19:29.385Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -70,9 +56,10 @@
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\WPFgrafcet\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAqwGYAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAWwHUAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T13:19:29.174Z"
+              "WhenOpened": "2026-02-24T13:19:29.174Z",
+              "EditorCaption": ""
             }
           ]
         }

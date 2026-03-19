@@ -93,12 +93,12 @@
         }
       }
     },
-    "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GrafcetRobot.csproj": {
+    "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GrafcetRobot.csproj",
-        "projectName": "GrafcetRobot",
-        "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GrafcetRobot.csproj",
+        "projectUniqueName": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.csproj",
+        "projectName": "RobotStockage",
+        "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.csproj",
         "packagesPath": "C:\\Users\\E306-PC6\\.nuget\\packages\\",
         "outputPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\obj\\",
         "projectStyle": "PackageReference",
@@ -258,8 +258,8 @@
               "C:\\Github\\IUT_CASTELLO_Anthony\\Cours\\C#\\ExtendedSerialPort .NET6\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.csproj": {
                 "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Cours\\C#\\ExtendedSerialPort .NET6\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.csproj"
               },
-              "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GrafcetRobot.csproj": {
-                "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GrafcetRobot.csproj"
+              "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.csproj": {
+                "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.csproj"
               },
               "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj": {
                 "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj"

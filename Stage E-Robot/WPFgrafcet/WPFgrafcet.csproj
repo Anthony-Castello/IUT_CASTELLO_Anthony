@@ -11,7 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\Github\IUT_CASTELLO_Anthony\Cours\C#\ExtendedSerialPort .NET6\ExtendedSerialPort\ExtendedSerialPort\ExtendedSerialPort.csproj" />
     <ProjectReference Include="..\..\..\..\..\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\ServoFeetech.csproj" />
-    <ProjectReference Include="..\GrafcetRobot\GrafcetRobot.csproj" />
+    <ProjectReference Include="..\GrafcetRobot\RobotStockage.csproj" />
   </ItemGroup>
 
 </Project>

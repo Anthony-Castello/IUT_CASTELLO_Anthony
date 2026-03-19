@@ -141,17 +141,17 @@
           "bin/placeholder/ExtendedSerialPort.dll": {}
         }
       },
-      "GrafcetRobot/1.0.0": {
+      "RobotStockage/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "ServoFeetech": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/GrafcetRobot.dll": {}
+          "bin/placeholder/RobotStockage.dll": {}
         },
         "runtime": {
-          "bin/placeholder/GrafcetRobot.dll": {}
+          "bin/placeholder/RobotStockage.dll": {}
         }
       },
       "ServoFeetech/1.0.0": {
@@ -371,10 +371,10 @@
       "path": "../../Cours/C#/ExtendedSerialPort .NET6/ExtendedSerialPort/ExtendedSerialPort/ExtendedSerialPort.csproj",
       "msbuildProject": "../../Cours/C#/ExtendedSerialPort .NET6/ExtendedSerialPort/ExtendedSerialPort/ExtendedSerialPort.csproj"
     },
-    "GrafcetRobot/1.0.0": {
+    "RobotStockage/1.0.0": {
       "type": "project",
-      "path": "../GrafcetRobot/GrafcetRobot.csproj",
-      "msbuildProject": "../GrafcetRobot/GrafcetRobot.csproj"
+      "path": "../GrafcetRobot/RobotStockage.csproj",
+      "msbuildProject": "../GrafcetRobot/RobotStockage.csproj"
     },
     "ServoFeetech/1.0.0": {
       "type": "project",
@@ -385,7 +385,7 @@
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
       "ExtendedSerialPort >= 1.0.0",
-      "GrafcetRobot >= 1.0.0",
+      "RobotStockage >= 1.0.0",
       "ServoFeetech >= 1.0.0"
     ]
   },
@@ -424,8 +424,8 @@
             "C:\\Github\\IUT_CASTELLO_Anthony\\Cours\\C#\\ExtendedSerialPort .NET6\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.csproj": {
               "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Cours\\C#\\ExtendedSerialPort .NET6\\ExtendedSerialPort\\ExtendedSerialPort\\ExtendedSerialPort.csproj"
             },
-            "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GrafcetRobot.csproj": {
-              "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\GrafcetRobot.csproj"
+            "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.csproj": {
+              "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.csproj"
             },
             "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj": {
               "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj"

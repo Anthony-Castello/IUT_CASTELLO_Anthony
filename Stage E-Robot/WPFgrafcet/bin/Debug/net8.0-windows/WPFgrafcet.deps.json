@@ -9,7 +9,7 @@
       "WPFgrafcet/1.0.0": {
         "dependencies": {
           "ExtendedSerialPort": "1.0.0",
-          "GrafcetRobot": "1.0.0",
+          "RobotStockage": "1.0.0",
           "ServoFeetech": "1.0.0"
         },
         "runtime": {
@@ -127,12 +127,12 @@
           }
         }
       },
-      "GrafcetRobot/1.0.0": {
+      "RobotStockage/1.0.0": {
         "dependencies": {
           "ServoFeetech": "1.0.0"
         },
         "runtime": {
-          "GrafcetRobot.dll": {
+          "RobotStockage.dll": {
             "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -222,7 +222,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "GrafcetRobot/1.0.0": {
+    "RobotStockage/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

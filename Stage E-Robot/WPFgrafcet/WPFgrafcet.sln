@@ -5,11 +5,11 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFgrafcet", "WPFgrafcet.csproj", "{7C9722EE-535B-46F2-B9B3-196C8385FE2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrafcetRobot", "..\GrafcetRobot\GrafcetRobot.csproj", "{389C45A7-E15D-419D-AA9B-657285734EBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotStockage", "..\GrafcetRobot\RobotStockage.csproj", "{389C45A7-E15D-419D-AA9B-657285734EBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoFeetech", "..\..\..\..\..\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\ServoFeetech.csproj", "{8A75D347-B6FB-4127-A819-4E739DD3D703}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoFeetech", "..\ServoFeetech\ServoFeetech.csproj", "{8A75D347-B6FB-4127-A819-4E739DD3D703}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedSerialPort", "..\..\..\..\..\Github\IUT_CASTELLO_Anthony\Cours\C#\ExtendedSerialPort .NET6\ExtendedSerialPort\ExtendedSerialPort\ExtendedSerialPort.csproj", "{47788BDB-E4A6-4F4B-B29D-31B7FDF9F8E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedSerialPort", "..\..\Cours\C#\ExtendedSerialPort .NET6\ExtendedSerialPort\ExtendedSerialPort\ExtendedSerialPort.csproj", "{47788BDB-E4A6-4F4B-B29D-31B7FDF9F8E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
