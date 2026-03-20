@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ServoFeetech")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc4b09819c2dae4b0cded2cbda5e9bf8c29f0fb6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ecfc505619f9a3cb25572fea4e0b56c5d7347855")]
 [assembly: System.Reflection.AssemblyProductAttribute("ServoFeetech")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ServoFeetech")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

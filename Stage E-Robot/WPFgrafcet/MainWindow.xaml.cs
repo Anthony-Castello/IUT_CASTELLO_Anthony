@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Xml.Linq;
 using GrafcetRobot_NS;
 using ServoFeetech_NS;
@@ -27,22 +28,32 @@ namespace WPFgrafcet
         Feetech servoManager = new Feetech();
         RobotStockage StockageLeft, StockageRight;
         SerialPort SerialPort1;
+        RobotToolBox robotToolBox;
+        DispatcherTimer timerAffichage;
 
         public MainWindow()
         {
             
             InitializeComponent();
 
+            robotToolBox = new RobotToolBox(servoManager);
+
             SerialPort1 = new SerialPort("COM14", 115200, Parity.None, 8, StopBits.One);
             //SerialPort1.DataReceived += SerialPort1_DataReceived;
             SerialPort1.Open();
+
+            timerAffichage = new DispatcherTimer();
+            timerAffichage.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            timerAffichage.Tick += TimerAffichage_Tick;
+            timerAffichage.Start();
+
 
             servoManager.servos.Add(new FeetechServo("Epaule", 1, FeetechServoModels.SM));
             servoManager.servos.Add(new FeetechServo("Coude", 2, FeetechServoModels.SM));
             servoManager.servos.Add(new FeetechServo("Poignet1", 3, FeetechServoModels.SM));
             servoManager.servos.Add(new FeetechServo("Poignet2", 4, FeetechServoModels.SM));
-            servoManager.servos.Add(new FeetechServo("Poignet3", 4, FeetechServoModels.SM));
-
+            servoManager.servos.Add(new FeetechServo("Poignet3", 5, FeetechServoModels.SM));
+            servoManager.servos.Add(new FeetechServo("Ascenseur", 6, FeetechServoModels.SM));
 
             servoManager.servos.Add(new FeetechServo("GauchePlateforme1", 20, FeetechServoModels.STS));
             servoManager.servos.Add(new FeetechServo("GauchePousser1", 21, FeetechServoModels.STS));
@@ -59,6 +70,7 @@ namespace WPFgrafcet
             servoManager.servos.Add(new FeetechServo("All", 0xFE, FeetechServoModels.STS));
 
             servoManager.OnSendMessageEvent += sendTrame;
+            servoManager.OnServoDataEvent += servoDataEvent;
 
             StockageLeft = new RobotStockage(servoManager, StockageType.Left, new Dictionary<string, string>()
             {
@@ -84,6 +96,23 @@ namespace WPFgrafcet
             StockageRight.initServos();
 
         }
+
+        private void TimerAffichage_Tick(object? sender, EventArgs e)
+        {
+            servoManager.SyncReadServoData(sender, new FeetechServoSyncReadArgs
+            {
+                Location = FeetechMemorySTS.Baudrate,
+                NumberOfBytes = 50,
+                Names = new string[] { "Epaule", "Coude", "Poignet1", "Poignet2", "Poignet3", "Ascenseur" }
+            });
+
+        }
+
+        private void servoDataEvent(object? sender, FeetechServoDataArgs e)
+        {
+            robotToolBox.sendServoInfo(e.info);
+        }
+
         private void sendTrame(object? sender, ByteArrayArgs e)
         {
             SerialPort1.Write(e.array, 0, e.array.Length);
@@ -118,6 +147,11 @@ namespace WPFgrafcet
         private void GoToStockageRight_Click(object sender, RoutedEventArgs e)
         {
             StockageRight.goToStockage();
+        }
+
+        private void Pick_Click(object sender, RoutedEventArgs e)
+        {
+            StockageLeft.Pick();
         }
 
         private void Toggle_torque_click(object sender, RoutedEventArgs e)

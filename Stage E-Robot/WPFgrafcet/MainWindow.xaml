@@ -7,14 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="Cons" HorizontalAlignment="Left" Margin="507,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="251" Height="308"/>
-        <Button x:Name="Toggle_torque" Content="Toggle_torque" HorizontalAlignment="Left" Margin="533,379,0,0" VerticalAlignment="Top" Height="31" Width="199" Click="Toggle_torque_click"/>
-        <Button x:Name="StockLeft" Content="Stocker Gauche" HorizontalAlignment="Left" Margin="45,53,0,0" VerticalAlignment="Top" Height="114" Width="203" Click="StockerLeft_Click"/>
-        <Button x:Name="PushLeft" Content="Pousser Gauche" HorizontalAlignment="Left" Margin="282,53,0,0" VerticalAlignment="Top" Height="114" Width="189" Click="PousserLeft_Click"/>
-        <Button x:Name="StockRight" Content="Stocker Droite" HorizontalAlignment="Left" Margin="45,185,0,0" VerticalAlignment="Top" Height="114" Width="203" Click="StockerRight_Click"/>
-        <Button x:Name="PushRight" Content="Pousser Droite" HorizontalAlignment="Left" Margin="282,185,0,0" VerticalAlignment="Top" Height="114" Width="189" Click="PousserRight_Click"/>
-        <Button x:Name="goToStockageLeft" Content="Aller au Stockage Gauche" HorizontalAlignment="Left" Margin="45,327,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="GoToStockageLeft_Click"/>
-        <Button x:Name="goToStockageRight" Content="Aller au Stockage Droite" HorizontalAlignment="Left" Margin="282,327,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="GoToStockageRight_Click"/>
+        <TextBox x:Name="Cons" HorizontalAlignment="Left" Margin="507,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="251" Height="216"/>
+        <Button x:Name="Toggle_torque" Content="Toggle_torque" HorizontalAlignment="Left" Margin="533,274,0,0" VerticalAlignment="Top" Height="31" Width="199" Click="Toggle_torque_click"/>
+        <Button x:Name="StockLeft" Content="Stocker Gauche" HorizontalAlignment="Left" Margin="45,53,0,0" VerticalAlignment="Top" Height="89" Width="203" Click="StockerLeft_Click"/>
+        <Button x:Name="PushLeft" Content="Pousser Gauche" HorizontalAlignment="Left" Margin="282,53,0,0" VerticalAlignment="Top" Height="89" Width="189" Click="PousserLeft_Click"/>
+        <Button x:Name="StockRight" Content="Stocker Droite" HorizontalAlignment="Left" Margin="45,158,0,0" VerticalAlignment="Top" Height="89" Width="203" Click="StockerRight_Click"/>
+        <Button x:Name="PushRight" Content="Pousser Droite" HorizontalAlignment="Left" Margin="282,158,0,0" VerticalAlignment="Top" Height="89" Width="189" Click="PousserRight_Click"/>
+        <Button x:Name="goToStockageLeft" Content="Aller au Stockage Gauche" HorizontalAlignment="Left" Margin="45,268,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="GoToStockageLeft_Click"/>
+        <Button x:Name="goToStockageRight" Content="Aller au Stockage Droite" HorizontalAlignment="Left" Margin="275,268,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="GoToStockageRight_Click"/>
+        <Button x:Name="Pick" Content="Récupérer une pièce" HorizontalAlignment="Left" Margin="164,325,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="Pick_Click"/>
 
     </Grid>
 </Window>
