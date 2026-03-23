@@ -16,6 +16,13 @@
         <Button x:Name="goToStockageLeft" Content="Aller au Stockage Gauche" HorizontalAlignment="Left" Margin="45,268,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="GoToStockageLeft_Click"/>
         <Button x:Name="goToStockageRight" Content="Aller au Stockage Droite" HorizontalAlignment="Left" Margin="275,268,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="GoToStockageRight_Click"/>
         <Button x:Name="Pick" Content="Récupérer une pièce" HorizontalAlignment="Left" Margin="164,325,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="Pick_Click"/>
+        <CheckBox x:Name="EpaulePosAtteinte" Content="Epaule" HorizontalAlignment="Left" Margin="533,325,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="CoudePosAtteinte" Content="Coude" HorizontalAlignment="Left" Margin="533,347,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Poignet1PosAtteinte" Content="Poignet1" HorizontalAlignment="Left" Margin="534,369,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Poignet2PosAtteinte" Content="Poignet2" HorizontalAlignment="Left" Margin="632,326,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Poignet3PosAtteinte" Content="Poignet3" HorizontalAlignment="Left" Margin="632,348,0,0" VerticalAlignment="Top"/>
+
+
 
     </Grid>
 </Window>

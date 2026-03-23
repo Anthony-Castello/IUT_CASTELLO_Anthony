@@ -16,9 +16,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{858EA33E-694D-4150-B76B-298F6FD6275E}|..\\ServoFeetech\\ServoFeetech.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\servofeetech\\feetech.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{858EA33E-694D-4150-B76B-298F6FD6275E}|..\\ServoFeetech\\ServoFeetech.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\servofeetech\\servofeetech.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,23 +35,11 @@
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\TESTTTTT\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAAwCEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAYwHsAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-26T11:08:40.326Z",
               "IsPinned": true,
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ServoFeetech.csproj",
-              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj",
-              "RelativeDocumentMoniker": "..\\ServoFeetech\\ServoFeetech.csproj",
-              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj",
-              "RelativeToolTip": "..\\ServoFeetech\\ServoFeetech.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-02-06T15:13:30.476Z"
             },
             {
               "$type": "Document",
@@ -78,7 +63,8 @@
               "RelativeToolTip": "TESTTTTT.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-02-05T13:46:33.25Z"
+              "WhenOpened": "2026-02-05T13:46:33.25Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

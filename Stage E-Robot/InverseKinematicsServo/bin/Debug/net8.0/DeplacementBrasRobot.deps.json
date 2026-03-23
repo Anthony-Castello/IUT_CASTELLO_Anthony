@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "DeplacementBrasRobot/1.0.0": {
+        "dependencies": {
+          "RobotStockage": "1.0.0",
+          "ServoFeetech": "1.0.0"
+        },
+        "runtime": {
+          "DeplacementBrasRobot.dll": {}
+        }
+      },
+      "RobotStockage/1.0.0": {
+        "dependencies": {
+          "ServoFeetech": "1.0.0"
+        },
+        "runtime": {
+          "RobotStockage.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "ServoFeetech/1.0.0": {
+        "runtime": {
+          "ServoFeetech.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DeplacementBrasRobot/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RobotStockage/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ServoFeetech/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

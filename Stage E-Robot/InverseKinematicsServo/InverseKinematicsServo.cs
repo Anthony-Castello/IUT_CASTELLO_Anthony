@@ -150,7 +150,6 @@
         public Dictionary<string, int> convertAnglesToPos(double a1, double a2, double a3)
         {
             // 11,375 = 1deg
-            // IL FAUDRA FAIRE UN CALCUL DE DEPASSEMENT
             int pos1 = (int)Math.Round(m1.midPos + (-a1 * 11.375)); // Inverser l'angle
             int pos2 = (int)Math.Round(m2.midPos - (a2 * 11.375)); // Moteur inversé
             int pos3 = (int)Math.Round(m3.midPos + (a3 * 11.375));

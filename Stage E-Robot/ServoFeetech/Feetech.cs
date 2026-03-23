@@ -156,6 +156,18 @@
                 OnSendMessage(message);
             }
 
+            // Raccourci de commande
+
+            public void goToPositionSM(string name, int position, int acc = 0)
+            {
+                WriteServoData(this, new FeetechServoWriteArgs
+                {
+                    Name = name,
+                    Location = FeetechMemorySM.GoalAcceleration,
+                    Payload = new byte[] { (byte)acc, (byte)(position & 0xFF), (byte)((position >> 8) & 0xFF) }
+
+                });
+            }
 
             public void DecodeData(object sender, ByteArrayArgs e)
             {
@@ -235,6 +247,8 @@
                         break;
                     case StateReception.Length:
                         msgDecodedPayloadLength = c;
+                        if (msgDecodedPayloadLength < 2)
+                            msgDecodedPayloadLength = 2;
                         msgDecodedPayload = new byte[msgDecodedPayloadLength - 2];
                         msgDecodedPayloadIndex = 0;
                         rcvState = StateReception.Error;

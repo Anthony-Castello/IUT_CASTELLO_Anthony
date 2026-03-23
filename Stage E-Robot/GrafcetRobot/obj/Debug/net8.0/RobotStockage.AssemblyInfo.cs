@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RobotStockage")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ecfc505619f9a3cb25572fea4e0b56c5d7347855")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eac2aab80485d04a53f987a69befec6196b27e07")]
 [assembly: System.Reflection.AssemblyProductAttribute("RobotStockage")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RobotStockage")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

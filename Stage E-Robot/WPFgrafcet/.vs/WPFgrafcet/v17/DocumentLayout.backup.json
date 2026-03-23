@@ -7,11 +7,20 @@
       "RelativeMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{389C45A7-E15D-419D-AA9B-657285734EBB}|..\\GrafcetRobot\\RobotStockage.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\grafcetrobot\\robotstockage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D4A0C77C-70D1-40B0-923F-B9D18E974075}|..\\InverseKinematicsServo\\DeplacementBrasRobot.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\inversekinematicsservo\\deplacerbras.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\wpfgrafcet\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A75D347-B6FB-4127-A819-4E739DD3D703}|..\\ServoFeetech\\ServoFeetech.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\servofeetech\\feetech.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4A0C77C-70D1-40B0-923F-B9D18E974075}|..\\InverseKinematicsServo\\DeplacementBrasRobot.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\inversekinematicsservo\\inversekinematicsservo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{389C45A7-E15D-419D-AA9B-657285734EBB}|..\\GrafcetRobot\\RobotStockage.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\grafcetrobot\\robotstockage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,17 +30,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "DeplacerBras.cs",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\DeplacerBras.cs",
+              "RelativeDocumentMoniker": "..\\InverseKinematicsServo\\DeplacerBras.cs",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\DeplacerBras.cs",
+              "RelativeToolTip": "..\\InverseKinematicsServo\\DeplacerBras.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAswBoAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T09:52:47.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "InverseKinematicsServo.cs",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.cs",
+              "RelativeDocumentMoniker": "..\\InverseKinematicsServo\\InverseKinematicsServo.cs",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.cs",
+              "RelativeToolTip": "..\\InverseKinematicsServo\\InverseKinematicsServo.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAowAMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T09:52:08.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "RobotStockage.cs",
               "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.cs",
               "RelativeDocumentMoniker": "..\\GrafcetRobot\\RobotStockage.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.cs",
               "RelativeToolTip": "..\\GrafcetRobot\\RobotStockage.cs",
-              "ViewState": "AgIAAPUAAAAAAAAAAAAAAAsBAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAkwI4AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-05T09:44:12.853Z",
               "EditorCaption": ""
@@ -56,9 +91,22 @@
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\WPFgrafcet\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAUwCUAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAtwHIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-24T13:19:29.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Feetech.cs",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\Feetech.cs",
+              "RelativeDocumentMoniker": "..\\ServoFeetech\\Feetech.cs",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\Feetech.cs",
+              "RelativeToolTip": "..\\ServoFeetech\\Feetech.cs",
+              "ViewState": "AgIAAIQBAAAAAAAAAAAowIoBAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T14:26:18.858Z",
               "EditorCaption": ""
             }
           ]

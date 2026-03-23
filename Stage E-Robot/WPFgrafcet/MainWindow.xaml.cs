@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Xml.Linq;
+using DeplacerBras_NS;
 using GrafcetRobot_NS;
 using ServoFeetech_NS;
 
@@ -26,9 +27,9 @@ namespace WPFgrafcet
     {
         bool torque = true;
         Feetech servoManager = new Feetech();
+        DeplacerBras bras;
         RobotStockage StockageLeft, StockageRight;
         SerialPort SerialPort1;
-        RobotToolBox robotToolBox;
         DispatcherTimer timerAffichage;
 
         public MainWindow()
@@ -36,14 +37,14 @@ namespace WPFgrafcet
             
             InitializeComponent();
 
-            robotToolBox = new RobotToolBox(servoManager);
+            this.bras = new DeplacerBras(servoManager);
 
             SerialPort1 = new SerialPort("COM14", 115200, Parity.None, 8, StopBits.One);
-            //SerialPort1.DataReceived += SerialPort1_DataReceived;
+            SerialPort1.DataReceived += decodeTrame;
             SerialPort1.Open();
 
             timerAffichage = new DispatcherTimer();
-            timerAffichage.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            timerAffichage.Interval = new TimeSpan(0, 0, 0, 0, 300);
             timerAffichage.Tick += TimerAffichage_Tick;
             timerAffichage.Start();
 
@@ -70,7 +71,7 @@ namespace WPFgrafcet
             servoManager.servos.Add(new FeetechServo("All", 0xFE, FeetechServoModels.STS));
 
             servoManager.OnSendMessageEvent += sendTrame;
-            servoManager.OnServoDataEvent += servoDataEvent;
+            servoManager.OnServoDataEvent += ServoManager_OnServoDataEvent;
 
             StockageLeft = new RobotStockage(servoManager, StockageType.Left, new Dictionary<string, string>()
             {
@@ -102,20 +103,42 @@ namespace WPFgrafcet
             servoManager.SyncReadServoData(sender, new FeetechServoSyncReadArgs
             {
                 Location = FeetechMemorySTS.Baudrate,
-                NumberOfBytes = 50,
+                NumberOfBytes = 80,
                 Names = new string[] { "Epaule", "Coude", "Poignet1", "Poignet2", "Poignet3", "Ascenseur" }
             });
 
-        }
+            EpaulePosAtteinte.IsChecked = bras.epaulePosAtteinte;
+            CoudePosAtteinte.IsChecked = bras.coudePosAtteinte;
+            Poignet1PosAtteinte.IsChecked = bras.poignet1PosAtteinte;
+            Poignet2PosAtteinte.IsChecked = bras.poignet2PosAtteinte;
+            Poignet3PosAtteinte.IsChecked = bras.poignet3PosAtteinte;
 
-        private void servoDataEvent(object? sender, FeetechServoDataArgs e)
-        {
-            robotToolBox.sendServoInfo(e.info);
         }
 
         private void sendTrame(object? sender, ByteArrayArgs e)
         {
             SerialPort1.Write(e.array, 0, e.array.Length);
+        }
+
+        private void decodeTrame(object? sender, SerialDataReceivedEventArgs e)
+        {
+            while (SerialPort1.BytesToRead > 0)
+            {
+                byte[] buffer = new byte[SerialPort1.BytesToRead];
+                SerialPort1.Read(buffer, 0, buffer.Length);
+                servoManager.DecodeData(sender, new ByteArrayArgs {  array = buffer });
+            }
+
+        }
+
+
+        private void ServoManager_OnServoDataEvent(object? sender, FeetechServoDataArgs e)
+        {
+            bras.servoInfoReceived(e.info);
+        }
+
+        private void ServoManager_OnServoErrorEvent(object? sender, FeetechServoErrorArgs e)
+        {
         }
 
 
@@ -139,21 +162,20 @@ namespace WPFgrafcet
             StockageRight.Push();
         }
 
-        private void GoToStockageLeft_Click(object sender, RoutedEventArgs e)
+        private async void GoToStockageLeft_Click(object sender, RoutedEventArgs e)
         {
-            StockageLeft.goToStockage();
+            await bras.goToPosition(BrasPosition.StockageLeft);
         }
 
-        private void GoToStockageRight_Click(object sender, RoutedEventArgs e)
+        private async void GoToStockageRight_Click(object sender, RoutedEventArgs e)
         {
-            StockageRight.goToStockage();
+            await bras.goToPosition(BrasPosition.StockageRight);
         }
 
-        private void Pick_Click(object sender, RoutedEventArgs e)
+        private async void Pick_Click(object sender, RoutedEventArgs e)
         {
-            StockageLeft.Pick();
+            await bras.goToPosition(BrasPosition.Picking);
         }
-
         private void Toggle_torque_click(object sender, RoutedEventArgs e)
         {
             if (torque)
