@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DeplacementBrasRobot")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f1c5832ad7d893bbfbc48bc56c06b57f5a5b235")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90f3a18b84cf334d706eb37d6f7be410586f2f54")]
 [assembly: System.Reflection.AssemblyProductAttribute("DeplacementBrasRobot")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DeplacementBrasRobot")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

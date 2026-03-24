@@ -128,6 +128,9 @@
         }
       },
       "InverseKinematicsServo/1.0.0": {
+        "dependencies": {
+          "ServoFeetech": "1.0.0"
+        },
         "runtime": {
           "InverseKinematicsServo.dll": {
             "assemblyVersion": "1.0.0",

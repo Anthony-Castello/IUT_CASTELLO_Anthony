@@ -198,7 +198,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj": {
+                "projectPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\ServoFeetech\\ServoFeetech.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

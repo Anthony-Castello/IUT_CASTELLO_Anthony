@@ -35,3 +35,41 @@ C:\Users\E306-PC6\source\repos\DeplacementBrasRobot\obj\Debug\net8.0-windows\Dep
 C:\Users\E306-PC6\source\repos\DeplacementBrasRobot\obj\Debug\net8.0-windows\ref\DeplacementBrasRobot.dll
 C:\Users\E306-PC6\source\repos\DeplacementBrasRobot\bin\Debug\net8.0-windows\InverseKinematicsServo.dll
 C:\Users\E306-PC6\source\repos\DeplacementBrasRobot\bin\Debug\net8.0-windows\InverseKinematicsServo.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\DeplacementBrasRobot.csproj.AssemblyReference.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\App.g.cs
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\DeplacementBrasRobot_MarkupCompile.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\DeplacementBrasRobot.g.resources
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\DeplacementBrasRobot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\DeplacementBrasRobot.AssemblyInfoInputs.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\DeplacementBrasRobot.AssemblyInfo.cs
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\DeplacementBrasRobot.csproj.CoreCompileInputs.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\DeplacementBrasRobot.sourcelink.json
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\DeplacementBrasRobot.exe
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\DeplacementBrasRobot.deps.json
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\DeplacementBrasRobot.runtimeconfig.json
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\DeplacementBrasRobot.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\DeplacementBrasRobot.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\System.IO.Ports.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\System.Management.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\runtimes\linux-arm\native\libSystem.IO.Ports.Native.so
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\runtimes\linux-arm64\native\libSystem.IO.Ports.Native.so
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\runtimes\linux-x64\native\libSystem.IO.Ports.Native.so
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\runtimes\osx-arm64\native\libSystem.IO.Ports.Native.dylib
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\runtimes\osx-x64\native\libSystem.IO.Ports.Native.dylib
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\runtimes\unix\lib\net8.0\System.IO.Ports.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.IO.Ports.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Management.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\ExtendedSerialPort.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\InverseKinematicsServo.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\ServoFeetech.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\ExtendedSerialPort.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\InverseKinematicsServo.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\bin\Debug\net8.0-windows\ServoFeetech.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\Deplacem.27AD9140.Up2Date
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\DeplacementBrasRobot.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\refint\DeplacementBrasRobot.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\DeplacementBrasRobot.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\DeplacementBrasRobot.genruntimeconfig.cache
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\DeplacementBrasRobot\obj\Debug\net8.0-windows\ref\DeplacementBrasRobot.dll

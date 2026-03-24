@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoFeetech", "..\ServoFee
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedSerialPort", "..\..\Cours\C#\ExtendedSerialPort .NET6\ExtendedSerialPort\ExtendedSerialPort\ExtendedSerialPort.csproj", "{47788BDB-E4A6-4F4B-B29D-31B7FDF9F8E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeplacementBrasRobot", "..\InverseKinematicsServo\DeplacementBrasRobot.csproj", "{D4A0C77C-70D1-40B0-923F-B9D18E974075}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InverseKinematicsServo", "..\InverseKinematicsServo\InverseKinematicsServo.csproj", "{D4A0C77C-70D1-40B0-923F-B9D18E974075}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

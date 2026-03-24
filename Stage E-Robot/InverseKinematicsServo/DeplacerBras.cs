@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ServoFeetech_NS;
-using GrafcetRobot_NS;
+
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace DeplacerBras_NS
 {
@@ -20,11 +22,18 @@ namespace DeplacerBras_NS
     {
         Feetech servoManager;
 
-        public volatile bool epaulePosAtteinte = true;
-        public volatile bool coudePosAtteinte = true;
-        public volatile bool poignet1PosAtteinte = true;
-        public volatile bool poignet2PosAtteinte = true;
-        public volatile bool poignet3PosAtteinte = true;
+        //public volatile bool epaulePosAtteinte = true;
+        //public volatile bool coudePosAtteinte = true;
+        //public volatile bool poignet1PosAtteinte = true;
+        //public volatile bool poignet2PosAtteinte = true;
+        //public volatile bool poignet3PosAtteinte = true;
+
+
+        private int epaulePos;
+        private int coudePos;
+        private int poignet1Pos;
+        private int poignet2Pos;
+        private int poignet3Pos;
 
         BrasPosition brasPosition = BrasPosition.Waiting;
 
@@ -42,25 +51,48 @@ namespace DeplacerBras_NS
             if (servo == null)
                 return;
 
-            if (info.PresentPosition != null && info.GoalPosition != null)
+            //if (info.PresentPosition != null && info.GoalPosition != null)
+            //{
+            //    switch(servo.Name)
+            //    {
+            //        // Seuil de tolérance pour considérer que la position est atteinte à 100 unités près
+            //        case "Epaule":
+            //            epaulePosAtteinte = Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) <= tol || Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) >= 4095 - tol;
+            //            break;
+            //        case "Coude":
+            //            coudePosAtteinte = Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) <= tol || Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) >= 4095 - tol;
+            //            break;
+            //        case "Poignet1":
+            //            poignet1PosAtteinte = Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) <= tol || Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) >= 4095 - tol;
+            //            break;
+            //        case "Poignet2":
+            //            poignet2PosAtteinte = Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) <= tol || Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) >= 4095 - tol;
+            //            break;
+            //        case "Poignet3":
+            //            poignet3PosAtteinte = Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) <= tol || Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) >= 4095 - tol;
+            //            break;
+            //    }
+            //}
+
+            if (info.PresentPosition != null)
             {
-                switch(servo.Name)
+                switch (servo.Name)
                 {
                     // Seuil de tolérance pour considérer que la position est atteinte à 100 unités près
                     case "Epaule":
-                        epaulePosAtteinte = Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) <= 100 || Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) >= 4095 - 100;
+                        epaulePos = (int)info.PresentPosition;
                         break;
                     case "Coude":
-                        coudePosAtteinte = Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) <= 100 || Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) >= 4095 - 100;
+                        coudePos = (int)info.PresentPosition; 
                         break;
                     case "Poignet1":
-                        poignet1PosAtteinte = Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) <= 100 || Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) >= 4095 - 100;
+                        poignet1Pos = (int)info.PresentPosition; 
                         break;
                     case "Poignet2":
-                        poignet2PosAtteinte = Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) <= 100 || Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) >= 4095 - 100;
+                        poignet2Pos = (int)info.PresentPosition; 
                         break;
                     case "Poignet3":
-                        poignet3PosAtteinte = Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) <= 100 || Math.Abs((int)info.PresentPosition - (int)info.GoalPosition) >= 4095 - 100;
+                        poignet3Pos = (int)info.PresentPosition; 
                         break;
                 }
             }
@@ -89,32 +121,30 @@ namespace DeplacerBras_NS
 
         private Position[] WaitToRight = new Position[] {
                                     new Position(3679, 479, 2633, 1513, 0),
-                                    new Position(2873, 479, 1874, 1513, 0),
-                                    new Position(2199, 993, 1874, 538, 0),
+                                    new Position(2740, 873, 2103, 538, 0),
                                     new Position(1676, 873, 2103, 538, 0)};
-
-        /*
-        private readonly Position[] RightToWait = new Position[] {
-                                    new Position(1676, 873, 2103, 538, 0),
-                                    new Position(2873, 479, 1874, 1513, 0),
-                                    new Position(2199, 993, 1874, 538, 0),
-                                    new Position()};
-        */
 
         private Position[] WaitToLeft = new Position[] {
                                     new Position(3679, 479, 2633, 1513, 0),
                                     new Position(3740, 1652, 1019, 2623, 0),
                                     new Position(3740, 1652, 936, 2623, 0) };
 
-        private Position[] WaitToPick = new Position[] { };
+        private Position[] WaitToPick = new Position[] {
+                                    new Position(3679, 479, 2633, 1513, 0),
+                                    new Position(3218, 1048, 2337, 1513, 0) };
 
         private Position[] RightToWait => WaitToRight.Reverse().ToArray();
         private Position[] LeftToWait => WaitToLeft.Reverse().ToArray();
 
         private Position[] PickToWait => WaitToPick.Reverse().ToArray();
 
-        public async Task goToPosition(BrasPosition position)
+
+        private bool _enMouvement = false;
+        public void goToPosition(BrasPosition position, int acc)
         {
+            if (_enMouvement) return;
+            _enMouvement = true;
+
             Position[] pos = new Position[0];
             BrasPosition newPosition = brasPosition;
 
@@ -216,80 +246,58 @@ namespace DeplacerBras_NS
             for (int i = 0; i < pos.Length; i++)
             {
                 // ✅ Réinitialiser les flags AVANT chaque déplacement
-                epaulePosAtteinte = false;
-                coudePosAtteinte = false;
-                poignet1PosAtteinte = false;
-                poignet2PosAtteinte = false;
-                poignet3PosAtteinte = false;
+                //epaulePosAtteinte = false;
+                //coudePosAtteinte = false;
+                //poignet1PosAtteinte = false;
+                //poignet2PosAtteinte = false;
+                //poignet3PosAtteinte = false;
 
-                servoManager.goToPositionSM("Epaule", pos[i].Epaule, 200);
-                servoManager.goToPositionSM("Coude", pos[i].Coude, 200);
-                servoManager.goToPositionSM("Poignet1", pos[i].Poignet1, 200);
-                servoManager.goToPositionSM("Poignet2", pos[i].Poignet2, 200);
-                servoManager.goToPositionSM("Poignet3", pos[i].Poignet3, 200);
+                servoManager.goToPositionSM("Epaule", pos[i].Epaule, acc);
+                servoManager.goToPositionSM("Coude", pos[i].Coude, acc);
+                servoManager.goToPositionSM("Poignet1", pos[i].Poignet1, acc);
+                servoManager.goToPositionSM("Poignet2", pos[i].Poignet2, acc);
+                servoManager.goToPositionSM("Poignet3", pos[i].Poignet3, acc);
 
-                // ✅ await Task.Delay au lieu de Thread.Sleep (non bloquant)
-                while (!epaulePosAtteinte || !coudePosAtteinte || !poignet1PosAtteinte || !poignet2PosAtteinte || !poignet3PosAtteinte)
+                bool end = false;
+                while (!end)
                 {
-                    await Task.Delay(30);
+                    readPositions();
+                    Thread.Sleep(10);
+                    end = servoPosAtteinte(pos[i]);
                 }
             }
 
+            _enMouvement = false;
             brasPosition = newPosition;
-            if (brasPosition != position)
-                await goToPosition(position);
+            if (brasPosition != position)   
+                goToPosition(position, acc);
         }
 
+        private int circularDiff(int a, int b)
+        {
+            int diff = Math.Abs(a - b);
+            return Math.Min(diff, 4096 - diff);
+        }
 
+        int tol = 10;
+        private bool servoPosAtteinte(Position pos)
+        {
+            return circularDiff(epaulePos, pos.Epaule) <= tol &&
+                   circularDiff(coudePos, pos.Coude) <= tol &&
+                   circularDiff(poignet1Pos, pos.Poignet1) <= tol &&
+                   circularDiff(poignet2Pos, pos.Poignet2) <= tol &&
+                   circularDiff(poignet3Pos, pos.Poignet3) <= tol;
+        }
 
-        //public async Task goToStockage(StockageType stockage)
-        //{
-
-
-        //    Position[] pos;
-
-        //    if(stockage == StockageType.Right)
-        //    {
-        //        pos = new Position[] {
-        //            new Position(3679, 479, 2633, 1513, 0),
-        //            new Position(1676, 1264, 2061, 1513, 0),
-        //            new Position(1676, 1264, 2061, 538, 0),
-        //            new Position(1676, 873, 2103, 538, 0),
-        //        };
-        //    }
-        //    else
-        //    {
-        //        pos = new Position[] {
-        //            new Position(0, 0, 0, 0, 0),
-        //            new Position(0, 0, 0, 0, 0),
-        //            new Position(0, 0, 0, 0, 0),
-        //        };
-        //    }
-
-        //    for (int i = 0; i < pos.Length; i++)
-        //    {
-        //        // ✅ Réinitialiser les flags AVANT chaque déplacement
-        //        epaulePosAtteinte = false;
-        //        coudePosAtteinte = false;
-        //        poignet1PosAtteinte = false;
-        //        poignet2PosAtteinte = false;
-        //        poignet3PosAtteinte = false;
-
-        //        servoManager.goToPositionSM("Poignet1", pos[i].Poignet1, 20);
-        //        servoManager.goToPositionSM("Coude", pos[i].Coude, 20);
-        //        servoManager.goToPositionSM("Epaule", pos[i].Epaule, 20);
-        //        servoManager.goToPositionSM("Poignet2", pos[i].Poignet2, 20);
-        //        servoManager.goToPositionSM("Poignet3", pos[i].Poignet3, 20);
-
-        //        // ✅ await Task.Delay au lieu de Thread.Sleep (non bloquant)
-        //        while (!epaulePosAtteinte || !coudePosAtteinte || !poignet1PosAtteinte || !poignet2PosAtteinte || !poignet3PosAtteinte)
-        //        {
-        //            await Task.Delay(50);
-        //        }
-        //    }
-
-
-        //}
+        private void readPositions()
+        {
+            servoManager.SyncReadServoData(this, new FeetechServoSyncReadArgs
+            {
+                Location = FeetechMemorySTS.PresentPosition,
+                NumberOfBytes = 2,
+                Names = new string[] { "Epaule", "Coude", "Poignet1", "Poignet2", "Poignet3" }
+            });
+        }
 
     }
 }

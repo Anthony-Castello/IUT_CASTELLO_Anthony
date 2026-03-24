@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\DeplacementBrasRobot\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{860781FC-DAB1-4DD3-8AD0-CC6B0D4BAF63}|..\\InverseKinematicsServo\\InverseKinematicsServo.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\inversekinematicsservo\\deplacerbras.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{860781FC-DAB1-4DD3-8AD0-CC6B0D4BAF63}|..\\InverseKinematicsServo\\InverseKinematicsServo.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\inversekinematicsservo\\inversekinematicsservo.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{06681BFB-6EF1-47A9-AAA7-9D184D296CB1}|DeplacementBrasRobot.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\deplacementbrasrobot\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{06681BFB-6EF1-47A9-AAA7-9D184D296CB1}|DeplacementBrasRobot.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06681BFB-6EF1-47A9-AAA7-9D184D296CB1}|DeplacementBrasRobot.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\deplacementbrasrobot\\deplacementbrasrobot.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{06681BFB-6EF1-47A9-AAA7-9D184D296CB1}|DeplacementBrasRobot.csproj|solutionrelative:deplacementbrasrobot.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\DeplacementBrasRobot.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{860781FC-DAB1-4DD3-8AD0-CC6B0D4BAF63}|..\\InverseKinematicsServo\\InverseKinematicsServo.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\inversekinematicsservo\\inversekinematicsservo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,17 +30,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DeplacerBras.cs",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\DeplacerBras.cs",
+              "RelativeDocumentMoniker": "..\\InverseKinematicsServo\\DeplacerBras.cs",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\DeplacerBras.cs",
+              "RelativeToolTip": "..\\InverseKinematicsServo\\DeplacerBras.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T15:30:53.342Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InverseKinematicsServo",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.csproj",
+              "RelativeDocumentMoniker": "..\\InverseKinematicsServo\\InverseKinematicsServo.csproj",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.csproj",
+              "RelativeToolTip": "..\\InverseKinematicsServo\\InverseKinematicsServo.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-24T15:30:49.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DeplacementBrasRobot.csproj",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\DeplacementBrasRobot\\DeplacementBrasRobot.csproj",
+              "RelativeDocumentMoniker": "DeplacementBrasRobot.csproj",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\DeplacementBrasRobot\\DeplacementBrasRobot.csproj",
+              "RelativeToolTip": "DeplacementBrasRobot.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-24T15:27:41.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DeplacementBrasRobot.csproj",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\DeplacementBrasRobot.csproj",
+              "RelativeDocumentMoniker": "..\\InverseKinematicsServo\\DeplacementBrasRobot.csproj",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\DeplacementBrasRobot.csproj",
+              "RelativeToolTip": "..\\InverseKinematicsServo\\DeplacementBrasRobot.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-24T15:26:34.153Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "InverseKinematicsServo.cs",
+              "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.cs",
+              "RelativeDocumentMoniker": "..\\InverseKinematicsServo\\InverseKinematicsServo.cs",
+              "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.cs",
+              "RelativeToolTip": "..\\InverseKinematicsServo\\InverseKinematicsServo.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwDQAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T15:27:10.669Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\DeplacementBrasRobot\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\DeplacementBrasRobot\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAJIAAAAAAAAAAAA3wFcAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-05T14:27:58.281Z",
               "EditorCaption": ""

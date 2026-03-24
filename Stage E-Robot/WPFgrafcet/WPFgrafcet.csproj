@@ -13,6 +13,7 @@
     <ProjectReference Include="..\..\..\..\..\Github\IUT_CASTELLO_Anthony\Stage E-Robot\ServoFeetech\ServoFeetech.csproj" />
     <ProjectReference Include="..\GrafcetRobot\RobotStockage.csproj" />
     <ProjectReference Include="..\InverseKinematicsServo\DeplacementBrasRobot.csproj" />
+    <ProjectReference Include="..\InverseKinematicsServo\InverseKinematicsServo.csproj" />
   </ItemGroup>
 
 </Project>

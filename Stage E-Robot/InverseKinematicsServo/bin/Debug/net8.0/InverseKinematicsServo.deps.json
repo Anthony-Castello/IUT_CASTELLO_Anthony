@@ -7,14 +7,30 @@
   "targets": {
     ".NETCoreApp,Version=v8.0": {
       "InverseKinematicsServo/1.0.0": {
+        "dependencies": {
+          "ServoFeetech": "1.0.0"
+        },
         "runtime": {
           "InverseKinematicsServo.dll": {}
+        }
+      },
+      "ServoFeetech/1.0.0": {
+        "runtime": {
+          "ServoFeetech.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
   },
   "libraries": {
     "InverseKinematicsServo/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ServoFeetech/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

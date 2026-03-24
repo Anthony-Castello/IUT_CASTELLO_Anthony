@@ -31,6 +31,7 @@ namespace WPFgrafcet
         RobotStockage StockageLeft, StockageRight;
         SerialPort SerialPort1;
         DispatcherTimer timerAffichage;
+        int acc = 50;
 
         public MainWindow()
         {
@@ -43,10 +44,10 @@ namespace WPFgrafcet
             SerialPort1.DataReceived += decodeTrame;
             SerialPort1.Open();
 
-            timerAffichage = new DispatcherTimer();
-            timerAffichage.Interval = new TimeSpan(0, 0, 0, 0, 300);
-            timerAffichage.Tick += TimerAffichage_Tick;
-            timerAffichage.Start();
+            //timerAffichage = new DispatcherTimer();
+            //timerAffichage.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            //timerAffichage.Tick += TimerAffichage_Tick;
+            //timerAffichage.Start();
 
 
             servoManager.servos.Add(new FeetechServo("Epaule", 1, FeetechServoModels.SM));
@@ -98,22 +99,16 @@ namespace WPFgrafcet
 
         }
 
-        private void TimerAffichage_Tick(object? sender, EventArgs e)
-        {
-            servoManager.SyncReadServoData(sender, new FeetechServoSyncReadArgs
-            {
-                Location = FeetechMemorySTS.Baudrate,
-                NumberOfBytes = 80,
-                Names = new string[] { "Epaule", "Coude", "Poignet1", "Poignet2", "Poignet3", "Ascenseur" }
-            });
+        //private void TimerAffichage_Tick(object? sender, EventArgs e)
+        //{
+        //    servoManager.SyncReadServoData(sender, new FeetechServoSyncReadArgs
+        //    {
+        //        Location = FeetechMemorySTS.Baudrate,
+        //        NumberOfBytes = 80,
+        //        Names = new string[] { "Epaule", "Coude", "Poignet1", "Poignet2", "Poignet3", "Ascenseur" }
+        //    });
 
-            EpaulePosAtteinte.IsChecked = bras.epaulePosAtteinte;
-            CoudePosAtteinte.IsChecked = bras.coudePosAtteinte;
-            Poignet1PosAtteinte.IsChecked = bras.poignet1PosAtteinte;
-            Poignet2PosAtteinte.IsChecked = bras.poignet2PosAtteinte;
-            Poignet3PosAtteinte.IsChecked = bras.poignet3PosAtteinte;
-
-        }
+        //}
 
         private void sendTrame(object? sender, ByteArrayArgs e)
         {
@@ -139,43 +134,53 @@ namespace WPFgrafcet
 
         private void ServoManager_OnServoErrorEvent(object? sender, FeetechServoErrorArgs e)
         {
+
         }
 
 
         private void StockerLeft_Click(object sender, RoutedEventArgs e)
         {
-            StockageLeft.Stock();
+            StockageLeft.stock();
         }
 
         private void PousserLeft_Click(object sender, RoutedEventArgs e)
         {
-            StockageLeft.Push();
+            StockageLeft.push();
         }
 
         private void StockerRight_Click(object sender, RoutedEventArgs e)
         {
-            StockageRight.Stock();
+            StockageRight.stock();
         }
 
         private void PousserRight_Click(object sender, RoutedEventArgs e)
         {
-            StockageRight.Push();
+            StockageRight.push();
         }
 
-        private async void GoToStockageLeft_Click(object sender, RoutedEventArgs e)
+        private void GoToStockageLeft_Click(object sender, RoutedEventArgs e)
         {
-            await bras.goToPosition(BrasPosition.StockageLeft);
+            bras.goToPosition(BrasPosition.StockageLeft, acc);
         }
 
-        private async void GoToStockageRight_Click(object sender, RoutedEventArgs e)
+        private void GoToStockageRight_Click(object sender, RoutedEventArgs e)
         {
-            await bras.goToPosition(BrasPosition.StockageRight);
+            bras.goToPosition(BrasPosition.StockageRight, acc);
         }
 
-        private async void Pick_Click(object sender, RoutedEventArgs e)
+        private void Pick_Click(object sender, RoutedEventArgs e)
         {
-            await bras.goToPosition(BrasPosition.Picking);
+            bras.goToPosition(BrasPosition.Picking, acc);
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string textAcc = accTextBox.Text.Substring(4);
+            if (!int.TryParse(textAcc, out int accValue))
+                return;
+            acc = accValue;
+        }
+
         private void Toggle_torque_click(object sender, RoutedEventArgs e)
         {
             if (torque)

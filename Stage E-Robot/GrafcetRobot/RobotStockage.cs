@@ -4,19 +4,19 @@ using ServoFeetech_NS;
 
 namespace GrafcetRobot_NS
 {
-    public enum RobotState
-    {
-        Waiting,
-        Stocking,
-        Pushing,
-    }
+    //public enum RobotState
+    //{
+    //    Waiting,
+    //    Stocking,
+    //    Pushing,
+    //}
 
-    public enum RobotTrigger
-    {
-        Stock,
-        Push,
-        Wait,
-    }
+    //public enum RobotTrigger
+    //{
+    //    Stock,
+    //    Push,
+    //    Wait,
+    //}
 
     public enum StockageType
     {
@@ -64,22 +64,22 @@ namespace GrafcetRobot_NS
         public Dictionary<string, string> motors = new Dictionary<string, string>();
         private Feetech servoManager;
         private StockageType stockageType;
-        public RobotState CurrentState = RobotState.Waiting;
+        //public RobotState CurrentState = RobotState.Waiting;
 
         // Transition : (EtatActuel, Trigger) → EtatSuivant
-        private readonly Dictionary<(RobotState, RobotTrigger), RobotState> transitions = new Dictionary<(RobotState, RobotTrigger), RobotState>
-        {
-            {(RobotState.Waiting, RobotTrigger.Stock), RobotState.Stocking},
-            {(RobotState.Waiting, RobotTrigger.Push), RobotState.Pushing},
+        //private readonly Dictionary<(RobotState, RobotTrigger), RobotState> transitions = new Dictionary<(RobotState, RobotTrigger), RobotState>
+        //{
+        //    {(RobotState.Waiting, RobotTrigger.Stock), RobotState.Stocking},
+        //    {(RobotState.Waiting, RobotTrigger.Push), RobotState.Pushing},
 
 
-            {(RobotState.Stocking, RobotTrigger.Wait), RobotState.Waiting},
-            {(RobotState.Pushing, RobotTrigger.Wait), RobotState.Waiting},
+        //    {(RobotState.Stocking, RobotTrigger.Wait), RobotState.Waiting},
+        //    {(RobotState.Pushing, RobotTrigger.Wait), RobotState.Waiting},
 
-        };
+        //};
 
-        private readonly Dictionary<RobotState, Action> enterActions;
-        private readonly Dictionary<RobotState, Action> exitActions;
+        //private readonly Dictionary<RobotState, Action> enterActions;
+        //private readonly Dictionary<RobotState, Action> exitActions;
 
         public RobotStockage(Feetech servoManager, StockageType stockageType, Dictionary<string, string> motors)
         {
@@ -87,17 +87,6 @@ namespace GrafcetRobot_NS
             this.stockageType = stockageType;
             this.motors = motors;
 
-            // Actions d'entrée : EtatSuivant → Action à exécuter
-            enterActions = new Dictionary<RobotState, Action>
-            {
-                {RobotState.Stocking, onEnterStocking},
-                {RobotState.Pushing, onEnterPushing},
-            };
-
-            // Actions de sortie : EtatPrécédent → Action à exécuter
-            exitActions = new Dictionary<RobotState, Action>
-            {
-            };
 
             if (stockageType == StockageType.Left)
             {
@@ -113,30 +102,30 @@ namespace GrafcetRobot_NS
         }
 
         // Moteur de la machine à états
-        private void Fire(RobotTrigger trigger)
-        {
-            if (!transitions.TryGetValue((CurrentState, trigger), out var nextState))
-            {
-                Debug.WriteLine($"[WARNING] Transition invalide : {CurrentState} + {trigger}");
-                return;
-            }
+        //private void Fire(RobotTrigger trigger)
+        //{
+        //    if (!transitions.TryGetValue((CurrentState, trigger), out var nextState))
+        //    {
+        //        Debug.WriteLine($"[WARNING] Transition invalide : {CurrentState} + {trigger}");
+        //        return;
+        //    }
 
-            Debug.WriteLine($"[SM] {CurrentState} ──[{trigger}]──► {nextState}");
-            CurrentState = nextState;
+        //    Debug.WriteLine($"[SM] {CurrentState} ──[{trigger}]──► {nextState}");
+        //    CurrentState = nextState;
 
-            // Éxécuter les actions d'entrée et de sortie
-            if (exitActions.TryGetValue(CurrentState, out var exitAction))
-                exitAction();
-            if (enterActions.TryGetValue(nextState, out var enterAction))
-                enterAction();
-        }
+        //    // Éxécuter les actions d'entrée et de sortie
+        //    if (exitActions.TryGetValue(CurrentState, out var exitAction))
+        //        exitAction();
+        //    if (enterActions.TryGetValue(nextState, out var enterAction))
+        //        enterAction();
+        //}
 
         // Actions
-        private void onEnterStocking()
+        public void stock()
         {
             if (stocked > 3)
             {
-                Wait();
+                //Wait();
                 return;
             }
 
@@ -174,13 +163,13 @@ namespace GrafcetRobot_NS
             }
 
             stocked++;
-            Wait();
+            //Wait();
         }
-        private void onEnterPushing()
+        public void push()
         {
             if (stocked <= 0)
             {
-                Wait();
+                //Wait();
                 return;
             }
 
@@ -198,13 +187,13 @@ namespace GrafcetRobot_NS
 
             if (stocked > 0)
                 stocked--;
-            Wait();
+            //Wait();
         }
 
         // Appel des trigger
-        public void Stock() => Fire(RobotTrigger.Stock);
-        public void Push() => Fire(RobotTrigger.Push);
-        public void Wait() => Fire(RobotTrigger.Wait);
+        //public void Stock() => Fire(RobotTrigger.Stock);
+        //public void Push() => Fire(RobotTrigger.Push);
+        //public void Wait() => Fire(RobotTrigger.Wait);
 
         // Moteurs
 
@@ -219,12 +208,7 @@ namespace GrafcetRobot_NS
 
         private void MoveServo(string name, int position, int acc)
         {
-            servoManager.WriteServoData(this, new FeetechServoWriteArgs
-            {
-                Name = name,
-                Location = FeetechMemorySTS.GoalAcceleration,
-                Payload = new byte[] { (byte)acc, (byte)(position & 0xFF), (byte)(position >> 8), }
-            });
+            servoManager.goToPositionSM(name, position, acc);
         }
 
         private void MoveServo(string name, RobotPosition position, int acc)
