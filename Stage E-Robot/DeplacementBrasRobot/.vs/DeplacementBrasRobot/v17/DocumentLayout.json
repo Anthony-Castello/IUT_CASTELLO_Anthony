@@ -44,7 +44,7 @@
               "RelativeDocumentMoniker": "..\\InverseKinematicsServo\\DeplacerBras.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\DeplacerBras.cs",
               "RelativeToolTip": "..\\InverseKinematicsServo\\DeplacerBras.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwBEAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-24T15:30:53.342Z",
               "EditorCaption": ""
@@ -52,15 +52,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "InverseKinematicsServo",
+              "Title": "InverseKinematicsServo.csproj",
               "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.csproj",
               "RelativeDocumentMoniker": "..\\InverseKinematicsServo\\InverseKinematicsServo.csproj",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.csproj",
               "RelativeToolTip": "..\\InverseKinematicsServo\\InverseKinematicsServo.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-03-24T15:30:49.083Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-24T15:30:49.083Z"
             },
             {
               "$type": "Document",
@@ -72,8 +71,7 @@
               "RelativeToolTip": "DeplacementBrasRobot.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-03-24T15:27:41.056Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-24T15:27:41.056Z"
             },
             {
               "$type": "Document",
@@ -109,8 +107,7 @@
               "RelativeToolTip": "MainWindow.xaml.cs",
               "ViewState": "AgIAAJIAAAAAAAAAAAA3wFcAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T14:27:58.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-05T14:27:58.281Z"
             }
           ]
         }

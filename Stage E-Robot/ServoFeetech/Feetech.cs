@@ -158,13 +158,13 @@
 
             // Raccourci de commande
 
-            public void goToPositionSM(string name, int position, int acc = 0)
+            public void goToPositionSM(string name, int position, int acc = 0, int speed = 0)
             {
                 WriteServoData(this, new FeetechServoWriteArgs
                 {
                     Name = name,
                     Location = FeetechMemorySM.GoalAcceleration,
-                    Payload = new byte[] { (byte)acc, (byte)(position & 0xFF), (byte)((position >> 8) & 0xFF) }
+                    Payload = new byte[] { (byte)acc, (byte)(position & 0xFF), (byte)((position >> 8) & 0xFF), 0, 0, (byte)(speed & 0xFF), (byte)((speed >> 8) & 0xFF) }
 
                 });
             }

@@ -121,7 +121,7 @@ namespace DeplacerBras_NS
 
         private Position[] WaitToRight = new Position[] {
                                     new Position(3679, 479, 2633, 1513, 0),
-                                    new Position(2740, 873, 2103, 538, 0),
+                                    new Position(1807, 881, 2103, 538, 0),
                                     new Position(1676, 873, 2103, 538, 0)};
 
         private Position[] WaitToLeft = new Position[] {
@@ -140,7 +140,7 @@ namespace DeplacerBras_NS
 
 
         private bool _enMouvement = false;
-        public void goToPosition(BrasPosition position, int acc)
+        public void goToPosition(BrasPosition position, int speed)
         {
             if (_enMouvement) return;
             _enMouvement = true;
@@ -252,26 +252,75 @@ namespace DeplacerBras_NS
                 //poignet2PosAtteinte = false;
                 //poignet3PosAtteinte = false;
 
-                servoManager.goToPositionSM("Epaule", pos[i].Epaule, acc);
-                servoManager.goToPositionSM("Coude", pos[i].Coude, acc);
-                servoManager.goToPositionSM("Poignet1", pos[i].Poignet1, acc);
-                servoManager.goToPositionSM("Poignet2", pos[i].Poignet2, acc);
-                servoManager.goToPositionSM("Poignet3", pos[i].Poignet3, acc);
+                servoManager.goToPositionSM("Epaule", pos[i].Epaule, 0, speed);
+                servoManager.goToPositionSM("Coude", pos[i].Coude, 0, speed);
+                servoManager.goToPositionSM("Poignet1", pos[i].Poignet1, 0, speed);
+                servoManager.goToPositionSM("Poignet2", pos[i].Poignet2, 0, speed);
+                servoManager.goToPositionSM("Poignet3", pos[i].Poignet3, 0, speed);
 
                 bool end = false;
+
+                var sw = Stopwatch.StartNew();
                 while (!end)
                 {
                     readPositions();
                     Thread.Sleep(10);
                     end = servoPosAtteinte(pos[i]);
+
+                    // ERREUR, Le bras n'arrive pas a atteindre la position
+                    if (sw.ElapsedMilliseconds > 5000)
+                    {
+                        break;
+                        //goToPosition(BrasPosition.Waiting, acc);
+                        //return;
+                    }
+
+                    if(brasPosition == BrasPosition.Waiting && newPosition == BrasPosition.StockageRight)
+                    {
+                        if(i == 1)
+                        {
+                            readPositions();
+                            Thread.Sleep(10);
+                            pos[i].Poignet1 = getPoignet1Parallele() + 1024; // +90°
+                            servoManager.goToPositionSM("Poignet1", pos[i].Poignet1, 0, speed);
+                        }
+                    }
+
                 }
+                
             }
 
             _enMouvement = false;
             brasPosition = newPosition;
             if (brasPosition != position)   
-                goToPosition(position, acc);
+                goToPosition(position, speed);
         }
+
+
+
+        // Positions de référence (à calibrer selon votre bras, position "zéro degré")
+        private const int EPAULE_ZERO = 2695;
+        private const int COUDE_ZERO = 1285;
+        private const int POIGNET1_ZERO = 1553;
+        private double posToAngle(int pos, int zero)
+        {
+            return (pos - zero) * (360.0 / 4096.0);
+        }
+
+        private int angleToPos(double angle, int zero)
+        {
+            return (int)(zero + angle * (4096.0 / 360.0));
+        }
+        public int getPoignet1Parallele()
+        {
+            double angleEpaule = posToAngle(epaulePos, EPAULE_ZERO);
+            double angleCoude = posToAngle(coudePos, COUDE_ZERO);
+
+            double anglePoignet1 = angleEpaule + angleCoude;
+
+            return angleToPos(anglePoignet1, POIGNET1_ZERO);
+        }
+
 
         private int circularDiff(int a, int b)
         {

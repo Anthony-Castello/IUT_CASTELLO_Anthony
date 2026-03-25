@@ -75,5 +75,5 @@ C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\obj\Debug\net8.0-windows
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\obj\Debug\net8.0-windows\ref\WPFgrafcet.dll
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\RobotStockage.dll
 C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\RobotStockage.pdb
-C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\DeplacementBrasRobot.dll
-C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\DeplacementBrasRobot.pdb
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\InverseKinematicsServo.dll
+C:\Github\IUT_CASTELLO_Anthony\Stage E-Robot\WPFgrafcet\bin\Debug\net8.0-windows\InverseKinematicsServo.pdb

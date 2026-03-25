@@ -31,7 +31,7 @@ namespace WPFgrafcet
         RobotStockage StockageLeft, StockageRight;
         SerialPort SerialPort1;
         DispatcherTimer timerAffichage;
-        int acc = 50;
+        int speed = 1000;
 
         public MainWindow()
         {
@@ -160,25 +160,25 @@ namespace WPFgrafcet
 
         private void GoToStockageLeft_Click(object sender, RoutedEventArgs e)
         {
-            bras.goToPosition(BrasPosition.StockageLeft, acc);
+            bras.goToPosition(BrasPosition.StockageLeft, speed);
         }
 
         private void GoToStockageRight_Click(object sender, RoutedEventArgs e)
         {
-            bras.goToPosition(BrasPosition.StockageRight, acc);
+            bras.goToPosition(BrasPosition.StockageRight, speed);
         }
 
         private void Pick_Click(object sender, RoutedEventArgs e)
         {
-            bras.goToPosition(BrasPosition.Picking, acc);
+            bras.goToPosition(BrasPosition.Picking, speed);
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string textAcc = accTextBox.Text.Substring(4);
-            if (!int.TryParse(textAcc, out int accValue))
+            string textSpeed = speedTextBox.Text.Substring(6);
+            if (!int.TryParse(textSpeed, out int speedValue))
                 return;
-            acc = accValue;
+            speed = speedValue;
         }
 
         private void Toggle_torque_click(object sender, RoutedEventArgs e)

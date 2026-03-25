@@ -16,7 +16,7 @@
         <Button x:Name="goToStockageLeft" Content="Aller au Stockage Gauche" HorizontalAlignment="Left" Margin="45,268,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="GoToStockageLeft_Click"/>
         <Button x:Name="goToStockageRight" Content="Aller au Stockage Droite" HorizontalAlignment="Left" Margin="275,268,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="GoToStockageRight_Click"/>
         <Button x:Name="Pick" Content="Récupérer une pièce" HorizontalAlignment="Left" Margin="164,325,0,0" VerticalAlignment="Top" Height="34" Width="203" Click="Pick_Click"/>
-        <TextBox x:Name="accTextBox" HorizontalAlignment="Left" Margin="601,342,0,0" TextWrapping="Wrap" Text="Acc:50" VerticalAlignment="Top" Width="57" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="speedTextBox" HorizontalAlignment="Left" Margin="601,342,0,0" TextWrapping="Wrap" Text="Speed:1000" VerticalAlignment="Top" Width="101" TextChanged="TextBox_TextChanged"/>
 
 
 

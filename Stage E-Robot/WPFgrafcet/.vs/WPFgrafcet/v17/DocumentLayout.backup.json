@@ -6,9 +6,6 @@
       "AbsoluteMoniker": "D:0:0:{D4A0C77C-70D1-40B0-923F-B9D18E974075}|..\\InverseKinematicsServo\\InverseKinematicsServo.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\inversekinematicsservo\\deplacerbras.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D4A0C77C-70D1-40B0-923F-B9D18E974075}|..\\InverseKinematicsServo\\InverseKinematicsServo.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\inversekinematicsservo\\inversekinematicsservo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\wpfgrafcet\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,7 +14,16 @@
       "RelativeMoniker": "D:0:0:{7C9722EE-535B-46F2-B9B3-196C8385FE2E}|WPFgrafcet.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\E306-PC6\\AppData\\Local\\SourceServer\\80e3ea2c09c0aad18a6e3578b13ae456ac3ea6bd281d920e2fd19951767c39ae\\Stage E-Robot\\InverseKinematicsServo\\DeplacerBras.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\E306-PC6\\AppData\\Local\\Temp\\.vsdbgsrc\\4315b130d37ec1c13dcbffadb62faf5459da3810441204f490a8637c4a8c6da9\\XamlReader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{389C45A7-E15D-419D-AA9B-657285734EBB}|..\\GrafcetRobot\\RobotStockage.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\grafcetrobot\\robotstockage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4A0C77C-70D1-40B0-923F-B9D18E974075}|..\\InverseKinematicsServo\\InverseKinematicsServo.csproj|c:\\github\\iut_castello_anthony\\stage e-robot\\inversekinematicsservo\\inversekinematicsservo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,8 +33,38 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DeplacerBras.cs",
+              "DocumentMoniker": "C:\\Users\\E306-PC6\\AppData\\Local\\SourceServer\\80e3ea2c09c0aad18a6e3578b13ae456ac3ea6bd281d920e2fd19951767c39ae\\Stage E-Robot\\InverseKinematicsServo\\DeplacerBras.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Users\\E306-PC6\\AppData\\Local\\SourceServer\\80e3ea2c09c0aad18a6e3578b13ae456ac3ea6bd281d920e2fd19951767c39ae\\Stage E-Robot\\InverseKinematicsServo\\DeplacerBras.cs",
+              "ToolTip": "C:\\Users\\E306-PC6\\AppData\\Local\\SourceServer\\80e3ea2c09c0aad18a6e3578b13ae456ac3ea6bd281d920e2fd19951767c39ae\\Stage E-Robot\\InverseKinematicsServo\\DeplacerBras.cs [Lecture seule]",
+              "RelativeToolTip": "..\\..\\..\\..\\Users\\E306-PC6\\AppData\\Local\\SourceServer\\80e3ea2c09c0aad18a6e3578b13ae456ac3ea6bd281d920e2fd19951767c39ae\\Stage E-Robot\\InverseKinematicsServo\\DeplacerBras.cs [Lecture seule]",
+              "ViewState": "AgIAAPgAAAAAAAAAAAAEwBEBAAAIAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T17:38:19.586Z",
+              "EditorCaption": " [Lecture seule]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "XamlReader.cs",
+              "DocumentMoniker": "C:\\Users\\E306-PC6\\AppData\\Local\\Temp\\.vsdbgsrc\\4315b130d37ec1c13dcbffadb62faf5459da3810441204f490a8637c4a8c6da9\\XamlReader.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Users\\E306-PC6\\AppData\\Local\\Temp\\.vsdbgsrc\\4315b130d37ec1c13dcbffadb62faf5459da3810441204f490a8637c4a8c6da9\\XamlReader.cs",
+              "ToolTip": "C:\\Users\\E306-PC6\\AppData\\Local\\Temp\\.vsdbgsrc\\4315b130d37ec1c13dcbffadb62faf5459da3810441204f490a8637c4a8c6da9\\XamlReader.cs [Lecture seule]",
+              "RelativeToolTip": "..\\..\\..\\..\\Users\\E306-PC6\\AppData\\Local\\Temp\\.vsdbgsrc\\4315b130d37ec1c13dcbffadb62faf5459da3810441204f490a8637c4a8c6da9\\XamlReader.cs [Lecture seule]",
+              "ViewState": "AgIAAO4BAAAAAAAAAAAEwPEBAAADAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T17:36:56.537Z",
+              "EditorCaption": " [Lecture seule]"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -37,14 +73,14 @@
               "RelativeDocumentMoniker": "..\\InverseKinematicsServo\\DeplacerBras.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\DeplacerBras.cs",
               "RelativeToolTip": "..\\InverseKinematicsServo\\DeplacerBras.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAPoAAAAAAAAAAAAUwBABAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T09:52:47.699Z",
+              "WhenOpened": "2026-03-25T16:49:08.239Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "InverseKinematicsServo.cs",
               "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\InverseKinematicsServo\\InverseKinematicsServo.cs",
               "RelativeDocumentMoniker": "..\\InverseKinematicsServo\\InverseKinematicsServo.cs",
@@ -52,25 +88,24 @@
               "RelativeToolTip": "..\\InverseKinematicsServo\\InverseKinematicsServo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T09:52:08.269Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T09:52:08.269Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "RobotStockage.cs",
               "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.cs",
               "RelativeDocumentMoniker": "..\\GrafcetRobot\\RobotStockage.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\GrafcetRobot\\RobotStockage.cs",
               "RelativeToolTip": "..\\GrafcetRobot\\RobotStockage.cs",
-              "ViewState": "AgIAAOMAAAAAAAAAAAAcwM0AAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAASwFkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-05T09:44:12.853Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\WPFgrafcet\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
@@ -82,13 +117,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\WPFgrafcet\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Github\\IUT_CASTELLO_Anthony\\Stage E-Robot\\WPFgrafcet\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAALMAAAAAAAAAAAAEwMYAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-24T13:19:29.174Z",
               "EditorCaption": ""
