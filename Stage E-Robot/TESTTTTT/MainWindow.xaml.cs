@@ -58,9 +58,11 @@ namespace TESTTTTT
             OnSyncReadServoDataEvent += servoManager.SyncReadServoData;
             OnReadServoDataEvent += servoManager.ReadServoData;
             OnWriteServoDataEvent += servoManager.WriteServoData;
+
             OnSendDataToServoEvent += servoManager.DecodeData;
             servoManager.OnSendMessageEvent += ServoManager_OnSendMessageEvent;
-            servoManager.OnServoDataEvent += ServoManager_OnServoDataEvent;
+
+            servoManager.OnServoDataEvent += lefromagedanslaquiche;
             servoManager.OnServoErrorEvent += ServoManager_OnServoErrorEvent;
 
             servoManager.servos.Add(new FeetechServo("Epaule", 1, FeetechServoModels.SM));
@@ -75,7 +77,7 @@ namespace TESTTTTT
 
         }
 
-        private void ServoManager_OnServoDataEvent(object? sender, FeetechServoDataArgs e)
+        private void lefromagedanslaquiche(object? sender, FeetechServoDataArgs e)
         {
             byte id = e.info.Id ?? 0;
             if (servoManager.getServoById(id) == null) return;
@@ -107,7 +109,7 @@ namespace TESTTTTT
 
         private void ServoManager_OnServoErrorEvent(object? sender, FeetechServoErrorArgs e)
         {
-
+            //vide
         }
 
         private void ServoManager_OnSendMessageEvent(object? sender, ByteArrayArgs e)

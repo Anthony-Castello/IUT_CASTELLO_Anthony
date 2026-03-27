@@ -9,6 +9,7 @@
       "TESTTTTT/1.0.0": {
         "dependencies": {
           "ExtendedSerialPort": "1.0.0",
+          "RobotDynamics": "1.0.0",
           "ServoFeetech": "1.0.0"
         },
         "runtime": {
@@ -126,6 +127,14 @@
           }
         }
       },
+      "RobotDynamics/1.0.0": {
+        "runtime": {
+          "RobotDynamics.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "ServoFeetech/1.0.0": {
         "runtime": {
           "ServoFeetech.dll": {
@@ -206,6 +215,11 @@
       "hashPath": "system.management.8.0.0.nupkg.sha512"
     },
     "ExtendedSerialPort/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RobotDynamics/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
