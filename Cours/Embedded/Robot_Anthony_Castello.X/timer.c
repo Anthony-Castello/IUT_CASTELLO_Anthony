@@ -12,6 +12,8 @@
 #include "Toolbox.h"
 #include "UART_Protocol.h"
 #include "QEI.h"
+#include "asservissement.h"
+#include "Utilitises.h"
 
 unsigned char toggle = 0;
 unsigned long timestamp = 0;
@@ -59,13 +61,14 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     if (millis++%3 == 0)
         timestamp++;
     
-    if(counter++%25==0)
+    if(counter++%30==0)
     {
         unsigned char payload[8];
         getBytesFromFloat(payload, 0, -robotState.vitesseDroiteCommandeCourante);
         getBytesFromFloat(payload, 4, robotState.vitesseGaucheCommandeCourante);
         UartEncodeAndSendMessage(0x00040, 8, payload);
         SendPositionData();
+        SendPidValues();
         
     }
 }

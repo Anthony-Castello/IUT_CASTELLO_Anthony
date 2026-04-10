@@ -12,6 +12,7 @@
 #define LED_ROUGE_2 _LATA10
 #define LED_BLEUE_2 _LATA9
 #define LED_BLANCHE_2 _LATA0
+#define PWM_EN _LATJ10
 
 
 // Prototypes fonctions

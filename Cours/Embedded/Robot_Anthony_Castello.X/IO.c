@@ -29,6 +29,7 @@ void InitIO() {
     _TRISA10 = 0; // LED Rouge 2
     _TRISA9 = 0; // LED Bleue 2
     _TRISA0 = 0; // LED Blanche 2
+    _TRISJ10 = 0; //PWM_EN
 
     //******************** QEI *****************
     _QEA2R = 97; //assign QEI A to pin RP97

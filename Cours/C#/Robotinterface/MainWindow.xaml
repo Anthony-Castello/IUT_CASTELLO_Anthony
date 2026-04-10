@@ -7,7 +7,7 @@
         xmlns:oscillo="clr-namespace:WpfOscilloscopeControl;assembly=WpfOscilloscopeControl"
         xmlns:AsservDisplay="clr-namespace:WpfAsservissementDisplay_NS;assembly=WpfAsservissementDisplay"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -15,38 +15,35 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!--<StackPanel Orientation="Horizontal" Grid.Column ="0" Grid.Row="0">-->
-        <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <GroupBox Header="Oscilloscope">
+            <GroupBox Header="Oscilloscope" Grid.Column="0">
                 <!--<TextBox x:Name="TextBoxEmission" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="TextBoxEmission_TextChanged" KeyUp="TextBoxEmission_KeyUp"/>-->
                 <oscillo:WpfOscilloscope x:Name="oscilloSpeed"/>
             </GroupBox>
             <GroupBox Header="Asservissement Display" Grid.Column="1">
                 <AsservDisplay:AsservissementRobot2RouesDisplayControl x:Name="asservSpeedDisplay"/>
+                
             </GroupBox>
-            
-        </Grid>
+
         <!--</StackPanel>-->
         
-        <GroupBox Header="Réception" Grid.Column="1" Grid.Row="0">
+        <GroupBox Header="Réception" Grid.Column="2" Grid.Row="0">
             <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" IsReadOnly="True"/>
         </GroupBox>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <Button x:Name="boutonEnvoyer" Content="Envoyer" Width="100" Click="boutonEnvoyer_Click"  />
-            <Button x:Name="boutonClear" Content="Clear" Width="100" Click="boutonClear_Click" />
-            <Button x:Name="boutonTest" Content="Test" Width="100" HorizontalAlignment="Left" Click="boutonTest_Click"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+            <Button x:Name="boutonEnvoyer" Content="Envoyer" Width="110" Margin="2" Click="boutonEnvoyer_Click"  />
+            <Button x:Name="boutonClear" Content="Clear" Width="110" Margin="2" Click="boutonClear_Click" />
+            <Button x:Name="boutonTest" Content="Switch auto-pause" Width="110" Margin="2" HorizontalAlignment="Left" Click="boutonTest_Click"/>
+            <Button x:Name="SET_PID" Content="Envoie valeurs PID" Width="110" Margin="2" Click="SET_PID_Click" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="1">
             <GroupBox Header="Leds">
                 <StackPanel>
                     <CheckBox x:Name ="Led1" Content="Led1" IsChecked="False"/>
@@ -76,16 +73,24 @@
                     <TextBlock x:Name="posX" Text="Position X : " />
                     <TextBlock x:Name="posY" Text="Position Y : " />
                     <TextBlock x:Name="angle" Text="Angle : " />
-                    <TextBlock x:Name="v_lin" Text="Vitesse linéaire : " />
-                    <TextBlock x:Name="v_ang" Text="Vitesse angulaire : " />
+                    <TextBlock x:Name="v_lin" Text="Vit linéaire : " />
+                    <TextBlock x:Name="v_ang" Text="Vit angulaire : " />
                 </StackPanel>
             </GroupBox>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Right">
             <GroupBox Header="Temps courant" >
                 <StackPanel >
                     <TextBlock x:Name="temps" Text=" s" />
                 </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" >
+            <GroupBox Header="Entrer les nouvelles valeurs pour PidX et PidTheta">
+                <GroupBox Header="Kp_X">
+                    <TextBox x:Name="TextBoxKp_X" Text="">
+                    </TextBox>
+                </GroupBox>
             </GroupBox>
         </StackPanel>
 

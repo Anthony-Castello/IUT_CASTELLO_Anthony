@@ -20,6 +20,14 @@ double getDouble(unsigned char *p, int index)
     return *result_ptr;
 }
 
+void getBytesFromFloat(unsigned char *p, int index, float f)
+{
+    int i;
+    unsigned char *f_ptr = (unsigned char*)&f;
+    for (i = 0; i < 4; i++)
+        p[index + i] = f_ptr[i];
+}
+
 void getBytesFromInt32(unsigned char *p, int index, long in)
 {
     int i;

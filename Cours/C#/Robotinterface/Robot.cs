@@ -19,7 +19,22 @@ namespace Robotinterface
         public float distanceTelemetreCentre;
         public float distanceTelemetreGauche;
         public float distanceTelemetreExGauche;
-        public int autoControlActivated = 0;
+        public int autoControlActivated;
+        public float Kp_X;
+        public float Ki_X;
+        public float Kd_X;
+        public float erreurproportionelleMax_X;
+        public float erreurintegralMax_X;
+        public float erreurderiveeMax_X;
+        public float Kp_Theta;
+        public float Ki_Theta;
+        public float Kd_Theta;
+        public float erreurproportionelleMax_Theta;
+        public float erreurintegralMax_Theta;
+        public float erreurderiveeMax_Theta;
+
+        public byte PidX = 0;
+        public byte PidTheta = 1;
         public Robot()
         {
         }

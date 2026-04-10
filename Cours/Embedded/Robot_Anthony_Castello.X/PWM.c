@@ -15,6 +15,7 @@ unsigned char* VG;
 
 
 void InitPWM(void) {
+    PWM_EN = 1;
     PTCON2bits.PCLKDIV = 0b000; //Divide by 1
     PTPER = 100 * PWMPER; //ÈPriode en pourcentage
     //ÈRglage PWM moteur 1 sur hacheur 1

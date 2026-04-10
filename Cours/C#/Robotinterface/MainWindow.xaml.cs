@@ -17,6 +17,8 @@ using System.Security.Cryptography.X509Certificates;
 using WpfOscilloscopeControl;
 using static SciChart.Drawing.Utility.PointUtil;
 using SciChart.Data.Model;
+using WpfAsservissementDisplay_NS;
+using System.Linq.Expressions;
 
 
 
@@ -38,7 +40,7 @@ namespace Robotinterface
         public MainWindow()
         {
             
-            serialPort1 = new ExtendedSerialPort("COM9", 115200, Parity.None, 8, StopBits.One);
+            serialPort1 = new ExtendedSerialPort("COM8", 115200, Parity.None, 8, StopBits.One);
             serialPort1.DataReceived += SerialPort1_DataReceived;
             serialPort1.Open();
             InitializeComponent();
@@ -251,7 +253,8 @@ namespace Robotinterface
             Dist_IR = 0x0030,
             c_vitesse = 0x0040,
             IsState = 0x0050,
-            Odometrie= 0x0060
+            Odometrie= 0x0060,
+            PID = 0x0061,
         }
 
         int TelemExGauche = 0;
@@ -324,6 +327,7 @@ namespace Robotinterface
                     v_moteur_D = BitConverter.ToSingle(msgPayload, 4);
                     M_G.Text = ("Vitesse Gauche : "+ v_moteur_G.ToString("N1") + "%");
                     M_D.Text = ("Vitesse Droit : " + v_moteur_D.ToString("N1") + "%");
+                    //AsservissementRobot2RouesDisplayControl.UpdateIndependantOdometrySpeed((double)v_moteur_G, (double)v_moteur_D);
                     break;
                 case (int)functionID.Text_transmission:
                     TextBoxReception.Text += ("Texte reçu : " + Encoding.ASCII.GetString(msgPayload) + "\n");
@@ -360,6 +364,23 @@ namespace Robotinterface
                     angle.Text = ("Angle : " + ang.ToString("N3") + " rad");
                     v_lin.Text = ("Vitesse linéaire : " + vit_lin.ToString("N3") + " m/s");
                     v_ang.Text = ("Vitesse angulaire : " + vit_ang.ToString("N3") + " rad/s");
+                    //affichage aservdisplay
+                    asservSpeedDisplay.UpdatePolarOdometrySpeed(vit_lin, vit_ang);
+                    break;
+                case (int)functionID.PID:
+                    robot.Kp_X = BitConverter.ToSingle(msgPayload, 0); ;
+                    robot.Ki_X = BitConverter.ToSingle(msgPayload, 4);
+                    robot.Kd_X = BitConverter.ToSingle(msgPayload, 8);
+                    robot.erreurproportionelleMax_X = BitConverter.ToSingle(msgPayload, 12);
+                    robot.erreurintegralMax_X = BitConverter.ToSingle(msgPayload, 16);
+                    robot.erreurderiveeMax_X = BitConverter.ToSingle(msgPayload, 20);
+                    robot.Kp_Theta = BitConverter.ToSingle(msgPayload, 24);
+                    robot.Ki_Theta = BitConverter.ToSingle(msgPayload, 28)  ;
+                    robot.Kd_Theta = BitConverter.ToSingle(msgPayload, 32);
+                    robot.erreurproportionelleMax_Theta = BitConverter.ToSingle(msgPayload, 36);
+                    robot.erreurintegralMax_Theta = BitConverter.ToSingle(msgPayload, 40);
+                    robot.erreurderiveeMax_Theta = BitConverter.ToSingle(msgPayload, 44);
+                    asservSpeedDisplay.UpdatePolarSpeedCorrectionGains(robot.Kp_X, robot.Kp_Theta, robot.Ki_X, robot.Ki_Theta, robot.Kd_X, robot.Kd_Theta);
                     break;
             }
         }
@@ -412,6 +433,14 @@ namespace Robotinterface
         private void oscilloSpeed_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void SET_PID_Click(object sender, RoutedEventArgs e)
+        {
+            List<byte> payload = new List<byte>();
+            payload.Add(0);
+            payload.AddRange(BitConverter.GetBytes(float.Parse(TextBoxKp_X.Text)));
+            UartEncodeAndSendMessage(0x0060, payload.Count(), payload.ToArray()); //type de pid (0 = X, 1 = theta), 4 octets de Kp
         }
     }
 }

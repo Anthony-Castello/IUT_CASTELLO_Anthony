@@ -14,8 +14,9 @@
 #include "CB_RX1.h" 
 #include "UART_Protocol.h"
 #include "QEI.h"
+#include "asservissement.h"
 
-unsigned int * result;
+unsigned int * result;      
 uint8_t flag_Final;
 uint8_t flag_Gauche;
 uint8_t flag_Ex_Gauche;
@@ -44,6 +45,14 @@ int main(void) {
     InitUART();
     InitQEI1();
     InitQEI2();
+//    InitPID_X();
+//    InitPID_Theta();
+    robotState.PidX.Kd = 5;
+    robotState.PidX.Ki = 5;
+    robotState.PidX.Kp = 5;
+    robotState.PidTheta.Kd = 2.23;
+    robotState.PidTheta.Ki = 1.26;
+    robotState.PidTheta.Kp = 7.42;
     LED_BLANCHE_1 = 1;
     LED_BLEUE_1 = 1;
     LED_ORANGE_1 = 1;
@@ -138,10 +147,10 @@ void OperatingSystemLoop(void) {
             stateRobot = STATE_ATTENTE_EN_COURS;
             etat[0] = etat [1] = etat[2] = etat[3] = 0;
             etat[4] = timestamp;
-            //UartEncodeAndSendMessage(0x0050, 5, etat);
+            UartEncodeAndSendMessage(0x0050, 5, etat);
         case STATE_ATTENTE_EN_COURS:
             if (autoControlActivated){
-                if (timestamp > 1000)
+                if (timestamp > 100)
                     stateRobot = STATE_AVANCE;
             }
             break;

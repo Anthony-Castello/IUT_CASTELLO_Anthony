@@ -3,6 +3,9 @@
 #include "CB_RX1.h"
 #include "CB_TX1.h"
 #include "main.h"
+#include "asservissement.h"
+#include "Utilitises.h"
+#include "robot.h"
 
 #define Waiting 0
 #define FunctionMSB 1
@@ -107,46 +110,50 @@ void UartProcessDecodedMessage(int msgFunction, int msgPayloadLength, unsigned c
         case SET_ROBOT_MANUAL_CONTROL:
             SetRobotAutoControlState(msgPayload[0]);
             break;
+        case SET_PID:
+            SetupPidValues(msgPayload);
+            break;
         default:
             msgFunction = SET_ROBOT_STATE;
             break;
     }
 }
-void SetRobotState(unsigned char c){
-    switch(c){
-        case STATE_ATTENTE : //0
+
+void SetRobotState(unsigned char c) {
+    switch (c) {
+        case STATE_ATTENTE: //0
             stateRobot = STATE_ATTENTE;
-        case STATE_AVANCE : //2
+        case STATE_AVANCE: //2
             stateRobot = STATE_AVANCE;
             break;
-        case STATE_TOURNE_GAUCHE : //4
+        case STATE_TOURNE_GAUCHE: //4
             stateRobot = STATE_TOURNE_GAUCHE;
             break;
-        case STATE_TOURNE_DROITE : //6
+        case STATE_TOURNE_DROITE: //6
             stateRobot = STATE_TOURNE_DROITE;
             break;
-        case STATE_TOURNE_SUR_PLACE_GAUCHE : //8
+        case STATE_TOURNE_SUR_PLACE_GAUCHE: //8
             stateRobot = STATE_TOURNE_SUR_PLACE_GAUCHE;
             break;
-        case STATE_TOURNE_SUR_PLACE_DROITE : //10
+        case STATE_TOURNE_SUR_PLACE_DROITE: //10
             stateRobot = STATE_TOURNE_SUR_PLACE_DROITE;
             break;
-        case STATE_ARRET : //12
+        case STATE_ARRET: //12
             stateRobot = STATE_ARRET;
-        case STATE_RECULE : //14
+        case STATE_RECULE: //14
             stateRobot = STATE_RECULE;
             break;
-        default :
+        default:
             stateRobot = STATE_ATTENTE;
             break;
-    }         
-         
-    
+    }
+
+
 }
 
-void SetRobotAutoControlState(unsigned char c){
-    if(!(unsigned int)c || (unsigned int)c){
-        autoControlActivated = (unsigned int)c;//mode manuel = 0; mode auto = 1
+void SetRobotAutoControlState(unsigned char c) {
+    if (!(unsigned int) c || (unsigned int) c) {
+        autoControlActivated = (unsigned int) c; //mode manuel = 0; mode auto = 1
     }
 }
 
