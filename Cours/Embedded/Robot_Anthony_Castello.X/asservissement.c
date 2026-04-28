@@ -5,30 +5,12 @@
 #include "Utilitises.h"
 #include "Toolbox.h"
 
-//void InitPID() {
-//    PID_X.Kp = 0;
-//    PID_X.Ki = 0;
-//    PID_X.Kd = 0;
-//    PID_X.erreurIntegraleMax = 0;
-//    PID_X.erreurDeriveeMax = 0;
-//    PID_X.erreurProportionelleMax = 0;
-//}
-//
-//void InitPID_Theta() {
-//    PID_Theta.Kd = 0;
-//    PID_Theta.Ki = 0;
-//    PID_Theta.Kd = 0;
-//    PID_Theta.erreurIntegraleMax = 0;
-//    PID_Theta.erreurDeriveeMax = 0;
-//    PID_Theta.erreurProportionelleMax = 0;
-//}
 
 void SetupPidValues(unsigned char msgPayload[]) {
-    float kp = getFloatFromBytes(msgPayload, 1);
     if (msgPayload[0] == 0)
-        SetupPidAsservissement(&robotState.PidX, kp, 0, 0, 0, 0, 0);
+        SetupPidAsservissement(&robotState.PidX, getFloatFromBytes(msgPayload, 1), getFloatFromBytes(msgPayload, 5), getFloatFromBytes(msgPayload, 9), getFloatFromBytes(msgPayload, 13), getFloatFromBytes(msgPayload, 17), getFloatFromBytes(msgPayload, 21));
     if (msgPayload[0] == 1)
-        SetupPidAsservissement(&robotState.PidTheta, getFloatFromBytes(msgPayload, 1), 0, 0, 0, 0, 0);
+        SetupPidAsservissement(&robotState.PidTheta, getFloatFromBytes(msgPayload, 1), getFloatFromBytes(msgPayload, 5), getFloatFromBytes(msgPayload, 9), getFloatFromBytes(msgPayload, 13), getFloatFromBytes(msgPayload, 17), getFloatFromBytes(msgPayload, 21));
 
 }
 

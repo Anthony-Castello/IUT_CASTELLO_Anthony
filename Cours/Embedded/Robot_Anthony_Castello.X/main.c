@@ -45,14 +45,6 @@ int main(void) {
     InitUART();
     InitQEI1();
     InitQEI2();
-//    InitPID_X();
-//    InitPID_Theta();
-    robotState.PidX.Kd = 5;
-    robotState.PidX.Ki = 5;
-    robotState.PidX.Kp = 5;
-    robotState.PidTheta.Kd = 2.23;
-    robotState.PidTheta.Ki = 1.26;
-    robotState.PidTheta.Kp = 7.42;
     LED_BLANCHE_1 = 1;
     LED_BLEUE_1 = 1;
     LED_ORANGE_1 = 1;

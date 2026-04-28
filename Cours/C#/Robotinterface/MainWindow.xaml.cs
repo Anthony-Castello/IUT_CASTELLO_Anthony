@@ -265,10 +265,7 @@ namespace Robotinterface
 
         float v_moteur_G = 0;
         float v_moteur_D = 0;
-        int etape = 0;
-    
-
-        string message;
+   
         private void ProcessDecodedMessage(int msgFunction, int msgPayloadLength, byte[] msgPayload)
         {
             switch (msgFunction)
@@ -381,45 +378,14 @@ namespace Robotinterface
                     robot.erreurintegralMax_Theta = BitConverter.ToSingle(msgPayload, 40);
                     robot.erreurderiveeMax_Theta = BitConverter.ToSingle(msgPayload, 44);
                     asservSpeedDisplay.UpdatePolarSpeedCorrectionGains(robot.Kp_X, robot.Kp_Theta, robot.Ki_X, robot.Ki_Theta, robot.Kd_X, robot.Kd_Theta);
+                    asservSpeedDisplay.UpdatePolarSpeedCorrectionLimits(robot.erreurproportionelleMax_X, robot.erreurproportionelleMax_Theta, robot.erreurintegralMax_X, robot.erreurintegralMax_Theta, robot.erreurderiveeMax_X, robot.erreurderiveeMax_Theta);
                     break;
             }
         }
 
         private void boutonTest_Click(object sender, RoutedEventArgs e)
         {
-            //int i;
-            //byte[] byteList = new byte[48];
-            //for (i = 0; i< 48; i++)
-            //{
-            //    byteList[i] = (byte)(i);
-            //}
-            //serialPort1.Write(byteList, 0, 48);
-            //if (toggle3)
-            //{
-            //    boutonTest.Background = Brushes.Beige;
-            //    toggle3 = !toggle3;
-            //}
-            //else
-            //{
-            //    boutonTest.Background = Brushes.RoyalBlue;
-            //    toggle3 = !toggle3;
-            //}
-            //byte[] array = Encoding.ASCII.GetBytes("Bonjour");
-            //UartEncodeAndSendMessage(0x0080, 7, array);
-            //byte[] LED = new byte[2];
-            //LED[1] = (byte)1;
-            //UartEncodeAndSendMessage(0x0020, 2, LED);
-            //byte[] IR = new byte[5];
-            //IR[0] = (byte)20;
-            //IR[1] = (byte)10;
-            //IR[2] = (byte)99;
-            //IR[3] = (byte)32;
-            //IR[4] = (byte)47;
-            //UartEncodeAndSendMessage(0x0030, 5, IR);
-            //byte[] vitesse = new byte[2];
-            //vitesse[0] = (byte)50;
-            //vitesse[1] = (byte)42;
-            //UartEncodeAndSendMessage(0x0040, 2, vitesse);
+          
             if (robot.autoControlActivated == 0)
                 robot.autoControlActivated = 1;
             else
@@ -435,11 +401,65 @@ namespace Robotinterface
 
         }
 
-        private void SET_PID_Click(object sender, RoutedEventArgs e)
+        private void SET_PIDX_Click(object sender, RoutedEventArgs e)
         {
             List<byte> payload = new List<byte>();
             payload.Add(0);
-            payload.AddRange(BitConverter.GetBytes(float.Parse(TextBoxKp_X.Text)));
+            if(TextBoxKp.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(TextBoxKp.Text)));
+            else 
+                payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
+            if (TextBoxKi.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(TextBoxKi.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
+            if (TextBoxKd.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(TextBoxKd.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
+            if (P_Max.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(P_Max.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
+            if (I_Max.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(I_Max.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
+            if (D_Max.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(D_Max.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
+            UartEncodeAndSendMessage(0x0060, payload.Count(), payload.ToArray()); //type de pid (0 = X, 1 = theta), 4 octets de Kp
+        }
+
+        private void SET_PIDTheta_Click(object sender, RoutedEventArgs e)
+        {
+            List<byte> payload = new List<byte>();
+            payload.Add(1);
+            if (TextBoxKp.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(TextBoxKp.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
+            if (TextBoxKi.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(TextBoxKi.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
+            if (TextBoxKd.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(TextBoxKd.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
+            if (P_Max.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(P_Max.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
+            if (I_Max.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(I_Max.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
+            if (D_Max.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(D_Max.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
             UartEncodeAndSendMessage(0x0060, payload.Count(), payload.ToArray()); //type de pid (0 = X, 1 = theta), 4 octets de Kp
         }
     }
