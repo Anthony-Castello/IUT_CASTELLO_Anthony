@@ -26,6 +26,7 @@ typedef struct _PidCorrector {
         float corrP;
         float corrI;
         float corrD;
+
         
     } PidCorrector;
    
@@ -37,7 +38,8 @@ typedef struct _PidCorrector {
 void SetupPidValues(unsigned char msgPayload[]);
 void SetupPidAsservissement(volatile PidCorrector* PidCorr, float Kp, float Ki, float Kd, float proportionelleMax, float integralMax, float deriveeMax);
 void SendPidValues();
-
+double Correcteur(volatile PidCorrector* PidCorr, double erreur);
+void UpdateAsservissement();
 #ifdef	__cplusplus
 }
 #endif

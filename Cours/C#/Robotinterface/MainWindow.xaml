@@ -7,7 +7,7 @@
         xmlns:oscillo="clr-namespace:WpfOscilloscopeControl;assembly=WpfOscilloscopeControl"
         xmlns:AsservDisplay="clr-namespace:WpfAsservissementDisplay_NS;assembly=WpfAsservissementDisplay"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1300">
+        Title="MainWindow" Height="600" Width="1500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -86,7 +86,7 @@
                 </StackPanel>
             </GroupBox>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center">
             <GroupBox Header="Entrer les nouvelles valeurs pour PidX ou PidTheta">
                 <Grid>
                 <Grid.ColumnDefinitions>
