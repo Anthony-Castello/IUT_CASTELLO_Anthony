@@ -13,7 +13,6 @@
 #include "timer.h"
 #include "Toolbox.h"
 
-#define DISTROUES 0.218
 #define POSITION_DATA 0x0060
 
 float QeiDroitPosition_T_1;

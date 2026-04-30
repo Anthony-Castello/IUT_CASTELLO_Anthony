@@ -8,10 +8,13 @@
 #include "UART.h"
 #include "UART_Protocol.h"
 #include "timer.h"
+#include "asservissement.h"
 
 #define PWMPER 24.0
 unsigned char* VD;
 unsigned char* VG;
+
+#define M_TO_PERCENT 35
 
 
 void InitPWM(void) {
@@ -61,19 +64,28 @@ float acceleration = 30;
 
 }       */
 
-void PWMSetSpeedConsigne(float vitesseEnPourcentage, int moteur) {
-    if (vitesseEnPourcentage > 100) {
-        vitesseEnPourcentage = 100;
-    }
-    if (vitesseEnPourcentage <-100) {
-        vitesseEnPourcentage = -100;
-    }
-    if (moteur == MOTEUR_DROIT) {
-        robotState.vitesseDroiteConsigne = -vitesseEnPourcentage;
-    }
-    if (moteur == MOTEUR_GAUCHE) {
-        robotState.vitesseGaucheConsigne = vitesseEnPourcentage;
-    }
+//void PWMSetSpeedConsigne(float vitesseEnPourcentage, int moteur) {
+//    if (vitesseEnPourcentage > 100) {
+//        vitesseEnPourcentage = 100;
+//    }
+//    if (vitesseEnPourcentage <-100) {
+//        vitesseEnPourcentage = -100;
+//    }
+//    if (moteur == MOTEUR_DROIT) {
+//        robotState.vitesseDroiteConsigne = -vitesseEnPourcentage;
+//    }
+//    if (moteur == MOTEUR_GAUCHE) {
+//        robotState.vitesseGaucheConsigne = vitesseEnPourcentage;
+//    }
+//}
+
+void PWMSetSpeedConsignePolaire(float vitesseLineaire, float vitesseAngulaire) {
+    
+    robotState.vitesseDroiteConsigne = -M_TO_PERCENT * (vitesseLineaire + DISTROUES/2 * vitesseAngulaire);
+    robotState.vitesseGaucheConsigne = M_TO_PERCENT * (vitesseLineaire - DISTROUES/2 * vitesseAngulaire);
+    
+    LimitToInterval(robotState.vitesseDroiteConsigne , -100, 100);
+    LimitToInterval(robotState.vitesseGaucheConsigne , -100, 100);
 }
 
 void PWMUpdateSpeed() {

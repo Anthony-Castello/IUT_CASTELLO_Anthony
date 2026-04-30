@@ -26,7 +26,7 @@ uint8_t flag_Centre;
 unsigned char IR[5];
 unsigned char etat[5];
 unsigned char stateRobot;
-unsigned int autoControlActivated = 0;
+unsigned int autoControlActivated = 1;
 
 int main(void) {
     /***********************************************************************************************/
@@ -45,17 +45,18 @@ int main(void) {
     InitUART();
     InitQEI1();
     InitQEI2();
-    LED_BLANCHE_1 = 1;
-    LED_BLEUE_1 = 1;
-    LED_ORANGE_1 = 1;
-    LED_ROUGE_1 = 1;
-    LED_VERTE_1 = 1;
-    LED_BLANCHE_2 = 1;
-    LED_BLEUE_2 = 1;
-    LED_ORANGE_2 = 1;
-    LED_ROUGE_2 = 1;
-    LED_VERTE_2 = 1;
+    LED_BLANCHE_1 = 0;
+    LED_BLEUE_1 = 0;
+    LED_ORANGE_1 = 0;
+    LED_ROUGE_1 = 0;
+    LED_VERTE_1 = 0;
+    LED_BLANCHE_2 = 0;
+    LED_BLEUE_2 = 0;
+    LED_ORANGE_2 = 0;
+    LED_ROUGE_2 = 0;
+    LED_VERTE_2 = 0;
     //unsigned char payload[] = {'Q', 'u', 'i', 'c', 'h', 'e', '!'};
+    
 
 
 
@@ -133,9 +134,11 @@ int main(void) {
 void OperatingSystemLoop(void) {
     switch (stateRobot) {
         case STATE_ATTENTE:
+            robotState.ConsigneLineaire = 0, robotState.ConsigneAngulaire = 0;
             timestamp = 0;
-            PWMSetSpeedConsigne(0, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
+            PWMSetSpeedConsignePolaire(0,0);
+//            PWMSetSpeedConsigne(0, MOTEUR_DROIT);
+//            PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
             stateRobot = STATE_ATTENTE_EN_COURS;
             etat[0] = etat [1] = etat[2] = etat[3] = 0;
             etat[4] = timestamp;
@@ -147,8 +150,11 @@ void OperatingSystemLoop(void) {
             }
             break;
         case STATE_AVANCE:
-            PWMSetSpeedConsigne(30, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
+            robotState.ConsigneLineaire = 0.5;
+            robotState.ConsigneAngulaire = 0;
+            PWMSetSpeedConsignePolaire(1,0);
+//            PWMSetSpeedConsigne(30, MOTEUR_DROIT);
+//            PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
             stateRobot = STATE_AVANCE_EN_COURS;
             etat [1] = etat[2] = etat[3] = 0;
             etat [0] = 1;
@@ -160,10 +166,13 @@ void OperatingSystemLoop(void) {
                 SetNextRobotStateInAutomaticMode();
             break;
         case STATE_TOURNE_GAUCHE:
-            PWMSetSpeedConsigne(15, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
+            robotState.ConsigneLineaire = 0.2;
+            robotState.ConsigneAngulaire = 1;
+            PWMSetSpeedConsignePolaire(0.2,6.28);
+//            PWMSetSpeedConsigne(15, MOTEUR_DROIT);
+//            PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_GAUCHE_EN_COURS;
-            etat [1] = etat[0] = etat[3] = 0;
+            etat [1] = etat[0] = etat[3] = 0; 
             etat [2] = 1;
             etat[4] = timestamp;
             UartEncodeAndSendMessage(0x0050, 5, etat);
@@ -173,8 +182,11 @@ void OperatingSystemLoop(void) {
                 SetNextRobotStateInAutomaticMode();
             break;
         case STATE_TOURNE_DROITE:
-            PWMSetSpeedConsigne(0, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
+            robotState.ConsigneLineaire = 0.2;
+            robotState.ConsigneAngulaire = -1;
+            PWMSetSpeedConsignePolaire(0.2,-6.28);
+//            PWMSetSpeedConsigne(0, MOTEUR_DROIT);
+//            PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_DROITE_EN_COURS;
             etat [0] = etat[2] = etat[1] = 0;
             etat [3] = 1;
@@ -186,8 +198,11 @@ void OperatingSystemLoop(void) {
                 SetNextRobotStateInAutomaticMode();
             break;
         case STATE_TOURNE_SUR_PLACE_GAUCHE:
-            PWMSetSpeedConsigne(15, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-15, MOTEUR_GAUCHE);
+            robotState.ConsigneLineaire = 0;
+            robotState.ConsigneAngulaire = 6.28;
+            PWMSetSpeedConsignePolaire(0.2,6.28);
+//            PWMSetSpeedConsigne(15, MOTEUR_DROIT);
+//            PWMSetSpeedConsigne(-15, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_SUR_PLACE_GAUCHE_EN_COURS;
             etat [0] = etat[2] = etat[3] = 0;
             etat [1] = 1;
@@ -199,8 +214,11 @@ void OperatingSystemLoop(void) {
                 SetNextRobotStateInAutomaticMode();
             break;
         case STATE_TOURNE_SUR_PLACE_DROITE:
-            PWMSetSpeedConsigne(-20, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
+            robotState.ConsigneLineaire = 0;
+            robotState.ConsigneAngulaire = -6.28;
+            UpdateAsservissement();
+//            PWMSetSpeedConsigne(-20, MOTEUR_DROIT);
+//            PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_SUR_PLACE_DROITE_EN_COURS;
             break;
         case STATE_TOURNE_SUR_PLACE_DROITE_EN_COURS:

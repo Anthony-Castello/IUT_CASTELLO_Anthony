@@ -4,6 +4,8 @@
 #include "UART_Protocol.h"
 #include "Utilitises.h"
 #include "Toolbox.h"
+#include "QEI.h"
+#include "PWM.h"
 
 void SetupPidValues(unsigned char msgPayload[]) {
     if (msgPayload[0] == 0)
@@ -23,7 +25,7 @@ void SetupPidAsservissement(volatile PidCorrector* PidCorr, float Kp, float Ki, 
 }
 
 void SendPidValues() {
-    unsigned char positionPayload[48];
+    unsigned char positionPayload[76];
     getBytesFromFloat(positionPayload, 0, robotState.PidX.Kp);
     getBytesFromFloat(positionPayload, 4, robotState.PidX.Ki);
     getBytesFromFloat(positionPayload, 8, robotState.PidX.Kd);
@@ -36,29 +38,35 @@ void SendPidValues() {
     getBytesFromFloat(positionPayload, 36, robotState.PidTheta.erreurProportionelleMax);
     getBytesFromFloat(positionPayload, 40, robotState.PidTheta.erreurIntegraleMax);
     getBytesFromFloat(positionPayload, 44, robotState.PidTheta.erreurDeriveeMax);
-    UartEncodeAndSendMessage(0x0061, 48, positionPayload);
+    getBytesFromFloat(positionPayload, 48, robotState.PidX.erreur);
+    getBytesFromFloat(positionPayload, 52, robotState.PidX.corrP);
+    getBytesFromFloat(positionPayload, 56, robotState.PidX.corrI);
+    getBytesFromFloat(positionPayload, 60, robotState.PidX.corrD);
+    getBytesFromFloat(positionPayload, 64, robotState.PidTheta.erreur);
+    getBytesFromFloat(positionPayload, 68, robotState.PidTheta.corrP);
+    getBytesFromFloat(positionPayload, 72, robotState.PidTheta.corrI);
+    getBytesFromFloat(positionPayload, 76, robotState.PidTheta.corrD);
+    UartEncodeAndSendMessage(0x0061, 76, positionPayload);
 }
 
 double Correcteur(volatile PidCorrector* PidCorr, double erreur) {
     PidCorr->erreur = erreur;
-    double erreurProportionnelle = LimitToInterval(...);
-    PidCorr->corrP = ...;
-    PidCorr->erreurIntegrale += ...;
-    PidCorr->erreurIntegrale = LimitToInterval(...);
-    PidCorr->corrI = ...;
+    double erreurProportionnelle = LimitToInterval(erreur, -PidCorr->erreurProportionelleMax/PidCorr->Kp, PidCorr->erreurProportionelleMax/PidCorr->Kp );
+    PidCorr->corrP = PidCorr->Kp * erreurProportionnelle;
+    PidCorr->erreurIntegrale += erreur/FREQ_ECH_QEI;
+    PidCorr->erreurIntegrale = LimitToInterval(PidCorr->erreurIntegrale, -PidCorr->erreurIntegraleMax/PidCorr->Ki, PidCorr->erreurIntegraleMax/PidCorr->Ki);
+    PidCorr->corrI = PidCorr ->Ki * PidCorr -> erreurIntegrale;
     double erreurDerivee = (erreur - PidCorr->epsilon_1) * FREQ_ECH_QEI;
-    double deriveeBornee = LimitToInterval(erreurDerivee, -PidCorr->erreurDeriveeMax / PidCorr->Kd, PidCorr->epsilon_1 = erreur;
-            PidCorr->corrD = deriveeBornee * PidCorr->Kd;
-
+    double deriveeBornee = LimitToInterval(erreurDerivee, -PidCorr->erreurDeriveeMax / PidCorr->Kd, PidCorr->erreurDeriveeMax / PidCorr->Kd);
+    PidCorr->epsilon_1 = erreur;
+    PidCorr->corrD = deriveeBornee * PidCorr->Kd;
     return PidCorr->corrP + PidCorr->corrI + PidCorr->corrD;
 }
 
 void UpdateAsservissement() {
-    robotState.PidX.erreur = ...;
-            robotState.PidTheta.erreur = ...;
-            robotState.CorrectionVitesseLineaire =
-            Correcteur(&robotState.PidX, robotState.PidX.erreur);
-            robotState.CorrectionVitesseAngulaire = ...;
-            PWMSetSpeedConsignePolaire(robotState.CorrectionVitesseLineaire,
-            robotState.CorrectionVitesseAngulaire);
+    robotState.PidX.erreur = robotState.ConsigneLineaire - robotState.vitesseLineaireFromOdometry;
+    robotState.PidTheta.erreur = robotState.ConsigneAngulaire - robotState.vitesseAngulaireFromOdometry;
+    robotState.CorrectionVitesseLineaire = Correcteur(&robotState.PidX, robotState.PidX.erreur);
+    robotState.CorrectionVitesseAngulaire = Correcteur(&robotState.PidTheta, robotState.PidTheta.erreur);
+    PWMSetSpeedConsignePolaire(robotState.CorrectionVitesseLineaire, robotState.CorrectionVitesseAngulaire);
 }

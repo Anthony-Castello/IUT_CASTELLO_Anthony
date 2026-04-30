@@ -8,7 +8,7 @@
 //void PWMSetSpeed(int, float);
 void InitPWM(void);
 void PWMUpdateSpeed(void);
-void PWMSetSpeedConsigne(float, int);
+void PWMSetSpeedConsignePolaire(float vitesseLineaire, float vitesseAngulaire);
 
 #endif	/* PMW_H */
 

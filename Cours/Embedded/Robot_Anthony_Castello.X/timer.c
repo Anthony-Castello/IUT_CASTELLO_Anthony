@@ -58,9 +58,8 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     //SendMessageDirect((unsigned char*) "Bonjour", 7);
     ADC1StartConversionSequence();
     QEIUpdateData();
-    if (millis++%3 == 0)
-        timestamp++;
-    
+    UpdateAsservissement();
+        
     if(counter++%30==0)
     {
         unsigned char payload[8];
@@ -126,7 +125,9 @@ void SetFreqTimer4(float freq) {
 
 void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     IFS1bits.T4IF = 0; // Clear Timer3 Interrupt Flag
+    timestamp++;
     OperatingSystemLoop();
+    
 
 }
 

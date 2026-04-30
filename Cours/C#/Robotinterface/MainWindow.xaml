@@ -21,19 +21,19 @@
         </Grid.ColumnDefinitions>
 
         <!--<StackPanel Orientation="Horizontal" Grid.Column ="0" Grid.Row="0">-->
-            <GroupBox Header="Oscilloscope" Grid.Column="0">
-                <!--<TextBox x:Name="TextBoxEmission" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="TextBoxEmission_TextChanged" KeyUp="TextBoxEmission_KeyUp"/>-->
-                <oscillo:WpfOscilloscope x:Name="oscilloSpeed"/>
-            </GroupBox>
-            <GroupBox Header="Asservissement Display" Grid.Column="1">
-                <AsservDisplay:AsservissementRobot2RouesDisplayControl x:Name="asservSpeedDisplay"/>
-                
-            </GroupBox>
+        <GroupBox Header="Oscilloscope" Grid.Column="0">
+            <!--<TextBox x:Name="TextBoxEmission" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="TextBoxEmission_TextChanged" KeyUp="TextBoxEmission_KeyUp"/>-->
+            <oscillo:WpfOscilloscope x:Name="oscilloSpeed"/>
+        </GroupBox>
+        <GroupBox Header="Asservissement Display" Grid.Column="1">
+            <AsservDisplay:AsservissementRobot2RouesDisplayControl x:Name="asservSpeedDisplay"/>
+
+        </GroupBox>
 
         <!--</StackPanel>-->
-        
+
         <GroupBox Header="Réception" Grid.Column="2" Grid.Row="0">
-            <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" IsReadOnly="True"/>
+            <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">
@@ -89,25 +89,25 @@
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center">
             <GroupBox Header="Entrer les nouvelles valeurs pour PidX ou PidTheta">
                 <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Vertical" Grid.Column="0">
-                    <GroupBox Header="Kp">
-                    <TextBox x:Name="TextBoxKp" Text="">
-                    </TextBox>
-                </GroupBox>
-                <GroupBox Header="Ki">
-                    <TextBox x:Name="TextBoxKi" Text="">
-                    </TextBox>
-                </GroupBox>
-                <GroupBox Header="Kd">
-                    <TextBox x:Name="TextBoxKd" Text="">
-                    </TextBox>
-                </GroupBox>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                        <GroupBox Header="Kp">
+                            <TextBox x:Name="TextBoxKp" Text="">
+                            </TextBox>
+                        </GroupBox>
+                        <GroupBox Header="Ki">
+                            <TextBox x:Name="TextBoxKi" Text="">
+                            </TextBox>
+                        </GroupBox>
+                        <GroupBox Header="Kd">
+                            <TextBox x:Name="TextBoxKd" Text="">
+                            </TextBox>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="1">
                         <GroupBox Header="Proportionnelle Max">
                             <TextBox x:Name="P_Max" Text="">
                             </TextBox>
@@ -120,8 +120,8 @@
                             <TextBox x:Name="D_Max" Text="">
                             </TextBox>
                         </GroupBox>
-            </StackPanel>
-            </Grid>
+                    </StackPanel>
+                </Grid>
             </GroupBox>
         </StackPanel>
 

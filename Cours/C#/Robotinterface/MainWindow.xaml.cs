@@ -372,13 +372,23 @@ namespace Robotinterface
                     robot.erreurintegralMax_X = BitConverter.ToSingle(msgPayload, 16);
                     robot.erreurderiveeMax_X = BitConverter.ToSingle(msgPayload, 20);
                     robot.Kp_Theta = BitConverter.ToSingle(msgPayload, 24);
-                    robot.Ki_Theta = BitConverter.ToSingle(msgPayload, 28)  ;
+                    robot.Ki_Theta = BitConverter.ToSingle(msgPayload, 28);
                     robot.Kd_Theta = BitConverter.ToSingle(msgPayload, 32);
                     robot.erreurproportionelleMax_Theta = BitConverter.ToSingle(msgPayload, 36);
                     robot.erreurintegralMax_Theta = BitConverter.ToSingle(msgPayload, 40);
                     robot.erreurderiveeMax_Theta = BitConverter.ToSingle(msgPayload, 44);
+                    robot.erreur_X = BitConverter.ToSingle(msgPayload, 48);
+                    robot.corrP_X = BitConverter.ToSingle(msgPayload, 52);
+                    robot.corrI_X = BitConverter.ToSingle(msgPayload, 56);
+                    robot.corrP_X = BitConverter.ToSingle(msgPayload, 60);
+                    robot.erreur_Theta = BitConverter.ToSingle(msgPayload, 64);
+                    robot.corrP_Theta = BitConverter.ToSingle(msgPayload, 68);
+                    robot.corrI_Theta = BitConverter.ToSingle(msgPayload, 72);
+                    robot.corrP_Theta = BitConverter.ToSingle(msgPayload, 76);
                     asservSpeedDisplay.UpdatePolarSpeedCorrectionGains(robot.Kp_X, robot.Kp_Theta, robot.Ki_X, robot.Ki_Theta, robot.Kd_X, robot.Kd_Theta);
                     asservSpeedDisplay.UpdatePolarSpeedCorrectionLimits(robot.erreurproportionelleMax_X, robot.erreurproportionelleMax_Theta, robot.erreurintegralMax_X, robot.erreurintegralMax_Theta, robot.erreurderiveeMax_X, robot.erreurderiveeMax_Theta);
+                    asservSpeedDisplay.UpdatePolarSpeedErrorValues(robot.erreur_X, robot.erreur_Theta);
+                    asservSpeedDisplay.UpdatePolarSpeedCorrectionValues(robot.corrP_X, robot.corrP_Theta, robot.corrI_X, robot.corrI_Theta, robot.corrD_X, robot.corrD_Theta);
                     break;
             }
         }

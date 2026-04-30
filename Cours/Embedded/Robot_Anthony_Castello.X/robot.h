@@ -1,6 +1,9 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 
+#define DISTROUES 0.218
+
+
 #include "asservissement.h"
 
 typedef struct robotStateBITS {
@@ -32,6 +35,8 @@ typedef struct robotStateBITS {
             float angleRadianFromOdometry;
             float CorrectionVitesseLineaire;
             float CorrectionVitesseAngulaire;
+            float ConsigneLineaire;
+            float ConsigneAngulaire;
 
             PidCorrector PidX;
             PidCorrector PidTheta;
@@ -39,5 +44,6 @@ typedef struct robotStateBITS {
     };
 } ROBOT_STATE_BITS;
 extern volatile ROBOT_STATE_BITS robotState;
+
 
 #endif /* ROBOT_H */
