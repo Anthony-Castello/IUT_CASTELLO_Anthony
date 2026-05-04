@@ -27,7 +27,6 @@ void InitQEI1() {
     QEI1GECL = 0xFFFF;
     QEI1GECH = 0xFFFF;
     QEI1CONbits.QEIEN = 1; // Enable QEI Module
-    timestamp = 0;
 }
 
 void InitQEI2() {

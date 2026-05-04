@@ -19,6 +19,7 @@ unsigned char toggle = 0;
 unsigned long timestamp = 0;
 int counter = 0;
 int millis = 0;
+int led = 0;
 
 
 //Initialisation d?un timer 16 bits
@@ -59,16 +60,16 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     ADC1StartConversionSequence();
     QEIUpdateData();
     UpdateAsservissement();
-        
-    if(counter++%30==0)
-    {
+
+
+    if (counter++ % 30 == 0) {
         unsigned char payload[8];
         getBytesFromFloat(payload, 0, -robotState.vitesseDroiteCommandeCourante);
         getBytesFromFloat(payload, 4, robotState.vitesseGaucheCommandeCourante);
         UartEncodeAndSendMessage(0x00040, 8, payload);
         SendPositionData();
         SendPidValues();
-        
+
     }
 }
 //Initialisation d?un timer 32 bits
@@ -90,6 +91,7 @@ void InitTimer23(void) {
 }
 
 //Interruption du timer 32 bits sur 2-3
+
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
 }
@@ -125,9 +127,15 @@ void SetFreqTimer4(float freq) {
 
 void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     IFS1bits.T4IF = 0; // Clear Timer3 Interrupt Flag
-    timestamp++;
-    OperatingSystemLoop();
     
+    timestamp++;
+    
+    if (timestamp % 1000 == 0) {
+        LED_ROUGE_2 = !LED_ROUGE_2;
+    }
+    
+    OperatingSystemLoop();
+
 
 }
 

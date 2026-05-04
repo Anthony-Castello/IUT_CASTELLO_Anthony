@@ -49,7 +49,7 @@ void UartEncodeAndSendMessage(int msgFunction, int msgPayloadLength, unsigned ch
     for (int i = 0; i < msgPayloadLength; i++)
         trame[pos++] = msgPayload[i];
     trame[pos++] = UartCalculateChecksum(msgFunction, msgPayloadLength, msgPayload);
-    SendMessage(trame, sizeof (trame));
+    SendMessage(trame, 6 + msgPayloadLength);
 }
 
 void UartDecodeMessage(unsigned char c) {

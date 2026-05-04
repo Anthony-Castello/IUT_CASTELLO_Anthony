@@ -25,7 +25,7 @@ void SetupPidAsservissement(volatile PidCorrector* PidCorr, float Kp, float Ki, 
 }
 
 void SendPidValues() {
-    unsigned char positionPayload[76];
+    unsigned char positionPayload[80];
     getBytesFromFloat(positionPayload, 0, robotState.PidX.Kp);
     getBytesFromFloat(positionPayload, 4, robotState.PidX.Ki);
     getBytesFromFloat(positionPayload, 8, robotState.PidX.Kd);
@@ -46,7 +46,7 @@ void SendPidValues() {
     getBytesFromFloat(positionPayload, 68, robotState.PidTheta.corrP);
     getBytesFromFloat(positionPayload, 72, robotState.PidTheta.corrI);
     getBytesFromFloat(positionPayload, 76, robotState.PidTheta.corrD);
-    UartEncodeAndSendMessage(0x0061, 76, positionPayload);
+    UartEncodeAndSendMessage(0x0061, 80, positionPayload);
 }
 
 double Correcteur(volatile PidCorrector* PidCorr, double erreur) {
