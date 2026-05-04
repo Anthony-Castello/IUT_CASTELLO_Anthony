@@ -396,14 +396,14 @@ namespace Robotinterface
         private void boutonTest_Click(object sender, RoutedEventArgs e)
         {
           
-            if (robot.autoControlActivated == 0)
-                robot.autoControlActivated = 1;
-            else
-            {
-                robot.autoControlActivated = 0;
-                UartEncodeAndSendMessage(0x0051, 1, new byte[] { (byte)12 });
-            }
-            UartEncodeAndSendMessage(0x0052, 2, new byte[] { (byte)robot.autoControlActivated });
+            //if (robot.autoControlActivated == 0)
+            //    robot.autoControlActivated = 1;
+            //else
+            //{
+            //    robot.autoControlActivated = 0;
+            //    UartEncodeAndSendMessage(0x0051, 1, new byte[] { (byte)12 });
+            //}
+            //UartEncodeAndSendMessage(0x0052, 2, new byte[] { (byte)robot.autoControlActivated });
         }
 
         private void oscilloSpeed_Loaded(object sender, RoutedEventArgs e)

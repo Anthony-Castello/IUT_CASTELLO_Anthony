@@ -46,6 +46,7 @@ int main(void) {
     InitQEI1();
     InitQEI2();
     SetupPidAsservissement(&robotState.PidTheta, 0,0,0,100,100,100);
+    robotState.ConsigneAngulaire = 0;
     LED_BLANCHE_1 = 0;
     LED_BLEUE_1 = 0;
     LED_ORANGE_1 = 0;
