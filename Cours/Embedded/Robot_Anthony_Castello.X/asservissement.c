@@ -54,7 +54,7 @@ double Correcteur(volatile PidCorrector* PidCorr, double erreur) {
     double erreurProportionnelle = LimitToInterval(erreur, -PidCorr->erreurProportionelleMax/PidCorr->Kp, PidCorr->erreurProportionelleMax/PidCorr->Kp );
     PidCorr->corrP = PidCorr->Kp * erreurProportionnelle;
     PidCorr->erreurIntegrale += erreur/FREQ_ECH_QEI;
-    PidCorr->erreurIntegrale = LimitToInterval(PidCorr->erreurIntegrale, -PidCorr->erreurIntegraleMax/PidCorr->Ki, PidCorr->erreurIntegraleMax/PidCorr->Ki);
+    PidCorr->erreurIntegrale = LimitToInterval(PidCorr->erreurIntegrale, -PidCorr->erreurIntegraleMax/PidCorr->Ki, PidCorr->erreurIntegraleMax/PidCorr->Ki); // antiwinding (stop l'intégrale quand le robot est bloqué)
     PidCorr->corrI = PidCorr ->Ki * PidCorr -> erreurIntegrale;
     double erreurDerivee = (erreur - PidCorr->epsilon_1) * FREQ_ECH_QEI;
     double deriveeBornee = LimitToInterval(erreurDerivee, -PidCorr->erreurDeriveeMax / PidCorr->Kd, PidCorr->erreurDeriveeMax / PidCorr->Kd);

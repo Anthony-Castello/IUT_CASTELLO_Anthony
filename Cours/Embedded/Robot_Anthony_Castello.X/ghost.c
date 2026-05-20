@@ -1,0 +1,52 @@
+#include "ghost.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <xc.h>
+#include "ChipConfig.h"
+#include "IO.h"
+#include "timer.h"
+#include "PWM.h"
+#include "ADC.h"
+#include "robot.h"
+#include "main.h"
+#include "UART.h"
+#include <libpic30.h>
+#include "CB_TX1.h"
+#include "CB_RX1.h" 
+#include "UART_Protocol.h"
+#include "QEI.h"
+#include "asservissement.h"
+#include "Utilitises.h"
+
+typedef struct {
+    float theta_ghost; // Position angulaire actuelle
+    float v_theta; // Vitesse actuelle
+    float acc_theta; // Accéleration/décéleration
+    float v_theta_max; //Vitesse max permise
+} Ghost_state;
+
+void UpdateGhostOrientation(Ghost_state* ghost, float theta_waypoint){
+    float theta_restant = ModuloByAngle(theta_waypoint, ghost -> theta_ghost);
+    float theta_arret =((ghost -> v_theta)*(ghost -> v_theta))/(2.0*ghost -> acc_theta);
+    float increment_theta = (ghost -> v_theta)*(1/FREQ_ECH_QEI);
+    if((ghost -> v_theta)=0){
+        theta_arret = -theta_arret;
+    }
+    if(((theta_arret >=0) && (theta_restant >= 0)) || ((theta_arret <=0) && (theta_restant <=0)) && ((Abs(theta_restant) >= Abs(theta_arret)))){
+        ghost -> v_theta += (ghost -> acc_theta * (1/FREQ_ECH_QEI));
+        if(theta_restant > 0){
+            ghost -> v_theta = Min((((ghost -> v_theta) + (ghost -> acc_theta))/FREQ_ECH_QEI), ghost -> v_theta_max);
+        }
+        if(theta_restant < 0){
+            ghost -> v_theta = Max((((ghost -> v_theta) + (ghost -> acc_theta))/FREQ_ECH_QEI), ghost -> v_theta_max * -1);
+        }
+    }
+    else {
+        if((ghost -> v_theta)>0){
+            ghost -> v_theta -= ghost -> acc_theta * (1/FREQ_ECH_QEI);
+        }
+        else if((ghost -> v_theta) < 0){
+            ghost -> v_theta += ghost -> acc_theta * (1/FREQ_ECH_QEI);
+        }
+    }
+}

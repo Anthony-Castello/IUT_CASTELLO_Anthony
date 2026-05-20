@@ -27,10 +27,10 @@ unsigned char IR[5];
 unsigned char etat[5];
 unsigned char stateRobot;
 unsigned int autoControlActivated = 0;
-float KpTheta_limit = 7.5;
-float KiTheta_limit = 35;
-float KpX_limit = 8;
-float KiX_limit = 45;
+float KpTheta_limit = 4;
+float KiTheta_limit = 175;
+float KpX_limit = 4;
+float KiX_limit = 175;
 
 int main(void) {
     /***********************************************************************************************/
@@ -49,8 +49,8 @@ int main(void) {
     InitUART();
     InitQEI1();
     InitQEI2();
-    SetupPidAsservissement(&robotState.PidTheta, KpTheta_limit,KiTheta_limit,0,100,100,100);
-    SetupPidAsservissement(&robotState.PidX, KpX_limit,KiX_limit,0,100,100,100);
+    SetupPidAsservissement(&robotState.PidTheta, KpTheta_limit,KiTheta_limit,0,5,5,5);
+    SetupPidAsservissement(&robotState.PidX, KpX_limit,KiX_limit,0,5,5,5);
     robotState.ConsigneAngulaire = 0;
     LED_BLANCHE_1 = 0;
     LED_BLEUE_1 = 0;
