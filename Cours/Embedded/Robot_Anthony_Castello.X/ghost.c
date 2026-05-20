@@ -17,22 +17,19 @@
 #include "QEI.h"
 #include "asservissement.h"
 #include "Utilitises.h"
+#include "Toolbox.h"
 
-typedef struct {
-    float theta_ghost; // Position angulaire actuelle
-    float v_theta; // Vitesse actuelle
-    float acc_theta; // Accéleration/décéleration
-    float v_theta_max; //Vitesse max permise
-} Ghost_state;
 
-void UpdateGhostOrientation(Ghost_state* ghost, float theta_waypoint){
+
+
+void UpdateGhostOrientation(volatile GhostState* ghost, float theta_waypoint){
     float theta_restant = ModuloByAngle(theta_waypoint, ghost -> theta_ghost);
     float theta_arret =((ghost -> v_theta)*(ghost -> v_theta))/(2.0*ghost -> acc_theta);
     float increment_theta = (ghost -> v_theta)*(1/FREQ_ECH_QEI);
-    if((ghost -> v_theta)=0){
+    if((ghost -> v_theta) = 0){
         theta_arret = -theta_arret;
     }
-    if(((theta_arret >=0) && (theta_restant >= 0)) || ((theta_arret <=0) && (theta_restant <=0)) && ((Abs(theta_restant) >= Abs(theta_arret)))){
+    if(((theta_arret >=0) && (theta_restant >= 0)) || ((theta_arret <=0) && (theta_restant <=0)) && (((Abs(theta_restant) >= Abs(theta_arret))))){
         ghost -> v_theta += (ghost -> acc_theta * (1/FREQ_ECH_QEI));
         if(theta_restant > 0){
             ghost -> v_theta = Min((((ghost -> v_theta) + (ghost -> acc_theta))/FREQ_ECH_QEI), ghost -> v_theta_max);
@@ -48,5 +45,24 @@ void UpdateGhostOrientation(Ghost_state* ghost, float theta_waypoint){
         else if((ghost -> v_theta) < 0){
             ghost -> v_theta += ghost -> acc_theta * (1/FREQ_ECH_QEI);
         }
+        if(Abs(theta_restant) < Abs(increment_theta)){
+            increment_theta = theta_restant;
+        }
     }
+    ghost -> theta_ghost += increment_theta; 
+    if((ghost -> v_theta) == 0 && (Abs(theta_restant) < 0.01)){
+        ghost -> theta_ghost = theta_waypoint ;
+    }
+    SendghostValues();
 }
+
+void SendghostValues() {
+    unsigned char positionPayload[16];
+    getBytesFromFloat(positionPayload, 0, robotState.ghost.v_theta);
+    getBytesFromFloat(positionPayload, 4, robotState.ghost.v_theta_max);
+    getBytesFromFloat(positionPayload, 8, robotState.ghost.acc_theta);
+    getBytesFromFloat(positionPayload, 12, robotState.ghost.theta_ghost);
+    UartEncodeAndSendMessage(0x0070, 16, positionPayload);
+}
+
+//faire un c# des text box pour demander les valeurs du ghost 

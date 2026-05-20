@@ -15,6 +15,7 @@
 #include "UART_Protocol.h"
 #include "QEI.h"
 #include "asservissement.h"
+#include "ghost.h"
 
 unsigned int * result;      
 uint8_t flag_Final;
@@ -51,6 +52,11 @@ int main(void) {
     InitQEI2();
     SetupPidAsservissement(&robotState.PidTheta, KpTheta_limit,KiTheta_limit,0,5,5,5);
     SetupPidAsservissement(&robotState.PidX, KpX_limit,KiX_limit,0,5,5,5);
+    robotState.ghost.acc_theta = 1;
+    robotState.ghost.theta_ghost = 0;
+    robotState.ghost.v_theta = 1;
+    robotState.ghost.v_theta_max = 2;
+    UpdateGhostOrientation(&robotState.ghost,90);
     robotState.ConsigneAngulaire = 0;
     LED_BLANCHE_1 = 0;
     LED_BLEUE_1 = 0;

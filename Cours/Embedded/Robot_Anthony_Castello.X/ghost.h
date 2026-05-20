@@ -1,12 +1,17 @@
-/* 
- * File:   ghost.h
- * Author: E306_PC1
- *
- * Created on 20 mai 2026, 08:44
- */
+
 
 #ifndef GHOST_H
+#define GHOST_H
+
+typedef struct _GhostState{
+    float theta_ghost; // Position angulaire actuelle
+    float v_theta; // Vitesse actuelle
+    float acc_theta; // Accéleration/décéleration
+    float v_theta_max; //Vitesse max permise
+} GhostState;
+
+void UpdateGhostOrientation(volatile GhostState* ghost, float theta_waypoint);
+void SendghostValues();
 
 #endif	/* GHOST_H */
 
-#define PI 3.141592653589793

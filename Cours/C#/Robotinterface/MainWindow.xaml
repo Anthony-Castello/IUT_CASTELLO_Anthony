@@ -78,6 +78,14 @@
                     <TextBlock x:Name="v_ang" Text="Vit angulaire : " />
                 </StackPanel>
             </GroupBox>
+            <GroupBox Header="Valeurs Ghost" >
+                <StackPanel >
+                    <TextBlock x:Name="theta_ghost_t" Text="Theta Ghost : " />
+                    <TextBlock x:Name="Vit_ang_ghost_t" Text="Vit angulaire Ghost : " />
+                    <TextBlock x:Name="acc_theta_ghost_t" Text="Acc Ghost : " />
+                    <TextBlock x:Name="vit_theta_max_ghost_t" Text="Vit theta max Ghost: " />
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Right">
             <GroupBox Header="Temps courant" >

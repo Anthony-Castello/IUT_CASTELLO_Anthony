@@ -125,7 +125,7 @@ namespace Robotinterface
                     rcvState = StateReception.Payload;
                     break;
                 case StateReception.Payload:
-                    msgDecodedPayload[msgDecodedPayloadIndex] = c;
+                     msgDecodedPayload[msgDecodedPayloadIndex] = c;
                     msgDecodedPayloadIndex++;
                     if (msgDecodedPayloadIndex == msgDecodedPayloadLength)
                     {
@@ -255,6 +255,7 @@ namespace Robotinterface
             IsState = 0x0050,
             Odometrie= 0x0060,
             PID = 0x0061,
+            Ghost = 0x0070,
         }
 
         int TelemExGauche = 0;
@@ -389,6 +390,16 @@ namespace Robotinterface
                     asservSpeedDisplay.UpdatePolarSpeedCorrectionLimits(robot.erreurproportionelleMax_X, robot.erreurproportionelleMax_Theta, robot.erreurintegralMax_X, robot.erreurintegralMax_Theta, robot.erreurderiveeMax_X, robot.erreurderiveeMax_Theta);
                     asservSpeedDisplay.UpdatePolarSpeedErrorValues(robot.erreur_X, robot.erreur_Theta);
                     asservSpeedDisplay.UpdatePolarSpeedCorrectionValues(robot.corrP_X, robot.corrP_Theta, robot.corrI_X, robot.corrI_Theta, robot.corrD_X, robot.corrD_Theta);
+                    break;
+                case (int)functionID.Ghost:
+                    robot.v_theta_ghost = BitConverter.ToSingle(msgPayload, 0);
+                    robot.v_theta_max_ghost = BitConverter.ToSingle(msgPayload, 4);
+                    robot.acc_theta_ghost = BitConverter.ToSingle(msgPayload, 8);
+                    robot.theta_ghost = BitConverter.ToSingle(msgPayload, 12);
+                    theta_ghost_t.Text = ("Theta Ghost : " + robot.theta_ghost.ToString("N3"));
+                    vit_theta_max_ghost_t.Text = ("Vit theta max Ghost : " + robot.v_theta_max_ghost.ToString("N3"));
+                    Vit_ang_ghost_t.Text = ("Vit angulaire Ghost : " + robot.v_theta_ghost.ToString("N3"));
+                    acc_theta_ghost_t.Text = ("Acc Ghost : " + robot.acc_theta_ghost.ToString("N3"));
                     break;
             }
         }

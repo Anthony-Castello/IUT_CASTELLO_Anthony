@@ -5,6 +5,7 @@
 
 
 #include "asservissement.h"
+#include "ghost.h"
 
 typedef struct robotStateBITS {
 
@@ -40,6 +41,7 @@ typedef struct robotStateBITS {
  
             PidCorrector PidX;
             PidCorrector PidTheta;
+            GhostState ghost;
         };
     };
 } ROBOT_STATE_BITS;

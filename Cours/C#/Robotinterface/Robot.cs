@@ -43,6 +43,11 @@ namespace Robotinterface
 
         public byte PidX = 0;
         public byte PidTheta = 1;
+
+        public float v_theta_ghost;
+        public float v_theta_max_ghost;
+        public float acc_theta_ghost;
+        public float theta_ghost;
         public Robot()
         {
         }

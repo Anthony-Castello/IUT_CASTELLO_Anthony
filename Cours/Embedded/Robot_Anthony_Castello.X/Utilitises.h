@@ -4,6 +4,7 @@
 #define PI 3.141592653589793
 
 double Modulo2PIAngleRadian(double angleRadian) ;
+double ModuloByAngle(double angleToCenterAround, double angle);
 float getFloat(unsigned char *p, int index);
 double getDouble(unsigned char *p, int index);
 void getBytesFromFloat(unsigned char *p, int index, float f);
