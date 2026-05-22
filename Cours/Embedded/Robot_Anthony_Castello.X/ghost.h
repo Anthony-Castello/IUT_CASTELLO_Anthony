@@ -10,6 +10,7 @@ typedef struct _GhostState{
     float v_theta_max; //Vitesse max permise
 } GhostState;
 
+void SetupGhostValue(volatile GhostState* Ghost, float theta_ghost, float v_theta, float acc_theta, float v_theta_max);
 void UpdateGhostOrientation(volatile GhostState* ghost, float theta_waypoint);
 void SendghostValues();
 

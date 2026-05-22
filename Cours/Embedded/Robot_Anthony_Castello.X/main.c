@@ -28,9 +28,9 @@ unsigned char IR[5];
 unsigned char etat[5];
 unsigned char stateRobot;
 unsigned int autoControlActivated = 0;
-float KpTheta_limit = 4;
+float KpTheta_limit = 5;
 float KiTheta_limit = 175;
-float KpX_limit = 4;
+float KpX_limit = 5;
 float KiX_limit = 175;
 
 int main(void) {
@@ -52,10 +52,7 @@ int main(void) {
     InitQEI2();
     SetupPidAsservissement(&robotState.PidTheta, KpTheta_limit,KiTheta_limit,0,5,5,5);
     SetupPidAsservissement(&robotState.PidX, KpX_limit,KiX_limit,0,5,5,5);
-    robotState.ghost.acc_theta = 1;
-    robotState.ghost.theta_ghost = 0;
-    robotState.ghost.v_theta = 1;
-    robotState.ghost.v_theta_max = 2;
+    SetupGhostValue(&robotState.ghost, 1,1,1,2); //theta, vitesse, accélération, vitesse max
     UpdateGhostOrientation(&robotState.ghost,90);
     robotState.ConsigneAngulaire = 0;
     LED_BLANCHE_1 = 0;

@@ -19,14 +19,20 @@
 #include "Utilitises.h"
 #include "Toolbox.h"
 
+void SetupGhostValue(volatile GhostState* Ghost, float theta_ghost, float v_theta, float acc_theta, float v_theta_max) {
+    Ghost->theta_ghost = theta_ghost;
+    Ghost->v_theta = v_theta; 
+    Ghost->acc_theta = acc_theta;
+    Ghost->v_theta_max = v_theta_max; 
 
+}
 
 
 void UpdateGhostOrientation(volatile GhostState* ghost, float theta_waypoint){
-    float theta_restant = ModuloByAngle(theta_waypoint, ghost -> theta_ghost);
+    float theta_restant = ModuloByAngle(theta_waypoint, ghost -> theta_ghost) - (ghost -> theta_ghost);
     float theta_arret =((ghost -> v_theta)*(ghost -> v_theta))/(2.0*ghost -> acc_theta);
     float increment_theta = (ghost -> v_theta)*(1/FREQ_ECH_QEI);
-    if((ghost -> v_theta) = 0){
+    if(ghost -> v_theta = 0){
         theta_arret = -theta_arret;
     }
     if(((theta_arret >=0) && (theta_restant >= 0)) || ((theta_arret <=0) && (theta_restant <=0)) && (((Abs(theta_restant) >= Abs(theta_arret))))){

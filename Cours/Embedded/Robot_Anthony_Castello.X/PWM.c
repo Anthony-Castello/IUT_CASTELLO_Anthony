@@ -14,7 +14,7 @@
 unsigned char* VD;
 unsigned char* VG;
 
-#define M_TO_PERCENT 35
+ #define M_TO_PERCENT 35
 
 
 void InitPWM(void) {

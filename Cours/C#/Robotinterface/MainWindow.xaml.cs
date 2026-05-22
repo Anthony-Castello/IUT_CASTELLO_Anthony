@@ -122,7 +122,10 @@ namespace Robotinterface
                     msgDecodedPayloadLength += (int)c;
                     msgDecodedPayload = new byte[msgDecodedPayloadLength];
                     msgDecodedPayloadIndex = 0;
-                    rcvState = StateReception.Payload;
+                    if (msgDecodedPayloadLength == 0)
+                        rcvState = StateReception.CheckSum;
+                    else
+                        rcvState = StateReception.Payload;
                     break;
                 case StateReception.Payload:
                      msgDecodedPayload[msgDecodedPayloadIndex] = c;
@@ -369,7 +372,7 @@ namespace Robotinterface
                     robot.Kp_X = BitConverter.ToSingle(msgPayload, 0); ;
                     robot.Ki_X = BitConverter.ToSingle(msgPayload, 4);
                     robot.Kd_X = BitConverter.ToSingle(msgPayload, 8);
-                    robot.erreurproportionelleMax_X = BitConverter.ToSingle(msgPayload, 12);
+                    robot.erreurproportionelleMax_X = BitConverter.ToSingle(msgPayload, 12); 
                     robot.erreurintegralMax_X = BitConverter.ToSingle(msgPayload, 16);
                     robot.erreurderiveeMax_X = BitConverter.ToSingle(msgPayload, 20);
                     robot.Kp_Theta = BitConverter.ToSingle(msgPayload, 24);
