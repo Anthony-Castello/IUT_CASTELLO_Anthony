@@ -453,7 +453,7 @@ namespace Robotinterface
                 payload.AddRange(BitConverter.GetBytes(float.Parse(D_Max.Text)));
             else
                 payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
-            UartEncodeAndSendMessage(0x0060, payload.Count(), payload.ToArray()); //type de pid (0 = X, 1 = theta), 4 octets de Kp
+            UartEncodeAndSendMessage(0x0061, payload.Count(), payload.ToArray()); //type de pid (0 = X, 1 = theta), 4 octets de Kp
         }
 
         private void SET_PIDTheta_Click(object sender, RoutedEventArgs e)

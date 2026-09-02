@@ -7,7 +7,7 @@
         xmlns:oscillo="clr-namespace:WpfOscilloscopeControl;assembly=WpfOscilloscopeControl"
         xmlns:AsservDisplay="clr-namespace:WpfAsservissementDisplay_NS;assembly=WpfAsservissementDisplay"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="auto">
+        Title="MainWindow" Height="600" Width="1500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -32,8 +32,36 @@
 
         <!--</StackPanel>-->
 
-        <GroupBox Header="Réception" Grid.Column="2" Grid.Row="0">
-            <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+        <GroupBox Grid.Column="2" Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0">
+                    <GroupBox Header="Récéption" Height="auto">
+                        <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Height="auto"/>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <GroupBox Header="Map" Height="auto" Width="486">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+                
+            </Grid>
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center">

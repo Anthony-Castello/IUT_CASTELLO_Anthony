@@ -60,8 +60,7 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     ADC1StartConversionSequence();
     QEIUpdateData();
     UpdateAsservissement();
-    UpdateGhostOrientation(&robotState.ghost,90);
-
+    SendghostValues();
     if (counter++ % 30 == 0) {
         unsigned char payload[8];
         getBytesFromFloat(payload, 0, -robotState.vitesseDroiteCommandeCourante);

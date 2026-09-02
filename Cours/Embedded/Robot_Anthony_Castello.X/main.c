@@ -52,7 +52,7 @@ int main(void) {
     InitQEI2();
     SetupPidAsservissement(&robotState.PidTheta, KpTheta_limit,KiTheta_limit,0,5,5,5);
     SetupPidAsservissement(&robotState.PidX, KpX_limit,KiX_limit,0,5,5,5);
-    SetupGhostValue(&robotState.ghost, 1,1,1,2); //theta, vitesse, accélération, vitesse max
+    SetupGhostValue(&robotState.ghost, 0,0.1,1,1); //theta, vitesse, accélération, vitesse max
     UpdateGhostOrientation(&robotState.ghost,90);
     robotState.ConsigneAngulaire = 0;
     LED_BLANCHE_1 = 0;

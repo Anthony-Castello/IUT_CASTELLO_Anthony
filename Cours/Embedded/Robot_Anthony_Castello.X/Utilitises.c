@@ -7,7 +7,7 @@ double Modulo2PIAngleRadian(double angleRadian) {
     return fmod(angleTemp + PI, 2 * PI) - PI;
 }
 
-double ModuloByAngle(double angleToCenterAround, double angle) //place l'angle cible dans la plage pi;-pi en enlevant les tour précédents empechant lr robot de tourner sur lui-même en voulant se positionner dans l'angle cible
+double ModuloByAngle(double angleToCenterAround, double angle) //place l'angle cible dans la plage pi;-pi en enlevant les tours précédents empechant le robot de tourner sur lui-même en voulant se positionner dans l'angle cible
 {
     double interAngle = Modulo2PIAngleRadian(angle - angleToCenterAround);
     if(interAngle > M_PI)

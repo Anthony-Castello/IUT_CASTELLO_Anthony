@@ -21,45 +21,44 @@
 
 void SetupGhostValue(volatile GhostState* Ghost, float theta_ghost, float v_theta, float acc_theta, float v_theta_max) {
     Ghost->theta_ghost = theta_ghost;
-    Ghost->v_theta = v_theta; 
+    Ghost->v_theta = v_theta;
     Ghost->acc_theta = acc_theta;
-    Ghost->v_theta_max = v_theta_max; 
+    Ghost->v_theta_max = v_theta_max;
 
 }
 
-
-void UpdateGhostOrientation(volatile GhostState* ghost, float theta_waypoint){
-    float theta_restant = ModuloByAngle(theta_waypoint, ghost -> theta_ghost) - (ghost -> theta_ghost);
-    float theta_arret =((ghost -> v_theta)*(ghost -> v_theta))/(2.0*ghost -> acc_theta);
-    float increment_theta = (ghost -> v_theta)*(1/FREQ_ECH_QEI);
-    if(ghost -> v_theta = 0){
-        theta_arret = -theta_arret;
+void UpdateGhostOrientation(volatile GhostState* ghost, float theta_waypoint) {
+    while (ghost -> theta_ghost < theta_waypoint * (PI / 180)) {
+        float theta_restant = ModuloByAngle(ghost -> theta_ghost, theta_waypoint) - (ghost -> theta_ghost);
+        float theta_arret = ((ghost -> v_theta)*(ghost -> v_theta)) / (2.0 * (ghost -> acc_theta));
+        float increment_theta = (ghost -> v_theta)*(1 / FREQ_ECH_QEI);
+        if (ghost -> v_theta < 0) {
+            theta_arret = -theta_arret;
+        }
+        if (((theta_arret >= 0) && (theta_restant >= 0)) || ((theta_arret <= 0) && (theta_restant <= 0)) && (((Abs(theta_restant) >= Abs(theta_arret))))) {
+            ghost -> v_theta += (ghost -> acc_theta * (1 / FREQ_ECH_QEI));
+            if (theta_restant > 0) {
+                ghost -> v_theta = Min((ghost -> v_theta) + ((ghost -> acc_theta) / FREQ_ECH_QEI), ghost -> v_theta_max);
+            }
+            if (theta_restant < 0) {
+                ghost -> v_theta = Max((ghost -> v_theta) - ((ghost -> acc_theta) / FREQ_ECH_QEI), ghost -> v_theta_max * -1);
+            }
+        } else {
+            if ((ghost -> v_theta) > 0) {
+                ghost -> v_theta = Min(ghost -> v_theta - ghost -> acc_theta * (1 / FREQ_ECH_QEI), 0);
+            } else if ((ghost -> v_theta) < 0) {
+                ghost -> v_theta = Max(ghost -> v_theta + ghost -> acc_theta * (1 / FREQ_ECH_QEI), 0);
+            }
+            if (Abs(theta_restant) < Abs(increment_theta)) {
+                increment_theta = theta_restant;
+            }
+        }
+        ghost -> theta_ghost += increment_theta;
+        if ((ghost -> v_theta) == 0 && (Abs(theta_restant) < 0.01)) {
+            ghost -> theta_ghost = theta_waypoint;
+        }
+        SendghostValues();
     }
-    if(((theta_arret >=0) && (theta_restant >= 0)) || ((theta_arret <=0) && (theta_restant <=0)) && (((Abs(theta_restant) >= Abs(theta_arret))))){
-        ghost -> v_theta += (ghost -> acc_theta * (1/FREQ_ECH_QEI));
-        if(theta_restant > 0){
-            ghost -> v_theta = Min((((ghost -> v_theta) + (ghost -> acc_theta))/FREQ_ECH_QEI), ghost -> v_theta_max);
-        }
-        if(theta_restant < 0){
-            ghost -> v_theta = Max((((ghost -> v_theta) + (ghost -> acc_theta))/FREQ_ECH_QEI), ghost -> v_theta_max * -1);
-        }
-    }
-    else {
-        if((ghost -> v_theta)>0){
-            ghost -> v_theta -= ghost -> acc_theta * (1/FREQ_ECH_QEI);
-        }
-        else if((ghost -> v_theta) < 0){
-            ghost -> v_theta += ghost -> acc_theta * (1/FREQ_ECH_QEI);
-        }
-        if(Abs(theta_restant) < Abs(increment_theta)){
-            increment_theta = theta_restant;
-        }
-    }
-    ghost -> theta_ghost += increment_theta; 
-    if((ghost -> v_theta) == 0 && (Abs(theta_restant) < 0.01)){
-        ghost -> theta_ghost = theta_waypoint ;
-    }
-    SendghostValues();
 }
 
 void SendghostValues() {
