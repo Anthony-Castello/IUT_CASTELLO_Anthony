@@ -192,6 +192,8 @@ namespace Robotinterface
 
         bool toggle = true;
         bool toggle2 = true;
+        bool toggleX = true;
+        bool toggleY = true;
         public void SerialPort1_DataReceived(object sender, DataReceivedArgs e){
             foreach (byte item in e.Data)
             {
@@ -248,6 +250,11 @@ namespace Robotinterface
                 boutonClear.Background = Brushes.RoyalBlue;
                 toggle2 = !toggle2;
             }
+        }
+
+        private void boutonDirection_X(object sender, RoutedEventArgs e)
+        {
+            
         }
         public enum functionID
         {
@@ -351,7 +358,7 @@ namespace Robotinterface
                     Array.Copy(msgPayload, 0, array, 0, 4);
                     array = array.Reverse().ToArray();
                     var instant = BitConverter.ToInt32(array, 0);
-                    instant = instant / 100;
+                    float temps_milli = (float)instant / 1000;
 
                     float positionX = BitConverter.ToSingle(msgPayload, 4);
                     float positionY = BitConverter.ToSingle(msgPayload, 8);
@@ -361,7 +368,7 @@ namespace Robotinterface
                     float vit_ang = BitConverter.ToSingle(msgPayload, 20);
                     posX.Text = ("Position X : " + positionX.ToString("N3"));
                     posY.Text = ("Position Y : " + positionY.ToString("N3"));
-                    temps.Text = (instant.ToString() + " s");
+                    temps.Text = (temps_milli.ToString("N1") + " s");
                     angle.Text = ("Angle : " + ang.ToString("N3") + " rad");
                     v_lin.Text = ("Vitesse linéaire : " + vit_lin.ToString("N3") + " m/s");
                     v_ang.Text = ("Vitesse angulaire : " + vit_ang.ToString("N3") + " rad/s");
@@ -399,10 +406,13 @@ namespace Robotinterface
                     robot.v_theta_max_ghost = BitConverter.ToSingle(msgPayload, 4);
                     robot.acc_theta_ghost = BitConverter.ToSingle(msgPayload, 8);
                     robot.theta_ghost = BitConverter.ToSingle(msgPayload, 12);
+                    robot.theta_waypoint = BitConverter.ToSingle(msgPayload, 16);
                     theta_ghost_t.Text = ("Theta Ghost : " + robot.theta_ghost.ToString("N3"));
                     vit_theta_max_ghost_t.Text = ("Vit theta max Ghost : " + robot.v_theta_max_ghost.ToString("N3"));
                     Vit_ang_ghost_t.Text = ("Vit angulaire Ghost : " + robot.v_theta_ghost.ToString("N3"));
                     acc_theta_ghost_t.Text = ("Acc Ghost : " + robot.acc_theta_ghost.ToString("N3"));
+                    angle_waypoint.Text = ("Angle cible: " + robot.theta_waypoint.ToString("N3"));
+                    
                     break;
             }
         }
@@ -485,6 +495,55 @@ namespace Robotinterface
             else
                 payload.AddRange(BitConverter.GetBytes(float.Parse("0")));
             UartEncodeAndSendMessage(0x0060, payload.Count(), payload.ToArray()); //type de pid (0 = X, 1 = theta), 4 octets de Kp
+        }
+        private void SendWaypoint(float X, float Y)
+        {
+            byte[] payload = new byte[0];
+            byte[] array = BitConverter.GetBytes(X);
+            Array.Copy(array, 0, payload, 0, 4);
+            array = BitConverter.GetBytes(Y);
+            Array.Copy(array, 0, payload, 4, 4);
+            UartEncodeAndSendMessage(0x0070, payload.Length, payload);
+        }
+          private void boutonposition01_Click(object sender, RoutedEventArgs e)
+        {
+            SendWaypoint(0, 1);
+            
+        }
+
+        private void position0_neg1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void position10_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void position1_neg1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void position21_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void position20_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void position2_neg1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void position11_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -35,4 +35,5 @@ extern unsigned char stateRobot;
 extern unsigned int autoControlActivated;
 void OperatingSystemLoop(void);
 void SetNextRobotStateInAutomaticMode();
+void SendVitesseMoteur();
 #endif	/* MAIN_H */

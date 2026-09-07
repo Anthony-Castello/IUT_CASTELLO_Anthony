@@ -60,15 +60,12 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     ADC1StartConversionSequence();
     QEIUpdateData();
     UpdateAsservissement();
-    SendghostValues();
-    if (counter++ % 30 == 0) {
-        unsigned char payload[8];
-        getBytesFromFloat(payload, 0, -robotState.vitesseDroiteCommandeCourante);
-        getBytesFromFloat(payload, 4, robotState.vitesseGaucheCommandeCourante);
-        UartEncodeAndSendMessage(0x00040, 8, payload);
+    UpdateGhostOrientation();
+    if (counter++ % 25 == 0) {
+        SendVitesseMoteur();
         SendPositionData();
         SendPidValues();
-
+        SendghostValues();
     }
 }
 //Initialisation d?un timer 32 bits
@@ -126,13 +123,13 @@ void SetFreqTimer4(float freq) {
 
 void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     IFS1bits.T4IF = 0; // Clear Timer3 Interrupt Flag
-    
+
     timestamp++;
-    
+
     if (timestamp % 1000 == 0) {
         LED_ROUGE_2 = !LED_ROUGE_2;
     }
-    
+
     OperatingSystemLoop();
 
 
