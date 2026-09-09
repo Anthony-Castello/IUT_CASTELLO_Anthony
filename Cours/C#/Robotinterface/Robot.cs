@@ -49,6 +49,8 @@ namespace Robotinterface
         public float acc_theta_ghost;
         public float theta_ghost;
 
+        public float ancien_theta_ghost;
+
         public float theta_waypoint;
         public Robot()
         {

@@ -55,8 +55,6 @@ void SetFreqTimer1(float freq) {
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     IFS0bits.T1IF = 0;
     PWMUpdateSpeed();
-    //LED_BLANCHE_1 = !LED_BLANCHE_1;
-    //SendMessageDirect((unsigned char*) "Bonjour", 7);
     ADC1StartConversionSequence();
     QEIUpdateData();
     UpdateAsservissement();
@@ -129,8 +127,9 @@ void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     if (timestamp % 1000 == 0) {
         LED_ROUGE_2 = !LED_ROUGE_2;
     }
-
-    OperatingSystemLoop();
+    if (autoControlActivated) {
+        OperatingSystemLoop();
+    }
 
 
 }

@@ -6,6 +6,8 @@
 #include "asservissement.h"
 #include "Utilitises.h"
 #include "robot.h"
+#include "ghost.h"
+#include "Toolbox.h"
 
 #define Waiting 0
 #define FunctionMSB 1
@@ -14,6 +16,7 @@
 #define PayloadLengthLSB 4
 #define Payload 5
 #define CheckSum 6
+
 
 
 
@@ -112,6 +115,9 @@ void UartProcessDecodedMessage(int msgFunction, int msgPayloadLength, unsigned c
             break;
         case SET_PID:
             SetupPidValues(msgPayload);
+            break;
+        case SET_GHOST:
+            SetupGhostValue(&robotState.ghost, getFloatFromBytes(msgPayload, 0), getFloatFromBytes(msgPayload, 4), getFloatFromBytes(msgPayload, 8), getFloatFromBytes(msgPayload, 12), getFloatFromBytes(msgPayload, 16));
             break;
         default:
             msgFunction = SET_ROBOT_STATE;

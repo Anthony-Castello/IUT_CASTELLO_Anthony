@@ -19,6 +19,7 @@
 #include "Utilitises.h"
 #include "Toolbox.h"
 
+
 void SetupGhostValue(volatile GhostState* Ghost, float theta_ghost, float v_theta, float acc_theta, float v_theta_max, float waypoint) {
     Ghost->theta_ghost = theta_ghost;
     Ghost->v_theta = v_theta;
@@ -30,19 +31,19 @@ void SetupGhostValue(volatile GhostState* Ghost, float theta_ghost, float v_thet
 }
 
 void UpdateGhostOrientation() {
-        robotState.ghost.theta_restant = ModuloByAngle(robotState.ghost.theta_ghost, robotState.ghost.theta_waypoint) - (robotState.ghost.theta_ghost);
-        robotState.ghost.theta_arret = ((robotState.ghost.v_theta)*(robotState.ghost.v_theta)) / (2.0 * (robotState.ghost.acc_theta));
-        robotState.ghost.increment_theta = (robotState.ghost.v_theta)*(1 / FREQ_ECH_QEI);
+        robotState.ghost.theta_restant = ModuloByAngle(robotState.ghost.theta_ghost, robotState.ghost.theta_waypoint) - robotState.ghost.theta_ghost;
+        robotState.ghost.theta_arret = (robotState.ghost.v_theta*robotState.ghost.v_theta) / (2.0 * robotState.ghost.acc_theta);
+        robotState.ghost.increment_theta = robotState.ghost.v_theta/ FREQ_ECH_QEI;
         if (robotState.ghost.v_theta < 0) {
             robotState.ghost.theta_arret = -robotState.ghost.theta_arret;
         }
-        if (((robotState.ghost.theta_arret >= 0) && (robotState.ghost.theta_restant >= 0)) || ((robotState.ghost.theta_arret <= 0) && (robotState.ghost.theta_restant <= 0)) && (((Abs(robotState.ghost.theta_restant) >= Abs(robotState.ghost.theta_arret))))) {
+        if ((((robotState.ghost.theta_arret >= 0) && (robotState.ghost.theta_restant >= 0)) || ((robotState.ghost.theta_arret <= 0) && (robotState.ghost.theta_restant <= 0))) && (((Abs(robotState.ghost.theta_restant) >= Abs(robotState.ghost.theta_arret))))) {
             robotState.ghost.v_theta += (robotState.ghost.acc_theta * (1 / FREQ_ECH_QEI));
             if (robotState.ghost.theta_restant > 0) {
                 robotState.ghost.v_theta = Min((robotState.ghost.v_theta) + ((robotState.ghost.acc_theta) / FREQ_ECH_QEI), robotState.ghost.v_theta_max);
             }
-            if (robotState.ghost.theta_restant < 0) {
-                robotState.ghost.v_theta = Max((robotState.ghost.v_theta) - ((robotState.ghost.acc_theta) / FREQ_ECH_QEI), robotState.ghost.v_theta_max * -1);
+            else if (robotState.ghost.theta_restant < 0) {
+                robotState.ghost.v_theta = Min(robotState.ghost.v_theta - (robotState.ghost.acc_theta/ FREQ_ECH_QEI), -robotState.ghost.v_theta_max);
             }
         } else {
             if ((robotState.ghost.v_theta) > 0) {

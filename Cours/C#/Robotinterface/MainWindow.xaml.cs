@@ -545,5 +545,28 @@ namespace Robotinterface
         {
 
         }
+
+        private void SET_GHOST_VALUE_Click(object sender, RoutedEventArgs e)
+        {
+            List<byte> payload = new List<byte>();
+            payload.AddRange(BitConverter.GetBytes(robot.theta_ghost));
+            if (vit_ang_ghost_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(robot.v_theta_ghost));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            if (acc_ghost_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(acc_ghost_text.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            if (vit_max_ghost_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(vit_max_ghost_text.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            if (Waypoint_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(Waypoint_text.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            UartEncodeAndSendMessage(0x0070, payload.Count(), payload.ToArray());
+        }
     }
 }

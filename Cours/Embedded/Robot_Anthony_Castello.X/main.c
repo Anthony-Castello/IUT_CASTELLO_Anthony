@@ -52,7 +52,6 @@ int main(void) {
     InitQEI2();
     SetupPidAsservissement(&robotState.PidTheta, KpTheta_limit, KiTheta_limit, 0, 5, 5, 5);
     SetupPidAsservissement(&robotState.PidX, KpX_limit, KiX_limit, 0, 5, 5, 5);
-    SetupGhostValue(&robotState.ghost, 0, 0.1, 1, 1, 90); //theta, vitesse, accélération, vitesse max, waypoint
     robotState.ConsigneAngulaire = 0;
     LED_BLANCHE_1 = 0;
     LED_BLEUE_1 = 0;
@@ -152,10 +151,8 @@ void OperatingSystemLoop(void) {
             etat[4] = timestamp;
             UartEncodeAndSendMessage(0x0050, 5, etat);
         case STATE_ATTENTE_EN_COURS:
-            if (autoControlActivated) {
                 if (timestamp > 100)
                     stateRobot = STATE_AVANCE;
-            }
             break;
         case STATE_AVANCE:
             robotState.ConsigneLineaire = 0.5;

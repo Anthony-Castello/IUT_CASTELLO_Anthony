@@ -39,13 +39,10 @@
                     <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Vertical" Grid.Row="0">
-                    <GroupBox Header="Récéption" Height="auto">
-                        <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Height="auto"/>
-                    </GroupBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <GroupBox Header="Map" Height="auto" Width="486">
+                <GroupBox Header="Récéption" Height="auto" Grid.Row="0">
+                    <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto" Height="auto"/>
+                </GroupBox>
+                <GroupBox Header="Map" Grid.Row="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -91,7 +88,7 @@
                             </StackPanel>
                         </Grid>
                     </GroupBox>
-                </StackPanel>
+ 
                 
             </Grid>
         </GroupBox>
@@ -102,6 +99,7 @@
             <Button x:Name="boutonTest" Content="Switch auto-pause" Width="110" Margin="2" HorizontalAlignment="Left" Click="boutonTest_Click"/>
             <Button x:Name="SET_PIDX" Content="Envoie valeurs PIDX" Width="110" Margin="2" Click="SET_PIDX_Click"/>
             <Button x:Name="SET_PIDTheta" Content="Envoie valeurs PIDTheta" Width="130" Margin="2" Click="SET_PIDTheta_Click"/>
+            <Button x:Name="SET_GHOST_VALUE" Content="Envoie valeurs GHOST" Width="130" Margin="2" Click="SET_GHOST_VALUE_Click"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="1">
@@ -140,13 +138,29 @@
             </GroupBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left">
+            <GroupBox Header="Paramètrage Ghost" >
+                <StackPanel>
+                    <GroupBox Header="Waypoint">
+                        <TextBox x:Name="Waypoint_text"/>
+                    </GroupBox>
+                    <GroupBox Header="Vit ang">
+                        <TextBox x:Name="vit_ang_ghost_text"/>
+                    </GroupBox>
+                    <GroupBox Header="Acc">
+                        <TextBox x:Name="acc_ghost_text"/>
+                    </GroupBox>
+                    <GroupBox Header="Vit_max_ghost">
+                        <TextBox x:Name="vit_max_ghost_text"/>
+                    </GroupBox>
+                </StackPanel>
+            </GroupBox>
             <GroupBox Header="Valeurs Ghost" >
                 <StackPanel >
                     <TextBlock x:Name="theta_ghost_t" Text="Theta Ghost : " />
+                    <TextBlock x:Name="angle_waypoint" Text="Angle cible: " />
                     <TextBlock x:Name="Vit_ang_ghost_t" Text="Vit angulaire Ghost : " />
                     <TextBlock x:Name="acc_theta_ghost_t" Text="Acc Ghost : " />
                     <TextBlock x:Name="vit_theta_max_ghost_t" Text="Vit theta max Ghost: " />
-                    <TextBlock x:Name="angle_waypoint" Text="Angle cible: " />
                 </StackPanel>
             </GroupBox>
         </StackPanel>
