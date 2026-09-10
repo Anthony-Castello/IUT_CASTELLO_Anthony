@@ -19,6 +19,7 @@ using static SciChart.Drawing.Utility.PointUtil;
 using SciChart.Data.Model;
 using WpfAsservissementDisplay_NS;
 using System.Linq.Expressions;
+using System.Windows.Media.Animation;
 
 
 
@@ -498,32 +499,49 @@ namespace Robotinterface
         }
         private void SendWaypoint(float X, float Y)
         {
-            byte[] payload = new byte[0];
-            byte[] array = BitConverter.GetBytes(X);
-            Array.Copy(array, 0, payload, 0, 4);
-            array = BitConverter.GetBytes(Y);
-            Array.Copy(array, 0, payload, 4, 4);
+            byte[] payload = new byte[8];
+            byte[] arrayX = BitConverter.GetBytes(X);
+            byte[] arrayY = BitConverter.GetBytes(Y);
+            Array.Copy(arrayX, 0, payload, 0, 4);
+            Array.Copy(arrayY, 0, payload, 4, 4);
             UartEncodeAndSendMessage(0x0070, payload.Length, payload);
+
+            /*            double angleRadian = Math.Atan2(X, Y);
+                        double angleDegre = angleRadian * (180.0 / Math.PI);
+            */
+            double angleDegre = 0;
+            if (X == 0 && Y == 1) angleDegre = 0; // Haut [0, 1]
+            else if (X == 1 && Y == 1) angleDegre = 45; // Haut Droite [1, 1]
+            else if (X == 1 && Y == 0) angleDegre = 90; // Droite [1, 0]
+            else if (X == 1 && Y == -1) angleDegre = 135; //Bas Droite [1, -1]
+            else if (X == 0 && Y == -1) angleDegre = 180; //Bas [0, -1]
+
+            AnimateGhostRotation(angleDegre);
         }
-          private void boutonposition01_Click(object sender, RoutedEventArgs e)
+          private void position01_Click(object sender, RoutedEventArgs e)
         {
-            SendWaypoint(0, 1);
+            SendWaypoint(0, 1); //Flèche vers haut
             
         }
 
-        private void position0_neg1_Click(object sender, RoutedEventArgs e)
+        private void position11_Click(object sender, RoutedEventArgs e)
         {
-
+            SendWaypoint(1, 1); //haut droite (45°)
         }
 
         private void position10_Click(object sender, RoutedEventArgs e)
         {
-
+            SendWaypoint(1, 0); //(90°) milieu
         }
 
         private void position1_neg1_Click(object sender, RoutedEventArgs e)
         {
+            SendWaypoint(1, -1); //(135°)
+        }
 
+        private void position0_neg1_Click(object sender, RoutedEventArgs e)
+        {
+            SendWaypoint(0, -1); //(180°)
         }
 
         private void position21_Click(object sender, RoutedEventArgs e)
@@ -540,12 +558,6 @@ namespace Robotinterface
         {
 
         }
-
-        private void position11_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void SET_GHOST_VALUE_Click(object sender, RoutedEventArgs e)
         {
             List<byte> payload = new List<byte>();
@@ -568,5 +580,16 @@ namespace Robotinterface
                 payload.AddRange(BitConverter.GetBytes(0));
             UartEncodeAndSendMessage(0x0070, payload.Count(), payload.ToArray());
         }
+        private void AnimateGhostRotation(double targetAngle)
+        {
+            DoubleAnimation rotationAnimation = new DoubleAnimation();
+
+            rotationAnimation.To = targetAngle;
+            rotationAnimation.Duration = TimeSpan.FromMilliseconds(1000);
+            rotationAnimation.EasingFunction = new QuadraticEase { EasingMode=EasingMode.EaseInOut };
+
+            GhostRotation.BeginAnimation(RotateTransform.AngleProperty, rotationAnimation);
+        }
     }
 }
+
