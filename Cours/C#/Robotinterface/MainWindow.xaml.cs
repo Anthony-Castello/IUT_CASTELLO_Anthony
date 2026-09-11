@@ -408,6 +408,8 @@ namespace Robotinterface
                     robot.acc_theta_ghost = BitConverter.ToSingle(msgPayload, 8);
                     robot.theta_ghost = BitConverter.ToSingle(msgPayload, 12);
                     robot.theta_waypoint = BitConverter.ToSingle(msgPayload, 16);
+                    robot.waypoint_x = BitConverter.ToSingle(msgPayload, 20);
+                    robot.waypoint_y = BitConverter.ToSingle(msgPayload, 24);
                     theta_ghost_t.Text = ("Theta Ghost : " + robot.theta_ghost.ToString("N3"));
                     vit_theta_max_ghost_t.Text = ("Vit theta max Ghost : " + robot.v_theta_max_ghost.ToString("N3"));
                     Vit_ang_ghost_t.Text = ("Vit angulaire Ghost : " + robot.v_theta_ghost.ToString("N3"));
@@ -520,6 +522,8 @@ namespace Robotinterface
         }
           private void position01_Click(object sender, RoutedEventArgs e)
         {
+            robot.ancien_waypoint_x = robot.waypoint_x;
+            robot.ancien_waypoint_y = robot.waypoint_y; //mettre dans une fonction où il y aura l'anim avec la trame à envoyer
             SendWaypoint(0, 1); //Flèche vers haut
             
         }

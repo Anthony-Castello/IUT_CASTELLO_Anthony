@@ -48,10 +48,12 @@ namespace Robotinterface
         public float v_theta_max_ghost;
         public float acc_theta_ghost;
         public float theta_ghost;
-
         public float ancien_theta_ghost;
-
         public float theta_waypoint;
+        public float waypoint_x;
+        public float waypoint_y;
+        public float ancien_waypoint_x;
+        public float ancien_waypoint_y;
         public Robot()
         {
         }

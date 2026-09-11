@@ -7,7 +7,7 @@
         xmlns:oscillo="clr-namespace:WpfOscilloscopeControl;assembly=WpfOscilloscopeControl"
         xmlns:AsservDisplay="clr-namespace:WpfAsservissementDisplay_NS;assembly=WpfAsservissementDisplay"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1500">
+        Title="MainWindow" Height="800" Width="1500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -152,9 +152,6 @@
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left">
             <GroupBox Header="Paramètrage Ghost" >
                 <StackPanel>
-                    <GroupBox Header="Waypoint">
-                        <TextBox x:Name="Waypoint_text"/>
-                    </GroupBox>
                     <GroupBox Header="Vit ang">
                         <TextBox x:Name="vit_ang_ghost_text"/>
                     </GroupBox>
@@ -164,12 +161,17 @@
                     <GroupBox Header="Vit_max_ghost">
                         <TextBox x:Name="vit_max_ghost_text"/>
                     </GroupBox>
+                    <GroupBox Header="Angle cible">
+                        <TextBox x:Name="Waypoint_text"/>
+                    </GroupBox>
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="Valeurs Ghost" >
                 <StackPanel >
                     <TextBlock x:Name="theta_ghost_t" Text="Theta Ghost : " />
                     <TextBlock x:Name="angle_waypoint" Text="Angle cible: " />
+                    <TextBlock x:Name="Ghost_x" Text="Ghost X : " />
+                    <TextBlock x:Name="Ghost_y" Text="Ghost Y : " />
                     <TextBlock x:Name="Vit_ang_ghost_t" Text="Vit angulaire Ghost : " />
                     <TextBlock x:Name="acc_theta_ghost_t" Text="Acc Ghost : " />
                     <TextBlock x:Name="vit_theta_max_ghost_t" Text="Vit theta max Ghost: " />
