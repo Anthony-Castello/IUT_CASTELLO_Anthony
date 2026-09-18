@@ -117,7 +117,7 @@ void UartProcessDecodedMessage(int msgFunction, int msgPayloadLength, unsigned c
             SetupPidValues(msgPayload);
             break;
         case SET_GHOST:
-            SetupGhostValue(&robotState.ghost, getFloatFromBytes(msgPayload, 0), getFloatFromBytes(msgPayload, 4), getFloatFromBytes(msgPayload, 8), getFloatFromBytes(msgPayload, 12), getFloatFromBytes(msgPayload, 16));
+            SetupGhostValue(&robotState.ghost, getFloatFromBytes(msgPayload, 0), getFloatFromBytes(msgPayload, 4), getFloatFromBytes(msgPayload, 8), getFloatFromBytes(msgPayload, 12), getFloatFromBytes(msgPayload, 16), getFloatFromBytes(msgPayload, 20));
             break;
         default:
             msgFunction = SET_ROBOT_STATE;

@@ -11,6 +11,7 @@
 #include "main.h"
 #include "UART.h"
 #include <libpic30.h>
+#include <math.h>
 #include "CB_TX1.h"
 #include "CB_RX1.h" 
 #include "UART_Protocol.h"
@@ -20,16 +21,14 @@
 #include "Toolbox.h"
 
 
-void SetupGhostValue(volatile GhostState* Ghost, float theta_ghost, float v_theta, float acc_theta, float v_theta_max, float angle_cible, float x, float y) {
+void SetupGhostValue(volatile GhostState* Ghost, float theta_ghost, float v_theta, float acc_theta, float v_theta_max, float x, float y) {
     Ghost->theta_ghost = theta_ghost;
     Ghost->v_theta = v_theta;
     Ghost->acc_theta = acc_theta;
     Ghost->v_theta_max = v_theta_max;
-    angle_cible = (angle_cible*PI)/180;
-    Ghost -> theta_waypoint = angle_cible;
-    Ghost -> waypoint_x = x;
+    Ghost -> waypoint_x = x; //faire que l'ancienne val de x et y, on fasse nouvelle - ancienne
     Ghost -> waypoint_y = y;
-    Ghost -> Ghostflag = 0;
+    Ghost -> theta_waypoint = atan2f(y,x);
 }
 
 void UpdateGhostOrientation() {
@@ -63,16 +62,22 @@ void UpdateGhostOrientation() {
         }
 }
 
+void UpdateGhostPosition() {
+    robotState.ghost.distance_restante = sqrt(robotState.ghost.waypoint_x + robotState.ghost.waypoint_y) - sqrt(robotState.ghost.x + robotState.ghost.y);
+    robotState.ghost.x += robotState.ghost.v_theta*cos(robotState.ghost.theta_ghost);
+    robotState.ghost.y += robotState.ghost.v_theta*sin(robotState.ghost.theta_ghost);
+}
 void SendghostValues() {
-    unsigned char positionPayload[28];
+    unsigned char positionPayload[32];
     getBytesFromFloat(positionPayload, 0, robotState.ghost.v_theta);
     getBytesFromFloat(positionPayload, 4, robotState.ghost.v_theta_max);
     getBytesFromFloat(positionPayload, 8, robotState.ghost.acc_theta);
     getBytesFromFloat(positionPayload, 12, robotState.ghost.theta_ghost);
     getBytesFromFloat(positionPayload, 16, robotState.ghost.theta_waypoint);
-    getBytesFromFloat(positionPayload, 20, robotState.ghost.waypoint_x);
-    getBytesFromFloat(positionPayload, 24, robotState.ghost.waypoint_y);
-    UartEncodeAndSendMessage(0x0070, 28, positionPayload);
+    getBytesFromFloat(positionPayload, 20, robotState.ghost.x);
+    getBytesFromFloat(positionPayload, 24, robotState.ghost.y);
+    getBytesFromFloat(positionPayload, 28, robotState.ghost.distance_restante);
+    UartEncodeAndSendMessage(0x0070, 32, positionPayload);
 }
 
 //faire un c# des text box pour demander les valeurs du ghost 

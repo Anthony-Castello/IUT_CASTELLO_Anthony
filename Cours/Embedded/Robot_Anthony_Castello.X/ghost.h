@@ -12,13 +12,16 @@ typedef struct _GhostState{
     float theta_restant;
     float theta_arret;
     float increment_theta;
-    int Ghostflag;
     float waypoint_x;
     float waypoint_y;
+    float distance_restante;
+    float x = 0;
+    float y = 0;
 } GhostState;
 
-void SetupGhostValue(volatile GhostState* Ghost, float theta_ghost, float v_theta, float acc_theta, float v_theta_max, float angle_cible, float x, float y);
+void SetupGhostValue(volatile GhostState* Ghost, float theta_ghost, float v_theta, float acc_theta, float v_theta_max, float x, float y);
 void UpdateGhostOrientation();
+void UpdateGhostPosition();
 void SendghostValues();
 
 #endif	/* GHOST_H */

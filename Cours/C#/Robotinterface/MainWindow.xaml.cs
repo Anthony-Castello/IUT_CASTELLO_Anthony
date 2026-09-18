@@ -20,6 +20,7 @@ using SciChart.Data.Model;
 using WpfAsservissementDisplay_NS;
 using System.Linq.Expressions;
 using System.Windows.Media.Animation;
+using System.Diagnostics;
 
 
 
@@ -125,8 +126,10 @@ namespace Robotinterface
                     msgDecodedPayloadIndex = 0;
                     if (msgDecodedPayloadLength == 0)
                         rcvState = StateReception.CheckSum;
-                    else
+                    else if(msgDecodedPayloadLength < 1024)
                         rcvState = StateReception.Payload;
+                    else
+                        rcvState = StateReception.Waiting;
                     break;
                 case StateReception.Payload:
                      msgDecodedPayload[msgDecodedPayloadIndex] = c;
@@ -193,8 +196,7 @@ namespace Robotinterface
 
         bool toggle = true;
         bool toggle2 = true;
-        bool toggleX = true;
-        bool toggleY = true;
+
         public void SerialPort1_DataReceived(object sender, DataReceivedArgs e){
             foreach (byte item in e.Data)
             {
@@ -360,6 +362,7 @@ namespace Robotinterface
                     array = array.Reverse().ToArray();
                     var instant = BitConverter.ToInt32(array, 0);
                     float temps_milli = (float)instant / 1000;
+                    //Debug.WriteLine(temps_milli);
 
                     float positionX = BitConverter.ToSingle(msgPayload, 4);
                     float positionY = BitConverter.ToSingle(msgPayload, 8);
@@ -410,6 +413,7 @@ namespace Robotinterface
                     robot.theta_waypoint = BitConverter.ToSingle(msgPayload, 16);
                     robot.waypoint_x = BitConverter.ToSingle(msgPayload, 20);
                     robot.waypoint_y = BitConverter.ToSingle(msgPayload, 24);
+                    AnimateGhostRotation(robot.theta_ghost);
                     theta_ghost_t.Text = ("Theta Ghost : " + robot.theta_ghost.ToString("N3"));
                     vit_theta_max_ghost_t.Text = ("Vit theta max Ghost : " + robot.v_theta_max_ghost.ToString("N3"));
                     Vit_ang_ghost_t.Text = ("Vit angulaire Ghost : " + robot.v_theta_ghost.ToString("N3"));
@@ -501,66 +505,66 @@ namespace Robotinterface
         }
         private void SendWaypoint(float X, float Y)
         {
-            byte[] payload = new byte[8];
-            byte[] arrayX = BitConverter.GetBytes(X);
-            byte[] arrayY = BitConverter.GetBytes(Y);
-            Array.Copy(arrayX, 0, payload, 0, 4);
-            Array.Copy(arrayY, 0, payload, 4, 4);
-            UartEncodeAndSendMessage(0x0070, payload.Length, payload);
+            List<byte> payload = new List<byte>();
+            payload.AddRange(BitConverter.GetBytes(robot.theta_ghost));
+            if (vit_ang_ghost_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(robot.v_theta_ghost));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            if (acc_ghost_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(acc_ghost_text.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            if (vit_max_ghost_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(vit_max_ghost_text.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            payload.AddRange(BitConverter.GetBytes(X));
+            payload.AddRange(BitConverter.GetBytes(Y));
+            UartEncodeAndSendMessage(0x0070, payload.Count(), payload.ToArray());
 
-            /*            double angleRadian = Math.Atan2(X, Y);
-                        double angleDegre = angleRadian * (180.0 / Math.PI);
-            */
-            double angleDegre = 0;
-            if (X == 0 && Y == 1) angleDegre = 0; // Haut [0, 1]
-            else if (X == 1 && Y == 1) angleDegre = 45; // Haut Droite [1, 1]
-            else if (X == 1 && Y == 0) angleDegre = 90; // Droite [1, 0]
-            else if (X == 1 && Y == -1) angleDegre = 135; //Bas Droite [1, -1]
-            else if (X == 0 && Y == -1) angleDegre = 180; //Bas [0, -1]
 
-            AnimateGhostRotation(angleDegre);
         }
           private void position01_Click(object sender, RoutedEventArgs e)
         {
-            robot.ancien_waypoint_x = robot.waypoint_x;
-            robot.ancien_waypoint_y = robot.waypoint_y; //mettre dans une fonction où il y aura l'anim avec la trame à envoyer
-            SendWaypoint(0, 1); //Flèche vers haut
+
+            SendWaypoint(0, 1); 
             
         }
 
         private void position11_Click(object sender, RoutedEventArgs e)
         {
-            SendWaypoint(1, 1); //haut droite (45°)
+            SendWaypoint(1, 1);
         }
 
         private void position10_Click(object sender, RoutedEventArgs e)
         {
-            SendWaypoint(1, 0); //(90°) milieu
+            SendWaypoint(1, 0);
         }
 
         private void position1_neg1_Click(object sender, RoutedEventArgs e)
         {
-            SendWaypoint(1, -1); //(135°)
+            SendWaypoint(1, -1);
         }
 
         private void position0_neg1_Click(object sender, RoutedEventArgs e)
         {
-            SendWaypoint(0, -1); //(180°)
+            SendWaypoint(0, -1);
         }
 
         private void position21_Click(object sender, RoutedEventArgs e)
         {
-
+            SendWaypoint(2, 1);
         }
 
         private void position20_Click(object sender, RoutedEventArgs e)
         {
-
+            SendWaypoint(2, 0);
         }
 
         private void position2_neg1_Click(object sender, RoutedEventArgs e)
         {
-
+            SendWaypoint(2, -1);
         }
         private void SET_GHOST_VALUE_Click(object sender, RoutedEventArgs e)
         {
@@ -578,18 +582,23 @@ namespace Robotinterface
                 payload.AddRange(BitConverter.GetBytes(float.Parse(vit_max_ghost_text.Text)));
             else
                 payload.AddRange(BitConverter.GetBytes(0));
-            if (Waypoint_text.Text != "")
-                payload.AddRange(BitConverter.GetBytes(float.Parse(Waypoint_text.Text)));
+            if (Waypoint_X_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(Waypoint_X_text.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            if (Waypoint_Y_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(Waypoint_Y_text.Text)));
             else
                 payload.AddRange(BitConverter.GetBytes(0));
             UartEncodeAndSendMessage(0x0070, payload.Count(), payload.ToArray());
         }
-        private void AnimateGhostRotation(double targetAngle)
+        private void AnimateGhostRotation(float targetAngle)
         {
+            double angle_cible = 90 - (targetAngle * 180) / 3.14;
             DoubleAnimation rotationAnimation = new DoubleAnimation();
 
-            rotationAnimation.To = targetAngle;
-            rotationAnimation.Duration = TimeSpan.FromMilliseconds(1000);
+            rotationAnimation.To = angle_cible;
+            rotationAnimation.Duration = TimeSpan.FromMilliseconds(10);
             rotationAnimation.EasingFunction = new QuadraticEase { EasingMode=EasingMode.EaseInOut };
 
             GhostRotation.BeginAnimation(RotateTransform.AngleProperty, rotationAnimation);

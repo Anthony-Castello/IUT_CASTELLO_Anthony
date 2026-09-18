@@ -161,8 +161,11 @@
                     <GroupBox Header="Vit_max_ghost">
                         <TextBox x:Name="vit_max_ghost_text"/>
                     </GroupBox>
-                    <GroupBox Header="Angle cible">
-                        <TextBox x:Name="Waypoint_text"/>
+                    <GroupBox Header="Pos X cible">
+                        <TextBox x:Name="Waypoint_X_text"/>
+                    </GroupBox>
+                    <GroupBox Header="Pos Y cible">
+                        <TextBox x:Name="Waypoint_Y_text"/>
                     </GroupBox>
                 </StackPanel>
             </GroupBox>
