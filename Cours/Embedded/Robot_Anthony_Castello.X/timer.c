@@ -59,6 +59,8 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     QEIUpdateData();
     UpdateAsservissement();
     UpdateGhostOrientation();
+    UpdateGhostPosition();
+    //DeplacementGhost();
     if (counter++ % 25 == 0) {
         SendVitesseMoteur();
         SendPositionData();

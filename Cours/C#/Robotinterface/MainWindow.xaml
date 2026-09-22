@@ -7,7 +7,7 @@
         xmlns:oscillo="clr-namespace:WpfOscilloscopeControl;assembly=WpfOscilloscopeControl"
         xmlns:AsservDisplay="clr-namespace:WpfAsservissementDisplay_NS;assembly=WpfAsservissementDisplay"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1500">
+        Title="MainWindow" Height="900" Width="1500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -111,7 +111,7 @@
             <Button x:Name="boutonTest" Content="Switch auto-pause" Width="110" Margin="2" HorizontalAlignment="Left" Click="boutonTest_Click"/>
             <Button x:Name="SET_PIDX" Content="Envoie valeurs PIDX" Width="110" Margin="2" Click="SET_PIDX_Click"/>
             <Button x:Name="SET_PIDTheta" Content="Envoie valeurs PIDTheta" Width="130" Margin="2" Click="SET_PIDTheta_Click"/>
-            <Button x:Name="SET_GHOST_VALUE" Content="Envoie valeurs GHOST" Width="130" Margin="2" Click="SET_GHOST_VALUE_Click"/>
+            <Button x:Name="SET_GHOST_VALUE" Content="RESET POS GHOST" Width="130" Margin="2" Click="SET_GHOST_VALUE_Click"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="1">
@@ -155,17 +155,20 @@
                     <GroupBox Header="Vit ang">
                         <TextBox x:Name="vit_ang_ghost_text"/>
                     </GroupBox>
-                    <GroupBox Header="Acc">
-                        <TextBox x:Name="acc_ghost_text"/>
+                    <GroupBox Header="Vit lin">
+                        <TextBox x:Name="vit_lin_ghost_text"/>
                     </GroupBox>
-                    <GroupBox Header="Vit_max_ghost">
-                        <TextBox x:Name="vit_max_ghost_text"/>
+                    <GroupBox Header="Acc ang">
+                        <TextBox x:Name="acc_ang_ghost_text"/>
                     </GroupBox>
-                    <GroupBox Header="Pos X cible">
-                        <TextBox x:Name="Waypoint_X_text"/>
+                    <GroupBox Header="Acc_lin">
+                            <TextBox x:Name="acc_lin_ghost_text"/>
+                        </GroupBox>
+                    <GroupBox Header="Vit_ang_max_ghost">
+                        <TextBox x:Name="vit_ang_max_ghost_text"/>
                     </GroupBox>
-                    <GroupBox Header="Pos Y cible">
-                        <TextBox x:Name="Waypoint_Y_text"/>
+                    <GroupBox Header="Vit_lin_max_ghost">
+                        <TextBox x:Name="vit_lin_max_ghost_text"/>
                     </GroupBox>
                 </StackPanel>
             </GroupBox>
@@ -175,6 +178,7 @@
                     <TextBlock x:Name="angle_waypoint" Text="Angle cible: " />
                     <TextBlock x:Name="Ghost_x" Text="Ghost X : " />
                     <TextBlock x:Name="Ghost_y" Text="Ghost Y : " />
+                    <TextBlock x:Name="Dist_res" Text="Distance à parcourir : " />
                     <TextBlock x:Name="Vit_ang_ghost_t" Text="Vit angulaire Ghost : " />
                     <TextBlock x:Name="acc_theta_ghost_t" Text="Acc Ghost : " />
                     <TextBlock x:Name="vit_theta_max_ghost_t" Text="Vit theta max Ghost: " />

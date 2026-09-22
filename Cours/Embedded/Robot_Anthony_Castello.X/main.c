@@ -16,6 +16,7 @@
 #include "QEI.h"
 #include "asservissement.h"
 #include "ghost.h"
+#include "Utilitises.h"
 
 unsigned int * result;
 uint8_t flag_Final;
@@ -53,7 +54,9 @@ int main(void) {
     SetupPidAsservissement(&robotState.PidTheta, KpTheta_limit, KiTheta_limit, 0, 5, 5, 5);
     SetupPidAsservissement(&robotState.PidX, KpX_limit, KiX_limit, 0, 5, 5, 5);
     robotState.ConsigneAngulaire = 0;
-    SetupGhostValue(&robotState.ghost,0,0,0,0,0,0);
+    robotState.ghost.x = 0;
+    robotState.ghost.y = 0;
+    SetupGhostValue(&robotState.ghost,0,0,0,0,0,0,0,0,0);
     LED_BLANCHE_1 = 0;
     LED_BLEUE_1 = 0;
     LED_ORANGE_1 = 0;

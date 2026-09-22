@@ -54,6 +54,8 @@ namespace Robotinterface
         public float waypoint_y;
         public float ancien_waypoint_x;
         public float ancien_waypoint_y;
+
+        public float distance_restante;
         public Robot()
         {
         }
