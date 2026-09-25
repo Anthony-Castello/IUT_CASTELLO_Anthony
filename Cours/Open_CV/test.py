@@ -1,6 +1,7 @@
 import cv2
 print(cv2.__version__)
-
+# importing library for plotting
+from matplotlib import pyplot as plt
 
 import numpy as np
 from urllib.request import urlopen
@@ -86,14 +87,34 @@ height = img.shape[0]
 width = img.shape[1]
 channels = img.shape[2]
 imgTransform = img
-niveau = 1/width
-for x in range(0, (int)(width)): ##Parcours sur la largeur de l'image
-    for y in range (0, (int)(height)): ##Parcours sur la hauteur de l'image
-        imgTransform[y,x][0] *= (1-niveau) ##Gère le niveau de Bleu
-        imgTransform[y,x][1] *= (1-niveau) ##Gère le niveau de Vert
-        imgTransform[y,x][2] *= (1-niveau) ##Gère le niveau de Rouge
-    niveau += 1/width
-cv2.imshow("Transformation␣manuelle␣de␣l’image", imgTransform)
-cv2.waitKey(0)
+#niveau = 1/width
+for x in range(width // 2 - 60, width // 2 + 60): ##Parcours sur la largeur de l'image
+    for y in range (height // 2 - 60, height // 2 + 60): ##Parcours sur la hauteur de l'image
+        if (x - width // 2) ** 2 + (y - height // 2) ** 2 <= 60 ** 2: ##Pythagore pour savoir si le pixel est bien dans le cercle
+            imgTransform[y,x][0] *= 0.5 ##Gère le niveau de Bleu
+            imgTransform[y,x][1] *= 0.5 ##Gère le niveau de Vert
+            imgTransform[y,x][2] *= 1 ##Gère le niveau de Rouge
+    #niveau += 1/width
+##cv2.imshow("Transformation␣manuelle␣de␣l’image", imgTransform)
+##cv2.waitKey(0)
+
+#Conversion de l’image en niveaux de gris
+imageGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+cv2.imshow('Grayscale', imageGray)
+#Calcul de l’histogramme
+hist,bins = np.histogram(imageGray.flatten(),256,[0,256])
+#Calcul de l’histogramme cumule
+cdf = hist.cumsum()
+cdf_normalized = cdf * float(hist.max()) / cdf.max()
+#Affichage de l’histogramme cumule en bleu
+plt.plot(cdf_normalized, color = 'b')
+#Affichage de l’histogramme en rouge
+plt.hist(imageGray.flatten(),256,[0,256], color = 'r')
+plt.xlim([0,256])
+plt.legend(('cdf','histogram'), loc = 'upper left')
+plt.show()
+
+
+
 
 
