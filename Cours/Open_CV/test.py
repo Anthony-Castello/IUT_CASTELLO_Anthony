@@ -91,29 +91,57 @@ imgTransform = img
 for x in range(width // 2 - 60, width // 2 + 60): ##Parcours sur la largeur de l'image
     for y in range (height // 2 - 60, height // 2 + 60): ##Parcours sur la hauteur de l'image
         if (x - width // 2) ** 2 + (y - height // 2) ** 2 <= 60 ** 2: ##Pythagore pour savoir si le pixel est bien dans le cercle
-            imgTransform[y,x][0] *= 0.5 ##Gère le niveau de Bleu
-            imgTransform[y,x][1] *= 0.5 ##Gère le niveau de Vert
+            imgTransform[y,x][0] *= 1 ##Gère le niveau de Bleu
+            imgTransform[y,x][1] *= 1 ##Gère le niveau de Vert
             imgTransform[y,x][2] *= 1 ##Gère le niveau de Rouge
     #niveau += 1/width
 ##cv2.imshow("Transformation␣manuelle␣de␣l’image", imgTransform)
 ##cv2.waitKey(0)
 
-#Conversion de l’image en niveaux de gris
-imageGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-cv2.imshow('Grayscale', imageGray)
-#Calcul de l’histogramme
-hist,bins = np.histogram(imageGray.flatten(),256,[0,256])
-#Calcul de l’histogramme cumule
-cdf = hist.cumsum()
-cdf_normalized = cdf * float(hist.max()) / cdf.max()
-#Affichage de l’histogramme cumule en bleu
-plt.plot(cdf_normalized, color = 'b')
-#Affichage de l’histogramme en rouge
-plt.hist(imageGray.flatten(),256,[0,256], color = 'r')
-plt.xlim([0,256])
-plt.legend(('cdf','histogram'), loc = 'upper left')
-plt.show()
+def egaliseur(image):
+    """
+    Convertit l'image en niveaux de gris si nécessaire, égalise son histogramme,
+    affiche l'image résultante ainsi que son histogramme et CDF, et retourne l'image.
+    """
+    # 1. Vérification et conversion en niveaux de gris si l'image est en BGR
+    if len(image.shape) == 3:
+        image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    else:
+        image_gray = image
 
+    # 2. Égalisation de l'histogramme
+    img_equ = cv2.equalizeHist(image_gray)
+
+    # 3. Calcul de l'histogramme et du CDF normalisé
+    hist_eq, _ = np.histogram(img_equ.flatten(), 256, [0, 256])
+    cdf_eq = hist_eq.cumsum()
+    cdf_eq_normalized = cdf_eq * float(hist_eq.max()) / cdf_eq.max()
+
+    # 4. Affichage de l'image égalisée
+    cv2.imshow("Image egalisee", img_equ)
+
+    # 5. Affichage graphique (Histogramme + CDF)
+    plt.figure()
+    plt.plot(cdf_eq_normalized, color='b', label='CDF')
+    plt.hist(img_equ.flatten(), bins=256, range=[0, 256], color='r', label='Histogramme')
+    plt.xlim([0, 256])
+    plt.xlabel('Niveau de gris')
+    plt.ylabel('Nombre de pixels')
+    plt.title('Histogramme et CDF apres egalisation')
+    plt.legend(loc='upper left')
+    plt.show()
+
+
+    return img_equ
+
+##egaliseur(img);
+
+
+H, S, V = cv2.split(img)
+
+egaliseur(H);
+egaliseur(S);
+egaliseur(V);
 
 
 
