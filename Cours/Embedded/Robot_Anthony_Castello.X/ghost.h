@@ -29,7 +29,8 @@ typedef struct _GhostState{
     float x;
     float y;
     float distance_arret;
-    int start;
+    float x_start;
+    float y_start;
 } GhostState;
 
 typedef struct {
@@ -38,11 +39,13 @@ typedef struct {
 } Point;
 
 
+
 void SetupGhostValue(volatile GhostState* Ghost, float theta_ghost, float v_theta, float acc_theta, float v_theta_max, float x, float y, float v_lineaire, float v_lin_max, float acc_ang);
 void UpdateGhostOrientation();
 void UpdateGhostPosition();
 void SendghostValues();
 void DeplacementGhost();
+void Move_ghost();
 float calculerDistancePointSegment(float x, float y, float x_pre, float y_pre);
 
 

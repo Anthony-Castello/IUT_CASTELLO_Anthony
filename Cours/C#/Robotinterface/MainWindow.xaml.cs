@@ -537,7 +537,7 @@ namespace Robotinterface
                 payload.AddRange(BitConverter.GetBytes(float.Parse(acc_lin_ghost_text.Text)));
             else
                 payload.AddRange(BitConverter.GetBytes(0));
-            payload.AddRange(BitConverter.GetBytes(1));
+        
             UartEncodeAndSendMessage(0x0070, payload.Count(), payload.ToArray());
 
 
@@ -613,7 +613,6 @@ namespace Robotinterface
                 payload.AddRange(BitConverter.GetBytes(float.Parse(acc_lin_ghost_text.Text)));
             else
                 payload.AddRange(BitConverter.GetBytes(0));
-            payload.AddRange(BitConverter.GetBytes(1));
             UartEncodeAndSendMessage(0x0070, payload.Count(), payload.ToArray());
         }
         private void AnimateGhostRotation(float targetAngle)

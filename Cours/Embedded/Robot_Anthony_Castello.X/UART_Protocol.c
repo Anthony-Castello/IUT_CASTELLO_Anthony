@@ -27,6 +27,8 @@ int msgDecodedPayloadLength = 0;
 static unsigned char msgDecodedPayload[1024];
 int msgDecodedPayloadIndex = 0;
 
+int etatghost;
+
 unsigned char UartCalculateChecksum(int msgFunction, int msgPayloadLength, unsigned char* msgPayload) {
     //Fonction prenant entree la trame et sa longueur pour calculer le checksum
     unsigned char checksum = 0x00;
@@ -117,8 +119,7 @@ void UartProcessDecodedMessage(int msgFunction, int msgPayloadLength, unsigned c
             SetupPidValues(msgPayload);
             break;
         case SET_GHOST:
-            if (getFloatFromBytes(msgPayload, 36) == 1)
-                robotState.ghost.start = 1;
+            etatghost = ROTATION;
             SetupGhostValue(&robotState.ghost, getFloatFromBytes(msgPayload, 0), getFloatFromBytes(msgPayload, 4), getFloatFromBytes(msgPayload, 8), getFloatFromBytes(msgPayload, 12), getFloatFromBytes(msgPayload, 16),
                     getFloatFromBytes(msgPayload, 20), getFloatFromBytes(msgPayload, 24), getFloatFromBytes(msgPayload, 28), getFloatFromBytes(msgPayload, 32));
             break;

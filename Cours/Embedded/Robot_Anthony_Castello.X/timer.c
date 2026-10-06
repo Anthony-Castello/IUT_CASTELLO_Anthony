@@ -58,9 +58,10 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     ADC1StartConversionSequence();
     QEIUpdateData();
     UpdateAsservissement();
-    UpdateGhostOrientation();
-    UpdateGhostPosition();
-    //DeplacementGhost();
+//    UpdateGhostOrientation();
+//    UpdateGhostPosition();
+//    DeplacementGhost();
+    Move_ghost();
     if (counter++ % 25 == 0) {
         SendVitesseMoteur();
         SendPositionData();
