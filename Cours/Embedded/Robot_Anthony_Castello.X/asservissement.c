@@ -64,9 +64,9 @@ double Correcteur(volatile PidCorrector* PidCorr, double erreur) {
 }
 
 void UpdateAsservissement() {
-    robotState.PidX.erreur = robotState.ConsigneLineaire - robotState.vitesseLineaireFromOdometry;
-    //robotState.PidX.erreur = 0;
-    robotState.PidTheta.erreur = robotState.ConsigneAngulaire - robotState.vitesseAngulaireFromOdometry;
+    //robotState.PidX.erreur = robotState.ConsigneLineaire - robotState.vitesseLineaireFromOdometry;
+    robotState.PidX.erreur = 0;
+    robotState.PidTheta.erreur = ModuloByAngle(robotState.ghost.theta_waypoint, robotState.angleRadianFromOdometry) - robotState.angleRadianFromOdometry;
     robotState.CorrectionVitesseLineaire = Correcteur(&robotState.PidX, robotState.PidX.erreur);
     robotState.CorrectionVitesseAngulaire = Correcteur(&robotState.PidTheta, robotState.PidTheta.erreur);
     PWMSetSpeedConsignePolaire(robotState.CorrectionVitesseLineaire, robotState.CorrectionVitesseAngulaire);

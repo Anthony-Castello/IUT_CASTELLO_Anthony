@@ -34,6 +34,12 @@ float KiTheta_limit = 175;
 float KpX_limit = 5;
 float KiX_limit = 175;
 
+float Kp2Theta_limit = 15;
+float Kd2Theta_limit = 0;
+float Kp2X_limit = 0;
+float Kd2X_limit = 0;
+
+
 int main(void) {
     /***********************************************************************************************/
     //Initialisation oscillateur
@@ -51,8 +57,9 @@ int main(void) {
     InitUART();
     InitQEI1();
     InitQEI2();
-    SetupPidAsservissement(&robotState.PidTheta, KpTheta_limit, KiTheta_limit, 0, 5, 5, 5);
-    SetupPidAsservissement(&robotState.PidX, KpX_limit, KiX_limit, 0, 5, 5, 5);
+    
+    SetupPidAsservissement(&robotState.PidTheta, Kp2Theta_limit, 0, Kd2Theta_limit, 30, 30, 30);
+    SetupPidAsservissement(&robotState.PidX, Kp2X_limit, 0, Kd2X_limit, 30, 30, 30);
     robotState.ConsigneAngulaire = 0;
     robotState.ghost.x = 0;
     robotState.ghost.y = 0;
