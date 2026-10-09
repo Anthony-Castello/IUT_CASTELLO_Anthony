@@ -12,6 +12,7 @@
 #define SET_ROBOT_MANUAL_CONTROL 0x0052
 #define SET_PID 0x0060
 #define SET_GHOST 0x0070
+#define RESET_GHOST 0x0071
 
 unsigned char UartCalculateChecksum(int msgFunction, int msgPayloadLength, unsigned char* msgPayload);
 void UartEncodeAndSendMessage(int msgFunction, int msgPayloadLength, unsigned char* msgPayload);

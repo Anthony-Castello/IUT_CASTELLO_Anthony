@@ -53,8 +53,6 @@ namespace Robotinterface
             //var _globalKeyboardHook = new GlobalKeyboardHook();
             //_globalKeyboardHook.KeyPressed += _globalKeyboardHook_KeyPressed;
             UartEncodeAndSendMessage(0x0052, 2, new byte[] { (byte)robot.autoControlActivated });
-            oscilloSpeed.AddOrUpdateLine(1, 200, "Ligne1");
-            oscilloSpeed.ChangeLineColor(1, Color.FromRgb(0,0,255));
         }
         byte CalculateChecksum(int msgFunction, int msgPayloadLength, byte[] msgPayload)
         {
@@ -269,6 +267,7 @@ namespace Robotinterface
             Odometrie= 0x0060,
             PID = 0x0061,
             Ghost = 0x0070,
+            RESET_Ghost = 0x0071,
         }
 
         int TelemExGauche = 0;
@@ -366,7 +365,6 @@ namespace Robotinterface
 
                     float positionX = BitConverter.ToSingle(msgPayload, 4);
                     float positionY = BitConverter.ToSingle(msgPayload, 8);
-                    oscilloSpeed.AddPointToLine(1, positionX, positionY);
                     float ang = BitConverter.ToSingle(msgPayload, 12);
                     float vit_lin = BitConverter.ToSingle(msgPayload, 16);
                     float vit_ang = BitConverter.ToSingle(msgPayload, 20);
@@ -411,17 +409,20 @@ namespace Robotinterface
                     robot.acc_theta_ghost = BitConverter.ToSingle(msgPayload, 8);
                     robot.theta_ghost = BitConverter.ToSingle(msgPayload, 12);
                     robot.theta_waypoint = BitConverter.ToSingle(msgPayload, 16);
-                    robot.waypoint_x = BitConverter.ToSingle(msgPayload, 20);
-                    robot.waypoint_y = BitConverter.ToSingle(msgPayload, 24);
+                    robot.ghost_x = BitConverter.ToSingle(msgPayload, 20);
+                    robot.ghost_y= BitConverter.ToSingle(msgPayload, 24);
                     AnimateGhostRotation(robot.theta_ghost);
                     robot.distance_restante = BitConverter.ToSingle(msgPayload, 28);
+
+                    GhostVisualizer.UpdateRobot(robot.ghost_x, robot.ghost_y, robot.theta_ghost);
+
                     theta_ghost_t.Text = ("Theta Ghost : " + robot.theta_ghost.ToString("N3"));
                     vit_theta_max_ghost_t.Text = ("Vit theta max Ghost : " + robot.v_theta_max_ghost.ToString("N3"));
                     Vit_ang_ghost_t.Text = ("Vit angulaire Ghost : " + robot.v_theta_ghost.ToString("N3"));
                     acc_theta_ghost_t.Text = ("Acc Ghost : " + robot.acc_theta_ghost.ToString("N3"));
                     angle_waypoint.Text = ("Angle cible: " + robot.theta_waypoint.ToString("N3"));
-                    Ghost_x.Text = ("Ghost X : " + robot.waypoint_x.ToString("N3"));
-                    Ghost_y.Text = ("Ghost Y : " + robot.waypoint_y.ToString("N3"));
+                    Ghost_x.Text = ("Ghost X : " + robot.ghost_x.ToString("N3"));
+                    Ghost_y.Text = ("Ghost Y : " + robot.ghost_y.ToString("N3"));
                     Dist_res.Text = ("Distance à parcourir : " + robot.distance_restante.ToString("N3"));
                     break;
             }
@@ -509,7 +510,9 @@ namespace Robotinterface
         private void SendWaypoint(float X, float Y)
         {
             List<byte> payload = new List<byte>();
+
             
+
             payload.AddRange(BitConverter.GetBytes(robot.theta_ghost));
             if (vit_ang_ghost_text.Text != "")
                 payload.AddRange(BitConverter.GetBytes(float.Parse(vit_ang_ghost_text.Text)));
@@ -625,6 +628,60 @@ namespace Robotinterface
             rotationAnimation.EasingFunction = new QuadraticEase { EasingMode=EasingMode.EaseInOut };
 
             GhostRotation.BeginAnimation(RotateTransform.AngleProperty, rotationAnimation);
+        }
+
+        private void RESET_GHOST_VALUE_Click(object sender, RoutedEventArgs e)
+        {
+            List<byte> payload = new List<byte>();
+
+            payload.AddRange(BitConverter.GetBytes(1));
+            UartEncodeAndSendMessage(0x0071, payload.Count(), payload.ToArray());
+            GhostVisualizer.UpdateRobot(0,0,0);
+        }
+
+        private void Angle_text(object sender, RoutedEventArgs e)
+        {
+            List<byte> payload = new List<byte>();
+
+            float targetAngle = float.Parse(Text_Angle.Text) * (float)(Math.PI / 180.0);
+
+            if (Text_Angle.Text != "")
+                payload.AddRange(BitConverter.GetBytes(targetAngle));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            if (vit_ang_ghost_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(vit_ang_ghost_text.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            if (acc_ang_ghost_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(acc_ang_ghost_text.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            if (vit_ang_max_ghost_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(vit_ang_max_ghost_text.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            payload.AddRange(BitConverter.GetBytes(robot.ghost_x));
+            payload.AddRange(BitConverter.GetBytes(robot.ghost_y));
+            if (vit_lin_ghost_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(vit_lin_ghost_text.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            if (vit_lin_max_ghost_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(vit_lin_max_ghost_text.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+            if (acc_lin_ghost_text.Text != "")
+                payload.AddRange(BitConverter.GetBytes(float.Parse(acc_lin_ghost_text.Text)));
+            else
+                payload.AddRange(BitConverter.GetBytes(0));
+
+            UartEncodeAndSendMessage(0x0070, payload.Count(), payload.ToArray());
+        }
+
+        private void Pos_x_y_text(object sender, RoutedEventArgs e)
+        {
+            SendWaypoint(float.Parse(Text_Positionx.Text), float.Parse(Text_Positiony.Text));
         }
     }
 }

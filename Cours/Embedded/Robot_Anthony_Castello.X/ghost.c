@@ -22,26 +22,45 @@
 
 extern int etatghost;
 
-void SetupGhostValue(volatile GhostState* Ghost, float theta_ghost, float v_theta, float acc_theta, float v_theta_max, float x, float y, float v_lineaire, float v_lin_max, float acc_lin) {
-    Ghost->theta_ghost = theta_ghost;
+void SetupGhostValue(volatile GhostState* Ghost, float theta_target, float v_theta, float acc_theta, float v_theta_max, float x, float y, float v_lineaire, float v_lin_max, float acc_lin) {
     Ghost->v_theta = v_theta;
     Ghost->acc_theta = acc_theta;
     Ghost->v_theta_max = v_theta_max;
     Ghost->v_lineaire = v_lineaire;
     Ghost->acc_lineaire = acc_lin;
     Ghost->v_lineaire_max = v_lin_max;
-    Ghost -> waypoint_x = x; //faire que l'ancienne val de x et y, on fasse nouvelle - ancienne
-    Ghost -> waypoint_y = y;
+    
+    Ghost->waypoint_x = x; 
+    Ghost->waypoint_y = y;
     
     float dx = x - Ghost->x;
     float dy = y - Ghost->y;
-    Ghost->theta_waypoint = atan2f(dy, dx);
+    
+    // Détection d'une rotation pure (distance à parcourir quasi-nulle)
+    if (fabs(dx) < 0.001 && fabs(dy) < 0.001) {
+        Ghost->theta_waypoint = theta_target; // On pointe vers l'angle demandé
+    } else {
+        Ghost->theta_waypoint = atan2f(dy, dx); // On pointe vers le waypoint
+    }
+
     Ghost->x_start = Ghost->x;
     Ghost->y_start = Ghost->y;
     Ghost->lineaire_ghost = 0.0;
-    Ghost -> v_lineaire = v_lineaire;
 }
 
+void ResetGhostValue(volatile GhostState* Ghost){
+    Ghost -> waypoint_x = 0; //faire que l'ancienne val de x et y, on fasse nouvelle - ancienne
+    Ghost -> waypoint_y = 0;
+    Ghost -> x = 0;
+    Ghost -> y = 0;
+    Ghost->theta_ghost = 0;
+    robotState.ghost.theta_restant = 0;
+    robotState.ghost.theta_arret = 0;
+    robotState.ghost.distance_restante = 0 ;
+    robotState.ghost.lineaire_arret = 0;
+    robotState.ghost.x_start = 0;
+    robotState.ghost.y_start = 0;
+}
 
 
 void UpdateGhostOrientation() {
@@ -178,7 +197,6 @@ void UpdateGhostPosition() {
 void Move_ghost(){
     switch(etatghost){
         case ATTENTE :
-            robotState.ghost.theta_ghost = 0;
             break;
         case ROTATION :
             UpdateGhostOrientation();

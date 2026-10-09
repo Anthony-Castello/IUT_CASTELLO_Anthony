@@ -40,7 +40,8 @@ typedef struct {
 
 
 
-void SetupGhostValue(volatile GhostState* Ghost, float theta_ghost, float v_theta, float acc_theta, float v_theta_max, float x, float y, float v_lineaire, float v_lin_max, float acc_ang);
+void SetupGhostValue(volatile GhostState* Ghost, float theta_waypoint, float v_theta, float acc_theta, float v_theta_max, float x, float y, float v_lineaire, float v_lin_max, float acc_ang);
+void ResetGhostValue(volatile GhostState* Ghost);
 void UpdateGhostOrientation();
 void UpdateGhostPosition();
 void SendghostValues();

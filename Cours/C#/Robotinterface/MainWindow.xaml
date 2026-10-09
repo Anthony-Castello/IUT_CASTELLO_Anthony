@@ -21,9 +21,9 @@
         </Grid.ColumnDefinitions>
 
         <!--<StackPanel Orientation="Horizontal" Grid.Column ="0" Grid.Row="0">-->
-        <GroupBox Header="Oscilloscope" Grid.Column="0">
+        <GroupBox Header="Visualisation Ghost" Grid.Column="0">
             <!--<TextBox x:Name="TextBoxEmission" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="TextBoxEmission_TextChanged" KeyUp="TextBoxEmission_KeyUp"/>-->
-            <oscillo:WpfOscilloscope x:Name="oscilloSpeed"/>
+            <local:RobotVisualizer x:Name="GhostVisualizer" Grid.Column="0" Margin="5"/>
         </GroupBox>
         <GroupBox Header="Asservissement Display" Grid.Column="1">
             <AsservDisplay:AsservissementRobot2RouesDisplayControl x:Name="asservSpeedDisplay"/>
@@ -67,36 +67,37 @@
                         </Polygon>
 
                         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
-                            <Button x:Name="position01" Content="[0,1]" Width="50" Margin="10" Click="position01_Click"/>
-                            <TextBox x:Name="text_position01" Width="auto" Text="non présent" IsReadOnly="True"/>
+                            <Button x:Name="position01" Content="[0,1]" Width="auto" Margin="10" Click="position01_Click"/>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2">
                             <Button x:Name="position0_neg1" Content="[0,-1]" Width="50" Margin="10" Click="position0_neg1_Click"/>
-                            <TextBox x:Name="text_position0_neg1" Width="auto" Text="non présent" IsReadOnly="True"/>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
                             <Button x:Name="position11" Content="[1,1]" Width="50" Margin="10" Click="position11_Click"/>
-                            <TextBox x:Name="text_position11" Width="auto" Text="non présent" IsReadOnly="True"/>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
                             <Button x:Name="position10" Content="[1,0]" Width="50" Margin="10" Click="position10_Click"/>
-                            <TextBox x:Name="text_position10" Width="auto" Text="non présent" IsReadOnly="True"/>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2">
                             <Button x:Name="position1_neg1" Content="[1,-1]" Width="50" Margin="10" Click="position1_neg1_Click"/>
-                            <TextBox x:Name="text_position1_neg1" Width="auto" Text="non présent" IsReadOnly="True"/>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="0">
                             <Button x:Name="position21" Content="[2,1]" Width="50" Margin="10" Click="position21_Click"/>
-                            <TextBox x:Name="text_position21" Width="auto" Text="non présent" IsReadOnly="True"/>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="1">
-                            <Button x:Name="position20" Content="[2,0]" Width="50" Margin="10" Click="position20_Click"/>
-                            <TextBox x:Name="text_position20" Width="auto" Text="non présent" IsReadOnly="True"/>
+                            <GroupBox Header="Position x">
+                                <TextBox x:Name="Text_Positionx" Text = "0"/>
+                            </GroupBox>
+                            <GroupBox Header="Position y">
+                                <TextBox x:Name="Text_Positiony" Text = "0"/>
+                            </GroupBox>
+                            <GroupBox Header="Angle">
+                                <TextBox x:Name="Text_Angle" Text = "0"/>
+                            </GroupBox>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="2">
-                            <Button x:Name="position2_neg1" Content="[2,-1]" Width="50" Margin="10" Click="position2_neg1_Click"/>
-                            <TextBox x:Name="text_position2_neg1" Width="auto" Text="non présent" IsReadOnly="True"/>
+                            <Button x:Name="Send_position_x_y_text" Content="Envoie des positions" Width="auto" Margin="10" Click="Pos_x_y_text"/>
+                            <Button x:Name="Send_angle_text" Content="Envoie de l'angle" Width="auto" Margin="10" Click="Angle_text"/>
                         </StackPanel>
                     </Grid>
                 </GroupBox>
@@ -111,7 +112,7 @@
             <Button x:Name="boutonTest" Content="Switch auto-pause" Width="110" Margin="2" HorizontalAlignment="Left" Click="boutonTest_Click"/>
             <Button x:Name="SET_PIDX" Content="Envoie valeurs PIDX" Width="110" Margin="2" Click="SET_PIDX_Click"/>
             <Button x:Name="SET_PIDTheta" Content="Envoie valeurs PIDTheta" Width="130" Margin="2" Click="SET_PIDTheta_Click"/>
-            <Button x:Name="SET_GHOST_VALUE" Content="RESET POS GHOST" Width="130" Margin="2" Click="SET_GHOST_VALUE_Click"/>
+            <Button x:Name="RESET_GHOST_VALUE" Content="RESET POS GHOST" Width="130" Margin="2" Click="RESET_GHOST_VALUE_Click"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="1">
@@ -153,22 +154,22 @@
             <GroupBox Header="Paramètrage Ghost" >
                 <StackPanel>
                     <GroupBox Header="Vit ang">
-                        <TextBox x:Name="vit_ang_ghost_text"/>
+                        <TextBox x:Name="vit_ang_ghost_text" Text="1"/>
                     </GroupBox>
                     <GroupBox Header="Vit lin">
-                        <TextBox x:Name="vit_lin_ghost_text"/>
+                        <TextBox x:Name="vit_lin_ghost_text" Text="1"/>
                     </GroupBox>
                     <GroupBox Header="Acc ang">
-                        <TextBox x:Name="acc_ang_ghost_text"/>
+                        <TextBox x:Name="acc_ang_ghost_text" Text="1"/>
                     </GroupBox>
                     <GroupBox Header="Acc_lin">
-                            <TextBox x:Name="acc_lin_ghost_text"/>
+                        <TextBox x:Name="acc_lin_ghost_text" Text="1"/>
                         </GroupBox>
                     <GroupBox Header="Vit_ang_max_ghost">
-                        <TextBox x:Name="vit_ang_max_ghost_text"/>
+                        <TextBox x:Name="vit_ang_max_ghost_text" Text="1"/>
                     </GroupBox>
                     <GroupBox Header="Vit_lin_max_ghost">
-                        <TextBox x:Name="vit_lin_max_ghost_text"/>
+                        <TextBox x:Name="vit_lin_max_ghost_text" Text="1"/>
                     </GroupBox>
                 </StackPanel>
             </GroupBox>

@@ -52,8 +52,8 @@ namespace Robotinterface
         public float theta_waypoint;
         public float waypoint_x;
         public float waypoint_y;
-        public float ancien_waypoint_x;
-        public float ancien_waypoint_y;
+        public float ghost_x;
+        public float ghost_y;
 
         public float distance_restante;
         public Robot()
