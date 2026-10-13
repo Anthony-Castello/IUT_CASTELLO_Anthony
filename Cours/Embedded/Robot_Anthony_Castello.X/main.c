@@ -34,8 +34,8 @@ float KiTheta_limit = 175;
 float KpX_limit = 5;
 float KiX_limit = 175;
 
-float Kp2Theta_limit = 15;
-float Kd2Theta_limit = 0;
+float Kp2Theta_limit = 25; 
+float Kd2Theta_limit = 5; 
 float Kp2X_limit = 0;
 float Kd2X_limit = 0;
 

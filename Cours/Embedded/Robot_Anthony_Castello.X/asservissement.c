@@ -6,6 +6,7 @@
 #include "Toolbox.h"
 #include "QEI.h"
 #include "PWM.h"
+#include "math.h"
 
 void SetupPidValues(unsigned char msgPayload[]) {
     if (msgPayload[0] == 0)
@@ -51,22 +52,40 @@ void SendPidValues() {
 
 double Correcteur(volatile PidCorrector* PidCorr, double erreur) {
     PidCorr->erreur = erreur;
-    double erreurProportionnelle = LimitToInterval(erreur, -PidCorr->erreurProportionelleMax/PidCorr->Kp, PidCorr->erreurProportionelleMax/PidCorr->Kp );
-    PidCorr->corrP = PidCorr->Kp * erreurProportionnelle;
-    PidCorr->erreurIntegrale += erreur/FREQ_ECH_QEI;
-    PidCorr->erreurIntegrale = LimitToInterval(PidCorr->erreurIntegrale, -PidCorr->erreurIntegraleMax/PidCorr->Ki, PidCorr->erreurIntegraleMax/PidCorr->Ki); // antiwinding (stop l'intégrale quand le robot est bloqué)
-    PidCorr->corrI = PidCorr ->Ki * PidCorr -> erreurIntegrale;
+    //double erreurProportionnelle = LimitToInterval(erreur, -PidCorr->erreurProportionelleMax/PidCorr->Kp, PidCorr->erreurProportionelleMax/PidCorr->Kp );
+    PidCorr->corrP = LimitToInterval(PidCorr->Kp * erreur,
+            -PidCorr->erreurProportionelleMax,
+            PidCorr->erreurProportionelleMax);
+
+    if (PidCorr->Ki != 0) {
+        PidCorr->erreurIntegrale += erreur / FREQ_ECH_QEI;
+        double lim = PidCorr->erreurIntegraleMax / PidCorr->Ki;
+        PidCorr->erreurIntegrale = LimitToInterval(PidCorr->erreurIntegrale, -lim, lim);
+        PidCorr->corrI = PidCorr->Ki * PidCorr->erreurIntegrale;
+    } else {
+        PidCorr->erreurIntegrale = 0;
+        PidCorr->corrI = 0;
+    }
+
+    // Dérivé
     double erreurDerivee = (erreur - PidCorr->epsilon_1) * FREQ_ECH_QEI;
-    double deriveeBornee = LimitToInterval(erreurDerivee, -PidCorr->erreurDeriveeMax / PidCorr->Kd, PidCorr->erreurDeriveeMax / PidCorr->Kd);
     PidCorr->epsilon_1 = erreur;
-    PidCorr->corrD = deriveeBornee * PidCorr->Kd;
+    PidCorr->corrD = LimitToInterval(PidCorr->Kd * erreurDerivee,
+            -PidCorr->erreurDeriveeMax,
+            PidCorr->erreurDeriveeMax);
+
     return PidCorr->corrP + PidCorr->corrI + PidCorr->corrD;
 }
 
 void UpdateAsservissement() {
-    //robotState.PidX.erreur = robotState.ConsigneLineaire - robotState.vitesseLineaireFromOdometry;
+//    double dx = robotState.ghost.x - robotState.xPosFromOdometry;
+//    double dy = robotState.ghost.y - robotState.yPosFromOdometry;
+//    robotState.PidX.erreur = dx * cos(robotState.angleRadianFromOdometry)
+//            + dy * sin(robotState.angleRadianFromOdometry);
+    //robotState.PidTheta.erreur = 0;
     robotState.PidX.erreur = 0;
-    robotState.PidTheta.erreur = ModuloByAngle(robotState.ghost.theta_waypoint, robotState.angleRadianFromOdometry) - robotState.angleRadianFromOdometry;
+    robotState.PidTheta.erreur = ModuloByAngle(robotState.angleRadianFromOdometry, robotState.ghost.theta_waypoint) - robotState.angleRadianFromOdometry;
+
     robotState.CorrectionVitesseLineaire = Correcteur(&robotState.PidX, robotState.PidX.erreur);
     robotState.CorrectionVitesseAngulaire = Correcteur(&robotState.PidTheta, robotState.PidTheta.erreur);
     PWMSetSpeedConsignePolaire(robotState.CorrectionVitesseLineaire, robotState.CorrectionVitesseAngulaire);
