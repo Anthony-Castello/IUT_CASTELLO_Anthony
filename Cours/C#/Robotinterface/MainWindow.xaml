@@ -153,12 +153,6 @@
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left">
             <GroupBox Header="Paramètrage Ghost" >
                 <StackPanel>
-                    <GroupBox Header="Vit ang">
-                        <TextBox x:Name="vit_ang_ghost_text" Text="1"/>
-                    </GroupBox>
-                    <GroupBox Header="Vit lin">
-                        <TextBox x:Name="vit_lin_ghost_text" Text="1"/>
-                    </GroupBox>
                     <GroupBox Header="Acc ang">
                         <TextBox x:Name="acc_ang_ghost_text" Text="1"/>
                     </GroupBox>
@@ -180,6 +174,7 @@
                     <TextBlock x:Name="Ghost_x" Text="Ghost X : " />
                     <TextBlock x:Name="Ghost_y" Text="Ghost Y : " />
                     <TextBlock x:Name="Dist_res" Text="Distance à parcourir : " />
+                    <TextBlock x:Name="Vit_lin_ghost_t" Text="Vit linéaire Ghost : " />
                     <TextBlock x:Name="Vit_ang_ghost_t" Text="Vit angulaire Ghost : " />
                     <TextBlock x:Name="acc_theta_ghost_t" Text="Acc Ghost : " />
                     <TextBlock x:Name="vit_theta_max_ghost_t" Text="Vit theta max Ghost: " />

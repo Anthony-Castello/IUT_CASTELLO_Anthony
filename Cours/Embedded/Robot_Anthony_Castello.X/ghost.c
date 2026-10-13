@@ -22,11 +22,9 @@
 
 extern int etatghost;
 
-void SetupGhostValue(volatile GhostState* Ghost, float theta_target, float v_theta, float acc_theta, float v_theta_max, float x, float y, float v_lineaire, float v_lin_max, float acc_lin) {
-    Ghost->v_theta = v_theta;
+void SetupGhostValue(volatile GhostState* Ghost, float theta_target, float acc_theta, float v_theta_max, float x, float y, float v_lin_max, float acc_lin) {
     Ghost->acc_theta = acc_theta;
     Ghost->v_theta_max = v_theta_max;
-    Ghost->v_lineaire = v_lineaire;
     Ghost->acc_lineaire = acc_lin;
     Ghost->v_lineaire_max = v_lin_max;
     
@@ -64,38 +62,41 @@ void ResetGhostValue(volatile GhostState* Ghost){
 
 
 void UpdateGhostOrientation() {
+    float dt = 1.0f / FREQ_ECH_QEI;
+
     robotState.ghost.theta_restant = ModuloByAngle(robotState.ghost.theta_ghost, robotState.ghost.theta_waypoint) - robotState.ghost.theta_ghost;
     robotState.ghost.theta_arret = (robotState.ghost.v_theta * robotState.ghost.v_theta) / (2.0 * robotState.ghost.acc_theta);
-    robotState.ghost.increment_theta = robotState.ghost.v_theta / FREQ_ECH_QEI;
+    robotState.ghost.increment_theta = robotState.ghost.v_theta * dt;
     if (robotState.ghost.v_theta < 0) {
         robotState.ghost.theta_arret = -robotState.ghost.theta_arret;
     }
-    if ((((robotState.ghost.theta_arret >= 0) && (robotState.ghost.theta_restant >= 0)) || ((robotState.ghost.theta_arret <= 0) && (robotState.ghost.theta_restant <= 0))) && (((Abs(robotState.ghost.theta_restant) >= Abs(robotState.ghost.theta_arret))))) {
-        robotState.ghost.v_theta += (robotState.ghost.acc_theta * (1 / FREQ_ECH_QEI));
+
+    if ((((robotState.ghost.theta_arret >= 0) && (robotState.ghost.theta_restant >= 0)) || ((robotState.ghost.theta_arret <= 0) && (robotState.ghost.theta_restant <= 0))) && (Abs(robotState.ghost.theta_restant) >= Abs(robotState.ghost.theta_arret))) {
+        // Phase d'accélération / croisière : UN SEUL incrément
         if (robotState.ghost.theta_restant > 0) {
-            robotState.ghost.v_theta = Min((robotState.ghost.v_theta) + ((robotState.ghost.acc_theta) / FREQ_ECH_QEI), robotState.ghost.v_theta_max);
+            robotState.ghost.v_theta = Min(robotState.ghost.v_theta + robotState.ghost.acc_theta * dt, robotState.ghost.v_theta_max);
         } else if (robotState.ghost.theta_restant < 0) {
-            robotState.ghost.v_theta = Min(robotState.ghost.v_theta - (robotState.ghost.acc_theta / FREQ_ECH_QEI), -robotState.ghost.v_theta_max);
+            robotState.ghost.v_theta = Max(robotState.ghost.v_theta - robotState.ghost.acc_theta * dt, -robotState.ghost.v_theta_max);
         }
     } else {
-        if ((robotState.ghost.v_theta) > 0) {
-            robotState.ghost.v_theta = Min(robotState.ghost.v_theta - robotState.ghost.acc_theta * (1 / FREQ_ECH_QEI), 0);
-        } else if ((robotState.ghost.v_theta) < 0) {
-            robotState.ghost.v_theta = Max(robotState.ghost.v_theta + robotState.ghost.acc_theta * (1 / FREQ_ECH_QEI), 0);
+        // Phase de décélération : Max/Min pour ne pas passer sous 0
+        if (robotState.ghost.v_theta > 0) {
+            robotState.ghost.v_theta = Max(robotState.ghost.v_theta - robotState.ghost.acc_theta * dt, 0);
+        } else if (robotState.ghost.v_theta < 0) {
+            robotState.ghost.v_theta = Min(robotState.ghost.v_theta + robotState.ghost.acc_theta * dt, 0);
         }
+        // Anti-dépassement sur le dernier pas
         if (Abs(robotState.ghost.theta_restant) < Abs(robotState.ghost.increment_theta)) {
             robotState.ghost.increment_theta = robotState.ghost.theta_restant;
         }
     }
+
     robotState.ghost.theta_ghost += robotState.ghost.increment_theta;
-    
+
     if (robotState.ghost.v_theta == 0 && (Abs(robotState.ghost.theta_restant) < 0.01)) {
         robotState.ghost.theta_ghost = robotState.ghost.theta_waypoint;
         etatghost = AVANCE;
-        
     }
-    
-
 }
 
 float calculerDistancePointSegment(float x, float y, float x_pre, float y_pre) {
@@ -148,8 +149,7 @@ void UpdateGhostPosition() {
          ((robotState.ghost.lineaire_arret <= 0) && (robotState.ghost.distance_restante <= 0))) && 
         (((Abs(robotState.ghost.distance_restante) >= Abs(robotState.ghost.lineaire_arret))))) {
         
-        robotState.ghost.v_lineaire += (robotState.ghost.acc_lineaire * (1.0 / FREQ_ECH_QEI));
-        
+                
         if (robotState.ghost.distance_restante > 0) {
             robotState.ghost.v_lineaire = Min((robotState.ghost.v_lineaire) + ((robotState.ghost.acc_lineaire) / FREQ_ECH_QEI), robotState.ghost.v_lineaire_max);
         } else if (robotState.ghost.distance_restante < 0) {
@@ -207,7 +207,7 @@ void Move_ghost(){
     }
 }
 void SendghostValues() {
-    unsigned char positionPayload[32];
+    unsigned char positionPayload[36];
     getBytesFromFloat(positionPayload, 0, robotState.ghost.v_theta);
     getBytesFromFloat(positionPayload, 4, robotState.ghost.v_theta_max);
     getBytesFromFloat(positionPayload, 8, robotState.ghost.acc_theta);
@@ -216,7 +216,7 @@ void SendghostValues() {
     getBytesFromFloat(positionPayload, 20, robotState.ghost.x);
     getBytesFromFloat(positionPayload, 24, robotState.ghost.y);
     getBytesFromFloat(positionPayload, 28, robotState.ghost.distance_restante);
-    UartEncodeAndSendMessage(0x0070, 32, positionPayload);
+    getBytesFromFloat(positionPayload, 32, robotState.ghost.v_lineaire);
+    UartEncodeAndSendMessage(0x0070, 36, positionPayload);
 }
 
-//faire un c# des text box pour demander les valeurs du ghost 

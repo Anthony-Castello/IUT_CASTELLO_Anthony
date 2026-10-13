@@ -78,15 +78,23 @@ double Correcteur(volatile PidCorrector* PidCorr, double erreur) {
 }
 
 void UpdateAsservissement() {
-//    double dx = robotState.ghost.x - robotState.xPosFromOdometry;
-//    double dy = robotState.ghost.y - robotState.yPosFromOdometry;
-//    robotState.PidX.erreur = dx * cos(robotState.angleRadianFromOdometry)
-//            + dy * sin(robotState.angleRadianFromOdometry);
-    //robotState.PidTheta.erreur = 0;
-    robotState.PidX.erreur = 0;
-    robotState.PidTheta.erreur = ModuloByAngle(robotState.angleRadianFromOdometry, robotState.ghost.theta_waypoint) - robotState.angleRadianFromOdometry;
+    // 1. Calcul de l'erreur linéaire (distance entre le ghost et l'odométrie, projetée dans le repère du robot)
+    double dx = robotState.ghost.x - robotState.xPosFromOdometry;
+    double dy = robotState.ghost.y - robotState.yPosFromOdometry;
+    
+//     Erreur longitudinale (dans la direction du robot)
+    robotState.PidX.erreur = dx * cos(robotState.angleRadianFromOdometry)
+                           + dy * sin(robotState.angleRadianFromOdometry);
+    // 2. Calcul de l'erreur angulaire par rapport à l'angle ACTUEL du ghost (et non le waypoint final)
+    robotState.PidTheta.erreur = ModuloByAngle(robotState.angleRadianFromOdometry, robotState.ghost.theta_ghost) - robotState.angleRadianFromOdometry;
 
+    // 3. Calcul des corrections PID (feedback)
     robotState.CorrectionVitesseLineaire = Correcteur(&robotState.PidX, robotState.PidX.erreur);
     robotState.CorrectionVitesseAngulaire = Correcteur(&robotState.PidTheta, robotState.PidTheta.erreur);
-    PWMSetSpeedConsignePolaire(robotState.CorrectionVitesseLineaire, robotState.CorrectionVitesseAngulaire);
+
+    // 4. Application de la consigne avec Feedforward (vitesse du ghost + correction PID)
+    double consigneLineaire  = robotState.CorrectionVitesseLineaire  + robotState.ghost.v_lineaire;
+    double consigneAngulaire = robotState.CorrectionVitesseAngulaire + robotState.ghost.v_theta;
+
+    PWMSetSpeedConsignePolaire(consigneLineaire, consigneAngulaire);
 }

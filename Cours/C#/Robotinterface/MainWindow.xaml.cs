@@ -413,6 +413,7 @@ namespace Robotinterface
                     robot.ghost_y= BitConverter.ToSingle(msgPayload, 24);
                     AnimateGhostRotation(robot.theta_ghost);
                     robot.distance_restante = BitConverter.ToSingle(msgPayload, 28);
+                    robot.v_lin_ghost = BitConverter.ToSingle(msgPayload, 32);
 
                     GhostVisualizer.UpdateRobot(robot.ghost_x, robot.ghost_y, robot.theta_ghost);
 
@@ -424,6 +425,7 @@ namespace Robotinterface
                     Ghost_x.Text = ("Ghost X : " + robot.ghost_x.ToString("N3"));
                     Ghost_y.Text = ("Ghost Y : " + robot.ghost_y.ToString("N3"));
                     Dist_res.Text = ("Distance à parcourir : " + robot.distance_restante.ToString("N3"));
+                    Vit_lin_ghost_t.Text = ("Vit linéaire Ghost : " + robot.v_lin_ghost.ToString("N3"));
                     break;
             }
         }
@@ -514,12 +516,8 @@ namespace Robotinterface
             
 
             payload.AddRange(BitConverter.GetBytes(robot.theta_ghost));
-            if (vit_ang_ghost_text.Text != "")
-                payload.AddRange(BitConverter.GetBytes(float.Parse(vit_ang_ghost_text.Text)));
-            else
-                payload.AddRange(BitConverter.GetBytes(0));
             if (acc_ang_ghost_text.Text != "")
-                payload.AddRange(BitConverter.GetBytes(float.Parse(acc_ang_ghost_text.Text)));
+                payload.AddRange(BitConverter.GetBytes(float.Parse(acc_ang_ghost_text.Text.Replace(".", ","))));
             else
                 payload.AddRange(BitConverter.GetBytes(0));
             if (vit_ang_max_ghost_text.Text != "")
@@ -528,10 +526,6 @@ namespace Robotinterface
                 payload.AddRange(BitConverter.GetBytes(0));
             payload.AddRange(BitConverter.GetBytes(X));
             payload.AddRange(BitConverter.GetBytes(Y));
-            if (vit_lin_ghost_text.Text != "")
-                payload.AddRange(BitConverter.GetBytes(float.Parse(vit_lin_ghost_text.Text)));
-            else
-                payload.AddRange(BitConverter.GetBytes(0));
             if (vit_lin_max_ghost_text.Text != "")
                 payload.AddRange(BitConverter.GetBytes(float.Parse(vit_lin_max_ghost_text.Text)));
             else
@@ -590,24 +584,13 @@ namespace Robotinterface
         {
             List<byte> payload = new List<byte>();
             payload.AddRange(BitConverter.GetBytes(robot.theta_ghost));
-            if (vit_ang_ghost_text.Text != "")
-                payload.AddRange(BitConverter.GetBytes(robot.v_theta_ghost));
-            else
-                payload.AddRange(BitConverter.GetBytes(0));
+           
             if (acc_ang_ghost_text.Text != "")
                 payload.AddRange(BitConverter.GetBytes(float.Parse(acc_lin_ghost_text.Text)));
             else
                 payload.AddRange(BitConverter.GetBytes(0));
-            if (vit_ang_ghost_text.Text != "")
-                payload.AddRange(BitConverter.GetBytes(float.Parse(vit_ang_max_ghost_text.Text)));
-            else
-                payload.AddRange(BitConverter.GetBytes(0));
             payload.AddRange(BitConverter.GetBytes(0));
             payload.AddRange(BitConverter.GetBytes(0));
-            if (vit_lin_ghost_text.Text != "")
-                payload.AddRange(BitConverter.GetBytes(float.Parse(vit_lin_ghost_text.Text)));
-            else
-                payload.AddRange(BitConverter.GetBytes(0));
             if (vit_lin_max_ghost_text.Text != "")
                 payload.AddRange(BitConverter.GetBytes(float.Parse(vit_lin_max_ghost_text.Text)));
             else
@@ -649,10 +632,6 @@ namespace Robotinterface
                 payload.AddRange(BitConverter.GetBytes(targetAngle));
             else
                 payload.AddRange(BitConverter.GetBytes(0));
-            if (vit_ang_ghost_text.Text != "")
-                payload.AddRange(BitConverter.GetBytes(float.Parse(vit_ang_ghost_text.Text)));
-            else
-                payload.AddRange(BitConverter.GetBytes(0));
             if (acc_ang_ghost_text.Text != "")
                 payload.AddRange(BitConverter.GetBytes(float.Parse(acc_ang_ghost_text.Text)));
             else
@@ -663,10 +642,6 @@ namespace Robotinterface
                 payload.AddRange(BitConverter.GetBytes(0));
             payload.AddRange(BitConverter.GetBytes(robot.ghost_x));
             payload.AddRange(BitConverter.GetBytes(robot.ghost_y));
-            if (vit_lin_ghost_text.Text != "")
-                payload.AddRange(BitConverter.GetBytes(float.Parse(vit_lin_ghost_text.Text)));
-            else
-                payload.AddRange(BitConverter.GetBytes(0));
             if (vit_lin_max_ghost_text.Text != "")
                 payload.AddRange(BitConverter.GetBytes(float.Parse(vit_lin_max_ghost_text.Text)));
             else

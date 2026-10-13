@@ -121,7 +121,7 @@ void UartProcessDecodedMessage(int msgFunction, int msgPayloadLength, unsigned c
         case SET_GHOST:
             etatghost = ROTATION;
             SetupGhostValue(&robotState.ghost, getFloatFromBytes(msgPayload, 0), getFloatFromBytes(msgPayload, 4), getFloatFromBytes(msgPayload, 8), getFloatFromBytes(msgPayload, 12), getFloatFromBytes(msgPayload, 16),
-                    getFloatFromBytes(msgPayload, 20), getFloatFromBytes(msgPayload, 24), getFloatFromBytes(msgPayload, 28), getFloatFromBytes(msgPayload, 32));
+                    getFloatFromBytes(msgPayload, 20), getFloatFromBytes(msgPayload, 24));
             break;
         case RESET_GHOST:
             ResetGhostValue(&robotState.ghost);
