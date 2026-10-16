@@ -42,7 +42,7 @@ namespace Robotinterface
         public MainWindow()
         {
             
-            serialPort1 = new ExtendedSerialPort("COM7", 115200, Parity.None, 8, StopBits.One);
+            serialPort1 = new ExtendedSerialPort("COM9", 115200, Parity.None, 8, StopBits.One);
             serialPort1.DataReceived += SerialPort1_DataReceived;
             serialPort1.Open();
             InitializeComponent();
@@ -656,7 +656,7 @@ namespace Robotinterface
 
         private void Pos_x_y_text(object sender, RoutedEventArgs e)
         {
-            SendWaypoint(float.Parse(Text_Positionx.Text), float.Parse(Text_Positiony.Text));
+            SendWaypoint(float.Parse(Text_Positionx.Text.Replace(".",",")), float.Parse(Text_Positiony.Text.Replace(".", ",")));
         }
     }
 }

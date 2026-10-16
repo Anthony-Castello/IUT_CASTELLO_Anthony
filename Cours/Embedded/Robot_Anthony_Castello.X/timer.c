@@ -58,6 +58,7 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     ADC1StartConversionSequence();
     QEIUpdateData();
     UpdateAsservissement();
+    Carre_ghost();
 //    UpdateGhostOrientation();
 //    UpdateGhostPosition();
 //    DeplacementGhost();

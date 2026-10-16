@@ -21,19 +21,21 @@
 #include "Toolbox.h"
 
 extern int etatghost;
+int carre = ATTENTE_CARRE;           // à la place de "int carre;"
+static unsigned char etapeLancee = 0;
 
 void SetupGhostValue(volatile GhostState* Ghost, float theta_target, float acc_theta, float v_theta_max, float x, float y, float v_lin_max, float acc_lin) {
     Ghost->acc_theta = acc_theta;
     Ghost->v_theta_max = v_theta_max;
     Ghost->acc_lineaire = acc_lin;
     Ghost->v_lineaire_max = v_lin_max;
-    
-    Ghost->waypoint_x = x; 
+
+    Ghost->waypoint_x = x;
     Ghost->waypoint_y = y;
-    
+
     float dx = x - Ghost->x;
     float dy = y - Ghost->y;
-    
+
     // Détection d'une rotation pure (distance à parcourir quasi-nulle)
     if (fabs(dx) < 0.001 && fabs(dy) < 0.001) {
         Ghost->theta_waypoint = theta_target; // On pointe vers l'angle demandé
@@ -46,7 +48,7 @@ void SetupGhostValue(volatile GhostState* Ghost, float theta_target, float acc_t
     Ghost->lineaire_ghost = 0.0;
 }
 
-void ResetGhostValue(volatile GhostState* Ghost){
+void ResetGhostValue(volatile GhostState* Ghost) {
     Ghost -> waypoint_x = 0; //faire que l'ancienne val de x et y, on fasse nouvelle - ancienne
     Ghost -> waypoint_y = 0;
     Ghost -> x = 0;
@@ -54,12 +56,11 @@ void ResetGhostValue(volatile GhostState* Ghost){
     Ghost->theta_ghost = 0;
     robotState.ghost.theta_restant = 0;
     robotState.ghost.theta_arret = 0;
-    robotState.ghost.distance_restante = 0 ;
+    robotState.ghost.distance_restante = 0;
     robotState.ghost.lineaire_arret = 0;
     robotState.ghost.x_start = 0;
     robotState.ghost.y_start = 0;
 }
-
 
 void UpdateGhostOrientation() {
     float dt = 1.0f / FREQ_ECH_QEI;
@@ -132,10 +133,10 @@ void UpdateGhostPosition() {
     float angleWP = atan2(robotState.ghost.waypoint_y - robotState.ghost.y, robotState.ghost.waypoint_x - robotState.ghost.x);
     float ecartAngle = ModuloByAngle(robotState.ghost.theta_ghost, angleWP) - robotState.ghost.theta_ghost;
 
-    if (Abs(ecartAngle) > PI / 2){
+    if (Abs(ecartAngle) > PI / 2) {
         robotState.ghost.distance_restante = -robotState.ghost.distance_restante;
     }
-    
+
     // CORRECTION 1 : Utilisation exclusive de lineaire_arret
     robotState.ghost.lineaire_arret = (robotState.ghost.v_lineaire * robotState.ghost.v_lineaire) / (2.0 * robotState.ghost.acc_lineaire);
     robotState.ghost.increment_lineaire = robotState.ghost.v_lineaire / FREQ_ECH_QEI;
@@ -143,20 +144,19 @@ void UpdateGhostPosition() {
     if (robotState.ghost.v_lineaire < 0) {
         robotState.ghost.lineaire_arret = -robotState.ghost.lineaire_arret;
     }
-    
+
     // Phase d'accélération / croisière
-    if ((((robotState.ghost.lineaire_arret >= 0) && (robotState.ghost.distance_restante >= 0)) || 
-         ((robotState.ghost.lineaire_arret <= 0) && (robotState.ghost.distance_restante <= 0))) && 
-        (((Abs(robotState.ghost.distance_restante) >= Abs(robotState.ghost.lineaire_arret))))) {
-        
-                
+    if ((((robotState.ghost.lineaire_arret >= 0) && (robotState.ghost.distance_restante >= 0)) ||
+            ((robotState.ghost.lineaire_arret <= 0) && (robotState.ghost.distance_restante <= 0))) &&
+            (((Abs(robotState.ghost.distance_restante) >= Abs(robotState.ghost.lineaire_arret))))) {
+
+
         if (robotState.ghost.distance_restante > 0) {
             robotState.ghost.v_lineaire = Min((robotState.ghost.v_lineaire) + ((robotState.ghost.acc_lineaire) / FREQ_ECH_QEI), robotState.ghost.v_lineaire_max);
         } else if (robotState.ghost.distance_restante < 0) {
             robotState.ghost.v_lineaire = Max(robotState.ghost.v_lineaire - (robotState.ghost.acc_lineaire / FREQ_ECH_QEI), -robotState.ghost.v_lineaire_max);
         }
-    } 
-    // Phase de décélération
+    }        // Phase de décélération
     else {
         if ((robotState.ghost.v_lineaire) > 0) {
             // CORRECTION 2 : Utilisation de Max pour ne pas passer sous 0
@@ -165,15 +165,15 @@ void UpdateGhostPosition() {
             // CORRECTION 2 : Utilisation de Min pour ne pas repasser au-dessus de 0
             robotState.ghost.v_lineaire = Min(robotState.ghost.v_lineaire + robotState.ghost.acc_lineaire * (1.0 / FREQ_ECH_QEI), 0.0);
         }
-        
+
         // CORRECTION 3 : Bridage de l'incrément sur le dernier pas (anti-dépassement)
         if (Abs(robotState.ghost.distance_restante) < Abs(robotState.ghost.increment_lineaire)) {
             robotState.ghost.increment_lineaire = robotState.ghost.distance_restante;
         }
     }
-    
+
     robotState.ghost.lineaire_ghost += robotState.ghost.increment_lineaire;
-    
+
     // Mise à jour spatiale du fantôme
     robotState.ghost.x = robotState.ghost.x_start + robotState.ghost.lineaire_ghost * cos(robotState.ghost.theta_ghost);
     robotState.ghost.y = robotState.ghost.y_start + robotState.ghost.lineaire_ghost * sin(robotState.ghost.theta_ghost);
@@ -183,29 +183,81 @@ void UpdateGhostPosition() {
         // On snap parfaitement sur la cible pour corriger les micro-erreurs de calcul (float)
         robotState.ghost.x = robotState.ghost.waypoint_x;
         robotState.ghost.y = robotState.ghost.waypoint_y;
-        
+
         robotState.ghost.x_start = robotState.ghost.x;
         robotState.ghost.y_start = robotState.ghost.y;
-        
+
         // CORRECTION 4 : On remet l'accumulateur linéaire à 0 pour le prochain segment !
-        robotState.ghost.lineaire_ghost = 0; 
-        
+        robotState.ghost.lineaire_ghost = 0;
+
         etatghost = ATTENTE;
+        
     }
 }
 
-void Move_ghost(){
-    switch(etatghost){
-        case ATTENTE :
+void Move_ghost() {
+    switch (etatghost) {
+        case ATTENTE:
+            if (carre != ATTENTE_CARRE) {
+                if (carre == FIN)
+                    carre = ATTENTE_CARRE;
+                else {
+                    etatghost = ROTATION;
+                    carre ++;
+                }
+            }
             break;
-        case ROTATION :
+        case ROTATION:
             UpdateGhostOrientation();
             break;
-        case AVANCE :
+        case AVANCE:
             UpdateGhostPosition();
             break;
     }
 }
+
+static void LancerWaypoint(float x, float y) {
+    SetupGhostValue(&robotState.ghost, robotState.ghost.theta_ghost,
+                    robotState.ghost.acc_theta, robotState.ghost.v_theta_max,
+                    x, y,
+                    robotState.ghost.v_lineaire_max, robotState.ghost.acc_lineaire);
+    etatghost = ROTATION;            // on s'oriente d'abord, puis le ghost passe en AVANCE
+}
+
+void Carre_ghost() {
+    // Attente du bouton
+    if (carre == ATTENTE_CARRE) {
+        if (etatghost == ATTENTE && BOUTON_INTER1) {   // polarité : voir plus bas
+            carre = POSITIONNEMENT;
+            etapeLancee = 0;
+        } else {
+            return;
+        }
+    }
+
+    if (etatghost != ATTENTE) return;      // mouvement en cours : on ne touche à rien
+
+    if (etapeLancee) {                     // l'étape précédente est terminée
+        etapeLancee = 0;
+        if (carre == FIN) {
+            carre = ATTENTE_CARRE;
+            return;
+        }
+        carre++;
+    }
+
+    switch (carre) {
+        case POSITIONNEMENT: LancerWaypoint(1.0f,  0.0f);  break;
+        case ANGLE_1:        LancerWaypoint(1.0f,  0.5f);  break;
+        case ANGLE_2:        LancerWaypoint(2.0f,  0.5f); break;
+        case ANGLE_3:        LancerWaypoint(2.0f,  -0.5f); break;
+        case ANGLE_4:        LancerWaypoint(1.0f, -0.5f); break;
+        case ANGLE_5:        LancerWaypoint(1.0f,  0.0f); break;
+        case FIN:        LancerWaypoint(1.5f,  0.0f);  break;
+    }
+    etapeLancee = 1;
+}
+
 void SendghostValues() {
     unsigned char positionPayload[36];
     getBytesFromFloat(positionPayload, 0, robotState.ghost.v_theta);

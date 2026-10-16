@@ -63,7 +63,7 @@ int main(void) {
     robotState.ConsigneAngulaire = 0;
     robotState.ghost.x = 0;
     robotState.ghost.y = 0;
-    SetupGhostValue(&robotState.ghost,0,0,0,0,0,0,0);
+    SetupGhostValue(&robotState.ghost, robotState.ghost.theta_ghost, 1,1,0,0,1,1);
     LED_BLANCHE_1 = 0;
     LED_BLEUE_1 = 0;
     LED_ORANGE_1 = 0;
@@ -84,6 +84,8 @@ int main(void) {
     /***********************************************************************************************/
     while (1) {
         //UartEncodeAndSendMessage(0x0080, sizeof(payload), payload);
+        
+        LED_VERTE_2 = BOUTON_INTER2;
         int i;
         for (i = 0; i < CB_RX1_GetDataSize(); i++) {
             unsigned char c = CB_RX1_Get();

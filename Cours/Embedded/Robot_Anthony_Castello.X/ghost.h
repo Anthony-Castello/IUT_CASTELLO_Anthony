@@ -6,6 +6,14 @@
 #define ATTENTE 0
 #define ROTATION 1
 #define AVANCE 2
+#define ATTENTE_CARRE 3
+#define POSITIONNEMENT 4
+#define ANGLE_1 5
+#define ANGLE_2 6
+#define ANGLE_3 7
+#define ANGLE_4 8
+#define ANGLE_5 9
+#define FIN 10
 
 typedef struct _GhostState{
     float theta_ghost; // Position angulaire actuelle
@@ -47,6 +55,7 @@ void UpdateGhostPosition();
 void SendghostValues();
 void DeplacementGhost();
 void Move_ghost();
+void Carre_ghost();
 float calculerDistancePointSegment(float x, float y, float x_pre, float y_pre);
 
 

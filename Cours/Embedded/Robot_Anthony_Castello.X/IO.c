@@ -30,12 +30,16 @@ void InitIO() {
     _TRISA9 = 0; // LED Bleue 2
     _TRISA0 = 0; // LED Blanche 2
     _TRISJ10 = 0; //PWM_EN
+    _TRISH0 = 1; // INTER1 (entrée)
+    _TRISH1 = 1; // INTER2 (entrée)
+    _TRISH2 = 1; // INTER3 (entrée)
 
     //******************** QEI *****************
     _QEA2R = 97; //assign QEI A to pin RP97
     _QEB2R = 113; //assign QEI B to pin RP96
     _QEA1R = 126; //assign QEI A to pin RP70
     _QEB1R = 124; //assign QEI B to pin RP69
+
 
 
     /****************************************************************************************************/
