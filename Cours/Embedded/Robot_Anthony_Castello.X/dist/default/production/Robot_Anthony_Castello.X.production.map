@@ -30,7 +30,7 @@ Command:
   build/default/production/ghost.o \
   --local-stack \
   --defsym=__MPLAB_BUILD=1 \
-  -Tp33EP512MU814.000021cc.00 \
+  -Tp33EP512MU814.0000f3d4.00 \
   --stack=16 \
   --check-sections \
   --data-init \

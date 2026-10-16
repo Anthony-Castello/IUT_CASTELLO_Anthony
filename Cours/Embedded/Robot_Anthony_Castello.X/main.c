@@ -34,10 +34,10 @@ float KiTheta_limit = 175;
 float KpX_limit = 5;
 float KiX_limit = 175;
 
-float Kp2Theta_limit = 35; //max 50
-float Kd2Theta_limit = 2; //max 5
-float Kp2X_limit = 10; // max 15
-float Kd2X_limit = 1; // max 2
+float Kp2Theta_limit = 55; //max 50
+float Kd2Theta_limit = 5; //max 5
+float Kp2X_limit = 30; // max 15
+float Kd2X_limit = 5; // max 2
 
 
 int main(void) {
@@ -58,8 +58,8 @@ int main(void) {
     InitQEI1();
     InitQEI2();
     
-    SetupPidAsservissement(&robotState.PidTheta, Kp2Theta_limit, 0, Kd2Theta_limit, 50, 0, 5);
-    SetupPidAsservissement(&robotState.PidX, Kp2X_limit, 0, Kd2X_limit, 15, 0, 2);
+    SetupPidAsservissement(&robotState.PidTheta, Kp2Theta_limit, 0, Kd2Theta_limit, 100, 0, 10);
+    SetupPidAsservissement(&robotState.PidX, Kp2X_limit, 0, Kd2X_limit, 50, 0, 10);
     robotState.ConsigneAngulaire = 0;
     robotState.ghost.x = 0;
     robotState.ghost.y = 0;

@@ -1,7 +1,7 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 
-#define DISTROUES 0.218
+#define DISTROUES 0.219
 
 
 #include "asservissement.h"

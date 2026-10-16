@@ -82,7 +82,7 @@ void UpdateAsservissement() {
     double dx = robotState.ghost.x - robotState.xPosFromOdometry;
     double dy = robotState.ghost.y - robotState.yPosFromOdometry;
     
-//     Erreur longitudinale (dans la direction du robot)
+//     Projeté du ghost sur la direction du robot
     robotState.PidX.erreur = dx * cos(robotState.angleRadianFromOdometry)
                            + dy * sin(robotState.angleRadianFromOdometry);
     // 2. Calcul de l'erreur angulaire par rapport à l'angle ACTUEL du ghost (et non le waypoint final)

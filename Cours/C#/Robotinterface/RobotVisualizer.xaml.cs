@@ -17,8 +17,8 @@ namespace Robotinterface // À adapter au nom de votre projet
 {
     public partial class RobotVisualizer : UserControl
     {
-        private const double GridMin = -3.0;
-        private const double GridMax = 3.0;
+        private const double GridMin = -1.0;
+        private const double GridMax = 1.0;
         private const double GridRange = GridMax - GridMin;
 
         // Stockage de l'état actuel et de l'historique

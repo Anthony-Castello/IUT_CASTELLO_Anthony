@@ -137,7 +137,7 @@ void UpdateGhostPosition() {
         robotState.ghost.distance_restante = -robotState.ghost.distance_restante;
     }
 
-    // CORRECTION 1 : Utilisation exclusive de lineaire_arret
+    
     robotState.ghost.lineaire_arret = (robotState.ghost.v_lineaire * robotState.ghost.v_lineaire) / (2.0 * robotState.ghost.acc_lineaire);
     robotState.ghost.increment_lineaire = robotState.ghost.v_lineaire / FREQ_ECH_QEI;
 
@@ -145,7 +145,7 @@ void UpdateGhostPosition() {
         robotState.ghost.lineaire_arret = -robotState.ghost.lineaire_arret;
     }
 
-    // Phase d'accélération / croisière
+    
     if ((((robotState.ghost.lineaire_arret >= 0) && (robotState.ghost.distance_restante >= 0)) ||
             ((robotState.ghost.lineaire_arret <= 0) && (robotState.ghost.distance_restante <= 0))) &&
             (((Abs(robotState.ghost.distance_restante) >= Abs(robotState.ghost.lineaire_arret))))) {
@@ -156,17 +156,17 @@ void UpdateGhostPosition() {
         } else if (robotState.ghost.distance_restante < 0) {
             robotState.ghost.v_lineaire = Max(robotState.ghost.v_lineaire - (robotState.ghost.acc_lineaire / FREQ_ECH_QEI), -robotState.ghost.v_lineaire_max);
         }
-    }        // Phase de décélération
+    }        
     else {
         if ((robotState.ghost.v_lineaire) > 0) {
-            // CORRECTION 2 : Utilisation de Max pour ne pas passer sous 0
+            
             robotState.ghost.v_lineaire = Max(robotState.ghost.v_lineaire - robotState.ghost.acc_lineaire * (1.0 / FREQ_ECH_QEI), 0.0);
         } else if ((robotState.ghost.v_lineaire) < 0) {
             // CORRECTION 2 : Utilisation de Min pour ne pas repasser au-dessus de 0
             robotState.ghost.v_lineaire = Min(robotState.ghost.v_lineaire + robotState.ghost.acc_lineaire * (1.0 / FREQ_ECH_QEI), 0.0);
         }
 
-        // CORRECTION 3 : Bridage de l'incrément sur le dernier pas (anti-dépassement)
+        
         if (Abs(robotState.ghost.distance_restante) < Abs(robotState.ghost.increment_lineaire)) {
             robotState.ghost.increment_lineaire = robotState.ghost.distance_restante;
         }
@@ -174,20 +174,20 @@ void UpdateGhostPosition() {
 
     robotState.ghost.lineaire_ghost += robotState.ghost.increment_lineaire;
 
-    // Mise à jour spatiale du fantôme
+    
     robotState.ghost.x = robotState.ghost.x_start + robotState.ghost.lineaire_ghost * cos(robotState.ghost.theta_ghost);
     robotState.ghost.y = robotState.ghost.y_start + robotState.ghost.lineaire_ghost * sin(robotState.ghost.theta_ghost);
 
-    // Condition d'arrêt
+    
     if (robotState.ghost.v_lineaire == 0.0 && Abs(robotState.ghost.distance_restante) < 0.01) {
-        // On snap parfaitement sur la cible pour corriger les micro-erreurs de calcul (float)
+        
         robotState.ghost.x = robotState.ghost.waypoint_x;
         robotState.ghost.y = robotState.ghost.waypoint_y;
 
         robotState.ghost.x_start = robotState.ghost.x;
         robotState.ghost.y_start = robotState.ghost.y;
 
-        // CORRECTION 4 : On remet l'accumulateur linéaire à 0 pour le prochain segment !
+        
         robotState.ghost.lineaire_ghost = 0;
 
         etatghost = ATTENTE;
