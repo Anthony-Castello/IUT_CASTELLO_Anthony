@@ -34,10 +34,10 @@ float KiTheta_limit = 175;
 float KpX_limit = 5;
 float KiX_limit = 175;
 
-float Kp2Theta_limit = 55; //max 50
-float Kd2Theta_limit = 5; //max 5
-float Kp2X_limit = 30; // max 15
-float Kd2X_limit = 5; // max 2
+float Kp2Theta_limit = 55; //max 100
+float Kd2Theta_limit = 5; //max 10
+float Kp2X_limit = 30; // max 50
+float Kd2X_limit = 5; // max 10
 
 
 int main(void) {
@@ -63,7 +63,7 @@ int main(void) {
     robotState.ConsigneAngulaire = 0;
     robotState.ghost.x = 0;
     robotState.ghost.y = 0;
-    SetupGhostValue(&robotState.ghost, robotState.ghost.theta_ghost, 1,1,0,0,1,1);
+    SetupGhostValue(&robotState.ghost, robotState.ghost.theta_ghost, 1,1,0,0,0.5,1);
     LED_BLANCHE_1 = 0;
     LED_BLEUE_1 = 0;
     LED_ORANGE_1 = 0;

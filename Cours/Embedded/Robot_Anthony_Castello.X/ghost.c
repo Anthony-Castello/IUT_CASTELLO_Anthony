@@ -95,7 +95,7 @@ void UpdateGhostOrientation() {
     robotState.ghost.theta_ghost += robotState.ghost.increment_theta;
 
     if (robotState.ghost.v_theta == 0 && (Abs(robotState.ghost.theta_restant) < 0.01)) {
-        robotState.ghost.theta_ghost = robotState.ghost.theta_waypoint;
+        //robotState.ghost.theta_ghost = robotState.ghost.theta_waypoint;
         etatghost = AVANCE;
     }
 }
@@ -181,8 +181,8 @@ void UpdateGhostPosition() {
     
     if (robotState.ghost.v_lineaire == 0.0 && Abs(robotState.ghost.distance_restante) < 0.01) {
         
-        robotState.ghost.x = robotState.ghost.waypoint_x;
-        robotState.ghost.y = robotState.ghost.waypoint_y;
+        //robotState.ghost.x = robotState.ghost.waypoint_x;
+        //robotState.ghost.y = robotState.ghost.waypoint_y;
 
         robotState.ghost.x_start = robotState.ghost.x;
         robotState.ghost.y_start = robotState.ghost.y;
@@ -253,7 +253,7 @@ void Carre_ghost() {
         case ANGLE_3:        LancerWaypoint(2.0f,  -0.5f); break;
         case ANGLE_4:        LancerWaypoint(1.0f, -0.5f); break;
         case ANGLE_5:        LancerWaypoint(1.0f,  0.0f); break;
-        case FIN:        LancerWaypoint(1.5f,  0.0f);  break;
+        case FIN:        LancerWaypoint(1.36f,  0.0f);  break;
     }
     etapeLancee = 1;
 }
